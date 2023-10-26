@@ -1,0 +1,208 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\InitializeDB\\InitializeDB.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\InitializeDB\\InitializeDB.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\InitializeDB\\InitializeDB.csproj",
+        "projectName": "InitializeDB",
+        "projectPath": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\InitializeDB\\InitializeDB.csproj",
+        "packagesPath": "C:\\Users\\artur\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\InitializeDB\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\artur\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj"
+              },
+              "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj": {
+                "projectPath": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "NHibernate": {
+              "target": "Package",
+              "version": "[5.4.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.6.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj",
+        "projectName": "NemesisNevulaGen.ApplicationCore",
+        "projectPath": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj",
+        "packagesPath": "C:\\Users\\artur\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\artur\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "jose-jwt-signed": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj",
+        "projectName": "NemesisNevulaGen.Infraestructure",
+        "projectPath": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj",
+        "packagesPath": "C:\\Users\\artur\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\artur\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\artur\\Documents\\Universidad\\3GIM\\DSM\\PRA\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "NHibernate": {
+              "target": "Package",
+              "version": "[5.4.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
+            },
+            "jose-jwt-signed": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
