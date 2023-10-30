@@ -122,6 +122,7 @@ public void ModifyDefault (ArticuloEN articulo)
                 articuloNH.EsPublicado = articulo.EsPublicado;
 
 
+
                 session.Update (articuloNH);
                 SessionCommit ();
         }
