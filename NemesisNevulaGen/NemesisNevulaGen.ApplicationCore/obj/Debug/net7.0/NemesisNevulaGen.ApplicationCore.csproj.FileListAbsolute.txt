@@ -1,0 +1,5 @@
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\NemesisNevulaGen.ApplicationCore\obj\Debug\net7.0\NemesisNevulaGen.ApplicationCore.csproj.AssemblyReference.cache
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\NemesisNevulaGen.ApplicationCore\obj\Debug\net7.0\NemesisNevulaGen.ApplicationCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\NemesisNevulaGen.ApplicationCore\obj\Debug\net7.0\NemesisNevulaGen.ApplicationCore.AssemblyInfoInputs.cache
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\NemesisNevulaGen.ApplicationCore\obj\Debug\net7.0\NemesisNevulaGen.ApplicationCore.AssemblyInfo.cs
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\NemesisNevulaGen.ApplicationCore\obj\Debug\net7.0\NemesisNevulaGen.ApplicationCore.csproj.CoreCompileInputs.cache
