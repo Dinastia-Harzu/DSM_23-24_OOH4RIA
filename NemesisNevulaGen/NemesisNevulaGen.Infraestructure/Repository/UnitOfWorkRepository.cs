@@ -64,15 +64,6 @@ public override IArticuloRepository ArticuloRepository {
         }
 }
 
-public override INoticiaRepository NoticiaRepository {
-        get
-        {
-                this.noticiarepository = new NoticiaRepository ();
-                this.noticiarepository.setSessionCP (session);
-                return this.noticiarepository;
-        }
-}
-
 public override ICompraRepository CompraRepository {
         get
         {
@@ -115,6 +106,15 @@ public override IValoracionArticuloRepository ValoracionArticuloRepository {
                 this.valoracionarticulorepository = new ValoracionArticuloRepository ();
                 this.valoracionarticulorepository.setSessionCP (session);
                 return this.valoracionarticulorepository;
+        }
+}
+
+public override INoticiaRepository NoticiaRepository {
+        get
+        {
+                this.noticiarepository = new NoticiaRepository ();
+                this.noticiarepository.setSessionCP (session);
+                return this.noticiarepository;
         }
 }
 }

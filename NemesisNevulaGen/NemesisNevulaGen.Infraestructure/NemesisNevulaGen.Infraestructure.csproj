@@ -9,12 +9,12 @@
 	<EmbeddedResource Include="Mappings\NemesisNevula\visitante.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\administrador.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\articulo.hbm.xml" />
-	<EmbeddedResource Include="Mappings\NemesisNevula\noticia.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\compra.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\metodopago.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\tarjetacredito.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\paypal.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\valoracionarticulo.hbm.xml" />
+	<EmbeddedResource Include="Mappings\NemesisNevula\noticia.hbm.xml" />
 	
 	
 

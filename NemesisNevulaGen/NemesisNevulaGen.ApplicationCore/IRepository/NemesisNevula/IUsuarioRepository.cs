@@ -27,7 +27,6 @@ void BorrarUsuario (int id
                     );
 
 
-
 void ComprarArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs);
 
 void DevolverArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs);

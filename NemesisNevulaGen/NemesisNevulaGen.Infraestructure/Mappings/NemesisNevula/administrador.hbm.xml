@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="NemesisNevulaGen.Infraestructure"
+		                   namespace="NemesisNevulaGen.Infraestructure.EN.NemesisNevula">
+		    
+		    
+			
+				
+<joined-subclass name="AdministradorNH" extends="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" table="Administrador"> 
+	<key>
+    	
+				<column name="idVisitante"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+			
+		  			
+						<bag name="Articulo_0" table="[articulo_0_administrador]" inverse="true" >
+							<key>
+								
+									<column name="FK_idVisitante_idAdministrador"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.ArticuloNH">
+									<column name="FK_idArticulo_idArticulo_0"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Noticia" table="[noticia_administrador]" inverse="true" >
+							<key>
+								
+									<column name="FK_idVisitante_idAdministrador"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.NoticiaNH">
+									<column name="FK_idNoticia_idNoticia"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="AdministradorNHReadAllHQL">from AdministradorNH</query>
+		</hibernate-mapping>
+	

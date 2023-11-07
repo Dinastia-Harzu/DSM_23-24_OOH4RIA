@@ -158,9 +158,6 @@ public void ModificarAdmin (AdministradorEN administrador)
                 administradorNH.Correo = administrador.Correo;
 
 
-                administradorNH.Password = administrador.Password;
-
-
                 administradorNH.ConGoogle = administrador.ConGoogle;
 
 
@@ -171,6 +168,9 @@ public void ModificarAdmin (AdministradorEN administrador)
 
 
                 administradorNH.Cartera = administrador.Cartera;
+
+
+                administradorNH.Pass = administrador.Pass;
 
                 session.Update (administradorNH);
                 SessionCommit ();

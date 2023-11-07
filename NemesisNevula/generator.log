@@ -4,38 +4,36 @@
 1    [main] INFO  eclipse.emf.mwe.core.WorkflowEngine  - --------------------------------------------------------------------------------------
 1    [main] INFO  eclipse.emf.mwe.core.WorkflowEngine  - running workflow: D:/OOH4RIA/DDP2023/NemesisNevula/templates/workflow/generator.mwe
 1    [main] INFO  eclipse.emf.mwe.core.WorkflowEngine  - 
-156  [main] INFO  lipse.emf.mwe.utils.StandaloneSetup  - Registering platform uri 'D:\OOH4RIA\DDP2023'
-236  [main] INFO  lipse.emf.mwe.utils.StandaloneSetup  - Adding generated EPackage 'es.ua.dlsi.ooh.conceptualView.ConceptualViewPackage'
-258  [main] INFO  lipse.emf.mwe.utils.StandaloneSetup  - Adding generated EPackage 'org.eclipse.gmf.runtime.notation.NotationPackage'
-302  [main] INFO  e.core.container.CompositeComponent  - Workflow: executing workflow workflow::nhibernate::generator.mwe in D:/OOH4RIA/DDP2023/NemesisNevula/templates/workflow/generator.mwe:12
-302  [main] INFO  e.core.container.CompositeComponent  - XmiReader: file 'models/default.domainModel' => slot 'es_ua_dlsi_ooh_conceptual_model'
-388  [main] INFO  e.core.container.CompositeComponent  - CheckComponent: slot es_ua_dlsi_ooh_conceptual_model check file(s): metamodel::Checks 
-608  [main] INFO  e.core.container.CompositeComponent  - es.ua.dlsi.ooh.persistence.nhibernate.generator.workflowComponents.CleanBackup
+150  [main] INFO  lipse.emf.mwe.utils.StandaloneSetup  - Registering platform uri 'D:\OOH4RIA\DDP2023'
+194  [main] INFO  lipse.emf.mwe.utils.StandaloneSetup  - Adding generated EPackage 'es.ua.dlsi.ooh.conceptualView.ConceptualViewPackage'
+213  [main] INFO  lipse.emf.mwe.utils.StandaloneSetup  - Adding generated EPackage 'org.eclipse.gmf.runtime.notation.NotationPackage'
+252  [main] INFO  e.core.container.CompositeComponent  - Workflow: executing workflow workflow::nhibernate::generator.mwe in D:/OOH4RIA/DDP2023/NemesisNevula/templates/workflow/generator.mwe:12
+252  [main] INFO  e.core.container.CompositeComponent  - XmiReader: file 'models/default.domainModel' => slot 'es_ua_dlsi_ooh_conceptual_model'
+324  [main] INFO  e.core.container.CompositeComponent  - CheckComponent: slot es_ua_dlsi_ooh_conceptual_model check file(s): metamodel::Checks 
+486  [main] INFO  e.core.container.CompositeComponent  - es.ua.dlsi.ooh.persistence.nhibernate.generator.workflowComponents.CleanBackup
 Se ha borrado el directorio backup en la ubicacion: ../NemesisNevulaGen\Backup
-615  [main] INFO  e.core.container.CompositeComponent  - Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)]
-La licencia está en vigor. Su fecha de expiración es: Mon Sep 30 16:45:44 CEST 2024
-657  [main] INFO  and2.pr.ProtectedRegionResolverImpl  - Source scan started ...
-978  [main] INFO  and2.pr.ProtectedRegionResolverImpl  - Source scan finished in 0.321s
-978  [main] INFO  and2.pr.ProtectedRegionResolverImpl  - Files scanned: 66
-978  [main] INFO  and2.pr.ProtectedRegionResolverImpl  - Regions found: 4
-configuroConf:C:\Users\paula\AppData\Local\Temp\OOH4RIA137635947543442555.cfg
+491  [main] INFO  e.core.container.CompositeComponent  - Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)]
+La licencia está en vigor. Su fecha de expiración es: Mon Sep 30 18:08:26 CEST 2024
+525  [main] INFO  and2.pr.ProtectedRegionResolverImpl  - Source scan started ...
+590  [main] INFO  and2.pr.ProtectedRegionResolverImpl  - Source scan finished in 0.065s
+590  [main] INFO  and2.pr.ProtectedRegionResolverImpl  - Files scanned: 132
+590  [main] INFO  and2.pr.ProtectedRegionResolverImpl  - Regions found: 22
+configuroConf:C:\Users\paula\AppData\Local\Temp\OOH4RIA2678051355038380592.cfg
 enc:utf-8
 enc:utf-8
 enc:utf-8
 enc:utf-8
-1861 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - UsuarioRepository
+833  [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - UsuarioRepository
 enc:utf-8
-1910 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - UsuarioPremiumRepository
+882  [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - UsuarioPremiumRepository
 enc:utf-8
-1941 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - VisitanteRepository
+910  [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - VisitanteRepository
 enc:utf-8
-1978 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - AdministradorRepository
+933  [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - AdministradorRepository
 enc:utf-8
-2010 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - ArticuloRepository
+963  [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - ArticuloRepository
 enc:utf-8
-2057 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - NoticiaRepository
-enc:utf-8
-2094 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - CompraRepository
+1011 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - CompraRepository
 LA clase origen: Compra y el nombre de rol: usuarioComprador
 DISTINTO en: asoOrigin: articulo_compra. El nombre del rol origen: articulo de el rol destino: usuarioComprador
 LA clase destino: Compra y el nombre de rol: usuarioComprador
@@ -76,13 +74,13 @@ LA clase destino: Compra y el nombre de rol: metodoPagoCompra
 DISTINTO en: asoTarget: compra_usuario. El nombre del rol destino: usuarioComprador de el rol origen: metodoPagoCompra
 Encontrado en: asoTarget: compra_metodoPago El nombre de rol origen (generado): compraMetodoPago y el nombre del rol destino:metodoPagoCompra
 enc:utf-8
-2124 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - MetodoPagoRepository
+1047 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - MetodoPagoRepository
 enc:utf-8
-2152 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - TarjetaCreditoRepository
+1070 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - TarjetaCreditoRepository
 enc:utf-8
-2177 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - PaypalRepository
+1093 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - PaypalRepository
 enc:utf-8
-2205 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - ValoracionArticuloRepository
+1113 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - ValoracionArticuloRepository
 LA clase origen: ValoracionArticulo y el nombre de rol: articulo
 DISTINTO en: asoOrigin: usuario_valoracionArticulo. El nombre del rol origen: usuario de el rol destino: articulo
 LA clase destino: ValoracionArticulo y el nombre de rol: articulo
@@ -108,6 +106,7 @@ Encontrado en: asoOrigin: usuario_valoracionArticulo. El nombre del rol origen: 
 LA clase origen: ValoracionArticulo y el nombre de rol: usuario
 Encontrado en: asoOrigin: usuario_valoracionArticulo. El nombre del rol origen: usuario y el nombre de rol destino: valoracionArticulo
 enc:utf-8
+1140 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - NoticiaRepository
 enc:utf-8
 enc:utf-8
 enc:utf-8
@@ -122,79 +121,153 @@ enc:utf-8
 enc:utf-8
 enc:utf-8
 enc:utf-8
-2559 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - UsuarioCEN
-2565 [main] ERROR        org.eclipse.xpand2.Generator  - Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String]
-java.lang.RuntimeException: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String]
-	at org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver.getFeature(PolymorphicResolver.java:112)
-	at org.eclipse.internal.xtend.type.baseimpl.PolymorphicResolver.getExtension(PolymorphicResolver.java:56)
-	at org.eclipse.xtend.expression.ExecutionContextImpl$ExtensionsForNameAndTypeCache.createNew(ExecutionContextImpl.java:97)
-	at org.eclipse.xtend.expression.ExecutionContextImpl$ExtensionsForNameAndTypeCache.createNew(ExecutionContextImpl.java:1)
-	at org.eclipse.internal.xtend.util.Cache.get(Cache.java:26)
-	at org.eclipse.xtend.expression.ExecutionContextImpl.getExtensionForTypes(ExecutionContextImpl.java:371)
-	at org.eclipse.xtend.expression.ExecutionContextImpl.getExtension(ExecutionContextImpl.java:382)
-	at org.eclipse.internal.xtend.expression.ast.OperationCall.evaluateInternal(OperationCall.java:117)
-	at org.eclipse.internal.xtend.expression.ast.Expression.evaluate(Expression.java:51)
-	at org.eclipse.internal.xpand2.ast.ExpressionStatement.evaluateInternal(ExpressionStatement.java:45)
-	at org.eclipse.internal.xpand2.ast.Statement.evaluate(Statement.java:41)
-	at org.eclipse.internal.xpand2.ast.LetStatement.evaluateInternal(LetStatement.java:66)
-	at org.eclipse.internal.xpand2.ast.Statement.evaluate(Statement.java:41)
-	at org.eclipse.internal.xpand2.ast.IfStatement.evaluateInternal(IfStatement.java:93)
-	at org.eclipse.internal.xpand2.ast.Statement.evaluate(Statement.java:41)
-	at org.eclipse.internal.xpand2.ast.FileStatement.evaluateInternal(FileStatement.java:86)
-	at org.eclipse.internal.xpand2.ast.Statement.evaluate(Statement.java:41)
-	at org.eclipse.internal.xpand2.ast.AbstractDefinition.evaluate(AbstractDefinition.java:178)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.invokeDefinition(ExpandStatement.java:246)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.evaluateInternal(ExpandStatement.java:190)
-	at org.eclipse.internal.xpand2.ast.Statement.evaluate(Statement.java:41)
-	at org.eclipse.internal.xpand2.ast.AbstractDefinition.evaluate(AbstractDefinition.java:178)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.invokeDefinition(ExpandStatement.java:246)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.evaluateInternal(ExpandStatement.java:226)
-	at org.eclipse.internal.xpand2.ast.Statement.evaluate(Statement.java:41)
-	at org.eclipse.internal.xpand2.ast.AbstractDefinition.evaluate(AbstractDefinition.java:178)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.invokeDefinition(ExpandStatement.java:246)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.evaluateInternal(ExpandStatement.java:226)
-	at org.eclipse.internal.xpand2.ast.Statement.evaluate(Statement.java:41)
-	at org.eclipse.internal.xpand2.ast.AbstractDefinition.evaluate(AbstractDefinition.java:178)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.invokeDefinition(ExpandStatement.java:246)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.evaluateInternal(ExpandStatement.java:226)
-	at org.eclipse.internal.xpand2.ast.Statement.evaluate(Statement.java:41)
-	at org.eclipse.internal.xpand2.ast.AbstractDefinition.evaluate(AbstractDefinition.java:178)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.invokeDefinition(ExpandStatement.java:246)
-	at org.eclipse.internal.xpand2.ast.ExpandStatement.evaluateInternal(ExpandStatement.java:226)
-	at org.eclipse.internal.xpand2.ast.Statement.evaluate(Statement.java:41)
-	at org.eclipse.xpand2.Generator.invokeInternal2(Generator.java:272)
-	at org.eclipse.xtend.expression.AbstractExpressionsUsingWorkflowComponent.invokeInternal(AbstractExpressionsUsingWorkflowComponent.java:232)
-	at org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent.invoke(AbstractWorkflowComponent.java:126)
-	at org.eclipse.emf.mwe.core.container.CompositeComponent.internalInvoke(CompositeComponent.java:104)
-	at org.eclipse.emf.mwe.core.container.CompositeComponent.invoke(CompositeComponent.java:89)
-	at org.eclipse.emf.mwe.core.container.CompositeComponent.internalInvoke(CompositeComponent.java:104)
-	at org.eclipse.emf.mwe.core.container.CompositeComponent.invoke(CompositeComponent.java:89)
-	at org.eclipse.emf.mwe.core.WorkflowEngine.executeWorkflow(WorkflowEngine.java:174)
-	at org.eclipse.emf.mwe.core.WorkflowEngine.run(WorkflowEngine.java:53)
-	at org.eclipse.emf.mwe.core.WorkflowRunner.doRun(WorkflowRunner.java:192)
-	at org.eclipse.emf.mwe.core.WorkflowRunner.main(WorkflowRunner.java:71)
-2567 [main] ERROR        org.eclipse.xpand2.Generator  - Error in Component nhibernate.generator of type org.eclipse.xpand2.Generator: 
-	EvaluationException : Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String]
-	persistence::nhibernate::nhibernateCEN.xpt[12816,17] on line 239 'at.dataType("EN")'                                  
-	persistence::nhibernate::nhibernateCEN.xpt[287,40] on line 10 'EXPAND nhibernateClass FOREACH .classes()'             
-	persistence::CEN.xpt[61,51] on line 4 'EXPAND persistence::nhibernate::nhibernateCEN::main'                           
-	workflow::nhibernate::workflow.xpt[487,29] on line 14 'EXPAND persistence::CEN::main'                                 
-	workflow::nhibernate::workflow.xpt[113,72] on line 6 'EXPAND nHibernateGeneration FOR (ConceptualModel)var conceptual'
-	[23,52] on line 1 'EXPAND workflow::nhibernate::workflow::main FOR true'                                              
-
-2567 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - Workflow interrupted. Reason: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String]
-2567 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: at.dataType("EN"); Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2567 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: EXPRESSION: at.dataType("EN"); Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: org.eclipse.internal.xpand2.ast.LetStatement@51dbd6e4; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: org.eclipse.internal.xpand2.ast.IfStatement@2b8bd14b; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: «FILE .getCENDirectory()»...«ENDFILE»; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: nhibernateClass : Class; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: EXPAND nhibernateClass FOREACH .classes(); Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: main : ConceptualModel; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: EXPAND persistence::nhibernate::nhibernateCEN::main; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: main : ConceptualModel; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: EXPAND persistence::CEN::main; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: nHibernateGeneration : ConceptualModel; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: EXPAND nHibernateGeneration FOR (ConceptualModel)var conceptual; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: main : Boolean; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
-2568 [main] ERROR eclipse.emf.mwe.core.WorkflowEngine  - [ERROR]: Ambiguous operations String dataType(Argument this,String sufix) and String dataType(DerivedAttribute this,String sufix) for param types [Void, String](Element: EXPAND workflow::nhibernate::workflow::main FOR true; Reported by: Generator(nhibernate.generator): generating 'workflow::nhibernate::workflow::main FOR true' => [../NemesisNevulaGen, CONFIGURATION:../NemesisNevulaGen(overwrite=false,append=false,fileEncoding=utf-8)])
+enc:utf-8
+1431 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - UsuarioCEN
+enc:utf-8
+1452 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - UsuarioPremiumCEN
+enc:utf-8
+1471 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - VisitanteCEN
+enc:utf-8
+1489 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - AdministradorCEN
+enc:utf-8
+1512 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - ArticuloCEN
+enc:utf-8
+1535 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - CompraCEN
+enc:utf-8
+1557 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - MetodoPagoCEN
+enc:utf-8
+1577 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - TarjetaCreditoCEN
+enc:utf-8
+1597 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - PaypalCEN
+enc:utf-8
+1615 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - ValoracionArticuloCEN
+enc:utf-8
+1636 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - NoticiaCEN
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2df3b89c (name: crearUsuario, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@6f4a47c7 (name: modificarUsuario, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2de23121 (name: borrarUsuario, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@4988d8b8 (name: comprarArticulo, visibility: Public, operationType: Relationer, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: true, paging: false, customizedTransaction: false)
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@6913c1fb (name: devolverArticulo, visibility: Public, operationType: Unrelationer, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@609cd4d8 (name: regalarArticulo, visibility: Public, operationType: Custom, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@7d8704ef (name: valorarArticulo, visibility: Public, operationType: Custom, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@158a8276 (name: agregarFondos, visibility: Public, operationType: Custom, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@79d8407f (name: anyadirFavorito, visibility: Public, operationType: Relationer, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1834 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@4e50c791 (name: quitarFavorito, visibility: Public, operationType: Unrelationer, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+1850 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@f79e (name: crearUsuarioPremium, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1850 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2e377400 (name: modificarUsuarioPremium, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1850 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@c86b9e3 (name: borrarUsuarioPremium, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+1866 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@ed7f8b4 (name: crearVisitante, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1866 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@4c309d4d (name: modificarVisitante, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1866 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@37883b97 (name: borrarVisitante, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1866 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@4e3958e7 (name: registrarse, visibility: Public, operationType: Custom, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1867 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@1dac5ef (name: damePorOID, visibility: Public, operationType: ReadOID, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1867 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@58ea606c (name: dameTodos, visibility: Public, operationType: ReadAll, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+1886 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2d2ffcb7 (name: crearAdmin, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1886 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@7b02881e (name: modificarAdmin, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1886 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@68267da0 (name: borrarAdmin, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2f465398 (name: crearArticulo, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@5609159b (name: modificarArticulo, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@32910148 (name: borrarArticulo, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2b4bac49 (name: damePorOID, visibility: Public, operationType: ReadOID, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@3571b748 (name: dameTodos, visibility: Public, operationType: ReadAll, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@3e96bacf (name: previsualizar, visibility: Public, operationType: Custom, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@4470f8a6 (name: publicarArticulo, visibility: Public, operationType: Custom, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@7748410a (name: filtrarPorRango, visibility: Public, operationType: ReadFilter, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: FROM ArticuloNH, precondition: null, body: null, postcondition: null, automaticSynchronize: false, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@37f1104d (name: filtrarPorFecha, visibility: Public, operationType: ReadFilter, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: FROM ArticuloNH, precondition: null, body: null, postcondition: null, automaticSynchronize: false, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2f54a33d (name: filtrarPorTemporada, visibility: Public, operationType: ReadFilter, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: FROM ArticuloNH, precondition: null, body: null, postcondition: null, automaticSynchronize: false, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@65b3f4a4 (name: filtrarPorTipo, visibility: Public, operationType: ReadFilter, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: FROM ArticuloNH, precondition: null, body: null, postcondition: null, automaticSynchronize: false, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@568ff82 (name: filtrarPorPrecio, visibility: Public, operationType: ReadFilter, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: FROM ArticuloNH, precondition: null, body: null, postcondition: null, automaticSynchronize: false, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@5ab9e72c (name: ordenarPorPrecio, visibility: Public, operationType: ReadFilter, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: FROM ArticuloNH, precondition: null, body: null, postcondition: null, automaticSynchronize: false, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@1d8bd0de (name: ordenarPorFecha, visibility: Public, operationType: ReadFilter, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: FROM ArticuloNH, precondition: null, body: null, postcondition: null, automaticSynchronize: false, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@11c9af63 (name: mostrarArticulosPublicados, visibility: Public, operationType: ReadFilter, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: FROM ArticuloNH, precondition: null, body: null, postcondition: null, automaticSynchronize: false, customized: false, paging: false, customizedTransaction: false)
+1902 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@757acd7b (name: filtrarPorNombre, visibility: Public, operationType: ReadFilter, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: FROM ArticuloNH, precondition: null, body: null, postcondition: null, automaticSynchronize: false, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+1918 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@6c779568 (name: crearCompra, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1918 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@44a7bfbc (name: modificarCompra, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1918 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2beee7ff (name: borrarCompra, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1918 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@5939a379 (name: aplicarDescuento, visibility: Public, operationType: Custom, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+1938 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@865dd6 (name: crearMetodoPago, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1938 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@4da4253 (name: modificarMetodoPago, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1938 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@62e7f11d (name: borrarMetodoPago, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+1954 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@140c9f39 (name: crearTarjetaCredito, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1954 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2e222612 (name: modificarTarjetaCredito, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1954 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@10959ece (name: borrarTarjetaCredito, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+1970 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@747edf66 (name: crearPaypal, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1970 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@2cd2a21f (name: modificarPaypal, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1970 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@378542de (name: borrarPaypal, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+1988 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@53976f5c (name: crearValoracion, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1988 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@41e1e210 (name: modificarValoracion, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+1988 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@44821a96 (name: borrarValoracion, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+2005 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@b62d79 (name: crearNoticia, visibility: Public, operationType: New, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+2005 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@1613674b (name: modificarNoticia, visibility: Public, operationType: Modifier, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+2005 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@693fe6c9 (name: borrarNoticia, visibility: Public, operationType: Destroy, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+2005 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@31e5415e (name: damePorOID, visibility: Public, operationType: ReadOID, description: null, type: Object, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+2005 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@1cbb87f3 (name: dameTodos, visibility: Public, operationType: ReadAll, description: null, type: Object, collectionType: List, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+2005 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - es.ua.dlsi.ooh.conceptualView.impl.OperationImpl@1a4013 (name: publicarNoticia, visibility: Public, operationType: Custom, description: null, type: Void, collectionType: None, isStatic: false, isOrdered: false, filter: null, precondition: null, body: null, postcondition: null, automaticSynchronize: true, customized: false, paging: false, customizedTransaction: false)
+enc:utf-8
+enc:utf-8
+enc:utf-8
+2065 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - UsuarioEN
+enc:utf-8
+2090 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - UsuarioPremiumEN
+enc:utf-8
+2114 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - VisitanteEN
+enc:utf-8
+2132 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - AdministradorEN
+enc:utf-8
+2157 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - ArticuloEN
+enc:utf-8
+2190 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - CompraEN
+enc:utf-8
+2211 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - MetodoPagoEN
+enc:utf-8
+2234 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - TarjetaCreditoEN
+enc:utf-8
+2256 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - PaypalEN
+enc:utf-8
+2279 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - ValoracionArticuloEN
+enc:utf-8
+2303 [main] INFO  ipse.xtend.util.stdlib.IOExtensions  - NoticiaEN
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+enc:utf-8
+2634 [main] INFO         org.eclipse.xpand2.Generator  - Written 6 files to outlet [default](../NemesisNevulaGen)
+2634 [main] INFO         org.eclipse.xpand2.Generator  - Skipped writing of 102 files to outlet [default](../NemesisNevulaGen)
+2634 [main] INFO  e.core.container.CompositeComponent  - es.ua.dlsi.ooh.persistence.nhibernate.generator.workflowComponents.CreateSolution
+2639 [main] INFO  e.core.container.CompositeComponent  - es.ua.dlsi.ooh.persistence.nhibernate.generator.workflowComponents.UpdateSolution
+2646 [main] INFO  eclipse.emf.mwe.core.WorkflowEngine  - workflow completed in 2395ms!

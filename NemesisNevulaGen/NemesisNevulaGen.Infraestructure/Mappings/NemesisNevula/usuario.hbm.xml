@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="NemesisNevulaGen.Infraestructure"
+		                   namespace="NemesisNevulaGen.Infraestructure.EN.NemesisNevula">
+		    
+		    
+			
+				
+<joined-subclass name="UsuarioNH" extends="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.VisitanteNH" table="Usuario"> 
+	<key>
+    	
+				<column name="idVisitante"/>
+		
+    	
+   	</key>
+
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+					<property name="Correo" type="string"> 
+						<column name="correo"  not-null="true"/>
+					</property>
+					<property name="ConGoogle" type="boolean"> 
+						<column name="conGoogle"  not-null="true"/>
+					</property>
+					<property name="Foto_perfil" type="string"> 
+						<column name="foto_perfil"  not-null="true"/>
+					</property>
+					<property name="PuntosNevula" type="integer"> 
+						<column name="puntosNevula"  not-null="true"/>
+					</property>
+					<property name="Cartera" type="float"> 
+						<column name="cartera"  not-null="true"/>
+					</property>
+					<property name="Pass" type="string"> 
+						<column name="pass"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="ArticulosFavs" table="[articulo_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_idVisitante_idUsuario"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.ArticuloNH">
+									<column name="FK_idArticulo_idArticulo"/> 
+      						</many-to-many>
+    					</bag>
+			
+			
+		  			
+						<bag name="CompraUsuario" >
+							<key>
+							
+								
+								<column name="FK_idVisitante_idUsuario"/>
+					      	</key>
+							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.CompraNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="MetodoPago" table="[usuario_metodoPago]"  >
+							<key>
+								
+									<column name="FK_idVisitante_idUsuario"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.MetodoPagoNH">
+									<column name="FK_idMetodoPago_idMetodoPago"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Articulo" table="[articulo_usuario_2]" inverse="true" >
+							<key>
+								
+									<column name="FK_idVisitante_idUsuario"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.ArticuloNH">
+									<column name="FK_idArticulo_idArticulo"/> 
+      						</many-to-many>
+    					</bag>
+			
+			
+		  			
+						<bag name="ValoracionArticulo" >
+							<key>
+							
+								
+								<column name="FK_idVisitante_idUsuario"/>
+					      	</key>
+							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.ValoracionArticuloNH"/>
+					    </bag>
+					
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="UsuarioNHReadAllHQL">from UsuarioNH</query>
+		</hibernate-mapping>
+	

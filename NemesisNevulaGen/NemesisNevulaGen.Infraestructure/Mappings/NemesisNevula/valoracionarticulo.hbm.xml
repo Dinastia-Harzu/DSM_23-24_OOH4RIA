@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="NemesisNevulaGen.Infraestructure"
+		                   namespace="NemesisNevulaGen.Infraestructure.EN.NemesisNevula">
+		    
+		    
+			
+				<class name="ValoracionArticuloNH" table="ValoracionArticulo"> 
+				  	
+						<id name="Id" column="idValoracionArticulo" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Valoracion" type="integer"> 
+						<column name="valoracion"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="Articulo" class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.ArticuloNH" >	
+								<column name="FK_idArticulo_idArticulo"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Usuario" class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" >	
+								<column name="FK_idVisitante_idUsuario"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ValoracionArticuloNHReadAllHQL">from ValoracionArticuloNH</query>
+		</hibernate-mapping>
+	

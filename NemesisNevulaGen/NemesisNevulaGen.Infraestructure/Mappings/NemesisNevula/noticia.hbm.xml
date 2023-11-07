@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="NemesisNevulaGen.Infraestructure"
+		                   namespace="NemesisNevulaGen.Infraestructure.EN.NemesisNevula">
+		    
+		    
+			
+				<class name="NoticiaNH" table="Noticia"> 
+				  	
+						<id name="Id" column="idNoticia" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion"  not-null="true"/>
+					</property>
+					<property name="EsPublicada" type="boolean"> 
+						<column name="esPublicada"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<bag name="Administrador" table="[noticia_administrador]"  >
+							<key>
+								
+									<column name="FK_idNoticia_idNoticia"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.AdministradorNH">
+									<column name="FK_idVisitante_idAdministrador"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="NoticiaNHReadAllHQL">from NoticiaNH</query>
+		</hibernate-mapping>
+	

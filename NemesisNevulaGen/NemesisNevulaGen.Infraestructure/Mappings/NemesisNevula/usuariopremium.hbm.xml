@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="NemesisNevulaGen.Infraestructure"
+		                   namespace="NemesisNevulaGen.Infraestructure.EN.NemesisNevula">
+		    
+		    
+			
+				
+<joined-subclass name="UsuarioPremiumNH" extends="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" table="UsuarioPremium"> 
+	<key>
+    	
+				<column name="idVisitante"/>
+		
+    	
+   	</key>
+
+			
+					
+					<property name="FechaCaducidad" type="date"> 
+						<column name="fechaCaducidad"  not-null="true"/>
+					</property>
+			
+			
+					
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="UsuarioPremiumNHReadAllHQL">from UsuarioPremiumNH</query>
+		</hibernate-mapping>
+	

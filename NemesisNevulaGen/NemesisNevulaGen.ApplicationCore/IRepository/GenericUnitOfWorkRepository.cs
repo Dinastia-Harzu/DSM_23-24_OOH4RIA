@@ -12,12 +12,12 @@ protected IUsuarioPremiumRepository usuariopremiumrepository;
 protected IVisitanteRepository visitanterepository;
 protected IAdministradorRepository administradorrepository;
 protected IArticuloRepository articulorepository;
-protected INoticiaRepository noticiarepository;
 protected ICompraRepository comprarepository;
 protected IMetodoPagoRepository metodopagorepository;
 protected ITarjetaCreditoRepository tarjetacreditorepository;
 protected IPaypalRepository paypalrepository;
 protected IValoracionArticuloRepository valoracionarticulorepository;
+protected INoticiaRepository noticiarepository;
 
 
 public abstract IUsuarioRepository UsuarioRepository {
@@ -35,9 +35,6 @@ public abstract IAdministradorRepository AdministradorRepository {
 public abstract IArticuloRepository ArticuloRepository {
         get;
 }
-public abstract INoticiaRepository NoticiaRepository {
-        get;
-}
 public abstract ICompraRepository CompraRepository {
         get;
 }
@@ -51,6 +48,9 @@ public abstract IPaypalRepository PaypalRepository {
         get;
 }
 public abstract IValoracionArticuloRepository ValoracionArticuloRepository {
+        get;
+}
+public abstract INoticiaRepository NoticiaRepository {
         get;
 }
 }

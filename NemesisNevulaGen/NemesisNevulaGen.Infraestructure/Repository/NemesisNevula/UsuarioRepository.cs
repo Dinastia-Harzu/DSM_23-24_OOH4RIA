@@ -103,9 +103,6 @@ public void ModifyDefault (UsuarioEN usuario)
                 usuarioNH.Correo = usuario.Correo;
 
 
-                usuarioNH.Password = usuario.Password;
-
-
                 usuarioNH.ConGoogle = usuario.ConGoogle;
 
 
@@ -121,6 +118,9 @@ public void ModifyDefault (UsuarioEN usuario)
 
                 usuarioNH.Cartera = usuario.Cartera;
 
+
+
+                usuarioNH.Pass = usuario.Pass;
 
                 session.Update (usuarioNH);
                 SessionCommit ();
@@ -180,9 +180,6 @@ public void ModificarUsuario (UsuarioEN usuario)
 
 
                 usuarioNH.Correo = usuario.Correo;
-
-
-                usuarioNH.Password = usuario.Password;
 
 
                 usuarioNH.ConGoogle = usuario.ConGoogle;

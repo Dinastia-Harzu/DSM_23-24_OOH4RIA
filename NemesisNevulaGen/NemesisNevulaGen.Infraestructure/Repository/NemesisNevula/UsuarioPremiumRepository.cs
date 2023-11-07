@@ -159,9 +159,6 @@ public void ModificarUsuarioPremium (UsuarioPremiumEN usuarioPremium)
                 usuarioPremiumNH.Correo = usuarioPremium.Correo;
 
 
-                usuarioPremiumNH.Password = usuarioPremium.Password;
-
-
                 usuarioPremiumNH.ConGoogle = usuarioPremium.ConGoogle;
 
 

@@ -92,8 +92,6 @@ public static void InitializeData ()
                 AdministradorCEN administradorcen = new AdministradorCEN (administradorrepository);
                 ArticuloRepository articulorepository = new ArticuloRepository ();
                 ArticuloCEN articulocen = new ArticuloCEN (articulorepository);
-                NoticiaRepository noticiarepository = new NoticiaRepository ();
-                NoticiaCEN noticiacen = new NoticiaCEN (noticiarepository);
                 CompraRepository comprarepository = new CompraRepository ();
                 CompraCEN compracen = new CompraCEN (comprarepository);
                 MetodoPagoRepository metodopagorepository = new MetodoPagoRepository ();
@@ -104,6 +102,8 @@ public static void InitializeData ()
                 PaypalCEN paypalcen = new PaypalCEN (paypalrepository);
                 ValoracionArticuloRepository valoracionarticulorepository = new ValoracionArticuloRepository ();
                 ValoracionArticuloCEN valoracionarticulocen = new ValoracionArticuloCEN (valoracionarticulorepository);
+                NoticiaRepository noticiarepository = new NoticiaRepository ();
+                NoticiaCEN noticiacen = new NoticiaCEN (noticiarepository);
 
 
 
