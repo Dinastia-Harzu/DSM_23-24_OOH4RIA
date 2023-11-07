@@ -39,6 +39,9 @@
 					<property name="FechaPublicacion" type="date"> 
 						<column name="fechaPublicacion"  not-null="true"/>
 					</property>
+					<property name="Temporada" type="string"> 
+						<column name="temporada"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -104,6 +107,8 @@
 					      	</key>
 							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.ValoracionArticuloNH"/>
 					    </bag>
+					
+			
 					
 					
 					

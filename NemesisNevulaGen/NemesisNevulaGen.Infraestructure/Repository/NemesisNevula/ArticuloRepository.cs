@@ -128,6 +128,9 @@ public void ModifyDefault (ArticuloEN articulo)
                 articuloNH.FechaPublicacion = articulo.FechaPublicacion;
 
 
+
+                articuloNH.Temporada = articulo.Temporada;
+
                 session.Update (articuloNH);
                 SessionCommit ();
         }
@@ -207,6 +210,9 @@ public void ModificarArticulo (ArticuloEN articulo)
 
 
                 articuloNH.FechaPublicacion = articulo.FechaPublicacion;
+
+
+                articuloNH.Temporada = articulo.Temporada;
 
                 session.Update (articuloNH);
                 SessionCommit ();
