@@ -15,7 +15,7 @@ namespace NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula
 {
 public partial class CompraCEN
 {
-public void AplicarDescuento (int p_oid)
+public void AplicarDescuento (int p_oid, bool p_aplicado)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula_Compra_aplicarDescuento) ENABLED START*/
 

@@ -235,45 +235,6 @@ public void BorrarUsuario (int id
         }
 }
 
-public void ComprarArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs)
-{
-        NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioEN = null;
-        try
-        {
-                SessionInitializeTransaction ();
-                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioNH), p_Usuario_OID);
-                NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN compraUsuarioENAux = null;
-                if (usuarioEN.CompraUsuario == null) {
-                        usuarioEN.CompraUsuario = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN>();
-                }
-
-                foreach (int item in p_compraUsuario_OIDs) {
-                        compraUsuarioENAux = new NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN ();
-                        compraUsuarioENAux = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN)session.Load (typeof(NemesisNevulaGen.Infraestructure.EN.NemesisNevula.CompraNH), item);
-                        compraUsuarioENAux.UsuarioComprador = usuarioEN;
-
-                        usuarioEN.CompraUsuario.Add (compraUsuarioENAux);
-                }
-
-
-                session.Update (usuarioEN);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
-                        throw;
-                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-}
-
 public void DevolverArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs)
 {
         try

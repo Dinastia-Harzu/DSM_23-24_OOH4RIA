@@ -15,16 +15,5 @@ namespace NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula
 {
 public partial class UsuarioCEN
 {
-public void ComprarArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs)
-{
-        /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula_Usuario_comprarArticulo_customized) START*/
-
-
-        //Call to UsuarioRepository
-
-        _IUsuarioRepository.ComprarArticulo (p_Usuario_OID, p_compraUsuario_OIDs);
-
-        /*PROTECTED REGION END*/
-}
 }
 }
