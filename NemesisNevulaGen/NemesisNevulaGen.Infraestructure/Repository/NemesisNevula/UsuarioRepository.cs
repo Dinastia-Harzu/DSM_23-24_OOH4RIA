@@ -118,6 +118,10 @@ public void ModifyDefault (UsuarioEN usuario)
 
 
 
+
+                usuarioNH.Cartera = usuario.Cartera;
+
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }
@@ -188,6 +192,9 @@ public void ModificarUsuario (UsuarioEN usuario)
 
 
                 usuarioNH.PuntosNevula = usuario.PuntosNevula;
+
+
+                usuarioNH.Cartera = usuario.Cartera;
 
                 session.Update (usuarioNH);
                 SessionCommit ();

@@ -108,6 +108,15 @@ public override IPaypalRepository PaypalRepository {
                 return this.paypalrepository;
         }
 }
+
+public override IValoracionArticuloRepository ValoracionArticuloRepository {
+        get
+        {
+                this.valoracionarticulorepository = new ValoracionArticuloRepository ();
+                this.valoracionarticulorepository.setSessionCP (session);
+                return this.valoracionarticulorepository;
+        }
+}
 }
 }
 

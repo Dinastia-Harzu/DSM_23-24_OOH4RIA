@@ -28,7 +28,6 @@ void BorrarVisitante (int id
 
 
 
-
 VisitanteEN DamePorOID (int id
                         );
 

@@ -96,6 +96,8 @@ public void ModifyDefault (AdministradorEN administrador)
         {
                 SessionInitializeTransaction ();
                 AdministradorNH administradorNH = (AdministradorNH)session.Load (typeof(AdministradorNH), administrador.Id);
+
+
                 session.Update (administradorNH);
                 SessionCommit ();
         }
@@ -166,6 +168,9 @@ public void ModificarAdmin (AdministradorEN administrador)
 
 
                 administradorNH.PuntosNevula = administrador.PuntosNevula;
+
+
+                administradorNH.Cartera = administrador.Cartera;
 
                 session.Update (administradorNH);
                 SessionCommit ();

@@ -102,6 +102,8 @@ public static void InitializeData ()
                 TarjetaCreditoCEN tarjetacreditocen = new TarjetaCreditoCEN (tarjetacreditorepository);
                 PaypalRepository paypalrepository = new PaypalRepository ();
                 PaypalCEN paypalcen = new PaypalCEN (paypalrepository);
+                ValoracionArticuloRepository valoracionarticulorepository = new ValoracionArticuloRepository ();
+                ValoracionArticuloCEN valoracionarticulocen = new ValoracionArticuloCEN (valoracionarticulorepository);
 
 
 

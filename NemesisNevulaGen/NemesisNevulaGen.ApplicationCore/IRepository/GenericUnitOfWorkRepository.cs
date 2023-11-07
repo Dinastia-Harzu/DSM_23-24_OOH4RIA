@@ -17,6 +17,7 @@ protected ICompraRepository comprarepository;
 protected IMetodoPagoRepository metodopagorepository;
 protected ITarjetaCreditoRepository tarjetacreditorepository;
 protected IPaypalRepository paypalrepository;
+protected IValoracionArticuloRepository valoracionarticulorepository;
 
 
 public abstract IUsuarioRepository UsuarioRepository {
@@ -47,6 +48,9 @@ public abstract ITarjetaCreditoRepository TarjetaCreditoRepository {
         get;
 }
 public abstract IPaypalRepository PaypalRepository {
+        get;
+}
+public abstract IValoracionArticuloRepository ValoracionArticuloRepository {
         get;
 }
 }

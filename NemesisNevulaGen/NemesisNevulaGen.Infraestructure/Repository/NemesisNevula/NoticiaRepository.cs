@@ -102,6 +102,7 @@ public void ModifyDefault (NoticiaEN noticia)
 
                 noticiaNH.EsPublicada = noticia.EsPublicada;
 
+
                 session.Update (noticiaNH);
                 SessionCommit ();
         }

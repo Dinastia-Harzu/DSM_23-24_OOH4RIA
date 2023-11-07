@@ -171,6 +171,9 @@ public void ModificarUsuarioPremium (UsuarioPremiumEN usuarioPremium)
                 usuarioPremiumNH.PuntosNevula = usuarioPremium.PuntosNevula;
 
 
+                usuarioPremiumNH.Cartera = usuarioPremium.Cartera;
+
+
                 usuarioPremiumNH.FechaCaducidad = usuarioPremium.FechaCaducidad;
 
                 session.Update (usuarioPremiumNH);
