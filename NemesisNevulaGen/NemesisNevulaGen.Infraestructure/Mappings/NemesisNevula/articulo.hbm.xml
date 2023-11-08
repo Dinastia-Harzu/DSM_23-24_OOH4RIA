@@ -42,6 +42,9 @@
 					<property name="Temporada" type="string"> 
 						<column name="temporada"  not-null="true"/>
 					</property>
+					<property name="Previsualizacion" type="string"> 
+						<column name="previsualizacion"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -109,6 +112,8 @@
 					    </bag>
 					
 			
+			
+					
 					
 					
 					
@@ -129,14 +134,14 @@
 		 </class>	
 		  
 		  <query name="ArticuloNHReadAllHQL">from ArticuloNH</query>
-		  <query name="ArticuloNHfiltrarPorRangoHQL"><![CDATA[FROM ArticuloNH]]></query>
-		  <query name="ArticuloNHfiltrarPorFechaHQL"><![CDATA[FROM ArticuloNH]]></query>
-		  <query name="ArticuloNHfiltrarPorTemporadaHQL"><![CDATA[FROM ArticuloNH]]></query>
-		  <query name="ArticuloNHfiltrarPorTipoHQL"><![CDATA[FROM ArticuloNH]]></query>
-		  <query name="ArticuloNHfiltrarPorPrecioHQL"><![CDATA[FROM ArticuloNH]]></query>
+		  <query name="ArticuloNHfiltrarPorRangoHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Rango=:p_rango]]></query>
+		  <query name="ArticuloNHfiltrarPorFechaHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Rango = :p_rango]]></query>
+		  <query name="ArticuloNHfiltrarPorTemporadaHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Temporada LIKE '%:p_temp%']]></query>
+		  <query name="ArticuloNHfiltrarPorTipoHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Tipo = :p_tipo]]></query>
+		  <query name="ArticuloNHfiltrarPorPrecioHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Precio < :p_precio_ini AND art.Precio > :p_precio_fin]]></query>
 		  <query name="ArticuloNHordenarPorPrecioHQL"><![CDATA[FROM ArticuloNH]]></query>
 		  <query name="ArticuloNHordenarPorFechaHQL"><![CDATA[FROM ArticuloNH]]></query>
-		  <query name="ArticuloNHmostrarArticulosPublicadosHQL"><![CDATA[FROM ArticuloNH]]></query>
-		  <query name="ArticuloNHfiltrarPorNombreHQL"><![CDATA[FROM ArticuloNH]]></query>
+		  <query name="ArticuloNHmostrarArticulosPublicadosHQL"><![CDATA[FROM ArticuloNH AS ]]></query>
+		  <query name="ArticuloNHfiltrarPorNombreHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Nombre LIKE '%:p_nombre%']]></query>
 		</hibernate-mapping>
 	

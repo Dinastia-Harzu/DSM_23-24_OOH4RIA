@@ -117,6 +117,13 @@ private string temporada;
 
 
 
+/**
+ *	Atributo previsualizacion
+ */
+private string previsualizacion;
+
+
+
 
 
 
@@ -216,6 +223,12 @@ public virtual string Temporada {
 
 
 
+public virtual string Previsualizacion {
+        get { return previsualizacion; } set { previsualizacion = value;  }
+}
+
+
+
 
 
 public ArticuloEN()
@@ -229,20 +242,20 @@ public ArticuloEN()
 
 
 
-public ArticuloEN(int id, string nombre, string descripcion, float precio, string fotografia, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum rareza, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum tipo, int valoracion, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioFavs, bool esPublicado, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> compraArticulo, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPropietario, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administrador, Nullable<DateTime> fechaPublicacion, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ValoracionArticuloEN> valoracionArticulo, string temporada
+public ArticuloEN(int id, string nombre, string descripcion, float precio, string fotografia, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum rareza, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum tipo, int valoracion, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioFavs, bool esPublicado, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> compraArticulo, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPropietario, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administrador, Nullable<DateTime> fechaPublicacion, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ValoracionArticuloEN> valoracionArticulo, string temporada, string previsualizacion
                   )
 {
-        this.init (Id, nombre, descripcion, precio, fotografia, rareza, tipo, valoracion, usuarioFavs, esPublicado, compraArticulo, usuarioPropietario, administrador, fechaPublicacion, valoracionArticulo, temporada);
+        this.init (Id, nombre, descripcion, precio, fotografia, rareza, tipo, valoracion, usuarioFavs, esPublicado, compraArticulo, usuarioPropietario, administrador, fechaPublicacion, valoracionArticulo, temporada, previsualizacion);
 }
 
 
 public ArticuloEN(ArticuloEN articulo)
 {
-        this.init (articulo.Id, articulo.Nombre, articulo.Descripcion, articulo.Precio, articulo.Fotografia, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.UsuarioFavs, articulo.EsPublicado, articulo.CompraArticulo, articulo.UsuarioPropietario, articulo.Administrador, articulo.FechaPublicacion, articulo.ValoracionArticulo, articulo.Temporada);
+        this.init (articulo.Id, articulo.Nombre, articulo.Descripcion, articulo.Precio, articulo.Fotografia, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.UsuarioFavs, articulo.EsPublicado, articulo.CompraArticulo, articulo.UsuarioPropietario, articulo.Administrador, articulo.FechaPublicacion, articulo.ValoracionArticulo, articulo.Temporada, articulo.Previsualizacion);
 }
 
 private void init (int id
-                   , string nombre, string descripcion, float precio, string fotografia, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum rareza, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum tipo, int valoracion, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioFavs, bool esPublicado, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> compraArticulo, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPropietario, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administrador, Nullable<DateTime> fechaPublicacion, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ValoracionArticuloEN> valoracionArticulo, string temporada)
+                   , string nombre, string descripcion, float precio, string fotografia, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum rareza, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum tipo, int valoracion, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioFavs, bool esPublicado, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> compraArticulo, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPropietario, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administrador, Nullable<DateTime> fechaPublicacion, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ValoracionArticuloEN> valoracionArticulo, string temporada, string previsualizacion)
 {
         this.Id = id;
 
@@ -276,6 +289,8 @@ private void init (int id
         this.ValoracionArticulo = valoracionArticulo;
 
         this.Temporada = temporada;
+
+        this.Previsualizacion = previsualizacion;
 }
 
 public override bool Equals (object obj)

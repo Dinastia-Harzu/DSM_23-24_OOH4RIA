@@ -5,7 +5,7 @@
 			    <property name="dialect">NHibernate.Dialect.MsSql2005Dialect</property>
 				  <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
 			    <property name="connection.connection_string">
-					  Server=(local);Database=NemesisNevulaGenNHibernate;User Id=nhibernateUser;Password=nhibernatePass; 
+					  Server=(local)\sqlexpress;Database=NemesisNevulaGenNHibernate;User Id=nhibernateUser;Password=nhibernatePass; 
 				</property>
 				  <property name="adonet.batch_size">
 					  100

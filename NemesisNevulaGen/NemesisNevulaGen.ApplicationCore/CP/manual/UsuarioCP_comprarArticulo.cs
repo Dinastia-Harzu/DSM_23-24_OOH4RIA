@@ -37,8 +37,8 @@ public void ComprarArticulo (int p_Usuario_OID, System.Collections.Generic.IList
 
 
 
-                // usuarioCEN.get_INemesisNevulaRepository ().ComprarArticulo (p_Usuario_OID, p_compraUsuario_OIDs);
-                throw new NotImplementedException ("Method ComprarArticulo() not yet implemented.");
+                usuarioCEN.get_INemesisNevulaRepository ().ComprarArticulo (p_Usuario_OID, p_compraUsuario_OIDs);
+
 
 
                 CPSession.Commit ();

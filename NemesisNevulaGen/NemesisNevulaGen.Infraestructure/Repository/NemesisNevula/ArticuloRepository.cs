@@ -131,6 +131,9 @@ public void ModifyDefault (ArticuloEN articulo)
 
                 articuloNH.Temporada = articulo.Temporada;
 
+
+                articuloNH.Previsualizacion = articulo.Previsualizacion;
+
                 session.Update (articuloNH);
                 SessionCommit ();
         }
@@ -213,6 +216,9 @@ public void ModificarArticulo (ArticuloEN articulo)
 
 
                 articuloNH.Temporada = articulo.Temporada;
+
+
+                articuloNH.Previsualizacion = articulo.Previsualizacion;
 
                 session.Update (articuloNH);
                 SessionCommit ();
@@ -318,7 +324,7 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Rango=:p_rango";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorRangoHQL");
                 query.SetParameter ("p_rango", p_rango);
@@ -348,7 +354,7 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Rango = :p_rango";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorFechaHQL");
                 query.SetParameter ("p_fecha_ini", p_fecha_ini);
@@ -379,7 +385,7 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Temporada LIKE '%:p_temp%'";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorTemporadaHQL");
                 query.SetParameter ("p_temp", p_temp);
@@ -409,7 +415,7 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Tipo = :p_tipo";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorTipoHQL");
                 query.SetParameter ("p_tipo", p_tipo);
@@ -439,7 +445,7 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Precio < :p_precio_ini AND art.Precio > :p_precio_fin";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorPrecioHQL");
                 query.SetParameter ("p_precio_ini", p_precio_ini);
@@ -530,7 +536,7 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS ";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHmostrarArticulosPublicadosHQL");
 
@@ -559,7 +565,7 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Nombre LIKE '%:p_nombre%'";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorNombreHQL");
                 query.SetParameter ("p_nombre", p_nombre);

@@ -30,7 +30,7 @@ public IArticuloRepository get_IArticuloRepository ()
         return this._IArticuloRepository;
 }
 
-public int CrearArticulo (string p_nombre, string p_descripcion, float p_precio, string p_fotografia, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum p_rareza, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum p_tipo, int p_valoracion, bool p_esPublicado, Nullable<DateTime> p_fechaPublicacion, string p_temporada)
+public int CrearArticulo (string p_nombre, string p_descripcion, float p_precio, string p_fotografia, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum p_rareza, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum p_tipo, int p_valoracion, bool p_esPublicado, Nullable<DateTime> p_fechaPublicacion, string p_temporada, string p_previsualizacion)
 {
         ArticuloEN articuloEN = null;
         int oid;
@@ -57,13 +57,15 @@ public int CrearArticulo (string p_nombre, string p_descripcion, float p_precio,
 
         articuloEN.Temporada = p_temporada;
 
+        articuloEN.Previsualizacion = p_previsualizacion;
+
 
 
         oid = _IArticuloRepository.CrearArticulo (articuloEN);
         return oid;
 }
 
-public void ModificarArticulo (int p_Articulo_OID, string p_nombre, string p_descripcion, float p_precio, string p_fotografia, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum p_rareza, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum p_tipo, int p_valoracion, bool p_esPublicado, Nullable<DateTime> p_fechaPublicacion, string p_temporada)
+public void ModificarArticulo (int p_Articulo_OID, string p_nombre, string p_descripcion, float p_precio, string p_fotografia, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum p_rareza, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum p_tipo, int p_valoracion, bool p_esPublicado, Nullable<DateTime> p_fechaPublicacion, string p_temporada, string p_previsualizacion)
 {
         ArticuloEN articuloEN = null;
 
@@ -80,6 +82,7 @@ public void ModificarArticulo (int p_Articulo_OID, string p_nombre, string p_des
         articuloEN.EsPublicado = p_esPublicado;
         articuloEN.FechaPublicacion = p_fechaPublicacion;
         articuloEN.Temporada = p_temporada;
+        articuloEN.Previsualizacion = p_previsualizacion;
         //Call to ArticuloRepository
 
         _IArticuloRepository.ModificarArticulo (articuloEN);
