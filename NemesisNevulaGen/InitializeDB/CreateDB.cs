@@ -109,8 +109,20 @@ public static void InitializeData ()
 
                 /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
 
-                // You must write the initialisation of the entities inside the PROTECTED comments.
-                // IMPORTANT:please do not delete them.
+
+                // Creamos usuarios
+
+                int idAdmin = administradorcen.CrearAdmin("Federico Alfredo","fnaf1@gmail.com",false,"pfp.png",12,(float)1.25,"contrasenya");
+                int idUsuarioPremium = usuariopremiumcen.CrearUsuarioPremium("Bonifacio Conejal","fnaf2@gmail.com",true,"pfp.png",2,(float)0.0,DateTime.Now.AddMonths(3));
+                int idUsuario = usuariocen.CrearUsuario("Chica Gallina","fnaf3@gmail.com",true,"pfp.png",2,(float)12.5);
+                int idVisitante1 = visitantecen.CrearVisitante();
+
+                int idNoticia1 = noticiacen.CrearNoticia("noticia 2332",false);
+                int idNoticia2 = noticiacen.CrearNoticia("noticia 32442432",true);
+
+                int idArticulo1 = articulocen.CrearArticulo("Guitarra espacial","Es una guitarra",(float)5.5,)
+
+
 
                 /*PROTECTED REGION END*/
         }

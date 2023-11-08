@@ -126,17 +126,13 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
 {
         return _IArticuloRepository.FiltrarPorTipo (p_tipo);
 }
-public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> FiltrarPorPrecio (int? p_precio_ini, int ? p_precio_fin)
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorPrecioDesc ()
 {
-        return _IArticuloRepository.FiltrarPorPrecio (p_precio_ini, p_precio_fin);
+        return _IArticuloRepository.OrdenarPorPrecioDesc ();
 }
-public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorPrecio (bool ? p_orden)
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorFechaDesc ()
 {
-        return _IArticuloRepository.OrdenarPorPrecio (p_orden);
-}
-public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorFecha (bool ? p_orden)
-{
-        return _IArticuloRepository.OrdenarPorFecha (p_orden);
+        return _IArticuloRepository.OrdenarPorFechaDesc ();
 }
 public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> MostrarArticulosPublicados ()
 {
@@ -145,6 +141,14 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
 public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> FiltrarPorNombre (string p_nombre)
 {
         return _IArticuloRepository.FiltrarPorNombre (p_nombre);
+}
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorPrecioAsc ()
+{
+        return _IArticuloRepository.OrdenarPorPrecioAsc ();
+}
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorFechaAsc ()
+{
+        return _IArticuloRepository.OrdenarPorFechaAsc ();
 }
 }
 }

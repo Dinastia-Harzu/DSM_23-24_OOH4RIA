@@ -439,17 +439,15 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
 
         return result;
 }
-public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> FiltrarPorPrecio (int? p_precio_ini, int ? p_precio_fin)
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorPrecioDesc ()
 {
         System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Precio < :p_precio_ini AND art.Precio > :p_precio_fin";
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
                 //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorPrecioHQL");
-                query.SetParameter ("p_precio_ini", p_precio_ini);
-                query.SetParameter ("p_precio_fin", p_precio_fin);
+                IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHordenarPorPrecioDescHQL");
 
                 result = query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
                 SessionCommit ();
@@ -470,7 +468,7 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
 
         return result;
 }
-public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorPrecio (bool ? p_orden)
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorFechaDesc ()
 {
         System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> result;
         try
@@ -478,38 +476,7 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
                 SessionInitializeTransaction ();
                 //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
                 //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHordenarPorPrecioHQL");
-                query.SetParameter ("p_orden", p_orden);
-
-                result = query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
-                        throw;
-                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in ArticuloRepository.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
-public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorFecha (bool ? p_orden)
-{
-        System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> result;
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHordenarPorFechaHQL");
-                query.SetParameter ("p_orden", p_orden);
+                IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHordenarPorFechaDescHQL");
 
                 result = query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
                 SessionCommit ();
@@ -569,6 +536,64 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorNombreHQL");
                 query.SetParameter ("p_nombre", p_nombre);
+
+                result = query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in ArticuloRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorPrecioAsc ()
+{
+        System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHordenarPorPrecioAscHQL");
+
+                result = query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in ArticuloRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> OrdenarPorFechaAsc ()
+{
+        System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ArticuloNH self where FROM ArticuloNH";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHordenarPorFechaAscHQL");
 
                 result = query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
                 SessionCommit ();
