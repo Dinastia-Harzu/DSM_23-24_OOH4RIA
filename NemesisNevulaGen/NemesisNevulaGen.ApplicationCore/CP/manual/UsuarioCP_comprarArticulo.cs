@@ -37,7 +37,7 @@ public void ComprarArticulo (int p_Usuario_OID, System.Collections.Generic.IList
 
 
 
-                // usuarioCEN.get_INemesisNevulaRepository ().ComprarArticulo (p_Usuario_OID, p_compraUsuario_OIDs);
+                usuarioCEN.get_INemesisNevulaRepository ().ComprarArticulo (p_Usuario_OID, p_compraUsuario_OIDs);
 
 
 
