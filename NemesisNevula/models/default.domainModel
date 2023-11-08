@@ -26,7 +26,7 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_nhAHc32PEe6vvdGjdY0rGw" name="p_Usuario_OID" type="OID" typeObject="_x7jPkHGuEe63Wvla8gH9Qg"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_nhAHdH2PEe6vvdGjdY0rGw" name="p_compraUsuario_OIDs" type="OID" collectionType="List" typeObject="_jjq68HPmEe6db8oz03aeow"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_U9abAHPMEe62YJcPtwIurA" name="devolverArticulo" operationType="Unrelationer" type="Void" relatedRol="_TLYocHPnEe6db8oz03aeow">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_U9abAHPMEe62YJcPtwIurA" name="devolverArticulo" operationType="CustomTransaction" type="Void" relatedRol="_TLYocHPnEe6db8oz03aeow">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_nhAHdX2PEe6vvdGjdY0rGw" name="p_Usuario_OID" type="OID" typeObject="_x7jPkHGuEe63Wvla8gH9Qg"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_nhAHdn2PEe6vvdGjdY0rGw" name="p_compraUsuario_OIDs" type="OID" collectionType="List" typeObject="_jjq68HPmEe6db8oz03aeow"/>
       </operations>
@@ -170,10 +170,10 @@
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_o8nLAHPlEe6db8oz03aeow" name="publicarArticulo" type="Void">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_o8sqkHPlEe6db8oz03aeow" name="p_oid" type="OID" typeObject="_QGl1YHGwEe63Wvla8gH9Qg"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_XrKpYHlsEe64GsT_LxMPfA" name="filtrarPorRango" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art WHERE art.Rango=:p_rango" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_XrKpYHlsEe64GsT_LxMPfA" name="filtrarPorRareza" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art WHERE art.Rareza=:p_rango" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_PtPCMH2NEe6vvdGjdY0rGw" name="p_rango" type="Enum" typeEnum="_3MsuMHGwEe63Wvla8gH9Qg"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_fG2X0HlsEe64GsT_LxMPfA" name="filtrarPorFecha" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art WHERE art.Rango = :p_rango" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_fG2X0HlsEe64GsT_LxMPfA" name="filtrarPorFecha" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art WHERE art.FechaPublicacion &lt; :p_fecha_ini AND art.FechaPublicacion > :p_fecha_fin" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_ZRPIAH2NEe6vvdGjdY0rGw" name="p_fecha_ini" type="Date"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_eYmDYH2NEe6vvdGjdY0rGw" name="p_fecha_fin" type="Date"/>
       </operations>
@@ -183,14 +183,14 @@
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_kByAwHlsEe64GsT_LxMPfA" name="filtrarPorTipo" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art WHERE art.Tipo = :p_tipo" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_vti9AH2NEe6vvdGjdY0rGw" name="p_tipo" type="Enum" typeEnum="_tP3RoHGwEe63Wvla8gH9Qg"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_tF33cHlsEe64GsT_LxMPfA" name="ordenarPorPrecioDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH" automaticSynchronize="false"/>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_u8CH0HlsEe64GsT_LxMPfA" name="ordenarPorFechaDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH" automaticSynchronize="false"/>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_RCbI4HluEe64GsT_LxMPfA" name="mostrarArticulosPublicados" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS " automaticSynchronize="false"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_tF33cHlsEe64GsT_LxMPfA" name="ordenarPorPrecioDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art ORDER BY art.Precio DESC&#xD;&#xA;" automaticSynchronize="false"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_u8CH0HlsEe64GsT_LxMPfA" name="ordenarPorFechaDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art ORDER BY art.FechaPublicacion DESC" automaticSynchronize="false"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_RCbI4HluEe64GsT_LxMPfA" name="mostrarArticulosPublicados" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art where art.EsPublicado = true" automaticSynchronize="false"/>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_WciBIHluEe64GsT_LxMPfA" name="filtrarPorNombre" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art WHERE art.Nombre LIKE '%:p_nombre%'" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_m2b88H2OEe6vvdGjdY0rGw" name="p_nombre"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_ZF88QH4VEe6hopbjsX3iqw" name="ordenarPorPrecioAsc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH" automaticSynchronize="false"/>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_smHJMH4VEe6hopbjsX3iqw" name="ordenarPorFechaAsc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH" automaticSynchronize="false"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_ZF88QH4VEe6hopbjsX3iqw" name="ordenarPorPrecioAsc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art ORDER BY art.Precio ASC" automaticSynchronize="false"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_smHJMH4VEe6hopbjsX3iqw" name="ordenarPorFechaAsc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art ORDER BY art.FechaPublicacion ASC" automaticSynchronize="false"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_RVNkoHGwEe63Wvla8gH9Qg" alias="idArticulo" name="id" type="Autogenerated" isOID="true"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_Vx3WIHGwEe63Wvla8gH9Qg" alias="nombre" name="nombre"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_lsEJAHGwEe63Wvla8gH9Qg" alias="descripcion" name="descripcion" type="Text"/>
@@ -247,7 +247,7 @@
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_vhBdxHPmEe6db8oz03aeow" name="borrarCompra" operationType="Destroy" type="Void">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_lC6mTnlvEe64GsT_LxMPfA" name="p_Compra_OID" type="OID" typeObject="_jjq68HPmEe6db8oz03aeow"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_F4incHPpEe6db8oz03aeow" name="aplicarDescuento" type="Void">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_F4incHPpEe6db8oz03aeow" name="aplicarDescuento" operationType="CustomTransaction" type="Void">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_F4jOgHPpEe6db8oz03aeow" name="p_oid" type="OID" typeObject="_jjq68HPmEe6db8oz03aeow"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Tc6QkH2bEe6vvdGjdY0rGw" name="p_aplicado" type="Boolean"/>
       </operations>

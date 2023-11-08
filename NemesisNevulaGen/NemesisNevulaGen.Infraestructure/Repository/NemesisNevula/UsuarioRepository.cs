@@ -235,44 +235,6 @@ public void BorrarUsuario (int id
         }
 }
 
-public void DevolverArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs)
-{
-        try
-        {
-                SessionInitializeTransaction ();
-                NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioEN = null;
-                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioNH), p_Usuario_OID);
-
-                NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN compraUsuarioENAux = null;
-                if (usuarioEN.CompraUsuario != null) {
-                        foreach (int item in p_compraUsuario_OIDs) {
-                                compraUsuarioENAux = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN)session.Load (typeof(NemesisNevulaGen.Infraestructure.EN.NemesisNevula.CompraNH), item);
-                                if (usuarioEN.CompraUsuario.Contains (compraUsuarioENAux) == true) {
-                                        usuarioEN.CompraUsuario.Remove (compraUsuarioENAux);
-                                        compraUsuarioENAux.UsuarioComprador = null;
-                                }
-                                else
-                                        throw new ModelException ("The identifier " + item + " in p_compraUsuario_OIDs you are trying to unrelationer, doesn't exist in UsuarioEN");
-                        }
-                }
-
-                session.Update (usuarioEN);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
-                        throw;
-                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-}
 public void AnyadirFavorito (int p_Usuario_OID, System.Collections.Generic.IList<int> p_articulosFavs_OIDs)
 {
         NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioEN = null;

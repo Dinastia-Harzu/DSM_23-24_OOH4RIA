@@ -28,7 +28,6 @@ void BorrarUsuario (int id
 
 
 
-void DevolverArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs);
 
 
 

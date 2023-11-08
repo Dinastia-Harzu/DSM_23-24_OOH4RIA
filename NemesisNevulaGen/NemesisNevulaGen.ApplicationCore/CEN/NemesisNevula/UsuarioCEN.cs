@@ -79,12 +79,6 @@ public void BorrarUsuario (int id
         _IUsuarioRepository.BorrarUsuario (id);
 }
 
-public void DevolverArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs)
-{
-        //Call to UsuarioRepository
-
-        _IUsuarioRepository.DevolverArticulo (p_Usuario_OID, p_compraUsuario_OIDs);
-}
 public void AnyadirFavorito (int p_Usuario_OID, System.Collections.Generic.IList<int> p_articulosFavs_OIDs)
 {
         //Call to UsuarioRepository

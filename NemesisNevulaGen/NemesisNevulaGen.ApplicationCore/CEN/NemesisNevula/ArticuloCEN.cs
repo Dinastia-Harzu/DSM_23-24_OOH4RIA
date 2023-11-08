@@ -110,9 +110,9 @@ public System.Collections.Generic.IList<ArticuloEN> DameTodos (int first, int si
         list = _IArticuloRepository.DameTodos (first, size);
         return list;
 }
-public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> FiltrarPorRango (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum ? p_rango)
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> FiltrarPorRareza (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum ? p_rango)
 {
-        return _IArticuloRepository.FiltrarPorRango (p_rango);
+        return _IArticuloRepository.FiltrarPorRareza (p_rango);
 }
 public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> FiltrarPorFecha (Nullable<DateTime> p_fecha_ini, Nullable<DateTime> p_fecha_fin)
 {
