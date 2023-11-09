@@ -115,7 +115,7 @@ public static void InitializeData ()
                 int idNoticia2 = noticiacen.CrearNoticia ("noticia 32442432", true);
 
                 int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", "Es una guitarra", (float)5.5, "fotoart.png", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.traje, 3, false, DateTime.Now, "fnaf pelicula", "prevart.png");
-                int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", "Es una pistola", (float)6.9, "fotoart.png", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.arma, 3, true, DateTime.Now.AddDays(1), "fnaf pelicula", "prevart.png");
+                int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", "Es una pistola", (float)6.9, "fotoart.png", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.arma, 3, true, DateTime.Now.AddDays (1), "fnaf pelicula", "prevart.png");
 
                 // Consultas
 
@@ -131,7 +131,7 @@ public static void InitializeData ()
                         Console.WriteLine ("Articulo: " + art.Nombre);
                 }
 
-                articulos = articulocen.FiltrarPorFecha (DateTime.Now,DateTime.Now.AddMonths(1));
+                articulos = articulocen.FiltrarPorFecha (DateTime.Now, DateTime.Now.AddMonths (1));
                 Console.WriteLine ("Articulos fecha: ");
                 foreach (ArticuloEN art in articulos) {
                         Console.WriteLine ("Articulo: " + art.Nombre);
