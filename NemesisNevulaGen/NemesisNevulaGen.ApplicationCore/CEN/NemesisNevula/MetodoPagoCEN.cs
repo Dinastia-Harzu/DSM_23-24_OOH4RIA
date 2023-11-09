@@ -60,5 +60,22 @@ public void BorrarMetodoPago (int id
 {
         _IMetodoPagoRepository.BorrarMetodoPago (id);
 }
+
+public MetodoPagoEN DamePorOID (int id
+                                )
+{
+        MetodoPagoEN metodoPagoEN = null;
+
+        metodoPagoEN = _IMetodoPagoRepository.DamePorOID (id);
+        return metodoPagoEN;
+}
+
+public System.Collections.Generic.IList<MetodoPagoEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<MetodoPagoEN> list = null;
+
+        list = _IMetodoPagoRepository.DameTodos (first, size);
+        return list;
+}
 }
 }

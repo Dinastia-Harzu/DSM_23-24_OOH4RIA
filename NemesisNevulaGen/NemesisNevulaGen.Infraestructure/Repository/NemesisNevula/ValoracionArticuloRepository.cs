@@ -214,5 +214,61 @@ public void BorrarValoracion (int id
                 SessionClose ();
         }
 }
+
+//Sin e: DamePorOID
+//Con e: ValoracionArticuloEN
+public ValoracionArticuloEN DamePorOID (int id
+                                        )
+{
+        ValoracionArticuloEN valoracionArticuloEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                valoracionArticuloEN = (ValoracionArticuloEN)session.Get (typeof(ValoracionArticuloNH), id);
+                SessionCommit ();
+        }
+
+        catch (Exception) {
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return valoracionArticuloEN;
+}
+
+public System.Collections.Generic.IList<ValoracionArticuloEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<ValoracionArticuloEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(ValoracionArticuloNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<ValoracionArticuloEN>();
+                else
+                        result = session.CreateCriteria (typeof(ValoracionArticuloNH)).List<ValoracionArticuloEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in ValoracionArticuloRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

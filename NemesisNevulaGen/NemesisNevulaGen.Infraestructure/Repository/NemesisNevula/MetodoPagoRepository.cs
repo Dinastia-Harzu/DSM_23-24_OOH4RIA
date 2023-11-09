@@ -192,5 +192,61 @@ public void BorrarMetodoPago (int id
                 SessionClose ();
         }
 }
+
+//Sin e: DamePorOID
+//Con e: MetodoPagoEN
+public MetodoPagoEN DamePorOID (int id
+                                )
+{
+        MetodoPagoEN metodoPagoEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                metodoPagoEN = (MetodoPagoEN)session.Get (typeof(MetodoPagoNH), id);
+                SessionCommit ();
+        }
+
+        catch (Exception) {
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return metodoPagoEN;
+}
+
+public System.Collections.Generic.IList<MetodoPagoEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<MetodoPagoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(MetodoPagoNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<MetodoPagoEN>();
+                else
+                        result = session.CreateCriteria (typeof(MetodoPagoNH)).List<MetodoPagoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in MetodoPagoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

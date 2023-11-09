@@ -79,5 +79,22 @@ public void BorrarValoracion (int id
 {
         _IValoracionArticuloRepository.BorrarValoracion (id);
 }
+
+public ValoracionArticuloEN DamePorOID (int id
+                                        )
+{
+        ValoracionArticuloEN valoracionArticuloEN = null;
+
+        valoracionArticuloEN = _IValoracionArticuloRepository.DamePorOID (id);
+        return valoracionArticuloEN;
+}
+
+public System.Collections.Generic.IList<ValoracionArticuloEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<ValoracionArticuloEN> list = null;
+
+        list = _IValoracionArticuloRepository.DameTodos (first, size);
+        return list;
+}
 }
 }

@@ -25,5 +25,14 @@ void ModificarCompra (CompraEN compra);
 
 void BorrarCompra (int id
                    );
+
+
+
+
+CompraEN DamePorOID (int id
+                     );
+
+
+System.Collections.Generic.IList<CompraEN> DameTodos (int first, int size);
 }
 }

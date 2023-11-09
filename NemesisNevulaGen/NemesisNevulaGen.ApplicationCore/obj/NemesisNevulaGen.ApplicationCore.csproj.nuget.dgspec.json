@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {}
+    "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {
+    "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj",
+        "projectUniqueName": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj",
         "projectName": "NemesisNevulaGen.ApplicationCore",
-        "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj",
+        "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj",
         "packagesPath": "C:\\Users\\paula\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\obj\\",
+        "outputPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\paula\\AppData\\Roaming\\NuGet\\NuGet.Config",

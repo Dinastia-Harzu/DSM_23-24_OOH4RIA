@@ -25,5 +25,12 @@ void ModificarValoracion (ValoracionArticuloEN valoracionArticulo);
 
 void BorrarValoracion (int id
                        );
+
+
+ValoracionArticuloEN DamePorOID (int id
+                                 );
+
+
+System.Collections.Generic.IList<ValoracionArticuloEN> DameTodos (int first, int size);
 }
 }
