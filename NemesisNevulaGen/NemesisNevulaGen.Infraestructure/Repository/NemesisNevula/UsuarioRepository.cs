@@ -315,5 +315,82 @@ public void QuitarFavorito (int p_Usuario_OID, System.Collections.Generic.IList<
                 SessionClose ();
         }
 }
+public void MetodosPago (int p_Usuario_OID, System.Collections.Generic.IList<int> p_metodoPago_OIDs)
+{
+        NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioNH), p_Usuario_OID);
+                NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoENAux = null;
+                if (usuarioEN.MetodoPago == null) {
+                        usuarioEN.MetodoPago = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN>();
+                }
+
+                foreach (int item in p_metodoPago_OIDs) {
+                        metodoPagoENAux = new NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN ();
+                        metodoPagoENAux = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN)session.Load (typeof(NemesisNevulaGen.Infraestructure.EN.NemesisNevula.MetodoPagoNH), item);
+                        metodoPagoENAux.UsuarioPoseedor.Add (usuarioEN);
+
+                        usuarioEN.MetodoPago.Add (metodoPagoENAux);
+                }
+
+
+                session.Update (usuarioEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void QuitarMetodosPago (int p_Usuario_OID, System.Collections.Generic.IList<int> p_metodoPago_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioEN = null;
+                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioNH), p_Usuario_OID);
+
+                NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoENAux = null;
+                if (usuarioEN.MetodoPago != null) {
+                        foreach (int item in p_metodoPago_OIDs) {
+                                metodoPagoENAux = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN)session.Load (typeof(NemesisNevulaGen.Infraestructure.EN.NemesisNevula.MetodoPagoNH), item);
+                                if (usuarioEN.MetodoPago.Contains (metodoPagoENAux) == true) {
+                                        usuarioEN.MetodoPago.Remove (metodoPagoENAux);
+                                        metodoPagoENAux.UsuarioPoseedor.Remove (usuarioEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_metodoPago_OIDs you are trying to unrelationer, doesn't exist in UsuarioEN");
+                        }
+                }
+
+                session.Update (usuarioEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

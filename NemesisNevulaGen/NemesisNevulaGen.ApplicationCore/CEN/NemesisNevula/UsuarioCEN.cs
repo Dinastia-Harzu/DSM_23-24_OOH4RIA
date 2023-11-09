@@ -106,6 +106,18 @@ public string Login (int p_Usuario_OID, string p_pass)
         return result;
 }
 
+public void MetodosPago (int p_Usuario_OID, System.Collections.Generic.IList<int> p_metodoPago_OIDs)
+{
+        //Call to UsuarioRepository
+
+        _IUsuarioRepository.MetodosPago (p_Usuario_OID, p_metodoPago_OIDs);
+}
+public void QuitarMetodosPago (int p_Usuario_OID, System.Collections.Generic.IList<int> p_metodoPago_OIDs)
+{
+        //Call to UsuarioRepository
+
+        _IUsuarioRepository.QuitarMetodosPago (p_Usuario_OID, p_metodoPago_OIDs);
+}
 
 
 

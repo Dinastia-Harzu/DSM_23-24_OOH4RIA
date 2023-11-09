@@ -115,7 +115,8 @@ public static void InitializeData ()
                 int idNoticia2 = noticiacen.CrearNoticia ("noticia 32442432", true);
 
                 int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", "Es una guitarra", (float)5.5, "fotoart.png", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.traje, 3, false, DateTime.Now, "fnaf pelicula", "prevart.png");
-
+                
+                
 
                 /*PROTECTED REGION END*/
         }
