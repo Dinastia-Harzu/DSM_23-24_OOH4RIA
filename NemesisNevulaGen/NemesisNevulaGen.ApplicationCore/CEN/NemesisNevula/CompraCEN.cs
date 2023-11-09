@@ -102,5 +102,22 @@ public void BorrarCompra (int id
 {
         _ICompraRepository.BorrarCompra (id);
 }
+
+public CompraEN DamePorOID (int id
+                            )
+{
+        CompraEN compraEN = null;
+
+        compraEN = _ICompraRepository.DamePorOID (id);
+        return compraEN;
+}
+
+public System.Collections.Generic.IList<CompraEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<CompraEN> list = null;
+
+        list = _ICompraRepository.DameTodos (first, size);
+        return list;
+}
 }
 }

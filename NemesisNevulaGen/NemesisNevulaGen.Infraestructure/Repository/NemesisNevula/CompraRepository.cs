@@ -253,5 +253,61 @@ public void BorrarCompra (int id
                 SessionClose ();
         }
 }
+
+//Sin e: DamePorOID
+//Con e: CompraEN
+public CompraEN DamePorOID (int id
+                            )
+{
+        CompraEN compraEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                compraEN = (CompraEN)session.Get (typeof(CompraNH), id);
+                SessionCommit ();
+        }
+
+        catch (Exception) {
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return compraEN;
+}
+
+public System.Collections.Generic.IList<CompraEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<CompraEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(CompraNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<CompraEN>();
+                else
+                        result = session.CreateCriteria (typeof(CompraNH)).List<CompraEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in CompraRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

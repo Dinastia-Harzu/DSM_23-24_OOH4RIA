@@ -25,5 +25,12 @@ void ModificarMetodoPago (MetodoPagoEN metodoPago);
 
 void BorrarMetodoPago (int id
                        );
+
+
+MetodoPagoEN DamePorOID (int id
+                         );
+
+
+System.Collections.Generic.IList<MetodoPagoEN> DameTodos (int first, int size);
 }
 }
