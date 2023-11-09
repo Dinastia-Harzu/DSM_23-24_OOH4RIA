@@ -30,7 +30,7 @@
 									<column name="FK_idNoticia_idNoticia"/> 
 							</key>
       						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.AdministradorNH">
-									<column name="FK_idVisitante_idAdministrador"/> 
+									<column name="FK_idUsuario_idAdministrador"/> 
       						</many-to-many>
     					</bag>
 					

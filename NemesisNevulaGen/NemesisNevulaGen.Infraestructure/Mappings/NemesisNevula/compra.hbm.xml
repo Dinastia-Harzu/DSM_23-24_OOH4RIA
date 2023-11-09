@@ -34,7 +34,7 @@
 			
 		  			
 						<many-to-one name="UsuarioComprador" class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" >	
-								<column name="FK_idVisitante_idUsuario"/> 
+								<column name="FK_idUsuario_idUsuario"/> 
 						</many-to-one>
 											 					
 			

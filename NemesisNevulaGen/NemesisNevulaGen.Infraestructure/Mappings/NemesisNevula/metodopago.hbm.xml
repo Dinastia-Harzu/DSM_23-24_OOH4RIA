@@ -22,7 +22,7 @@
 									<column name="FK_idMetodoPago_idMetodoPago"/> 
 							</key>
       						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH">
-									<column name="FK_idVisitante_idUsuario"/> 
+									<column name="FK_idUsuario_idUsuario"/> 
       						</many-to-many>
     					</bag>
 			

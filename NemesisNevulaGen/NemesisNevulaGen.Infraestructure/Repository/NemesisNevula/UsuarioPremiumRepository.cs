@@ -171,6 +171,9 @@ public void ModificarUsuarioPremium (UsuarioPremiumEN usuarioPremium)
                 usuarioPremiumNH.Cartera = usuarioPremium.Cartera;
 
 
+                usuarioPremiumNH.Pass = usuarioPremium.Pass;
+
+
                 usuarioPremiumNH.FechaCaducidad = usuarioPremium.FechaCaducidad;
 
                 session.Update (usuarioPremiumNH);

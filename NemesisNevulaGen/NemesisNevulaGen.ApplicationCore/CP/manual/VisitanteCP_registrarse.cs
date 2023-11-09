@@ -10,32 +10,32 @@ using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
 
 
 
-/*PROTECTED REGION ID(usingNemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_comprarArticulo) ENABLED START*/
+/*PROTECTED REGION ID(usingNemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Visitante_registrarse) ENABLED START*/
 //  references to other libraries
 /*PROTECTED REGION END*/
 
 namespace NemesisNevulaGen.ApplicationCore.CP.NemesisNevula
 {
-public partial class UsuarioCP : GenericBasicCP
+public partial class VisitanteCP : GenericBasicCP
 {
-public void ComprarArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs)
+public void Registrarse (int p_oid)
 {
-        /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_comprarArticulo) ENABLED START*/
+        /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Visitante_registrarse) ENABLED START*/
 
-        UsuarioCEN usuarioCEN = null;
+        VisitanteCEN visitanteCEN = null;
 
 
 
         try
         {
                 CPSession.SessionInitializeTransaction ();
-                usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+                visitanteCEN = new  VisitanteCEN (CPSession.UnitRepo.VisitanteRepository);
 
 
 
                 // Write here your custom transaction ...
 
-                throw new NotImplementedException ("Method ComprarArticulo() not yet implemented.");
+                throw new NotImplementedException ("Method Registrarse() not yet implemented.");
 
 
 

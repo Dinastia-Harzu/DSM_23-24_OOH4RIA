@@ -3,9 +3,7 @@ using System;
 // Definición clase UsuarioEN
 namespace NemesisNevulaGen.ApplicationCore.EN.NemesisNevula
 {
-public partial class UsuarioEN                                                                      : NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.VisitanteEN
-
-
+public partial class UsuarioEN
 {
 /**
  *	Atributo nombre
@@ -91,6 +89,13 @@ private String pass;
 
 
 
+/**
+ *	Atributo id
+ */
+private int id;
+
+
+
 
 
 
@@ -166,9 +171,15 @@ public virtual String Pass {
 
 
 
+public virtual int Id {
+        get { return id; } set { id = value;  }
+}
 
 
-public UsuarioEN() : base ()
+
+
+
+public UsuarioEN()
 {
         articulosFavs = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
         compraUsuario = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN>();
@@ -180,7 +191,6 @@ public UsuarioEN() : base ()
 
 
 public UsuarioEN(int id, string nombre, string correo, bool conGoogle, string foto_perfil, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulosFavs, int puntosNevula, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> compraUsuario, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN> metodoPago, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulo, float cartera, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ValoracionArticuloEN> valoracionArticulo, String pass
-
                  )
 {
         this.init (Id, nombre, correo, conGoogle, foto_perfil, articulosFavs, puntosNevula, compraUsuario, metodoPago, articulo, cartera, valoracionArticulo, pass);

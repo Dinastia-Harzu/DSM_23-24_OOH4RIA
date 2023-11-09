@@ -62,7 +62,7 @@
 									<column name="FK_idArticulo_idArticulo"/> 
 							</key>
       						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH">
-									<column name="FK_idVisitante_idUsuario"/> 
+									<column name="FK_idUsuario_idUsuario"/> 
       						</many-to-many>
     					</bag>
 			
@@ -85,7 +85,7 @@
 									<column name="FK_idArticulo_idArticulo"/> 
 							</key>
       						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH">
-									<column name="FK_idVisitante_idUsuario"/> 
+									<column name="FK_idUsuario_idUsuario"/> 
       						</many-to-many>
     					</bag>
 			
@@ -96,7 +96,7 @@
 									<column name="FK_idArticulo_idArticulo_0"/> 
 							</key>
       						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.AdministradorNH">
-									<column name="FK_idVisitante_idAdministrador"/> 
+									<column name="FK_idUsuario_idAdministrador"/> 
       						</many-to-many>
     					</bag>
 			
@@ -141,7 +141,7 @@
 		  <query name="ArticuloNHordenarPorPrecioDescHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.Precio DESC
 ]]></query>
 		  <query name="ArticuloNHordenarPorFechaDescHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.FechaPublicacion DESC]]></query>
-		  <query name="ArticuloNHmostrarArticulosPublicadosHQL"><![CDATA[FROM ArticuloNH AS art where art.EsPublicado = true]]></query>
+		  <query name="ArticuloNHmostrarArticulosPublicadosHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.EsPublicado = true]]></query>
 		  <query name="ArticuloNHfiltrarPorNombreHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Nombre LIKE '%:p_nombre%']]></query>
 		  <query name="ArticuloNHordenarPorPrecioAscHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.Precio ASC]]></query>
 		  <query name="ArticuloNHordenarPorFechaAscHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.FechaPublicacion ASC]]></query>

@@ -30,7 +30,7 @@ public IUsuarioPremiumRepository get_IUsuarioPremiumRepository ()
         return this._IUsuarioPremiumRepository;
 }
 
-public int CrearUsuarioPremium (string p_nombre, string p_correo, bool p_conGoogle, string p_foto_perfil, int p_puntosNevula, float p_cartera, Nullable<DateTime> p_fechaCaducidad)
+public int CrearUsuarioPremium (string p_nombre, string p_correo, bool p_conGoogle, string p_foto_perfil, int p_puntosNevula, float p_cartera, String p_pass, Nullable<DateTime> p_fechaCaducidad)
 {
         UsuarioPremiumEN usuarioPremiumEN = null;
         int oid;
@@ -49,6 +49,8 @@ public int CrearUsuarioPremium (string p_nombre, string p_correo, bool p_conGoog
 
         usuarioPremiumEN.Cartera = p_cartera;
 
+        usuarioPremiumEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
+
         usuarioPremiumEN.FechaCaducidad = p_fechaCaducidad;
 
 
@@ -57,7 +59,7 @@ public int CrearUsuarioPremium (string p_nombre, string p_correo, bool p_conGoog
         return oid;
 }
 
-public void ModificarUsuarioPremium (int p_UsuarioPremium_OID, string p_nombre, string p_correo, bool p_conGoogle, string p_foto_perfil, int p_puntosNevula, float p_cartera, Nullable<DateTime> p_fechaCaducidad)
+public void ModificarUsuarioPremium (int p_UsuarioPremium_OID, string p_nombre, string p_correo, bool p_conGoogle, string p_foto_perfil, int p_puntosNevula, float p_cartera, String p_pass, Nullable<DateTime> p_fechaCaducidad)
 {
         UsuarioPremiumEN usuarioPremiumEN = null;
 
@@ -70,6 +72,7 @@ public void ModificarUsuarioPremium (int p_UsuarioPremium_OID, string p_nombre, 
         usuarioPremiumEN.Foto_perfil = p_foto_perfil;
         usuarioPremiumEN.PuntosNevula = p_puntosNevula;
         usuarioPremiumEN.Cartera = p_cartera;
+        usuarioPremiumEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
         usuarioPremiumEN.FechaCaducidad = p_fechaCaducidad;
         //Call to UsuarioPremiumRepository
 

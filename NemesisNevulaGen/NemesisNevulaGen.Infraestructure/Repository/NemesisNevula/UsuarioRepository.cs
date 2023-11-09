@@ -193,6 +193,9 @@ public void ModificarUsuario (UsuarioEN usuario)
 
                 usuarioNH.Cartera = usuario.Cartera;
 
+
+                usuarioNH.Pass = usuario.Pass;
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }

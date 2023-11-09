@@ -9,7 +9,7 @@
 <joined-subclass name="UsuarioPremiumNH" extends="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" table="UsuarioPremium"> 
 	<key>
     	
-				<column name="idVisitante"/>
+				<column name="idUsuario"/>
 		
     	
    	</key>

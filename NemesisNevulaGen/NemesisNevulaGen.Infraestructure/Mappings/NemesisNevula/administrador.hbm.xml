@@ -9,7 +9,7 @@
 <joined-subclass name="AdministradorNH" extends="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" table="Administrador"> 
 	<key>
     	
-				<column name="idVisitante"/>
+				<column name="idUsuario"/>
 		
     	
    	</key>
@@ -22,7 +22,7 @@
 						<bag name="Articulo_0" table="[articulo_0_administrador]" inverse="true" >
 							<key>
 								
-									<column name="FK_idVisitante_idAdministrador"/> 
+									<column name="FK_idUsuario_idAdministrador"/> 
 							</key>
       						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.ArticuloNH">
 									<column name="FK_idArticulo_idArticulo_0"/> 
@@ -33,7 +33,7 @@
 						<bag name="Noticia" table="[noticia_administrador]" inverse="true" >
 							<key>
 								
-									<column name="FK_idVisitante_idAdministrador"/> 
+									<column name="FK_idUsuario_idAdministrador"/> 
 							</key>
       						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.NoticiaNH">
 									<column name="FK_idNoticia_idNoticia"/> 

@@ -8,6 +8,7 @@ using NemesisNevulaGen.ApplicationCore.Exceptions;
 
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.IRepository.NemesisNevula;
+using Newtonsoft.Json;
 
 
 namespace NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula
@@ -30,7 +31,7 @@ public IUsuarioRepository get_IUsuarioRepository ()
         return this._IUsuarioRepository;
 }
 
-public int CrearUsuario (string p_nombre, string p_correo, bool p_conGoogle, string p_foto_perfil, int p_puntosNevula, float p_cartera)
+public int CrearUsuario (string p_nombre, string p_correo, bool p_conGoogle, string p_foto_perfil, int p_puntosNevula, float p_cartera, String p_pass)
 {
         UsuarioEN usuarioEN = null;
         int oid;
@@ -49,13 +50,15 @@ public int CrearUsuario (string p_nombre, string p_correo, bool p_conGoogle, str
 
         usuarioEN.Cartera = p_cartera;
 
+        usuarioEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
+
 
 
         oid = _IUsuarioRepository.CrearUsuario (usuarioEN);
         return oid;
 }
 
-public void ModificarUsuario (int p_Usuario_OID, string p_nombre, string p_correo, bool p_conGoogle, string p_foto_perfil, int p_puntosNevula, float p_cartera)
+public void ModificarUsuario (int p_Usuario_OID, string p_nombre, string p_correo, bool p_conGoogle, string p_foto_perfil, int p_puntosNevula, float p_cartera, String p_pass)
 {
         UsuarioEN usuarioEN = null;
 
@@ -68,6 +71,7 @@ public void ModificarUsuario (int p_Usuario_OID, string p_nombre, string p_corre
         usuarioEN.Foto_perfil = p_foto_perfil;
         usuarioEN.PuntosNevula = p_puntosNevula;
         usuarioEN.Cartera = p_cartera;
+        usuarioEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);
         //Call to UsuarioRepository
 
         _IUsuarioRepository.ModificarUsuario (usuarioEN);
@@ -90,6 +94,78 @@ public void QuitarFavorito (int p_Usuario_OID, System.Collections.Generic.IList<
         //Call to UsuarioRepository
 
         _IUsuarioRepository.QuitarFavorito (p_Usuario_OID, p_articulosFavs_OIDs);
+}
+public string Login (int p_Usuario_OID, string p_pass)
+{
+        string result = null;
+        UsuarioEN en = _IUsuarioRepository.ReadOIDDefault (p_Usuario_OID);
+
+        if (en != null && en.Pass.Equals (Utils.Util.GetEncondeMD5 (p_pass)))
+                result = this.GetToken (en.Id);
+
+        return result;
+}
+
+
+
+
+private string Encode (int id)
+{
+        var payload = new Dictionary<string, object>(){
+                { "id", id }
+        };
+        string token = Jose.JWT.Encode (payload, Utils.Util.getKey (), Jose.JwsAlgorithm.HS256);
+
+        return token;
+}
+
+public string GetToken (int id)
+{
+        UsuarioEN en = _IUsuarioRepository.ReadOIDDefault (id);
+        string token = Encode (en.Id);
+
+        return token;
+}
+public int CheckToken (string token)
+{
+        int result = -1;
+
+        try
+        {
+                string decodedToken = Utils.Util.Decode (token);
+
+
+
+                int id = (int)ObtenerID (decodedToken);
+
+                UsuarioEN en = _IUsuarioRepository.ReadOIDDefault (id);
+
+                if (en != null && ((long)en.Id).Equals (ObtenerID (decodedToken))
+                    ) {
+                        result = id;
+                }
+                else throw new ModelException ("El token es incorrecto");
+        } catch (Exception)
+        {
+                throw new ModelException ("El token es incorrecto");
+        }
+
+        return result;
+}
+
+
+public long ObtenerID (string decodedToken)
+{
+        try
+        {
+                Dictionary<string, object> results = JsonConvert.DeserializeObject<Dictionary<string, object> >(decodedToken);
+                long id = (long)results ["id"];
+                return id;
+        }
+        catch
+        {
+                throw new Exception ("El token enviado no es correcto");
+        }
 }
 }
 }

@@ -1,3 +1,8 @@
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.csproj.AssemblyReference.cache
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.AssemblyInfoInputs.cache
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.AssemblyInfo.cs
+C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.csproj.CoreCompileInputs.cache
 C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\bin\Debug\net7.0\InitializeDB.exe
 C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\bin\Debug\net7.0\hibernate.cfg.xml
 C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\bin\Debug\net7.0\InitializeDB.deps.json
@@ -32,11 +37,6 @@ C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DS
 C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\bin\Debug\net7.0\NemesisNevulaGen.Infraestructure.dll
 C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\bin\Debug\net7.0\NemesisNevulaGen.ApplicationCore.pdb
 C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\bin\Debug\net7.0\NemesisNevulaGen.Infraestructure.pdb
-C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.csproj.AssemblyReference.cache
-C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.AssemblyInfoInputs.cache
-C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.AssemblyInfo.cs
-C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.csproj.CoreCompileInputs.cache
 C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.csproj.CopyComplete
 C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\InitializeDB.dll
 C:\Users\paula\Desktop\Universidad\Tercero\Primer Cuatrimestre\DSM\Prácticas\DSM_23-24_OOH4RIA\NemesisNevulaGen\InitializeDB\obj\Debug\net7.0\refint\InitializeDB.dll
