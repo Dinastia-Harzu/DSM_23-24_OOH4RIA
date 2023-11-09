@@ -21,7 +21,9 @@ public void PublicarNoticia (int p_oid)
 
         // Write here your custom code...
 
-        throw new NotImplementedException ("Method PublicarNoticia() not yet implemented.");
+        NoticiaEN noticia = _INoticiaRepository.DamePorOID(p_oid);
+        noticia.EsPublicada = true;
+        Console.WriteLine("Noticia publicada: " + noticia.EsPublicada);
 
         /*PROTECTED REGION END*/
 }
