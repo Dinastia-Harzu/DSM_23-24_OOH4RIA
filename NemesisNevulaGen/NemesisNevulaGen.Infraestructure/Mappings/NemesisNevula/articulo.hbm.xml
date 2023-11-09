@@ -135,7 +135,7 @@
 		  
 		  <query name="ArticuloNHReadAllHQL">from ArticuloNH</query>
 		  <query name="ArticuloNHfiltrarPorRarezaHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Rareza=:p_rango]]></query>
-		  <query name="ArticuloNHfiltrarPorFechaHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.FechaPublicacion < :p_fecha_ini AND art.FechaPublicacion > :p_fecha_fin]]></query>
+		  <query name="ArticuloNHfiltrarPorFechaHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.FechaPublicacion >= :p_fecha_ini AND art.FechaPublicacion <= :p_fecha_fin]]></query>
 		  <query name="ArticuloNHfiltrarPorTemporadaHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Temporada LIKE :p_temp]]></query>
 		  <query name="ArticuloNHfiltrarPorTipoHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Tipo = :p_tipo]]></query>
 		  <query name="ArticuloNHordenarPorPrecioDescHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.Precio DESC

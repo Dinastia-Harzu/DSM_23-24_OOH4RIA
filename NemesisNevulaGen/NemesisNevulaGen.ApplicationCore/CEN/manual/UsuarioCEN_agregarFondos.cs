@@ -15,7 +15,7 @@ namespace NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula
 {
 public partial class UsuarioCEN
 {
-public void AgregarFondos (int p_oid)
+public void AgregarFondos (int p_oid, int p_compra, float p_cantidad)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula_Usuario_agregarFondos) ENABLED START*/
 

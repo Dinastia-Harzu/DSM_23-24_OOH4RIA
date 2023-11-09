@@ -118,6 +118,7 @@ public void ModifyDefault (CompraEN compra)
                 compraNH.Regalado = compra.Regalado;
 
 
+
                 session.Update (compraNH);
                 SessionCommit ();
         }
@@ -166,6 +167,14 @@ public int CrearCompra (CompraEN compra)
                         .MetodoPagoCompra = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN)session.Load (typeof(NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN), compra.MetodoPagoCompra.Id);
 
                         compraNH.MetodoPagoCompra.CompraMetodoPago
+                        .Add (compraNH);
+                }
+                if (compra.UsuarioReponedor != null) {
+                        // Argumento OID y no colección.
+                        compraNH
+                        .UsuarioReponedor = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN)session.Load (typeof(NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN), compra.UsuarioReponedor.Id);
+
+                        compraNH.UsuarioReponedor.CompraMonedero
                         .Add (compraNH);
                 }
 

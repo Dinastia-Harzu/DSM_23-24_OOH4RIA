@@ -108,6 +108,18 @@
 							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.CompraNH"/>
 					    </bag>
 					
+			
+		  			
+						<bag name="CompraMonedero" >
+							<key>
+							
+								
+								<column name="FK_idUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.CompraNH"/>
+					    </bag>
+					
+					
 					
 					
 					

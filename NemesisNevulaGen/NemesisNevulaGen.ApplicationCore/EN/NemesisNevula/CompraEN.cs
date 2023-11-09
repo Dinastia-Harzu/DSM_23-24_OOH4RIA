@@ -82,6 +82,13 @@ private NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegal
 
 
 
+/**
+ *	Atributo usuarioReponedor
+ */
+private NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioReponedor;
+
+
+
 
 
 
@@ -151,6 +158,12 @@ public virtual NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN Usuar
 
 
 
+public virtual NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN UsuarioReponedor {
+        get { return usuarioReponedor; } set { usuarioReponedor = value;  }
+}
+
+
+
 
 
 public CompraEN()
@@ -159,20 +172,20 @@ public CompraEN()
 
 
 
-public CompraEN(int id, Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum tipoPago, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, float precioTotal, Nullable<DateTime> fechaCaducidad, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoCompra, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado
+public CompraEN(int id, Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum tipoPago, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, float precioTotal, Nullable<DateTime> fechaCaducidad, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoCompra, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioReponedor
                 )
 {
-        this.init (Id, fecha, tipoPago, usuarioComprador, articulo, tipoTarjeta, precioTotal, fechaCaducidad, metodoPagoCompra, regalado, usuarioRegalado);
+        this.init (Id, fecha, tipoPago, usuarioComprador, articulo, tipoTarjeta, precioTotal, fechaCaducidad, metodoPagoCompra, regalado, usuarioRegalado, usuarioReponedor);
 }
 
 
 public CompraEN(CompraEN compra)
 {
-        this.init (compra.Id, compra.Fecha, compra.TipoPago, compra.UsuarioComprador, compra.Articulo, compra.TipoTarjeta, compra.PrecioTotal, compra.FechaCaducidad, compra.MetodoPagoCompra, compra.Regalado, compra.UsuarioRegalado);
+        this.init (compra.Id, compra.Fecha, compra.TipoPago, compra.UsuarioComprador, compra.Articulo, compra.TipoTarjeta, compra.PrecioTotal, compra.FechaCaducidad, compra.MetodoPagoCompra, compra.Regalado, compra.UsuarioRegalado, compra.UsuarioReponedor);
 }
 
 private void init (int id
-                   , Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum tipoPago, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, float precioTotal, Nullable<DateTime> fechaCaducidad, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoCompra, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado)
+                   , Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum tipoPago, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, float precioTotal, Nullable<DateTime> fechaCaducidad, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoCompra, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioReponedor)
 {
         this.Id = id;
 
@@ -196,6 +209,8 @@ private void init (int id
         this.Regalado = regalado;
 
         this.UsuarioRegalado = usuarioRegalado;
+
+        this.UsuarioReponedor = usuarioReponedor;
 }
 
 public override bool Equals (object obj)

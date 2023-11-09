@@ -30,7 +30,7 @@ public ICompraRepository get_ICompraRepository ()
         return this._ICompraRepository;
 }
 
-public int CrearCompra (Nullable<DateTime> p_fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum p_tipoPago, int p_usuarioComprador, int p_articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum p_tipoTarjeta, float p_precioTotal, Nullable<DateTime> p_fechaCaducidad, int p_metodoPagoCompra, bool p_regalado)
+public int CrearCompra (Nullable<DateTime> p_fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum p_tipoPago, int p_usuarioComprador, int p_articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum p_tipoTarjeta, float p_precioTotal, Nullable<DateTime> p_fechaCaducidad, int p_metodoPagoCompra, bool p_regalado, int p_usuarioReponedor)
 {
         CompraEN compraEN = null;
         int oid;
@@ -72,6 +72,14 @@ public int CrearCompra (Nullable<DateTime> p_fecha, NemesisNevulaGen.Application
         }
 
         compraEN.Regalado = p_regalado;
+
+
+        if (p_usuarioReponedor != -1) {
+                // El argumento p_usuarioReponedor -> Property usuarioReponedor es oid = false
+                // Lista de oids id
+                compraEN.UsuarioReponedor = new NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN ();
+                compraEN.UsuarioReponedor.Id = p_usuarioReponedor;
+        }
 
 
 

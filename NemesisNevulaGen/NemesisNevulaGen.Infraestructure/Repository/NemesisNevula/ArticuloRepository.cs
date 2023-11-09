@@ -354,7 +354,7 @@ public partial class ArticuloRepository : BasicRepository, IArticuloRepository
                 try
                 {
                         SessionInitializeTransaction ();
-                        //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.FechaPublicacion < :p_fecha_ini AND art.FechaPublicacion > :p_fecha_fin";
+                        //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.FechaPublicacion >= :p_fecha_ini AND art.FechaPublicacion <= :p_fecha_fin";
                         //IQuery query = session.CreateQuery(sql);
                         IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorFechaHQL");
                         query.SetParameter ("p_fecha_ini", p_fecha_ini);
@@ -445,9 +445,10 @@ public partial class ArticuloRepository : BasicRepository, IArticuloRepository
                 try
                 {
                         SessionInitializeTransaction ();
-                        //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art ORDER BY art.Precio DESC";
+                        //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art ORDER BY art.Precio DESC
+                        ";
 	                                        //IQuery query = session.CreateQuery(sql);
-	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorPrecioDescHQL");
+	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorPrecioDescHQL                                             ");
 	
 	                                        result= query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
 							SessionCommit();
