@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N5oGpsCuVBHaBTXsaeAqpU5Ww93uVPckHBs602yEh6SAQK+rC4KukSieV52A9Zxcnd1mgrOQSqRmwSTdx+k/Kg==",
+  "dgSpecHash": "JQWKcE3STCjEDBDTE29bGGyScozM7iiKu0cd9+PFmsbLXE3xyZRRX8BBX/s6jfIN/2qgxSwOYLhR72g4HzTalQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj",
+  "projectFilePath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\paula\\.nuget\\packages\\jose-jwt-signed\\2.3.0\\jose-jwt-signed.2.3.0.nupkg.sha512",
     "C:\\Users\\paula\\.nuget\\packages\\microsoft.csharp\\4.3.0\\microsoft.csharp.4.3.0.nupkg.sha512",

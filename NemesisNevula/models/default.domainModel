@@ -47,7 +47,7 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_bNl_oHPMEe62YJcPtwIurA" name="p_oid" type="OID" typeObject="_x7jPkHGuEe63Wvla8gH9Qg"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_hmSlwH7-Ee6DI81hWEn1uA" name="p_articulo" type="OID" typeObject="_QGl1YHGwEe63Wvla8gH9Qg"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_x1QJAHPMEe62YJcPtwIurA" name="agregarFondos" type="Void">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_x1QJAHPMEe62YJcPtwIurA" name="agregarFondos" operationType="CustomTransaction" type="Void">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_x1QwEHPMEe62YJcPtwIurA" name="p_oid" type="OID" typeObject="_x7jPkHGuEe63Wvla8gH9Qg"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_0a_hcH8rEe6_8LM4lNdwTQ" name="p_compra" type="OID" typeObject="_jjq68HPmEe6db8oz03aeow"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_6am6gH8rEe6_8LM4lNdwTQ" name="p_cantidad" type="Float"/>
@@ -194,7 +194,7 @@
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_tF33cHlsEe64GsT_LxMPfA" name="ordenarPorPrecioDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art ORDER BY art.Precio DESC&#xD;&#xA;" automaticSynchronize="false"/>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_u8CH0HlsEe64GsT_LxMPfA" name="ordenarPorFechaDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art ORDER BY art.FechaPublicacion DESC" automaticSynchronize="false"/>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_RCbI4HluEe64GsT_LxMPfA" name="mostrarArticulosPublicados" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art WHERE art.EsPublicado = true" automaticSynchronize="false"/>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_WciBIHluEe64GsT_LxMPfA" name="filtrarPorNombre" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art WHERE art.Nombre LIKE '%:p_nombre%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_WciBIHluEe64GsT_LxMPfA" name="filtrarPorNombre" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art WHERE art.Nombre  LIKE '`%¿+ :p_nombre +`%¿'" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_m2b88H2OEe6vvdGjdY0rGw" name="p_nombre"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_ZF88QH4VEe6hopbjsX3iqw" name="ordenarPorPrecioAsc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_QGl1YHGwEe63Wvla8gH9Qg" filter="FROM ArticuloNH AS art ORDER BY art.Precio ASC" automaticSynchronize="false"/>
@@ -284,7 +284,7 @@
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_lpznYHPuEe6lF61DQmQx3A" alias="idMetodoPago" associationTarget="_lpp2YHPuEe6lF61DQmQx3A" name="metodoPagoCompra" type="Object"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="__BT7UH7oEe6GtuPqyRS4AA" alias="regalado" name="regalado" type="Boolean"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_KH1FgX8lEe6_8LM4lNdwTQ" alias="idUsuario2" lower="0" associationTarget="_KH0ecH8lEe6_8LM4lNdwTQ" name="usuarioRegalado" type="Object"/>
-      <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_pj7RQX8rEe6_8LM4lNdwTQ" alias="idUsuario" associationTarget="_pj6DIH8rEe6_8LM4lNdwTQ" name="usuarioReponedor" type="Object"/>
+      <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_pj7RQX8rEe6_8LM4lNdwTQ" alias="idUsuario3" associationTarget="_pj6DIH8rEe6_8LM4lNdwTQ" name="usuarioReponedor" type="Object"/>
     </elements>
     <elements xmi:type="es.ua.dlsi.ooh:Enumeration" xmi:id="_1t6d0HPmEe6db8oz03aeow" name="tipoPago">
       <enumerationLiterals xmi:type="es.ua.dlsi.ooh:EnumerationLiteral" xmi:id="_6hMmoHPmEe6db8oz03aeow" name="paypal" value="1"/>

@@ -142,7 +142,7 @@
 ]]></query>
 		  <query name="ArticuloNHordenarPorFechaDescHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.FechaPublicacion DESC]]></query>
 		  <query name="ArticuloNHmostrarArticulosPublicadosHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.EsPublicado = true]]></query>
-		  <query name="ArticuloNHfiltrarPorNombreHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Nombre LIKE '%:p_nombre%']]></query>
+		  <query name="ArticuloNHfiltrarPorNombreHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Nombre  LIKE '`%¿+ :p_nombre +`%¿']]></query>
 		  <query name="ArticuloNHordenarPorPrecioAscHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.Precio ASC]]></query>
 		  <query name="ArticuloNHordenarPorFechaAscHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.FechaPublicacion ASC]]></query>
 		</hibernate-mapping>

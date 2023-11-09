@@ -119,37 +119,85 @@ public static void InitializeData ()
 
                 // Consultas
 
+                // FILTRANDO ARTICULOS
+
+                //Read filter 1. Mostrar Articulos por Precio ascendente
+                Console.WriteLine ("\n\nLa consulta de Articulos ordenados por Precio (Ascendente): ");
+                IList<ArticuloEN> listaArticulosOrdenadosAsc = articulocen.OrdenarPorPrecioAsc ();
+
+                foreach (ArticuloEN art in listaArticulosOrdenadosAsc) {
+                        Console.WriteLine ("El articulo publicado es: " + art.Nombre);
+                }
+
+                //Read filter 2. Mostrar Articulos por Precio descendente
+                Console.WriteLine ("\n\nLa consulta de Articulos ordenados por Precio (Descendente): ");
+                IList<ArticuloEN> listaArticulosOrdenadosDesc = articulocen.OrdenarPorPrecioDesc ();
+
+                foreach (ArticuloEN art in listaArticulosOrdenadosDesc) {
+                        Console.WriteLine ("El articulo publicado es: " + art.Nombre);
+                }
+
+                //Read filter 3. Mostrar Articulos por Fecha ascendente
+                Console.WriteLine ("\n\nLa consulta de Articulos ordenados por Fecha (Ascendente): ");
+                IList<ArticuloEN> listaArticulosOrdenadosAsc2 = articulocen.OrdenarPorFechaAsc ();
+
+                foreach (ArticuloEN art in listaArticulosOrdenadosAsc2) {
+                        Console.WriteLine ("El articulo publicado es: " + art.Nombre);
+                }
+
+                //Read filter 4. Mostrar Articulos por Fecha descendente
+                Console.WriteLine ("\n\nLa consulta de Articulos ordenados por Fecha (Descendente): ");
+                IList<ArticuloEN> listaArticulosOrdenadosDesc2 = articulocen.OrdenarPorFechaDesc ();
+
+                foreach (ArticuloEN art in listaArticulosOrdenadosDesc2) {
+                        Console.WriteLine ("El articulo publicado es: " + art.Nombre);
+                }
+
+                //Read filter 5. Mostrar Articulos Publicados
+                IList<ArticuloEN> listaArticulosPublicados = articulocen.MostrarArticulosPublicados ();
+
+                Console.WriteLine ("\n\nLa consulta de Articulos Publicados: ");
+
+                foreach (ArticuloEN art in listaArticulosPublicados) {
+                        Console.WriteLine ("El articulo publicado es: " + art.Nombre);
+                }
+
+
+                //Read filter 6. Mostrar Articulos Premium
                 IList<ArticuloEN> articulos = articulocen.FiltrarPorRareza (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.comun);
-                Console.WriteLine ("\n\nArticulos premium: ");
+                Console.WriteLine ("\n\nLa consulta de Articulos Premium: ");
                 foreach (ArticuloEN art in articulos) {
                         Console.WriteLine (art.Nombre);
                 }
 
-                articulos = articulocen.FiltrarPorNombre ("gu");
-                Console.WriteLine ("\n\nArticulos nombre: ");
-                foreach (ArticuloEN art in articulos) {
-                        Console.WriteLine (art.Nombre);
-                }
+                //Read filter 6. Mostrar Articulos Por Nombre
+                // articulos = articulocen.FiltrarPorNombre ("gu");
+                // Console.WriteLine ("\n\nArticulos nombre: ");
+                // foreach (ArticuloEN art in articulos) {
+                //         Console.WriteLine (art.Nombre);
+                // }
 
-                Console.WriteLine ("AAAAAAAAAAA: " + DateTime.Now);
-
+                //Read filter 7. Mostrar Articulos Por Fecha
                 articulos = articulocen.FiltrarPorFecha (DateTime.Now, DateTime.Now.AddMonths (1));
-                Console.WriteLine ("\n\nArticulos fecha: ");
+                Console.WriteLine ("\n\nLa consulta de Articulos Filtrados por fecha:: ");
                 foreach (ArticuloEN art in articulos) {
                         Console.WriteLine (art.Nombre);
                 }
 
+                //Read filter 8. Mostrar Articulos Por Temporada
                 articulos = articulocen.FiltrarPorTemporada ("fnaf pelicula");
                 Console.WriteLine ("\n\nArticulos temporada: ");
                 foreach (ArticuloEN art in articulos) {
                         Console.WriteLine (art.Nombre);
                 }
 
+                //Read filter 9. Mostrar Articulos Por Tipo
                 articulos = articulocen.FiltrarPorTipo (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.arma);
                 Console.WriteLine ("\n\nArticulos tipo: ");
                 foreach (ArticuloEN art in articulos) {
                         Console.WriteLine (art.Nombre);
                 }
+
 
                 /*PROTECTED REGION END*/
         }

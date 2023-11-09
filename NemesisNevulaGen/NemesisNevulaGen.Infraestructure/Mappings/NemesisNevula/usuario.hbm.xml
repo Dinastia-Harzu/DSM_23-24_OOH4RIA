@@ -114,7 +114,7 @@
 							<key>
 							
 								
-								<column name="FK_idUsuario_idUsuario"/>
+								<column name="FK_idUsuario_idUsuario3"/>
 					      	</key>
 							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.CompraNH"/>
 					    </bag>
