@@ -27,9 +27,9 @@ private bool esPublicada;
 
 
 /**
- *	Atributo administrador
+ *	Atributo administradorGestiona
  */
-private System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administrador;
+private System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administradorGestiona;
 
 
 
@@ -54,8 +54,8 @@ public virtual bool EsPublicada {
 
 
 
-public virtual System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> Administrador {
-        get { return administrador; } set { administrador = value;  }
+public virtual System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> AdministradorGestiona {
+        get { return administradorGestiona; } set { administradorGestiona = value;  }
 }
 
 
@@ -64,25 +64,25 @@ public virtual System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore
 
 public NoticiaEN()
 {
-        administrador = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN>();
+        administradorGestiona = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN>();
 }
 
 
 
-public NoticiaEN(int id, string descripcion, bool esPublicada, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administrador
+public NoticiaEN(int id, string descripcion, bool esPublicada, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administradorGestiona
                  )
 {
-        this.init (Id, descripcion, esPublicada, administrador);
+        this.init (Id, descripcion, esPublicada, administradorGestiona);
 }
 
 
 public NoticiaEN(NoticiaEN noticia)
 {
-        this.init (noticia.Id, noticia.Descripcion, noticia.EsPublicada, noticia.Administrador);
+        this.init (noticia.Id, noticia.Descripcion, noticia.EsPublicada, noticia.AdministradorGestiona);
 }
 
 private void init (int id
-                   , string descripcion, bool esPublicada, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administrador)
+                   , string descripcion, bool esPublicada, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administradorGestiona)
 {
         this.Id = id;
 
@@ -91,7 +91,7 @@ private void init (int id
 
         this.EsPublicada = esPublicada;
 
-        this.Administrador = administrador;
+        this.AdministradorGestiona = administradorGestiona;
 }
 
 public override bool Equals (object obj)

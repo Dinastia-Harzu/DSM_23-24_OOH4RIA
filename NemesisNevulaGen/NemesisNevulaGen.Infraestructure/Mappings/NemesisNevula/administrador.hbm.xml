@@ -19,7 +19,7 @@
 			
 			
 		  			
-						<bag name="Articulo_0" table="[articulo_0_administrador]" inverse="true" >
+						<bag name="ArticuloGestionado" table="[articulo_0_administrador]" inverse="true" >
 							<key>
 								
 									<column name="FK_idUsuario_idAdministrador"/> 

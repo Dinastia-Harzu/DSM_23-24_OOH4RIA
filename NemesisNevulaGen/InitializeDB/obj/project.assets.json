@@ -5933,11 +5933,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\InitializeDB\\InitializeDB.csproj",
+      "projectUniqueName": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\InitializeDB\\InitializeDB.csproj",
       "projectName": "InitializeDB",
-      "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\InitializeDB\\InitializeDB.csproj",
+      "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\InitializeDB\\InitializeDB.csproj",
       "packagesPath": "C:\\Users\\paula\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\InitializeDB\\obj\\",
+      "outputPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\InitializeDB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\paula\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5954,11 +5954,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {
-              "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj"
+            "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {
+              "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj"
             },
-            "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj": {
-              "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj"
+            "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj": {
+              "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj"
             }
           }
         }

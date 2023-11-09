@@ -24,7 +24,7 @@
 			
 			
 		  			
-						<bag name="Administrador" table="[noticia_administrador]"  >
+						<bag name="AdministradorGestiona" table="[noticia_administrador]"  >
 							<key>
 								
 									<column name="FK_idNoticia_idNoticia"/> 

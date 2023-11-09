@@ -18,7 +18,7 @@ namespace NemesisNevulaGen.ApplicationCore.CP.NemesisNevula
 {
 public partial class CompraCP : GenericBasicCP
 {
-public void Regalar (int p_oid, int p_usuario, int p_articulo)
+public void Regalar (int p_oid, int p_usuario_r, int p_articulo)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Compra_regalar) ENABLED START*/
 

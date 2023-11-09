@@ -8,9 +8,9 @@ public partial class AdministradorEN                                            
 
 {
 /**
- *	Atributo articulo_0
+ *	Atributo articuloGestionado
  */
-private System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulo_0;
+private System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articuloGestionado;
 
 
 
@@ -24,8 +24,8 @@ private System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Nem
 
 
 
-public virtual System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> Articulo_0 {
-        get { return articulo_0; } set { articulo_0 = value;  }
+public virtual System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> ArticuloGestionado {
+        get { return articuloGestionado; } set { articuloGestionado = value;  }
 }
 
 
@@ -40,32 +40,32 @@ public virtual System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore
 
 public AdministradorEN() : base ()
 {
-        articulo_0 = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
+        articuloGestionado = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
         noticia = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.NoticiaEN>();
 }
 
 
 
-public AdministradorEN(int id, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulo_0, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.NoticiaEN> noticia
-                       , string nombre, string correo, bool conGoogle, string foto_perfil, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulosFavs, int puntosNevula, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> compraUsuario, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN> metodoPago, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulo, float cartera, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ValoracionArticuloEN> valoracionArticulo, String pass, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> comprasRegalo
+public AdministradorEN(int id, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articuloGestionado, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.NoticiaEN> noticia
+                       , string nombre, string correo, bool conGoogle, string foto_perfil, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulosFavs, int puntosNevula, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> compraUsuario, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN> metodoPago, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulo, float cartera, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ValoracionArticuloEN> valoracionArticulo, String pass
                        )
 {
-        this.init (Id, articulo_0, noticia, nombre, correo, conGoogle, foto_perfil, articulosFavs, puntosNevula, compraUsuario, metodoPago, articulo, cartera, valoracionArticulo, pass, comprasRegalo);
+        this.init (Id, articuloGestionado, noticia, nombre, correo, conGoogle, foto_perfil, articulosFavs, puntosNevula, compraUsuario, metodoPago, articulo, cartera, valoracionArticulo, pass);
 }
 
 
 public AdministradorEN(AdministradorEN administrador)
 {
-        this.init (administrador.Id, administrador.Articulo_0, administrador.Noticia, administrador.Nombre, administrador.Correo, administrador.ConGoogle, administrador.Foto_perfil, administrador.ArticulosFavs, administrador.PuntosNevula, administrador.CompraUsuario, administrador.MetodoPago, administrador.Articulo, administrador.Cartera, administrador.ValoracionArticulo, administrador.Pass, administrador.ComprasRegalo);
+        this.init (administrador.Id, administrador.ArticuloGestionado, administrador.Noticia, administrador.Nombre, administrador.Correo, administrador.ConGoogle, administrador.Foto_perfil, administrador.ArticulosFavs, administrador.PuntosNevula, administrador.CompraUsuario, administrador.MetodoPago, administrador.Articulo, administrador.Cartera, administrador.ValoracionArticulo, administrador.Pass);
 }
 
 private void init (int id
-                   , System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulo_0, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.NoticiaEN> noticia, string nombre, string correo, bool conGoogle, string foto_perfil, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulosFavs, int puntosNevula, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> compraUsuario, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN> metodoPago, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulo, float cartera, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ValoracionArticuloEN> valoracionArticulo, String pass, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> comprasRegalo)
+                   , System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articuloGestionado, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.NoticiaEN> noticia, string nombre, string correo, bool conGoogle, string foto_perfil, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulosFavs, int puntosNevula, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN> compraUsuario, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN> metodoPago, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN> articulo, float cartera, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ValoracionArticuloEN> valoracionArticulo, String pass)
 {
         this.Id = id;
 
 
-        this.Articulo_0 = articulo_0;
+        this.ArticuloGestionado = articuloGestionado;
 
         this.Noticia = noticia;
 
@@ -92,8 +92,6 @@ private void init (int id
         this.ValoracionArticulo = valoracionArticulo;
 
         this.Pass = pass;
-
-        this.ComprasRegalo = comprasRegalo;
 }
 
 public override bool Equals (object obj)
