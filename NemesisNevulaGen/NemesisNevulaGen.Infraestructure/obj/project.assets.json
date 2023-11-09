@@ -5491,8 +5491,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {
-              "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj"
+            "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj": {
+              "projectPath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGEN\\NemesisNevulaGen.ApplicationCore\\NemesisNevulaGen.ApplicationCore.csproj"
             }
           }
         }

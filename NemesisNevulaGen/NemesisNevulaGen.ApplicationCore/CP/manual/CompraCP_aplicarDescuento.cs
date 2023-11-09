@@ -18,7 +18,7 @@ namespace NemesisNevulaGen.ApplicationCore.CP.NemesisNevula
 {
 public partial class CompraCP : GenericBasicCP
 {
-public void AplicarDescuento (int p_oid, bool p_aplicado)
+public void AplicarDescuento (int p_oid, bool p_aplicado, int p_usuario)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Compra_aplicarDescuento) ENABLED START*/
 
