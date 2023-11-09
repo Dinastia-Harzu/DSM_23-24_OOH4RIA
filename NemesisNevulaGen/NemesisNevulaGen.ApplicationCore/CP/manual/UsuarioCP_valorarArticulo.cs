@@ -18,7 +18,7 @@ namespace NemesisNevulaGen.ApplicationCore.CP.NemesisNevula
 {
 public partial class UsuarioCP : GenericBasicCP
 {
-public void ValorarArticulo (int p_oid)
+public void ValorarArticulo (int p_oid, int p_articulo)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_valorarArticulo) ENABLED START*/
 

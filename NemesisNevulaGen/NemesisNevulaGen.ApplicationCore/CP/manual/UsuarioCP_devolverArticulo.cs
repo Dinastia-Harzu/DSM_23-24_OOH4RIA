@@ -18,7 +18,7 @@ namespace NemesisNevulaGen.ApplicationCore.CP.NemesisNevula
 {
 public partial class UsuarioCP : GenericBasicCP
 {
-public void DevolverArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_compraUsuario_OIDs)
+public void DevolverArticulo (int p_Usuario_OID, int p_compraUsuario_OIDs)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_devolverArticulo) ENABLED START*/
 

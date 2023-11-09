@@ -15,7 +15,7 @@ namespace NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula
 {
 public partial class UsuarioCEN
 {
-public void RegalarArticulo (int p_oid, string p_)
+public void RegalarArticulo (int p_oid, int p_compra, int p_articulo)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula_Usuario_regalarArticulo) ENABLED START*/
 

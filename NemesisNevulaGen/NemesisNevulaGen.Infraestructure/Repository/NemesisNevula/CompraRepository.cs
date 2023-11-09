@@ -117,6 +117,7 @@ public void ModifyDefault (CompraEN compra)
 
                 compraNH.Regalado = compra.Regalado;
 
+
                 session.Update (compraNH);
                 SessionCommit ();
         }
@@ -237,6 +238,37 @@ public void BorrarCompra (int id
                 SessionInitializeTransaction ();
                 CompraNH compraNH = (CompraNH)session.Load (typeof(CompraNH), id);
                 session.Delete (compraNH);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in CompraRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void UsuarioRegala (int p_Compra_OID, int p_usuarioRegalado_OID)
+{
+        NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.CompraEN compraEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                compraEN = (CompraEN)session.Load (typeof(CompraNH), p_Compra_OID);
+                compraEN.UsuarioRegalado = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN)session.Load (typeof(NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH), p_usuarioRegalado_OID);
+
+                compraEN.UsuarioRegalado.ComprasRegalo.Add (compraEN);
+
+
+
+                session.Update (compraEN);
                 SessionCommit ();
         }
 

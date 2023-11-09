@@ -97,6 +97,18 @@
 					
 			
 			
+			
+		  			
+						<bag name="ComprasRegalo" >
+							<key>
+							
+								
+								<column name="FK_idUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.CompraNH"/>
+					    </bag>
+					
+					
 					
 					
 					

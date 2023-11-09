@@ -25,5 +25,10 @@ void ModificarCompra (CompraEN compra);
 
 void BorrarCompra (int id
                    );
+
+
+
+
+void UsuarioRegala (int p_Compra_OID, int p_usuarioRegalado_OID);
 }
 }

@@ -102,5 +102,12 @@ public void BorrarCompra (int id
 {
         _ICompraRepository.BorrarCompra (id);
 }
+
+public void UsuarioRegala (int p_Compra_OID, int p_usuarioRegalado_OID)
+{
+        //Call to CompraRepository
+
+        _ICompraRepository.UsuarioRegala (p_Compra_OID, p_usuarioRegalado_OID);
+}
 }
 }

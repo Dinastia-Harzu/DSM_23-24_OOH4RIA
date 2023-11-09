@@ -122,6 +122,7 @@ public void ModifyDefault (UsuarioEN usuario)
 
                 usuarioNH.Pass = usuario.Pass;
 
+
                 session.Update (usuarioNH);
                 SessionCommit ();
         }

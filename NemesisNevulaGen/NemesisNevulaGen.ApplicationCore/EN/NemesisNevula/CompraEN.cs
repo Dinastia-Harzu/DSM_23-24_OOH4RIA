@@ -75,6 +75,13 @@ private bool regalado;
 
 
 
+/**
+ *	Atributo usuarioRegalado
+ */
+private NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado;
+
+
+
 
 
 
@@ -138,6 +145,12 @@ public virtual bool Regalado {
 
 
 
+public virtual NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN UsuarioRegalado {
+        get { return usuarioRegalado; } set { usuarioRegalado = value;  }
+}
+
+
+
 
 
 public CompraEN()
@@ -146,20 +159,20 @@ public CompraEN()
 
 
 
-public CompraEN(int id, Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum tipoPago, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, float precioTotal, Nullable<DateTime> fechaCaducidad, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoCompra, bool regalado
+public CompraEN(int id, Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum tipoPago, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, float precioTotal, Nullable<DateTime> fechaCaducidad, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoCompra, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado
                 )
 {
-        this.init (Id, fecha, tipoPago, usuarioComprador, articulo, tipoTarjeta, precioTotal, fechaCaducidad, metodoPagoCompra, regalado);
+        this.init (Id, fecha, tipoPago, usuarioComprador, articulo, tipoTarjeta, precioTotal, fechaCaducidad, metodoPagoCompra, regalado, usuarioRegalado);
 }
 
 
 public CompraEN(CompraEN compra)
 {
-        this.init (compra.Id, compra.Fecha, compra.TipoPago, compra.UsuarioComprador, compra.Articulo, compra.TipoTarjeta, compra.PrecioTotal, compra.FechaCaducidad, compra.MetodoPagoCompra, compra.Regalado);
+        this.init (compra.Id, compra.Fecha, compra.TipoPago, compra.UsuarioComprador, compra.Articulo, compra.TipoTarjeta, compra.PrecioTotal, compra.FechaCaducidad, compra.MetodoPagoCompra, compra.Regalado, compra.UsuarioRegalado);
 }
 
 private void init (int id
-                   , Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum tipoPago, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, float precioTotal, Nullable<DateTime> fechaCaducidad, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoCompra, bool regalado)
+                   , Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum tipoPago, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, float precioTotal, Nullable<DateTime> fechaCaducidad, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoCompra, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado)
 {
         this.Id = id;
 
@@ -181,6 +194,8 @@ private void init (int id
         this.MetodoPagoCompra = metodoPagoCompra;
 
         this.Regalado = regalado;
+
+        this.UsuarioRegalado = usuarioRegalado;
 }
 
 public override bool Equals (object obj)
