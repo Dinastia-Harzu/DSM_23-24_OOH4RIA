@@ -13,6 +13,7 @@ using NemesisNevulaGen.ApplicationCore.Exceptions;
 
 using NemesisNevulaGen.ApplicationCore.CP.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository;
+using NHibernate.Type;
 
 /*PROTECTED REGION END*/
 namespace InitializeDB
@@ -116,6 +117,19 @@ public static void InitializeData ()
 
                 int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", "Es una guitarra", (float)5.5, "fotoart.png", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.traje, 3, false, DateTime.Now, "fnaf pelicula", "prevart.png");
 
+                // IList<ArticuloEN> listArticulos = articulocen.FiltrarPorNombre ("gu");
+                // Console.WriteLine ("La consulta de Articulos con nombre que comience por 'gu': ");
+
+                // foreach (ArticuloEN art in listArticulos) {
+                //         Console.WriteLine ("El cliente es: " + art.Nombre);
+                // }
+
+                IList<ArticuloEN> listaArticulos = articulocen.FiltrarPorFecha (DateTime.,DateTime.Now.AddDays(3));
+                Console.WriteLine ("La consulta de Articulos con nombre que comience por 'gu': ");
+
+                foreach (ArticuloEN art in listaArticulos) {
+                        Console.WriteLine ("El cliente es: " + art.Nombre);
+                }
 
                 /*PROTECTED REGION END*/
         }
