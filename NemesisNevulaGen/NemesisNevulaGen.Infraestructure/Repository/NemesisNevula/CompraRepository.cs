@@ -117,6 +117,7 @@ public void ModifyDefault (CompraEN compra)
 
                 compraNH.Regalado = compra.Regalado;
 
+
                 session.Update (compraNH);
                 SessionCommit ();
         }

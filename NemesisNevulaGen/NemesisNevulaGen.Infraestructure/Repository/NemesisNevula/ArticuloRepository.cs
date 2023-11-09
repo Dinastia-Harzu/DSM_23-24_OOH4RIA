@@ -385,7 +385,7 @@ public partial class ArticuloRepository : BasicRepository, IArticuloRepository
                 try
                 {
                         SessionInitializeTransaction ();
-                        //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Temporada LIKE '%:p_temp%'";
+                        //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Temporada LIKE :p_temp";
                         //IQuery query = session.CreateQuery(sql);
                         IQuery query = (IQuery)session.GetNamedQuery ("ArticuloNHfiltrarPorTemporadaHQL");
                         query.SetParameter ("p_temp", p_temp);

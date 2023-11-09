@@ -19,11 +19,10 @@ public void PublicarNoticia (int p_oid)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula_Noticia_publicarNoticia) ENABLED START*/
 
-        // Write here your custom code...
+        NoticiaEN noticia = _INoticiaRepository.DamePorOID (p_oid);
 
-        NoticiaEN noticia = _INoticiaRepository.DamePorOID(p_oid);
         noticia.EsPublicada = true;
-        Console.WriteLine("Noticia publicada: " + noticia.EsPublicada);
+        Console.WriteLine ("Noticia publicada: " + noticia.EsPublicada);
 
         /*PROTECTED REGION END*/
 }

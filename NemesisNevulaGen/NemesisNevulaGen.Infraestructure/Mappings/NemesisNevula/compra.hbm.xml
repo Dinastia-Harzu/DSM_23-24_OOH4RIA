@@ -56,6 +56,13 @@
 						</many-to-one>
 											 					
 			
+			
+		  			
+						<many-to-one name="UsuarioRegalado" class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" >	
+								<column name="FK_idUsuario_idUsuario2"/> 
+						</many-to-one>
+											 					
+					
 					
 					
 					
