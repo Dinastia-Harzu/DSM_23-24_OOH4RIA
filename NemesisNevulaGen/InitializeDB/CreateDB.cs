@@ -119,35 +119,35 @@ public static void InitializeData ()
 
                 // Consultas
 
-                IList<ArticuloEN> articulos = articulocen.FiltrarPorRareza (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.premium);
-                Console.WriteLine ("Articulos premium: ");
-                foreach (ArticuloEN art in articulos) {
-                        Console.WriteLine ("Articulo: " + art.Nombre);
-                }
+                // IList<ArticuloEN> articulos = articulocen.FiltrarPorRareza (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.premium);
+                // Console.WriteLine ("Articulos premium: ");
+                // foreach (ArticuloEN art in articulos) {
+                //         Console.WriteLine ("Articulo: " + art.Nombre);
+                // }
 
-                articulos = articulocen.FiltrarPorNombre ("gu");
-                Console.WriteLine ("Articulos nombre: ");
-                foreach (ArticuloEN art in articulos) {
-                        Console.WriteLine ("Articulo: " + art.Nombre);
-                }
+                // articulos = articulocen.FiltrarPorNombre ("gu");
+                // Console.WriteLine ("Articulos nombre: ");
+                // foreach (ArticuloEN art in articulos) {
+                //         Console.WriteLine ("Articulo: " + art.Nombre);
+                // }
 
-                articulos = articulocen.FiltrarPorFecha (DateTime.Now, DateTime.Now.AddMonths (1));
-                Console.WriteLine ("Articulos fecha: ");
-                foreach (ArticuloEN art in articulos) {
-                        Console.WriteLine ("Articulo: " + art.Nombre);
-                }
+                // articulos = articulocen.FiltrarPorFecha (DateTime.Now, DateTime.Now.AddMonths (1));
+                // Console.WriteLine ("Articulos fecha: ");
+                // foreach (ArticuloEN art in articulos) {
+                //         Console.WriteLine ("Articulo: " + art.Nombre);
+                // }
 
-                articulos = articulocen.FiltrarPorTemporada ("fnaf pelicula");
-                Console.WriteLine ("Articulos temporada: ");
-                foreach (ArticuloEN art in articulos) {
-                        Console.WriteLine ("Articulo: " + art.Nombre);
-                }
+                // articulos = articulocen.FiltrarPorTemporada ("fnaf pelicula");
+                // Console.WriteLine ("Articulos temporada: ");
+                // foreach (ArticuloEN art in articulos) {
+                //         Console.WriteLine ("Articulo: " + art.Nombre);
+                // }
 
-                articulos = articulocen.FiltrarPorTipo (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.arma);
-                Console.WriteLine ("Articulos tipo: ");
-                foreach (ArticuloEN art in articulos) {
-                        Console.WriteLine ("Articulo: " + art.Nombre);
-                }
+                // articulos = articulocen.FiltrarPorTipo (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.arma);
+                // Console.WriteLine ("Articulos tipo: ");
+                // foreach (ArticuloEN art in articulos) {
+                //         Console.WriteLine ("Articulo: " + art.Nombre);
+                // }
 
                 /*PROTECTED REGION END*/
         }
