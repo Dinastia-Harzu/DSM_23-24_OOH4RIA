@@ -106,18 +106,22 @@ public string Login (int p_Usuario_OID, string p_pass)
         return result;
 }
 
-public void MetodosPago (int p_Usuario_OID, System.Collections.Generic.IList<int> p_metodoPago_OIDs)
+public System.Collections.Generic.IList<UsuarioEN> DameTodos (int first, int size)
 {
-        //Call to UsuarioRepository
+        System.Collections.Generic.IList<UsuarioEN> list = null;
 
-        _IUsuarioRepository.MetodosPago (p_Usuario_OID, p_metodoPago_OIDs);
+        list = _IUsuarioRepository.DameTodos (first, size);
+        return list;
 }
-public void QuitarMetodosPago (int p_Usuario_OID, System.Collections.Generic.IList<int> p_metodoPago_OIDs)
+public UsuarioEN DamePorOID (int id
+                             )
 {
-        //Call to UsuarioRepository
+        UsuarioEN usuarioEN = null;
 
-        _IUsuarioRepository.QuitarMetodosPago (p_Usuario_OID, p_metodoPago_OIDs);
+        usuarioEN = _IUsuarioRepository.DamePorOID (id);
+        return usuarioEN;
 }
+
 
 
 

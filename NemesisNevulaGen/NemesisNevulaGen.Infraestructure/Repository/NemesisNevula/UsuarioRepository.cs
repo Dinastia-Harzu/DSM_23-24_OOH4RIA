@@ -315,28 +315,17 @@ public void QuitarFavorito (int p_Usuario_OID, System.Collections.Generic.IList<
                 SessionClose ();
         }
 }
-public void MetodosPago (int p_Usuario_OID, System.Collections.Generic.IList<int> p_metodoPago_OIDs)
+public System.Collections.Generic.IList<UsuarioEN> DameTodos (int first, int size)
 {
-        NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioEN = null;
+        System.Collections.Generic.IList<UsuarioEN> result = null;
         try
         {
                 SessionInitializeTransaction ();
-                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioNH), p_Usuario_OID);
-                NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoENAux = null;
-                if (usuarioEN.MetodoPago == null) {
-                        usuarioEN.MetodoPago = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN>();
-                }
-
-                foreach (int item in p_metodoPago_OIDs) {
-                        metodoPagoENAux = new NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN ();
-                        metodoPagoENAux = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN)session.Load (typeof(NemesisNevulaGen.Infraestructure.EN.NemesisNevula.MetodoPagoNH), item);
-                        metodoPagoENAux.UsuarioPoseedor.Add (usuarioEN);
-
-                        usuarioEN.MetodoPago.Add (metodoPagoENAux);
-                }
-
-
-                session.Update (usuarioEN);
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(UsuarioNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<UsuarioEN>();
+                else
+                        result = session.CreateCriteria (typeof(UsuarioNH)).List<UsuarioEN>();
                 SessionCommit ();
         }
 
@@ -352,38 +341,25 @@ public void MetodosPago (int p_Usuario_OID, System.Collections.Generic.IList<int
         {
                 SessionClose ();
         }
+
+        return result;
 }
 
-public void QuitarMetodosPago (int p_Usuario_OID, System.Collections.Generic.IList<int> p_metodoPago_OIDs)
+//Sin e: DamePorOID
+//Con e: UsuarioEN
+public UsuarioEN DamePorOID (int id
+                             )
 {
+        UsuarioEN usuarioEN = null;
+
         try
         {
                 SessionInitializeTransaction ();
-                NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioEN = null;
-                usuarioEN = (UsuarioEN)session.Load (typeof(UsuarioNH), p_Usuario_OID);
-
-                NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN metodoPagoENAux = null;
-                if (usuarioEN.MetodoPago != null) {
-                        foreach (int item in p_metodoPago_OIDs) {
-                                metodoPagoENAux = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN)session.Load (typeof(NemesisNevulaGen.Infraestructure.EN.NemesisNevula.MetodoPagoNH), item);
-                                if (usuarioEN.MetodoPago.Contains (metodoPagoENAux) == true) {
-                                        usuarioEN.MetodoPago.Remove (metodoPagoENAux);
-                                        metodoPagoENAux.UsuarioPoseedor.Remove (usuarioEN);
-                                }
-                                else
-                                        throw new ModelException ("The identifier " + item + " in p_metodoPago_OIDs you are trying to unrelationer, doesn't exist in UsuarioEN");
-                        }
-                }
-
-                session.Update (usuarioEN);
+                usuarioEN = (UsuarioEN)session.Get (typeof(UsuarioNH), id);
                 SessionCommit ();
         }
 
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
-                        throw;
-                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        catch (Exception) {
         }
 
 
@@ -391,6 +367,8 @@ public void QuitarMetodosPago (int p_Usuario_OID, System.Collections.Generic.ILi
         {
                 SessionClose ();
         }
+
+        return usuarioEN;
 }
 }
 }
