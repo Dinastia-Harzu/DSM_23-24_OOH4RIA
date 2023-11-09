@@ -6,7 +6,6 @@
 		  
 	<EmbeddedResource Include="Mappings\NemesisNevula\usuario.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\usuariopremium.hbm.xml" />
-	<EmbeddedResource Include="Mappings\NemesisNevula\visitante.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\administrador.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\articulo.hbm.xml" />
 	<EmbeddedResource Include="Mappings\NemesisNevula\compra.hbm.xml" />

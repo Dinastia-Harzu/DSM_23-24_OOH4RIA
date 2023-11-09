@@ -114,6 +114,9 @@ public void ModifyDefault (CompraEN compra)
                 compraNH.FechaCaducidad = compra.FechaCaducidad;
 
 
+
+                compraNH.Regalado = compra.Regalado;
+
                 session.Update (compraNH);
                 SessionCommit ();
         }
@@ -205,6 +208,9 @@ public void ModificarCompra (CompraEN compra)
 
 
                 compraNH.FechaCaducidad = compra.FechaCaducidad;
+
+
+                compraNH.Regalado = compra.Regalado;
 
                 session.Update (compraNH);
                 SessionCommit ();

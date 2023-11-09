@@ -30,7 +30,7 @@ public ICompraRepository get_ICompraRepository ()
         return this._ICompraRepository;
 }
 
-public int CrearCompra (Nullable<DateTime> p_fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum p_tipoPago, int p_usuarioComprador, int p_articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum p_tipoTarjeta, float p_precioTotal, Nullable<DateTime> p_fechaCaducidad, int p_metodoPagoCompra)
+public int CrearCompra (Nullable<DateTime> p_fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum p_tipoPago, int p_usuarioComprador, int p_articulo, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum p_tipoTarjeta, float p_precioTotal, Nullable<DateTime> p_fechaCaducidad, int p_metodoPagoCompra, bool p_regalado)
 {
         CompraEN compraEN = null;
         int oid;
@@ -71,13 +71,15 @@ public int CrearCompra (Nullable<DateTime> p_fecha, NemesisNevulaGen.Application
                 compraEN.MetodoPagoCompra.Id = p_metodoPagoCompra;
         }
 
+        compraEN.Regalado = p_regalado;
+
 
 
         oid = _ICompraRepository.CrearCompra (compraEN);
         return oid;
 }
 
-public void ModificarCompra (int p_Compra_OID, Nullable<DateTime> p_fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum p_tipoPago, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum p_tipoTarjeta, float p_precioTotal, Nullable<DateTime> p_fechaCaducidad)
+public void ModificarCompra (int p_Compra_OID, Nullable<DateTime> p_fecha, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum p_tipoPago, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum p_tipoTarjeta, float p_precioTotal, Nullable<DateTime> p_fechaCaducidad, bool p_regalado)
 {
         CompraEN compraEN = null;
 
@@ -89,6 +91,7 @@ public void ModificarCompra (int p_Compra_OID, Nullable<DateTime> p_fecha, Nemes
         compraEN.TipoTarjeta = p_tipoTarjeta;
         compraEN.PrecioTotal = p_precioTotal;
         compraEN.FechaCaducidad = p_fechaCaducidad;
+        compraEN.Regalado = p_regalado;
         //Call to CompraRepository
 
         _ICompraRepository.ModificarCompra (compraEN);

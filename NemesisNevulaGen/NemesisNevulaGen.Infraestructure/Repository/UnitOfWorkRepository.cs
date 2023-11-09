@@ -37,15 +37,6 @@ public override IUsuarioPremiumRepository UsuarioPremiumRepository {
         }
 }
 
-public override IVisitanteRepository VisitanteRepository {
-        get
-        {
-                this.visitanterepository = new VisitanteRepository ();
-                this.visitanterepository.setSessionCP (session);
-                return this.visitanterepository;
-        }
-}
-
 public override IAdministradorRepository AdministradorRepository {
         get
         {

@@ -9,7 +9,6 @@ public abstract class GenericUnitOfWorkRepository
 {
 protected IUsuarioRepository usuariorepository;
 protected IUsuarioPremiumRepository usuariopremiumrepository;
-protected IVisitanteRepository visitanterepository;
 protected IAdministradorRepository administradorrepository;
 protected IArticuloRepository articulorepository;
 protected ICompraRepository comprarepository;
@@ -24,9 +23,6 @@ public abstract IUsuarioRepository UsuarioRepository {
         get;
 }
 public abstract IUsuarioPremiumRepository UsuarioPremiumRepository {
-        get;
-}
-public abstract IVisitanteRepository VisitanteRepository {
         get;
 }
 public abstract IAdministradorRepository AdministradorRepository {

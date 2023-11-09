@@ -27,6 +27,9 @@
 					<property name="FechaCaducidad" type="date"> 
 						<column name="fechaCaducidad"  not-null="true"/>
 					</property>
+					<property name="Regalado" type="boolean"> 
+						<column name="regalado"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -52,6 +55,8 @@
 								<column name="FK_idMetodoPago_idMetodoPago"/> 
 						</many-to-one>
 											 					
+			
+					
 					
 					
 					

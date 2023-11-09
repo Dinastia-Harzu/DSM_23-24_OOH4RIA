@@ -86,8 +86,6 @@ public static void InitializeData ()
                 UsuarioCEN usuariocen = new UsuarioCEN (usuariorepository);
                 UsuarioPremiumRepository usuariopremiumrepository = new UsuarioPremiumRepository ();
                 UsuarioPremiumCEN usuariopremiumcen = new UsuarioPremiumCEN (usuariopremiumrepository);
-                VisitanteRepository visitanterepository = new VisitanteRepository ();
-                VisitanteCEN visitantecen = new VisitanteCEN (visitanterepository);
                 AdministradorRepository administradorrepository = new AdministradorRepository ();
                 AdministradorCEN administradorcen = new AdministradorCEN (administradorrepository);
                 ArticuloRepository articulorepository = new ArticuloRepository ();
@@ -110,9 +108,8 @@ public static void InitializeData ()
                 /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
 
                 int idAdmin = administradorcen.CrearAdmin ("Federico Alfredo", "fnaf1@gmail.com", false, "pfp.png", 12, (float)1.25, "contrasenya");
-                int idUsuarioPremium = usuariopremiumcen.CrearUsuarioPremium ("Bonifacio Conejal", "fnaf2@gmail.com", true, "pfp.png", 2, (float)0.0, "pwd123", DateTime.Now.AddMonths(3));
+                int idUsuarioPremium = usuariopremiumcen.CrearUsuarioPremium ("Bonifacio Conejal", "fnaf2@gmail.com", true, "pfp.png", 2, (float)0.0, "pwd123", DateTime.Now.AddMonths (3));
                 int idUsuario = usuariocen.CrearUsuario ("Chica Gallina", "fnaf3@gmail.com", true, "pfp.png", 2, (float)12.5,"pwd123");
-                int idVisitante1 = visitantecen.CrearVisitante ();
 
                 int idNoticia1 = noticiacen.CrearNoticia ("noticia 2332", false);
                 int idNoticia2 = noticiacen.CrearNoticia ("noticia 32442432", true);
