@@ -34,6 +34,7 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Glv0IH9MEe6ED6hQlsEuUQ" name="p_fechaCaducidad" type="Date"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_LYM2gH9MEe6ED6hQlsEuUQ" name="p_regalado" type="Boolean"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_QAS9MH-zEe6NGbYLiPokCA" name="p_metodoPago" type="Integer"/>
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_xxFXIH-zEe6NGbYLiPokCA" name="p_aplicarDescuento" type="Boolean"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_U9abAHPMEe62YJcPtwIurA" name="devolverArticulo" operationType="CustomTransaction" type="Void" relatedRol="_TLYocHPnEe6db8oz03aeow">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_TKBUAH7_Ee6DI81hWEn1uA" name="p_Usuario_OID" type="OID" typeObject="_x7jPkHGuEe63Wvla8gH9Qg"/>
@@ -259,7 +260,7 @@
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_vhBdxHPmEe6db8oz03aeow" name="borrarCompra" operationType="Destroy" type="Void">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_ylta4X8rEe6_8LM4lNdwTQ" name="p_Compra_OID" type="OID" typeObject="_jjq68HPmEe6db8oz03aeow"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_F4incHPpEe6db8oz03aeow" name="aplicarDescuento" operationType="CustomTransaction" type="Void">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_F4incHPpEe6db8oz03aeow" name="aplicarDescuento" operationType="CustomTransaction" type="Float">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Tc6QkH2bEe6vvdGjdY0rGw" name="p_aplicado" type="Boolean"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Y1lCcH8cEe6_8LM4lNdwTQ" name="p_usuario" type="OID" typeObject="_x7jPkHGuEe63Wvla8gH9Qg"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_3YGpQH8fEe6_8LM4lNdwTQ" name="p_articulo" type="OID" typeObject="_QGl1YHGwEe63Wvla8gH9Qg"/>
