@@ -24,20 +24,30 @@ public void Regalar (int p_oid, int p_usuario_r, int p_articulo)
 
         CompraCEN compraCEN = null;
 
-
-
         try
         {
                 CPSession.SessionInitializeTransaction ();
+
+
                 compraCEN = new  CompraCEN (CPSession.UnitRepo.CompraRepository);
+                UsuarioCEN usuarioCEN = new UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+                ArticuloCEN articuloCEN = new ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
 
+                CompraEN compra = compraCEN.DamePorOID (p_oid);
+                ArticuloEN articulo = articuloCEN.DamePorOID (p_articulo);
+                UsuarioEN usuarioObjetivo = usuarioCEN.DamePorOID (p_usuario_r);
+                UsuarioEN usuarioCompra = compra.UsuarioComprador;
 
+                usuarioCompra.Articulo.Remove (articulo); // Le quitamos el articulo comprado al usuario
 
-                // Write here your custom transaction ...
+                usuarioObjetivo.Articulo.Add (articulo); // Se lo añadimos al usuario objetivo
 
-                throw new NotImplementedException ("Method Regalar() not yet implemented.");
+                compra.Regalado = true; // Actualizamos a regalado
 
-
+                // Actualizamos la compra y los usuarios modificados
+                usuarioCEN.get_IUsuarioRepository ().ModificarUsuario (usuarioCompra);
+                usuarioCEN.get_IUsuarioRepository ().ModificarUsuario (usuarioObjetivo);
+                compraCEN.get_ICompraRepository ().ModificarCompra (compra);
 
                 CPSession.Commit ();
         }

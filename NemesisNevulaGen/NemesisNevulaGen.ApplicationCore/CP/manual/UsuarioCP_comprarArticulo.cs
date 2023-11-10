@@ -22,77 +22,71 @@ public void ComprarArticulo (int p_Usuario_OID, int p_articulo, int p_metodoPago
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_comprarArticulo) ENABLED START*/
 
-        // UsuarioCEN usuarioCEN = null;
-        // CompraCEN compraCEN = null;
-        // ArticuloCEN articuloCEN = null;
-        // PaypalCEN paypalCEN = null;
-        // TarjetaCreditoCEN tarjetaCreditoCEN = null;
 
-        // try
-        // {
-        //         CPSession.SessionInitializeTransaction ();
+        try
+        {
+                CPSession.SessionInitializeTransaction ();
 
-        //         usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
-        //         CompraCEN compraCEN = new CompraCEN (CPSession.UnitRepo.CompraRepository);
-        //         ArticuloCEN articuloCEN = new ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
-        //         PaypalCEN paypalCEN = new PaypalCEN (CPSession.UnitRepo.PaypalRepository);
-        //         TarjetaCreditoCEN tarjetaCreditoCEN = new TarjetaCreditoCEN (CPSession.UnitRepo.TarjetaCreditoRepository);
+                UsuarioCEN usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+                CompraCEN compraCEN = new CompraCEN (CPSession.UnitRepo.CompraRepository);
+                ArticuloCEN articuloCEN = new ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
+                PaypalCEN paypalCEN = new PaypalCEN (CPSession.UnitRepo.PaypalRepository);
+                TarjetaCreditoCEN tarjetaCreditoCEN = new TarjetaCreditoCEN (CPSession.UnitRepo.TarjetaCreditoRepository);
 
-        //         //COMENTAR
-        //         //bool aplicaDescuento = true;
-        //         //int idPagoUsuario = paypalCEN.CrearPaypal ("jrh15@alu.ua.es", "1234");
+                CompraCP compraCP = new CompraCP (CPSession);
 
-        //         UsuarioEN usuario = usuarioCEN.DamePorOID (p_Usuario_OID);
-        //         ArticuloEN articulo = articuloCEN.DamePorOID (p_articulo);
+                UsuarioEN usuario = usuarioCEN.DamePorOID (p_Usuario_OID);
+                ArticuloEN articulo = articuloCEN.DamePorOID (p_articulo);
 
-        //         // Calculamos el precio final del articulo
-        //         float precioTotal = articulo.Precio;
-        //         if(aplicaDescuento == true)
-        //                 precioTotal = compraCEN.aplicarDescuento(p_Usuario_OID, p_articulo);
+                // Calculamos el precio final del articulo
+                float precioTotal = articulo.Precio;
+                if (p_aplicarDescuento == true) {
+                        precioTotal = compraCP.AplicarDescuento (p_aplicarDescuento, p_Usuario_OID, p_articulo, articulo.Precio);
+                }
 
-        //         // Recogemos los datos del metodoPago
-        //         TipoPagoEnum tipoPagoEnum;
-        //         TipoTarjetaEnum tipoTarjetaEnum;
-        //         TarjetaCreditoEN tarjetaUsuario;
+                Enumerated.NemesisNevula.TipoPagoEnum tipoPagoEnum = Enumerated.NemesisNevula.TipoPagoEnum.cartera;
+                Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjetaEnum = Enumerated.NemesisNevula.TipoTarjetaEnum.ninguna;
+                TarjetaCreditoEN tarjetaUsuario;
 
-        //         if (idPagoUsuario != -1) {
-        //                 if (paypalCEN.DamePorOID (idPagoUsuario) != null) {
-        //                         tipoPagoEnum = TipoPagoEnum.paypal;
-        //                         tipoTarjetaEnum = TipoTarjetaEnum.ninguna;
-        //                 }
-        //                 else if (tarjetaUsuario = tarjetaCreditoCEN.DamePorOID (idPagoUsuario) != null) {
-        //                         tipoPagoEnum = TipoPagoEnum.tarjeta;
-        //                         tipoTarjetaEnum = tarjetaUsuario.TipoTarjeta;
-        //                 }
-        //         }
-        //         else{
-        //                 tipoPagoEnum = TipoPagoEnum.cartera;
-        //                 tipoTarjetaEnum = TipoTarjetaEnum.ninguna;
+                // Recogemos los datos del metodoPago
+                if (p_metodoPago != -1) {
+                        if (paypalCEN.DamePorOID (p_metodoPago) != null) {
+                                tipoPagoEnum = Enumerated.NemesisNevula.TipoPagoEnum.paypal;
+                                tipoTarjetaEnum = Enumerated.NemesisNevula.TipoTarjetaEnum.ninguna;
+                        }
+                        else if ((tarjetaUsuario = tarjetaCreditoCEN.DamePorOID (p_metodoPago)) != null) {
+                                tipoPagoEnum = Enumerated.NemesisNevula.TipoPagoEnum.tarjeta;
+                                tipoTarjetaEnum = tarjetaUsuario.TipoTarjeta;
+                        }
+                }
+                else{
+                        tipoPagoEnum = Enumerated.NemesisNevula.TipoPagoEnum.cartera;
+                        tipoTarjetaEnum = Enumerated.NemesisNevula.TipoTarjetaEnum.ninguna;
 
-        //                 if(usuario.Cartera < precioTotal)
-        //                         Console.WriteLine("Error: No tiene saldo suficiente en la cartera");
-        //                 else{
-        //                         usuario.Cartera -= precioTotal;
-        //                 }
-        //         }
+                        if (usuario.Cartera < precioTotal)
+                                Console.WriteLine ("Error: No tiene saldo suficiente en la cartera");
+                        else{
+                                usuario.Cartera -= precioTotal;
+                        }
+                }
 
-        //         int idNuevaCompra = compraCEN.CrearCompra (DateTime.Now, tipoPagoEnum, p_Usuario_OID, p_articulo, tipoTarjetaEnum, precioTotal, DateTime.Now.AddHours (2), 1, false);
+                int idNuevaCompra = compraCEN.CrearCompra (DateTime.Now, tipoPagoEnum, p_Usuario_OID, p_articulo, tipoTarjetaEnum, precioTotal, DateTime.Now.AddHours (2), 1, false, p_Usuario_OID);
 
-        //         // Actualizamos la lista de articulos del usuario
-        //         usuario.Articulo.Add(articulo);
-        //         usuarioCEN.get_IUsuarioRepository().ModificarUsuario(usuario);
+                // Actualizamos la lista de articulos del usuario
+                usuario.Articulo.Add (articulo);
+                usuarioCEN.get_IUsuarioRepository ().ModificarUsuario (usuario);
 
-        //         CPSession.Commit ();
-        // }
-        // catch (Exception ex)
-        // {
-        //         CPSession.RollBack ();
-        //         throw ex;
-        // }
-        // finally
-        // {
-        //         CPSession.SessionClose ();
-        // }
+                CPSession.Commit ();
+        }
+        catch (Exception ex)
+        {
+                CPSession.RollBack ();
+                throw ex;
+        }
+        finally
+        {
+                CPSession.SessionClose ();
+        }
 
         /*PROTECTED REGION END*/
 }

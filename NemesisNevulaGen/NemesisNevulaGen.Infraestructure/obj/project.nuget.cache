@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U4n2DU3+GqbNBQAxwNf1nkpYpoLCeeEVb2dID2kdOxwVqZ4gdFGbqGp5DFQF3g1VU0CXEirHdYzFGwq950eutg==",
+  "dgSpecHash": "tDc8MbjsFUx+QDVw8jfFMDbZ51wX2vOO846eWvY9DYdPiww7KgZqJHKt7vpQvoc8Xa+pIanNpQH011ZyhutBnA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\DSM_23-24_OOH4RIA\\NemesisNevulaGen\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj",
+  "projectFilePath": "C:\\Users\\paula\\Desktop\\Universidad\\Tercero\\Primer Cuatrimestre\\DSM\\Prácticas\\Proyectos_OOH4RIA_DSM\\NemesisNevulaGEN\\NemesisNevulaGen.Infraestructure\\NemesisNevulaGen.Infraestructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\paula\\.nuget\\packages\\antlr3.runtime\\3.5.1\\antlr3.runtime.3.5.1.nupkg.sha512",
     "C:\\Users\\paula\\.nuget\\packages\\iesi.collections\\4.0.4\\iesi.collections.4.0.4.nupkg.sha512",

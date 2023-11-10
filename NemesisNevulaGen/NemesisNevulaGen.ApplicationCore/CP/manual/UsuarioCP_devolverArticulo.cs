@@ -22,40 +22,36 @@ public void DevolverArticulo (int p_Usuario_OID, int p_compraUsuario_OIDs)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_devolverArticulo) ENABLED START*/
 
-//         UsuarioCEN usuarioCEN = null;
-//         CompraCEN compraCEN = null;
-//         ArticuloCEN articuloCEN = null;
+        try
+        {
+                CPSession.SessionInitializeTransaction ();
 
-//        try
-//         {
-//                 CPSession.SessionInitializeTransaction ();
+                UsuarioCEN usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+                CompraCEN compraCEN = new CompraCEN (CPSession.UnitRepo.CompraRepository);
+                ArticuloCEN articuloCEN = new ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
 
-//                 usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
-//                 CompraCEN compraCEN = new CompraCEN(CPSession.UnitRepo.CompraRepository);
-//                 ArticuloCEN articuloCEN = new ArticuloCEN(CPSession.UnitRepo.ArticuloRepository);
+                UsuarioEN usuario = usuarioCEN.DamePorOID (p_Usuario_OID);
+                CompraEN compra = compraCEN.DamePorOID (p_compraUsuario_OIDs);
 
-//                 UsuarioEN usuario = usuarioCEN.DamePorOID(p_Usuario_OID);
-//                 CompraEN compra = compraCEN.DamePorOID(p_compraUsuario_OIDs);
+                usuario.Cartera += compra.PrecioTotal;  // Devolemos el precio a la cartera del cliente
 
-//                 usuario.Cartera += compra.PrecioTotal;  // Devolemos el precio a la cartera del cliente
+                usuario.Articulo.Remove (compra.Articulo);  // Eliminamos el articulo del usuario
 
-//                 usuario.Articulo.Remove(compra.Articulo);  // Eliminamos el articulo del usuario
+                compraCEN.get_ICompraRepository ().BorrarCompra (p_compraUsuario_OIDs);   // Borramos la compra
 
-//                 compraCEN.get_ICompraRepository().BorrarCompra(p_compraUsuario_OIDs);   // Borramos la compra
+                usuarioCEN.get_IUsuarioRepository ().ModificarUsuario (usuario);  // Modificamos el usuario con el dinero reembolsado y sin el articulo previamente comprado
 
-//                 usuarioCEN.get_IUsuarioRepository().ModificarUsuario(usuario);  // Modificamos el usuario con el dinero reembolsado y sin el articulo previamente comprado
-
-//                 CPSession.Commit ();
-//         }
-//         catch (Exception ex)
-//         {
-//                 CPSession.RollBack ();
-//                 throw ex;
-//         }
-//         finally
-//         {
-//                 CPSession.SessionClose ();
-//         }
+                CPSession.Commit ();
+        }
+        catch (Exception ex)
+        {
+                CPSession.RollBack ();
+                throw ex;
+        }
+        finally
+        {
+                CPSession.SessionClose ();
+        }
 
         /*PROTECTED REGION END*/
 }

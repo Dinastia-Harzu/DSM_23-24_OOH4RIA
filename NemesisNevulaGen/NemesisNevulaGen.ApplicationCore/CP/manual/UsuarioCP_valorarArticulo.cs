@@ -29,15 +29,17 @@ public void ValorarArticulo (int p_oid, int p_articulo)
         try
         {
                 CPSession.SessionInitializeTransaction ();
+
                 usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+                ValoracionArticuloCEN valoracionArticuloCEN = new ValoracionArticuloCEN (CPSession.UnitRepo.ValoracionArticuloRepository);
+                ArticuloCEN articuloCEN = new ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
 
+                UsuarioEN usuario = usuarioCEN.DamePorOID (p_oid);
+                ArticuloEN articulo = articuloCEN.DamePorOID (p_articulo);
 
+                int valoracionUsuario = 5;
 
-                // Write here your custom transaction ...
-
-                throw new NotImplementedException ("Method ValorarArticulo() not yet implemented.");
-
-
+                int idNuevaValoracion = valoracionArticuloCEN.CrearValoracion (valoracionUsuario, p_articulo, p_oid);
 
                 CPSession.Commit ();
         }

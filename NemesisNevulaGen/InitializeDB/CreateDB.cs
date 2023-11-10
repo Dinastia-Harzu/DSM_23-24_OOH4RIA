@@ -117,6 +117,9 @@ public static void InitializeData ()
                 int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", "Es una guitarra", (float)5.5, "fotoart.png", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.traje, 3, false, DateTime.Now, "fnaf pelicula", "prevart.png");
                 int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", "Es una pistola", (float)6.9, "fotoart.png", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.arma, 3, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "prevart.png");
 
+                int idTarjeta1 = tarjetacreditocen.CrearTarjetaCredito (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.visa, "Bonifacio Conejal", "ES1154516545", DateTime.Now, "dijsdi");
+                int idCompra1 = compracen.CrearCompra (DateTime.Now, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum.paypal, idUsuario, idArticulo1, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.visa, (float)0.0, DateTime.Now.AddDays (1), idTarjeta1, false, idUsuario);
+
                 // Consultas
 
                 // FILTRANDO ARTICULOS
@@ -170,7 +173,7 @@ public static void InitializeData ()
                         Console.WriteLine (art.Nombre);
                 }
 
-                //Read filter 6. Mostrar Articulos Por Nombre
+                //Read filter 6. Mostrar Articulos Por Nombre -> Errores de implementación
                 // articulos = articulocen.FiltrarPorNombre ("gu");
                 // Console.WriteLine ("\n\nArticulos nombre: ");
                 // foreach (ArticuloEN art in articulos) {
@@ -198,23 +201,28 @@ public static void InitializeData ()
                         Console.WriteLine (art.Nombre);
                 }
 
-                //Custom. Publicar Articulo
+                // Custom 1. Publicar Articulo
                 Console.Write ("\n\nPrueba a publicar artículo:" + "\n");
                 articulocen.PublicarArticulo (idArticulo1);
+
+                // Custom 2. Previsualizar Articulo
                 Console.Write ("\n\nSe previsualiza el artículo..." + "\n");
                 articulocen.Previsualizar (idArticulo1);
 
-                // Custom transaction. Aplicar Descuento
-                int tarjeta1 = tarjetacreditocen.CrearTarjetaCredito (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.visa, "Bonifacio Conejal", "ES1154516545", DateTime.Now, "dijsdi");
-                int idCompra1 = compracen.CrearCompra (DateTime.Now, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum.paypal, idUsuario, idArticulo1, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.visa, (float)0.0, DateTime.Now.AddDays (1), tarjeta1, false, idUsuario);
-                Console.Write (tarjeta1);
+                // Custom 3. Publicar Noticia
+                Console.Write ("\n\nPrueba a publicar noticia:" + "\n");
+                noticiacen.PublicarNoticia (idNoticia1);
+
+                // Custom transaction 1. Aplicar Descuento
+                int idTarjeta2 = tarjetacreditocen.CrearTarjetaCredito (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.visa, "Bonifacio Conejal", "ES1154516545", DateTime.Now, "dijsdi");
+                Console.Write (idTarjeta2);
                 Console.Write ("\n\nSe realiza una compra sin descuento:" + "\n");
                 CompraCP compraCP = new CompraCP (new SessionCPNHibernate ());
                 compraCP.AplicarDescuento (false, idUsuario, idArticulo1, (float)5.5);
                 Console.Write ("\n\nSe realiza una compra con descuento:" + "\n");
                 compraCP.AplicarDescuento (true, idUsuario, idArticulo1, (float)5.5);
 
-                // Custom transaction. Agregar fondos
+                // Custom transaction 2. Agregar fondos
                 float cantidad_af = 10.00f;
                 int usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "https://picsum.photos/200", 100, 25.00f, "password");
                 int compra_af = compracen.CrearCompra (

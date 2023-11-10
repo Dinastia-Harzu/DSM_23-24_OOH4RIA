@@ -602,7 +602,7 @@
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_PfywkXGvEe63Wvla8gH9Qg"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_PfywknGvEe63Wvla8gH9Qg" fontName="Segoe UI"/>
       <styles xmi:type="notation:FillStyle" xmi:id="_Pfywk3GvEe63Wvla8gH9Qg" fillColor="12516090"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PfywlHGvEe63Wvla8gH9Qg" x="336" y="786"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PfywlHGvEe63Wvla8gH9Qg" x="290" y="805"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_2d3uwHGvEe63Wvla8gH9Qg" type="2003" element="_2dyPMHGvEe63Wvla8gH9Qg">
       <children xmi:type="notation:DecorationNode" xmi:id="_2d3uxXGvEe63Wvla8gH9Qg" type="5005"/>
