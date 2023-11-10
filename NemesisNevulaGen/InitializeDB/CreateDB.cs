@@ -210,9 +210,9 @@ public static void InitializeData ()
                 Console.Write (tarjeta1);
                 Console.Write ("\n\nSe realiza una compra sin descuento:" + "\n");
                 CompraCP compraCP = new CompraCP (new SessionCPNHibernate ());
-                compraCP.AplicarDescuento (idCompra1, false, idUsuario, idArticulo1);
+                compraCP.AplicarDescuento (false, idUsuario, idArticulo1, (float)5.5);
                 Console.Write ("\n\nSe realiza una compra con descuento:" + "\n");
-                compraCP.AplicarDescuento (idCompra1, true, idUsuario, idArticulo1);
+                compraCP.AplicarDescuento (true, idUsuario, idArticulo1, (float)5.5);
 
                 /*PROTECTED REGION END*/
         }
