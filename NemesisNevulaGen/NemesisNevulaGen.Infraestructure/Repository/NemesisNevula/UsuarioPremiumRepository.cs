@@ -217,5 +217,61 @@ public void BorrarUsuarioPremium (int id
                 SessionClose ();
         }
 }
+
+//Sin e: DamePorOID
+//Con e: UsuarioPremiumEN
+public UsuarioPremiumEN DamePorOID (int id
+                                    )
+{
+        UsuarioPremiumEN usuarioPremiumEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                usuarioPremiumEN = (UsuarioPremiumEN)session.Get (typeof(UsuarioPremiumNH), id);
+                SessionCommit ();
+        }
+
+        catch (Exception) {
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return usuarioPremiumEN;
+}
+
+public System.Collections.Generic.IList<UsuarioPremiumEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<UsuarioPremiumEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(UsuarioPremiumNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<UsuarioPremiumEN>();
+                else
+                        result = session.CreateCriteria (typeof(UsuarioPremiumNH)).List<UsuarioPremiumEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioPremiumRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

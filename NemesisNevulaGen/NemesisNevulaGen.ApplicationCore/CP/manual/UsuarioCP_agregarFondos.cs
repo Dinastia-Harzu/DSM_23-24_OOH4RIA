@@ -23,15 +23,23 @@ public void AgregarFondos (int p_oid, int p_compra, float p_cantidad)
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_agregarFondos) ENABLED START*/
 
         UsuarioCEN usuarioCEN = null;
-
-
+        CompraCEN compraCEN = null;
 
         try
         {
                 CPSession.SessionInitializeTransaction ();
                 usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+                compraCEN = new CompraCEN (CPSession.UnitRepo.CompraRepository);
 
 
+                UsuarioEN usuario = usuarioCEN.DamePorOID (p_oid);
+                CompraEN compra = compraCEN.DamePorOID (p_compra);
+
+                usuario.Cartera += p_cantidad;
+                compra.PrecioTotal = p_cantidad;
+
+                Console.WriteLine ("\n\nSe ha añadido a la cartera " + compra.PrecioTotal + "€.");
+                Console.WriteLine ("\n\nAhora el usuario cuenta con " + usuario.Cartera + "€ en la cartera.");
 
                 CPSession.Commit ();
         }
@@ -44,7 +52,6 @@ public void AgregarFondos (int p_oid, int p_compra, float p_cantidad)
         {
                 CPSession.SessionClose ();
         }
-
 
         /*PROTECTED REGION END*/
 }

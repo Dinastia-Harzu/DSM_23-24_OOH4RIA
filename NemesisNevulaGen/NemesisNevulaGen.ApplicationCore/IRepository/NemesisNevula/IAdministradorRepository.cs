@@ -25,5 +25,12 @@ void ModificarAdmin (AdministradorEN administrador);
 
 void BorrarAdmin (int id
                   );
+
+
+AdministradorEN DamePorOID (int id
+                            );
+
+
+System.Collections.Generic.IList<AdministradorEN> DameTodos (int first, int size);
 }
 }

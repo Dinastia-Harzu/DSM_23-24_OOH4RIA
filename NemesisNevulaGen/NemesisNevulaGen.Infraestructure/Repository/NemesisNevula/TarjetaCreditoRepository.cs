@@ -220,5 +220,61 @@ public void BorrarTarjetaCredito (int id
                 SessionClose ();
         }
 }
+
+//Sin e: DamePorOID
+//Con e: TarjetaCreditoEN
+public TarjetaCreditoEN DamePorOID (int id
+                                    )
+{
+        TarjetaCreditoEN tarjetaCreditoEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                tarjetaCreditoEN = (TarjetaCreditoEN)session.Get (typeof(TarjetaCreditoNH), id);
+                SessionCommit ();
+        }
+
+        catch (Exception) {
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return tarjetaCreditoEN;
+}
+
+public System.Collections.Generic.IList<TarjetaCreditoEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<TarjetaCreditoEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(TarjetaCreditoNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<TarjetaCreditoEN>();
+                else
+                        result = session.CreateCriteria (typeof(TarjetaCreditoNH)).List<TarjetaCreditoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in TarjetaCreditoRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

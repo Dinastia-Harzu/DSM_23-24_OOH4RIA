@@ -84,5 +84,22 @@ public void BorrarUsuarioPremium (int id
 {
         _IUsuarioPremiumRepository.BorrarUsuarioPremium (id);
 }
+
+public UsuarioPremiumEN DamePorOID (int id
+                                    )
+{
+        UsuarioPremiumEN usuarioPremiumEN = null;
+
+        usuarioPremiumEN = _IUsuarioPremiumRepository.DamePorOID (id);
+        return usuarioPremiumEN;
+}
+
+public System.Collections.Generic.IList<UsuarioPremiumEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<UsuarioPremiumEN> list = null;
+
+        list = _IUsuarioPremiumRepository.DameTodos (first, size);
+        return list;
+}
 }
 }

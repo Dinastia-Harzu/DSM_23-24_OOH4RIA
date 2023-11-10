@@ -22,35 +22,40 @@ public void DevolverArticulo (int p_Usuario_OID, int p_compraUsuario_OIDs)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_devolverArticulo) ENABLED START*/
 
-        UsuarioCEN usuarioCEN = null;
+//         UsuarioCEN usuarioCEN = null;
+//         CompraCEN compraCEN = null;
+//         ArticuloCEN articuloCEN = null;
 
+//        try
+//         {
+//                 CPSession.SessionInitializeTransaction ();
 
+//                 usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+//                 CompraCEN compraCEN = new CompraCEN(CPSession.UnitRepo.CompraRepository);
+//                 ArticuloCEN articuloCEN = new ArticuloCEN(CPSession.UnitRepo.ArticuloRepository);
 
-        try
-        {
-                CPSession.SessionInitializeTransaction ();
-                usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+//                 UsuarioEN usuario = usuarioCEN.DamePorOID(p_Usuario_OID);
+//                 CompraEN compra = compraCEN.DamePorOID(p_compraUsuario_OIDs);
 
+//                 usuario.Cartera += compra.PrecioTotal;  // Devolemos el precio a la cartera del cliente
 
+//                 usuario.Articulo.Remove(compra.Articulo);  // Eliminamos el articulo del usuario
 
-                // Write here your custom transaction ...
+//                 compraCEN.get_ICompraRepository().BorrarCompra(p_compraUsuario_OIDs);   // Borramos la compra
 
-                throw new NotImplementedException ("Method DevolverArticulo() not yet implemented.");
+//                 usuarioCEN.get_IUsuarioRepository().ModificarUsuario(usuario);  // Modificamos el usuario con el dinero reembolsado y sin el articulo previamente comprado
 
-
-
-                CPSession.Commit ();
-        }
-        catch (Exception ex)
-        {
-                CPSession.RollBack ();
-                throw ex;
-        }
-        finally
-        {
-                CPSession.SessionClose ();
-        }
-
+//                 CPSession.Commit ();
+//         }
+//         catch (Exception ex)
+//         {
+//                 CPSession.RollBack ();
+//                 throw ex;
+//         }
+//         finally
+//         {
+//                 CPSession.SessionClose ();
+//         }
 
         /*PROTECTED REGION END*/
 }

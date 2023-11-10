@@ -202,5 +202,61 @@ public void BorrarPaypal (int id
                 SessionClose ();
         }
 }
+
+//Sin e: DamePorOID
+//Con e: PaypalEN
+public PaypalEN DamePorOID (int id
+                            )
+{
+        PaypalEN paypalEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                paypalEN = (PaypalEN)session.Get (typeof(PaypalNH), id);
+                SessionCommit ();
+        }
+
+        catch (Exception) {
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return paypalEN;
+}
+
+public System.Collections.Generic.IList<PaypalEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<PaypalEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(PaypalNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<PaypalEN>();
+                else
+                        result = session.CreateCriteria (typeof(PaypalNH)).List<PaypalEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in PaypalRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -25,5 +25,12 @@ void ModificarPaypal (PaypalEN paypal);
 
 void BorrarPaypal (int id
                    );
+
+
+PaypalEN DamePorOID (int id
+                     );
+
+
+System.Collections.Generic.IList<PaypalEN> DameTodos (int first, int size);
 }
 }

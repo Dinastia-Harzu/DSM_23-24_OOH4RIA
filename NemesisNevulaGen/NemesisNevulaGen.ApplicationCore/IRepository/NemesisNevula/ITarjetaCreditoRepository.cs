@@ -25,5 +25,12 @@ void ModificarTarjetaCredito (TarjetaCreditoEN tarjetaCredito);
 
 void BorrarTarjetaCredito (int id
                            );
+
+
+TarjetaCreditoEN DamePorOID (int id
+                             );
+
+
+System.Collections.Generic.IList<TarjetaCreditoEN> DameTodos (int first, int size);
 }
 }

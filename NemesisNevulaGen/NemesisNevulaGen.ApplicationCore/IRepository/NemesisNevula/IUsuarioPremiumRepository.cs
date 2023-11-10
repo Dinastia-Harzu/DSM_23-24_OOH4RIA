@@ -25,5 +25,12 @@ void ModificarUsuarioPremium (UsuarioPremiumEN usuarioPremium);
 
 void BorrarUsuarioPremium (int id
                            );
+
+
+UsuarioPremiumEN DamePorOID (int id
+                             );
+
+
+System.Collections.Generic.IList<UsuarioPremiumEN> DameTodos (int first, int size);
 }
 }

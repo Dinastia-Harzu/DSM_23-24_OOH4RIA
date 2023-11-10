@@ -75,5 +75,22 @@ public void BorrarTarjetaCredito (int id
 {
         _ITarjetaCreditoRepository.BorrarTarjetaCredito (id);
 }
+
+public TarjetaCreditoEN DamePorOID (int id
+                                    )
+{
+        TarjetaCreditoEN tarjetaCreditoEN = null;
+
+        tarjetaCreditoEN = _ITarjetaCreditoRepository.DamePorOID (id);
+        return tarjetaCreditoEN;
+}
+
+public System.Collections.Generic.IList<TarjetaCreditoEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<TarjetaCreditoEN> list = null;
+
+        list = _ITarjetaCreditoRepository.DameTodos (first, size);
+        return list;
+}
 }
 }

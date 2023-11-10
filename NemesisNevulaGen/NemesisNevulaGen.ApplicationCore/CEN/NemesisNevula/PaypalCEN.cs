@@ -66,5 +66,22 @@ public void BorrarPaypal (int id
 {
         _IPaypalRepository.BorrarPaypal (id);
 }
+
+public PaypalEN DamePorOID (int id
+                            )
+{
+        PaypalEN paypalEN = null;
+
+        paypalEN = _IPaypalRepository.DamePorOID (id);
+        return paypalEN;
+}
+
+public System.Collections.Generic.IList<PaypalEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<PaypalEN> list = null;
+
+        list = _IPaypalRepository.DameTodos (first, size);
+        return list;
+}
 }
 }

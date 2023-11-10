@@ -214,6 +214,25 @@ public static void InitializeData ()
                 Console.Write ("\n\nSe realiza una compra con descuento:" + "\n");
                 compraCP.AplicarDescuento (true, idUsuario, idArticulo1, (float)5.5);
 
+                // Custom transaction. Agregar fondos
+                float cantidad_af = 10.00f;
+                int usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "https://picsum.photos/200", 100, 25.00f, "password");
+                int compra_af = compracen.CrearCompra (
+                        DateTime.Now,
+                        NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum.paypal,
+                        usuario_af,
+                        -1,
+                        NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.martercard,
+                        cantidad_af,
+                        DateTime.Now,
+                        -1,
+                        false,
+                        usuario_af
+                        );
+                UsuarioCP usuarioCP = new(new SessionCPNHibernate ());
+                Console.WriteLine ("Agregando " + cantidad_af + "€ a la cuenta:");
+                usuarioCP.AgregarFondos (usuario_af, compra_af, cantidad_af);
+
                 /*PROTECTED REGION END*/
         }
         catch (Exception ex)

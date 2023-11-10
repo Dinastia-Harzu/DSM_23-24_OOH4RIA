@@ -21,7 +21,7 @@ public partial class CompraCP : GenericBasicCP
 public float AplicarDescuento (bool p_aplicado, int p_usuario, int p_articulo, float p_precioFinal)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Compra_aplicarDescuento) ENABLED START*/
-CPSession.SessionInitializeTransaction ();
+        CPSession.SessionInitializeTransaction ();
 
         UsuarioCEN usuarioCEN = null;
         CompraCEN compraCEN = null;
@@ -51,8 +51,6 @@ CPSession.SessionInitializeTransaction ();
                         Console.Write ("\n\nPrecio final de la compra:" + p_precioFinal + "\n");
 
                         return p_precioFinal;
-
-                       
                 }
                 else {
                         articuloCEN = new ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
@@ -62,8 +60,6 @@ CPSession.SessionInitializeTransaction ();
 
                         Console.Write ("\n\nNo hay ningún descuento, precio final de la compra:" + p_precioFinal + "\n");
                         return p_precioFinal;
-
-                        
                 }
 
                 CPSession.Commit ();

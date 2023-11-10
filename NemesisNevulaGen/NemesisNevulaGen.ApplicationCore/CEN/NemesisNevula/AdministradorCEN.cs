@@ -81,5 +81,22 @@ public void BorrarAdmin (int id
 {
         _IAdministradorRepository.BorrarAdmin (id);
 }
+
+public AdministradorEN DamePorOID (int id
+                                   )
+{
+        AdministradorEN administradorEN = null;
+
+        administradorEN = _IAdministradorRepository.DamePorOID (id);
+        return administradorEN;
+}
+
+public System.Collections.Generic.IList<AdministradorEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<AdministradorEN> list = null;
+
+        list = _IAdministradorRepository.DameTodos (first, size);
+        return list;
+}
 }
 }

@@ -213,5 +213,61 @@ public void BorrarAdmin (int id
                 SessionClose ();
         }
 }
+
+//Sin e: DamePorOID
+//Con e: AdministradorEN
+public AdministradorEN DamePorOID (int id
+                                   )
+{
+        AdministradorEN administradorEN = null;
+
+        try
+        {
+                SessionInitializeTransaction ();
+                administradorEN = (AdministradorEN)session.Get (typeof(AdministradorNH), id);
+                SessionCommit ();
+        }
+
+        catch (Exception) {
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return administradorEN;
+}
+
+public System.Collections.Generic.IList<AdministradorEN> DameTodos (int first, int size)
+{
+        System.Collections.Generic.IList<AdministradorEN> result = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                if (size > 0)
+                        result = session.CreateCriteria (typeof(AdministradorNH)).
+                                 SetFirstResult (first).SetMaxResults (size).List<AdministradorEN>();
+                else
+                        result = session.CreateCriteria (typeof(AdministradorNH)).List<AdministradorEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in AdministradorRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
