@@ -22,7 +22,7 @@ public void PublicarNoticia (int p_oid)
         NoticiaEN noticia = _INoticiaRepository.DamePorOID (p_oid);
 
         noticia.EsPublicada = true;
-        Console.WriteLine ("Noticia publicada: " + noticia.EsPublicada);
+        Console.WriteLine ("\n\nNoticia publicada: " + noticia.EsPublicada);
 
         /*PROTECTED REGION END*/
 }

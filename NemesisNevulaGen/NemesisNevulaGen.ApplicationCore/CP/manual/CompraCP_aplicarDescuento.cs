@@ -18,26 +18,53 @@ namespace NemesisNevulaGen.ApplicationCore.CP.NemesisNevula
 {
 public partial class CompraCP : GenericBasicCP
 {
-public void AplicarDescuento (int p_oid, bool p_aplicado, int p_usuario, int p_articulo)
+public void AplicarDescuento (bool p_aplicado, int p_usuario, int p_articulo, float p_precioFinal)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Compra_aplicarDescuento) ENABLED START*/
+        CPSession.SessionInitializeTransaction ();
 
+        UsuarioCEN usuarioCEN = null;
         CompraCEN compraCEN = null;
-
-
-
+        ArticuloCEN articuloCEN = null;
         try
         {
-                CPSession.SessionInitializeTransaction ();
-                compraCEN = new  CompraCEN (CPSession.UnitRepo.CompraRepository);
+                if (p_aplicado == true) {
+                        compraCEN = new  CompraCEN (CPSession.UnitRepo.CompraRepository);
+                        usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+                        articuloCEN = new  ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
 
+                        ArticuloEN articulo = articuloCEN.DamePorOID (p_articulo);
+                        UsuarioEN usuario = usuarioCEN.DamePorOID (p_usuario);
+                        CompraEN compra = compraCEN.DamePorOID (p_oid);
 
+                        int puntos = usuario.PuntosNevula;
 
-                // Write here your custom transaction ...
+                        Console.Write ("\n\nPuntos del usuario:" + puntos + "\n");
 
-                throw new NotImplementedException ("Method AplicarDescuento() not yet implemented.");
+                        float puntosTotal = (float)puntos / 100;
+                        float precio = articulo.Precio;
 
+                        Console.Write ("\n\nPrecio del artículo:" + precio + "\n");
 
+                        float precioFinal = precio - puntosTotal;
+
+                        usuario.PuntosNevula = 0;
+                        compra.PrecioTotal = precioFinal;
+
+                        Console.Write ("\n\nPuntos actualizados del usuario:" + usuario.PuntosNevula + "\n");
+                        Console.Write ("\n\nPrecio final de la compra:" + compra.PrecioTotal + "\n");
+                }
+                else {
+                        compraCEN = new  CompraCEN (CPSession.UnitRepo.CompraRepository);
+                        articuloCEN = new ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
+
+                        ArticuloEN articulo = articuloCEN.DamePorOID (p_articulo);
+                        CompraEN compra = compraCEN.DamePorOID (p_oid);
+
+                        compra.PrecioTotal = articulo.Precio;
+
+                        Console.Write ("\n\nNo hay ningún descuento, precio final de la compra:" + compra.PrecioTotal + "\n");
+                }
 
                 CPSession.Commit ();
         }

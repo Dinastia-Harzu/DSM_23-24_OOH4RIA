@@ -19,9 +19,17 @@ public void PublicarArticulo (int p_oid)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula_Articulo_publicarArticulo) ENABLED START*/
 
-        // Write here your custom code...
 
-        throw new NotImplementedException ("Method PublicarArticulo() not yet implemented.");
+        ArticuloEN articulo = _IArticuloRepository.ReadOIDDefault (p_oid);
+
+        try{
+                if (articulo.EsPublicado == false) articulo.EsPublicado = true;
+                Console.WriteLine ("\n" + "El articulo es publicado: " + articulo.EsPublicado + "\n");
+        }
+        catch (Exception ex) {
+                throw ex;
+        }
+
 
         /*PROTECTED REGION END*/
 }

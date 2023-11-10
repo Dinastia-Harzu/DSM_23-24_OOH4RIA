@@ -198,6 +198,21 @@ public static void InitializeData ()
                         Console.WriteLine (art.Nombre);
                 }
 
+                //Custom. Publicar Articulo
+                Console.Write ("\n\nPrueba a publicar artículo:" + "\n");
+                articulocen.PublicarArticulo (idArticulo1);
+                Console.Write ("\n\nSe previsualiza el artículo..." + "\n");
+                articulocen.Previsualizar (idArticulo1);
+
+                // Custom transaction. Aplicar Descuento
+                int tarjeta1 = tarjetacreditocen.CrearTarjetaCredito (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.visa, "Bonifacio Conejal", "ES1154516545", DateTime.Now, "dijsdi");
+                int idCompra1 = compracen.CrearCompra (DateTime.Now, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoPagoEnum.paypal, idUsuario, idArticulo1, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.visa, (float)0.0, DateTime.Now.AddDays (1), tarjeta1, false, idUsuario);
+                Console.Write (tarjeta1);
+                Console.Write ("\n\nSe realiza una compra sin descuento:" + "\n");
+                CompraCP compraCP = new CompraCP (new SessionCPNHibernate ());
+                compraCP.AplicarDescuento (idCompra1, false, idUsuario, idArticulo1);
+                Console.Write ("\n\nSe realiza una compra con descuento:" + "\n");
+                compraCP.AplicarDescuento (idCompra1, true, idUsuario, idArticulo1);
 
                 /*PROTECTED REGION END*/
         }

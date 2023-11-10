@@ -33,6 +33,7 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_DHPF4H9MEe6ED6hQlsEuUQ" name="p_precioTotal" type="Float"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Glv0IH9MEe6ED6hQlsEuUQ" name="p_fechaCaducidad" type="Date"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_LYM2gH9MEe6ED6hQlsEuUQ" name="p_regalado" type="Boolean"/>
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_QAS9MH-zEe6NGbYLiPokCA" name="p_metodoPago" type="Integer"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_U9abAHPMEe62YJcPtwIurA" name="devolverArticulo" operationType="CustomTransaction" type="Void" relatedRol="_TLYocHPnEe6db8oz03aeow">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_TKBUAH7_Ee6DI81hWEn1uA" name="p_Usuario_OID" type="OID" typeObject="_x7jPkHGuEe63Wvla8gH9Qg"/>
@@ -259,10 +260,10 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_ylta4X8rEe6_8LM4lNdwTQ" name="p_Compra_OID" type="OID" typeObject="_jjq68HPmEe6db8oz03aeow"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_F4incHPpEe6db8oz03aeow" name="aplicarDescuento" operationType="CustomTransaction" type="Void">
-        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_F4jOgHPpEe6db8oz03aeow" name="p_oid" type="OID" typeObject="_jjq68HPmEe6db8oz03aeow"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Tc6QkH2bEe6vvdGjdY0rGw" name="p_aplicado" type="Boolean"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Y1lCcH8cEe6_8LM4lNdwTQ" name="p_usuario" type="OID" typeObject="_x7jPkHGuEe63Wvla8gH9Qg"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_3YGpQH8fEe6_8LM4lNdwTQ" name="p_articulo" type="OID" typeObject="_QGl1YHGwEe63Wvla8gH9Qg"/>
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_r3FIwH-xEe6NGbYLiPokCA" name="p_precioFinal" type="Float" scope="Out"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_MPZ9MH79Ee6DI81hWEn1uA" name="regalar" operationType="CustomTransaction" type="Void">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_MPakQH79Ee6DI81hWEn1uA" name="p_oid" type="OID" typeObject="_jjq68HPmEe6db8oz03aeow"/>
@@ -290,6 +291,7 @@
       <enumerationLiterals xmi:type="es.ua.dlsi.ooh:EnumerationLiteral" xmi:id="_6hMmoHPmEe6db8oz03aeow" name="paypal" value="1"/>
       <enumerationLiterals xmi:type="es.ua.dlsi.ooh:EnumerationLiteral" xmi:id="_8m5u4HPmEe6db8oz03aeow" name="tarjeta" value="2"/>
       <enumerationLiterals xmi:type="es.ua.dlsi.ooh:EnumerationLiteral" xmi:id="_ETni8HPnEe6db8oz03aeow" name="cartera" value="3"/>
+      <enumerationLiterals xmi:type="es.ua.dlsi.ooh:EnumerationLiteral" xmi:id="_O9ZLMH-yEe6NGbYLiPokCA" name="ninguna" value="4"/>
     </elements>
     <elements xmi:type="es.ua.dlsi.ooh:Association" xmi:id="_TLYBYHPnEe6db8oz03aeow" name="compra_usuario" alias="compra_usuario" rolOrigin="_TLYocHPnEe6db8oz03aeow" rolTarget="_TLZ2kHPnEe6db8oz03aeow" classTarget="_jjq68HPmEe6db8oz03aeow" classOrigin="_x7jPkHGuEe63Wvla8gH9Qg" rolOriginName="compraUsuario" rolTargetName="usuarioComprador" rolOriginMultiplicity="0..*" rolTargetMultiplicity="1..1"/>
     <elements xmi:type="es.ua.dlsi.ooh:Association" xmi:id="_dTxNsHPnEe6db8oz03aeow" name="articulo_compra" alias="articulo_compra" rolOrigin="_dTxNsXPnEe6db8oz03aeow" rolTarget="_dTxNsnPnEe6db8oz03aeow" classTarget="_QGl1YHGwEe63Wvla8gH9Qg" classOrigin="_jjq68HPmEe6db8oz03aeow" rolOriginName="articulo" rolTargetName="compraArticulo" rolOriginMultiplicity="1..1" rolTargetMultiplicity="0..*"/>
@@ -991,6 +993,10 @@
         <children xmi:type="notation:Shape" xmi:id="_ETni8XPnEe6db8oz03aeow" type="3005" element="_ETni8HPnEe6db8oz03aeow" fontName="Segoe UI">
           <children xmi:type="notation:DecorationNode" xmi:id="_EToKAHPnEe6db8oz03aeow" type="5008"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ETni8nPnEe6db8oz03aeow"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_O9cOgH-yEe6NGbYLiPokCA" type="3005" element="_O9ZLMH-yEe6NGbYLiPokCA" fontName="Segoe UI">
+          <children xmi:type="notation:DecorationNode" xmi:id="_O9cOgn-yEe6NGbYLiPokCA" type="5008"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_O9cOgX-yEe6NGbYLiPokCA"/>
         </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_1t8TAnPmEe6db8oz03aeow"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_1t8TA3PmEe6db8oz03aeow"/>

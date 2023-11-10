@@ -445,9 +445,10 @@ public partial class ArticuloRepository : BasicRepository, IArticuloRepository
                 try
                 {
                         SessionInitializeTransaction ();
-                        //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art ORDER BY art.Precio DESC";
+                        //String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art ORDER BY art.Precio DESC
+                        ";
 	                                        //IQuery query = session.CreateQuery(sql);
-	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorPrecioDescHQL");
+	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorPrecioDescHQL                                             ");
 	
 	                                        result= query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
 							SessionCommit();
@@ -476,7 +477,7 @@ finally
 							SessionInitializeTransaction();		
 							//String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art ORDER BY art.FechaPublicacion DESC ";
 	                                        //IQuery query = session.CreateQuery(sql);
-	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorFechaDescHQL");
+	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorFechaDescHQL ");
 	
 	                                        result= query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
 							SessionCommit();
@@ -505,7 +506,7 @@ finally
 							SessionInitializeTransaction();		
 							//String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.EsPublicado = true ";
 	                                        //IQuery query = session.CreateQuery(sql);
-	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHmostrarArticulosPublicadosHQL");
+	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHmostrarArticulosPublicadosHQL ");
 	
 	                                        result= query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
 							SessionCommit();
@@ -534,7 +535,7 @@ finally
 							SessionInitializeTransaction();		
 							//String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Nombre LIKE '`%¿+ :p_nombre +`%¿' ";
 	                                        //IQuery query = session.CreateQuery(sql);
-	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHfiltrarPorNombreHQL");
+	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHfiltrarPorNombreHQL ");
 	                                                query.SetParameter("p_nombre ",p_nombre);
 	
 	                                        result= query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
@@ -564,7 +565,7 @@ finally
 							SessionInitializeTransaction();		
 							//String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art ORDER BY art.Precio ASC ";
 	                                        //IQuery query = session.CreateQuery(sql);
-	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorPrecioAscHQL");
+	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorPrecioAscHQL ");
 	
 	                                        result= query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
 							SessionCommit();
@@ -593,7 +594,7 @@ finally
 							SessionInitializeTransaction();		
 							//String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art ORDER BY art.FechaPublicacion ASC ";
 	                                        //IQuery query = session.CreateQuery(sql);
-	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorFechaAscHQL");
+	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHordenarPorFechaAscHQL ");
 	
 	                                        result= query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN>();
 							SessionCommit();

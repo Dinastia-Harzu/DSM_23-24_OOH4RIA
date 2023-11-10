@@ -18,10 +18,9 @@ public partial class ArticuloCEN
 public void Previsualizar (int p_oid)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula_Articulo_previsualizar) ENABLED START*/
+        ArticuloEN articulo = _IArticuloRepository.ReadOIDDefault (p_oid);
 
-        // Write here your custom code...
-
-        throw new NotImplementedException ("Method Previsualizar() not yet implemented.");
+        Console.WriteLine ("\n\n" + "Previsualización del artículo: " + articulo.Previsualizacion + "\n");
 
         /*PROTECTED REGION END*/
 }
