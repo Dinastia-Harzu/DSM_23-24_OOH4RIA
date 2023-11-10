@@ -22,22 +22,59 @@ public void ComprarArticulo (int p_Usuario_OID, int p_articulo, Nullable<DateTim
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_comprarArticulo) ENABLED START*/
 
-        UsuarioCEN usuarioCEN = null;
-
-
-
         try
         {
                 CPSession.SessionInitializeTransaction ();
+
                 usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
+                CompraCEN compraCEN = new CompraCEN (CPSession.UnitRepo.CompraRepository);
+                ArticuloCEN articuloCEN = new ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
+                PaypalCEN paypalCEN = new PaypalCEN (CPSession.UnitRepo.PaypalRepository);
+                TarjetaCreditoCEN tarjetaCreditoCEN = new TarjetaCreditoCEN (CPSession.UnitRepo.TarjetaCreditoRepository);
 
+                //COMENTAR
+                //bool aplicaDescuento = true;
+                //int idPagoUsuario = paypalCEN.CrearPaypal ("jrh15@alu.ua.es", "1234");
 
+                UsuarioEN usuario = usuarioCEN.DamePorOID (p_Usuario_OID);
+                ArticuloEN articulo = articuloCEN.DamePorOID (p_articulo);
 
-                // Write here your custom transaction ...
+                // Calculamos el precio final del articulo
+                float precioTotal = articulo.Precio;
+                if(aplicaDescuento == true)
+                        precioTotal = compraCEN.aplicarDescuento(p_Usuario_OID, p_articulo);
 
-                throw new NotImplementedException ("Method ComprarArticulo() not yet implemented.");
+                // Recogemos los datos del metodoPago
+                TipoPagoEnum tipoPagoEnum;
+                TipoTarjetaEnum tipoTarjetaEnum;
+                TarjetaCreditoEN tarjetaUsuario;
 
+                if (idPagoUsuario != -1) {
+                        if (paypalCEN.DamePorOID (idPagoUsuario) != null) {
+                                tipoPagoEnum = TipoPagoEnum.paypal;
+                                tipoTarjetaEnum = TipoTarjetaEnum.ninguna;
+                        }
+                        else if (tarjetaUsuario = tarjetaCreditoCEN.DamePorOID (idPagoUsuario) != null) {
+                                tipoPagoEnum = TipoPagoEnum.tarjeta;
+                                tipoTarjetaEnum = tarjetaUsuario.TipoTarjeta;
+                        }
+                }
+                else{
+                        tipoPagoEnum = TipoPagoEnum.cartera;
+                        tipoTarjetaEnum = TipoTarjetaEnum.ninguna;
 
+                        if(usuario.Cartera < precioTotal)
+                                Console.WriteLine("Error: No tiene saldo suficiente en la cartera");
+                        else{
+                                usuario.Cartera -= precioTotal;
+                        }
+                }
+
+                int idNuevaCompra = compraCEN.CrearCompra (DateTime.Now, tipoPagoEnum, p_Usuario_OID, p_articulo, tipoTarjetaEnum, precioTotal, DateTime.Now.AddHours (2), 1, false);
+
+                // Actualizamos la lista de articulos del usuario
+                usuario.Articulo.Add(articulo);
+                usuarioCEN.get_IUsuarioRepository().ModificarUsuario(usuario);
 
                 CPSession.Commit ();
         }
@@ -50,7 +87,6 @@ public void ComprarArticulo (int p_Usuario_OID, int p_articulo, Nullable<DateTim
         {
                 CPSession.SessionClose ();
         }
-
 
         /*PROTECTED REGION END*/
 }
