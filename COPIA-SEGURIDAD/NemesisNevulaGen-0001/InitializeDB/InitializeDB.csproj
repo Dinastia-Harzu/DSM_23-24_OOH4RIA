@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NHibernate" Version="5.4.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
+  </ItemGroup>
+  <ItemGroup>
+  
+    <ProjectReference Include="..\NemesisNevulaGen.ApplicationCore\NemesisNevulaGen.ApplicationCore.csproj"/>
+    <ProjectReference Include="..\NemesisNevulaGen.Infraestructure\NemesisNevulaGen.Infraestructure.csproj"/>
+  </ItemGroup>
+</Project>

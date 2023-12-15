@@ -1,0 +1,57 @@
+﻿@model NemesisNevulaWeb.Models.CompraVM
+
+@{
+    ViewData["Title"] = "Create";
+    IEnumerable <SelectListItem> usuariosItems = (IEnumerable<SelectListItem>)ViewData["usuariosItems"];
+    IEnumerable <SelectListItem> articulosItems = (IEnumerable<SelectListItem>)ViewData["articulosItems"];
+
+}
+
+<h1>Crear</h1>
+
+<h4>CompraVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecioTotal" class="control-label"></label>
+                <input asp-for="PrecioTotal" class="form-control" />
+                <span asp-validation-for="PrecioTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaCaducidad" class="control-label"></label>
+                <input asp-for="FechaCaducidad" class="form-control" />
+                <span asp-validation-for="FechaCaducidad" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="IdComprador" class="control-label"></label>
+                <select class="form-select" asp-for="IdComprador" asp-items="usuariosItems"></select>
+                <span asp-validation-for="IdComprador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdArticulo" class="control-label"></label>
+                <select class="form-select" asp-for="IdArticulo" asp-items="articulosItems"></select>
+                <span asp-validation-for="IdArticulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Vuelve a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

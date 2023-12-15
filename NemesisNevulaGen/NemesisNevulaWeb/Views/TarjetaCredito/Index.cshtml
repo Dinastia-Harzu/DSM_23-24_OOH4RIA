@@ -1,0 +1,70 @@
+﻿@model IEnumerable<NemesisNevulaWeb.Models.TarjetaCreditoVM>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Inicio</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Crear Nuevo</a>
+</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreEnTarjeta)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Numero)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CodigoSeguridad)
+                        </th>
+                        <th class="d-none d-md-table-cell">
+                            @Html.DisplayNameFor(model => model.FechaExpedicion)
+                        </th>
+                        <th class="d-none d-md-table-cell">
+                            @Html.DisplayNameFor(model => model.TipoTarjeta)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NombreEnTarjeta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Numero)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CodigoSeguridad)
+                            </td>
+                            <td class="d-none d-md-table-cell">
+                                @Html.DisplayFor(modelItem => item.FechaExpedicion)
+                            </td>
+                            <td class="d-none d-md-table-cell">
+                                @Html.DisplayFor(modelItem => item.TipoTarjeta)
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info" href="@Url.Action("Edit", new { id = item.Id })">Editar</a>
+                                    <a class="btn btn-secondary" href="@Url.Action("Details", new { id = item.Id })">Detalles</a>
+                                    <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.Id })">Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

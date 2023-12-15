@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="NemesisNevulaGen.Infraestructure"
+		                   namespace="NemesisNevulaGen.Infraestructure.EN.NemesisNevula">
+		    
+		    
+			
+				<class name="CompraNH" table="Compra"> 
+				  	
+						<id name="Id" column="idCompra" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Fecha" type="timestamp"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+					<property name="PrecioTotal" type="float"> 
+						<column name="precioTotal"  not-null="true"/>
+					</property>
+					<property name="FechaCaducidad" type="date"> 
+						<column name="fechaCaducidad"  not-null="true"/>
+					</property>
+					<property name="Regalado" type="boolean"> 
+						<column name="regalado"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+		  			
+						<many-to-one name="UsuarioComprador" class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" >	
+								<column name="FK_idUsuario_idUsuario"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="Articulo" class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.ArticuloNH" >	
+								<column name="FK_idArticulo_idArticulo"/> 
+						</many-to-one>
+											 					
+			
+			
+			
+			
+		  			
+						<many-to-one name="UsuarioRegalado" class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" >	
+								<column name="FK_idUsuario_idUsuario2"/> 
+						</many-to-one>
+											 					
+			
+		  			
+						<many-to-one name="UsuarioReponedor" class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" >	
+								<column name="FK_idUsuario_idUsuario3"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="CompraNHReadAllHQL">from CompraNH</query>
+		</hibernate-mapping>
+	

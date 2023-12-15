@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="NemesisNevulaGen.Infraestructure"
+		                   namespace="NemesisNevulaGen.Infraestructure.EN.NemesisNevula">
+		    
+		    
+			
+				<class name="ArticuloNH" table="Articulo"> 
+				  	
+						<id name="Id" column="idArticulo" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion"  not-null="true"/>
+					</property>
+					<property name="Precio" type="float"> 
+						<column name="precio"  not-null="true"/>
+					</property>
+					<property name="Fotografia" type="string"> 
+						<column name="fotografia"  not-null="true"/>
+					</property>
+					<property name="Rareza" > 
+						<column name="rareza"  not-null="true"/>
+					</property>
+					<property name="Tipo" > 
+						<column name="tipo"  not-null="true"/>
+					</property>
+					<property name="Valoracion" type="integer"> 
+						<column name="valoracion"  not-null="true"/>
+					</property>
+					<property name="EsPublicado" type="boolean"> 
+						<column name="esPublicado"  not-null="true"/>
+					</property>
+					<property name="FechaPublicacion" type="date"> 
+						<column name="fechaPublicacion"  not-null="true"/>
+					</property>
+					<property name="Temporada" type="string"> 
+						<column name="temporada"  not-null="true"/>
+					</property>
+					<property name="Previsualizacion" type="string"> 
+						<column name="previsualizacion"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="UsuarioFavs" table="[articulo_usuario]"  >
+							<key>
+								
+									<column name="FK_idArticulo_idArticulo"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH">
+									<column name="FK_idUsuario_idUsuario"/> 
+      						</many-to-many>
+    					</bag>
+			
+			
+		  			
+						<bag name="CompraArticulo" >
+							<key>
+							
+								
+								<column name="FK_idArticulo_idArticulo"/>
+					      	</key>
+							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.CompraNH"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="UsuarioPropietario" table="[articulo_usuario_2]"  >
+							<key>
+								
+									<column name="FK_idArticulo_idArticulo"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH">
+									<column name="FK_idUsuario_idUsuario"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Administrador" table="[articulo_0_administrador]"  >
+							<key>
+								
+									<column name="FK_idArticulo_idArticulo_0"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.AdministradorNH">
+									<column name="FK_idUsuario_idAdministrador"/> 
+      						</many-to-many>
+    					</bag>
+			
+			
+		  			
+						<bag name="ValoracionArticulo" >
+							<key>
+							
+								
+								<column name="FK_idArticulo_idArticulo"/>
+					      	</key>
+							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.ValoracionArticuloNH"/>
+					    </bag>
+					
+			
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="ArticuloNHReadAllHQL">from ArticuloNH</query>
+		  <query name="ArticuloNHfiltrarPorRarezaHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Rareza=:p_rango AND art.EsPublicado=true]]></query>
+		  <query name="ArticuloNHfiltrarPorFechaHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.FechaPublicacion >= :p_fecha_ini AND art.FechaPublicacion <= :p_fecha_fin AND art.EsPublicado=true]]></query>
+		  <query name="ArticuloNHfiltrarPorTemporadaHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Temporada LIKE :p_temp AND art.EsPublicado=true]]></query>
+		  <query name="ArticuloNHfiltrarPorTipoHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Tipo = :p_tipo]]></query>
+		  <query name="ArticuloNHordenarPorPrecioDescHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.Precio DESC
+]]></query>
+		  <query name="ArticuloNHordenarPorFechaDescHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.FechaPublicacion DESC]]></query>
+		  <query name="ArticuloNHmostrarArticulosPublicadosHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.EsPublicado = true]]></query>
+		  <query name="ArticuloNHfiltrarPorNombreHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.Nombre  LIKE '%'+ :p_nombre +'%' AND art.EsPublicado=true]]></query>
+		  <query name="ArticuloNHordenarPorPrecioAscHQL"><![CDATA[FROM ArticuloNH AS art ORDER BY art.Precio ASC]]></query>
+		  <query name="ArticuloNHordenarPorFechaAscHQL"><![CDATA[FROM ArticuloNH AS art WHERE art.EsPublicado=true ORDER BY art.FechaPublicacion ASC]]></query>
+		</hibernate-mapping>
+	

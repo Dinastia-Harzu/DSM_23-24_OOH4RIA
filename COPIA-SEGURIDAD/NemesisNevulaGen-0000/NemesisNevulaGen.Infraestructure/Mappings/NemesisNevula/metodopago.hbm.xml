@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="NemesisNevulaGen.Infraestructure"
+		                   namespace="NemesisNevulaGen.Infraestructure.EN.NemesisNevula">
+		    
+		    
+			
+				<class name="MetodoPagoNH" table="MetodoPago"> 
+				  	
+						<id name="Id" column="idMetodoPago" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+			
+			
+			
+		  			
+						<bag name="UsuarioPoseedor" table="[usuario_metodoPago]" inverse="true" >
+							<key>
+								
+									<column name="FK_idMetodoPago_idMetodoPago"/> 
+							</key>
+      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH">
+									<column name="FK_idUsuario_idUsuario"/> 
+      						</many-to-many>
+    					</bag>
+					
+					
+		
+		 </class>	
+		  
+		  <query name="MetodoPagoNHReadAllHQL">from MetodoPagoNH</query>
+		</hibernate-mapping>
+	
