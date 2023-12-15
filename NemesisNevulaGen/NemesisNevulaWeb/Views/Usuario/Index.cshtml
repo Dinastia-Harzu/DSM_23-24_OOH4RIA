@@ -1,0 +1,134 @@
+﻿@model IEnumerable<NemesisNevulaWeb.Models.UsuarioVM>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .column {
+        flex: 0 1 300px;
+        padding: 20px;
+        background-color: #fff;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .column:hover {
+            transform: translateY(-5px);
+        }
+
+    h3 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn {
+        margin: 0 5px;
+        padding: 8px 12px;
+        text-decoration: none;
+        font-size: 14px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-info {
+        background-color: #3498db;
+    }
+
+    .btn-secondary {
+        background-color: #95a5a6;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+    }
+</style>
+
+<h1>Inicio</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Crear Nuevo</a>
+</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Correo)
+                        </th>
+                        <th class="d-none d-md-table-cell">
+                            @Html.DisplayNameFor(model => model.Foto_perfil)
+                        </th>
+                        <th class="d-none d-md-table-cell">
+                            @Html.DisplayNameFor(model => model.Pass)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-wrap">
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td class="text-wrap">
+                                @Html.DisplayFor(modelItem => item.Correo)
+                            </td>
+                            <td class="d-none d-md-table-cell text-wrap">
+                                @Html.DisplayFor(modelItem => item.Foto_perfil)
+                            </td>
+                            <td class="d-none d-md-table-cell text-wrap">
+                                @Html.DisplayFor(modelItem => item.Pass)
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info" href="@Url.Action("Edit", new { id = item.Id })">Editar</a>
+                                    <a class="btn btn-secondary" href="@Url.Action("Details", new { id = item.Id })">Detalles</a>
+                                    <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.Id })">Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

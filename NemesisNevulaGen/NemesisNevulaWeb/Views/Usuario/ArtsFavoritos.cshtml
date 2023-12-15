@@ -1,0 +1,140 @@
+﻿@model IEnumerable<NemesisNevulaWeb.Models.ArticuloVM>
+
+@{
+    ViewData["Title"] = "ArtsFavoritos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    IEnumerable<SelectListItem> artRarezas = (IEnumerable<SelectListItem>)ViewData["artRarezas"];
+    IEnumerable<SelectListItem> artTipos = (IEnumerable<SelectListItem>)ViewData["artTipos"];
+}
+
+<h1>Artículos Favoritos</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ArtsFavoritos">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="filtroBusqueda" class="control-label"></label>
+                <input type="text" id="filtroBusqueda" name="filtroBusqueda" placeholder="Buscar" />
+            </div>
+            <div class="form-group">
+                <label for="ordenarPor" class="control-label">Orden</label>
+                <select class="form-select" id="ordenarPor" name="ordenarPor">
+                    <option value="Fecha<">Nuevo - Viejo</option>
+                    <option value="Fecha>">Viejo - Nuevo</option>
+                    <option value="Precio<">Barato - Caro</option>
+                    <option value="Precio>">Caro - Barato</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="filtroRareza" class="control-label">Rareza</label>
+                <select class="form-select" id="filtroRareza" name="filtroRareza" asp-items="artRarezas">
+                    <option value="0">Todos</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="filtroTipo" class="control-label">Tipo de artículo</label>
+                <select class="form-select" id="filtroTipo" name="filtroTipo" asp-items="artTipos">
+                    <option value="0">Todos</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="filtroFechaIni" class="control-label">Fecha Inicio</label>
+                <input type="date" id="filtroFechaIni" name="filtroFechaIni" />
+            </div>
+            <div class="form-group">
+                <label for="filtroFechaFin" class="control-label">Fecha Fin</label>
+                <input type="date" id="filtroFechaFin" name="filtroFechaFin" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rareza)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fotografia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valoracion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EsPublicado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPublicacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Temporada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Previsualizacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rareza)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fotografia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valoracion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsPublicado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPublicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Temporada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Previsualizacion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

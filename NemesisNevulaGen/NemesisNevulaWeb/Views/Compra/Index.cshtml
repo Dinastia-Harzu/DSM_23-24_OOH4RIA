@@ -1,0 +1,139 @@
+﻿@model IEnumerable<NemesisNevulaWeb.Models.CompraVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .column {
+        flex: 0 1 300px;
+        padding: 20px;
+        background-color: #fff;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .column:hover {
+            transform: translateY(-5px);
+        }
+
+    h3 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn {
+        margin: 0 5px;
+        padding: 8px 12px;
+        text-decoration: none;
+        font-size: 14px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-info {
+        background-color: #3498db;
+    }
+
+    .btn-secondary {
+        background-color: #95a5a6;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+    }
+</style>
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Crear Nuevo</a>
+</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdArticulo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdComprador)
+                        </th>
+                        <th class="d-none d-md-table-cell">
+                            @Html.DisplayNameFor(model => model.Fecha)
+                        </th>
+                        <th class="d-none d-md-table-cell">
+                            @Html.DisplayNameFor(model => model.PrecioTotal)
+                        </th>
+                        <th class="d-none d-md-table-cell">
+                            @Html.DisplayNameFor(model => model.FechaCaducidad)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-wrap">
+                                @Html.DisplayFor(modelItem => item.IdArticulo)
+                            </td>
+                            <td class="text-wrap">
+                                @Html.DisplayFor(modelItem => item.IdComprador)
+                            </td>
+                            <td class="d-none d-md-table-cell text-wrap">
+                                @Html.DisplayFor(modelItem => item.Fecha)
+                            </td>
+                            <td class="d-none d-md-table-cell text-wrap">
+                                @Html.DisplayFor(modelItem => item.PrecioTotal)
+                            </td>
+                            <td class="d-none d-md-table-cell text-wrap">
+                                @Html.DisplayFor(modelItem => item.FechaCaducidad)
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-info" href="@Url.Action("Edit", new { id = item.Id })">Editar</a>
+                                    <a class="btn btn-secondary" href="@Url.Action("Details", new { id = item.Id })">Detalles</a>
+                                    <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.Id })">Eliminar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

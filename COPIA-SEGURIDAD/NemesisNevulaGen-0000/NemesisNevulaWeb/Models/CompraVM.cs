@@ -1,0 +1,32 @@
+﻿using NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace NemesisNevulaWeb.Models
+{
+	public class CompraVM
+	{
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
+
+        [Display(Prompt = "Escribe la fecha de la compra", Description = "Fecha de compra", Name = "fecha")]
+        [DataType(DataType.Date, ErrorMessage = "Indica la fecha de la compra")]
+        public DateTime Fecha { get; set; }
+
+        [Display(Prompt = "Escribe el precio total de la compra", Description = "Precio total de compra", Name = "precioTotal")]
+        [Required(ErrorMessage = "Debe indicar el precio total de la compra")]
+        [Range(minimum: 0, maximum: 100, ErrorMessage = "El precio debe ser mayor que 0 y menor que 100")]
+        public float PrecioTotal { get; set; }
+
+        [Display(Prompt = "Escribe la fecha de caducidad de la compra", Description = "Fecha de caducidad decompra", Name = "fechaCaducidad")]
+        [DataType(DataType.Date, ErrorMessage = "Indica la fecha de caducidad de la compra")]
+        public DateTime FechaCaducidad { get; set; }
+
+        public CompraVM()
+		{
+
+		}
+	}
+}

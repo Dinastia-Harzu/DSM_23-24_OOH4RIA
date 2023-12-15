@@ -1,0 +1,28 @@
+﻿body {
+    color: white;
+    background-color: black;
+}
+
+a {
+    text-decoration: none;
+    color: yellow;
+}
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.navbar {
+    color: white;
+    background-color: black;
+}
+
+.logotipo {
+    width:200px;
+    height:58px;
+}
+
+.nav-item .nav-link:hover {
+    color: yellow;
+    border-bottom: 1px solid yellow;
+}

@@ -1,0 +1,84 @@
+﻿@model NemesisNevulaWeb.Models.ArticuloVM
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>ArticuloVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label"></label>
+                <input asp-for="Tipo" class="form-control" />
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rareza" class="control-label"></label>
+                <input asp-for="Rareza" class="form-control" />
+                <span asp-validation-for="Rareza" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotografia" class="control-label"></label>
+                <input asp-for="Fotografia" class="form-control" />
+                <span asp-validation-for="Fotografia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valoracion" class="control-label"></label>
+                <input asp-for="Valoracion" class="form-control" />
+                <span asp-validation-for="Valoracion" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EsPublicado" /> @Html.DisplayNameFor(model => model.EsPublicado)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPublicacion" class="control-label"></label>
+                <input asp-for="FechaPublicacion" class="form-control" />
+                <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Temporada" class="control-label"></label>
+                <input asp-for="Temporada" class="form-control" />
+                <span asp-validation-for="Temporada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Previsualizacion" class="control-label"></label>
+                <input asp-for="Previsualizacion" class="form-control" />
+                <span asp-validation-for="Previsualizacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
