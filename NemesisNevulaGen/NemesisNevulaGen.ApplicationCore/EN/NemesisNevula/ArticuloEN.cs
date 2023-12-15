@@ -121,7 +121,13 @@ private string temporada;
  *	Atributo previsualizacion
  */
 private string previsualizacion;
-        public virtual int Id {
+
+
+
+
+
+
+public virtual int Id {
         get { return id; } set { id = value;  }
 }
 

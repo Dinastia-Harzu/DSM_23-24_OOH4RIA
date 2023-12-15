@@ -12,12 +12,20 @@
 						</id>
 			
 					
+					<property name="Titulo" type="string"> 
+						<column name="titulo"  not-null="true"/>
+					</property>
+					<property name="Foto" type="string"> 
+						<column name="foto"  not-null="true"/>
+					</property>
 					<property name="Descripcion" type="string"> 
 						<column name="descripcion"  not-null="true"/>
 					</property>
 					<property name="EsPublicada" type="boolean"> 
 						<column name="esPublicada"  not-null="true"/>
 					</property>
+			
+			
 			
 			
 			
@@ -33,6 +41,8 @@
 									<column name="FK_idUsuario_idAdministrador"/> 
       						</many-to-many>
     					</bag>
+					
+					
 					
 					
 					

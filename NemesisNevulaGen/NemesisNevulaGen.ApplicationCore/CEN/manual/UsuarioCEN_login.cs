@@ -13,11 +13,7 @@ using NemesisNevulaGen.ApplicationCore.IRepository.NemesisNevula;
 
 namespace NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula
 {
-    public partial class UsuarioCEN
-    {
-        public object Login(string nombre, string pass)
-        {
-            throw new NotImplementedException();
-        }
-    }
+public partial class UsuarioCEN
+{
+}
 }

@@ -97,6 +97,12 @@ public void ModifyDefault (NoticiaEN noticia)
                 SessionInitializeTransaction ();
                 NoticiaNH noticiaNH = (NoticiaNH)session.Load (typeof(NoticiaNH), noticia.Id);
 
+                noticiaNH.Titulo = noticia.Titulo;
+
+
+                noticiaNH.Foto = noticia.Foto;
+
+
                 noticiaNH.Descripcion = noticia.Descripcion;
 
 
@@ -161,6 +167,12 @@ public void ModificarNoticia (NoticiaEN noticia)
 
 
                 noticiaNH.EsPublicada = noticia.EsPublicada;
+
+
+                noticiaNH.Titulo = noticia.Titulo;
+
+
+                noticiaNH.Foto = noticia.Foto;
 
                 session.Update (noticiaNH);
                 SessionCommit ();

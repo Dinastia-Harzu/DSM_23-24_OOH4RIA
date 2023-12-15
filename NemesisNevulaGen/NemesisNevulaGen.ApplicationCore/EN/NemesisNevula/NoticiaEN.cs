@@ -13,6 +13,20 @@ private int id;
 
 
 /**
+ *	Atributo titulo
+ */
+private string titulo;
+
+
+
+/**
+ *	Atributo foto
+ */
+private string foto;
+
+
+
+/**
  *	Atributo descripcion
  */
 private string descripcion;
@@ -38,6 +52,18 @@ private System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Nem
 
 public virtual int Id {
         get { return id; } set { id = value;  }
+}
+
+
+
+public virtual string Titulo {
+        get { return titulo; } set { titulo = value;  }
+}
+
+
+
+public virtual string Foto {
+        get { return foto; } set { foto = value;  }
 }
 
 
@@ -69,23 +95,27 @@ public NoticiaEN()
 
 
 
-public NoticiaEN(int id, string descripcion, bool esPublicada, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administradorGestiona
+public NoticiaEN(int id, string titulo, string foto, string descripcion, bool esPublicada, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administradorGestiona
                  )
 {
-        this.init (Id, descripcion, esPublicada, administradorGestiona);
+        this.init (Id, titulo, foto, descripcion, esPublicada, administradorGestiona);
 }
 
 
 public NoticiaEN(NoticiaEN noticia)
 {
-        this.init (noticia.Id, noticia.Descripcion, noticia.EsPublicada, noticia.AdministradorGestiona);
+        this.init (noticia.Id, noticia.Titulo, noticia.Foto, noticia.Descripcion, noticia.EsPublicada, noticia.AdministradorGestiona);
 }
 
 private void init (int id
-                   , string descripcion, bool esPublicada, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administradorGestiona)
+                   , string titulo, string foto, string descripcion, bool esPublicada, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.AdministradorEN> administradorGestiona)
 {
         this.Id = id;
 
+
+        this.Titulo = titulo;
+
+        this.Foto = foto;
 
         this.Descripcion = descripcion;
 

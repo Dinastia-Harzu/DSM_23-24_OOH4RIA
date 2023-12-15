@@ -30,7 +30,7 @@ public INoticiaRepository get_INoticiaRepository ()
         return this._INoticiaRepository;
 }
 
-public int CrearNoticia (string p_descripcion, bool p_esPublicada)
+public int CrearNoticia (string p_descripcion, bool p_esPublicada, string p_titulo, string p_foto)
 {
         NoticiaEN noticiaEN = null;
         int oid;
@@ -41,13 +41,17 @@ public int CrearNoticia (string p_descripcion, bool p_esPublicada)
 
         noticiaEN.EsPublicada = p_esPublicada;
 
+        noticiaEN.Titulo = p_titulo;
+
+        noticiaEN.Foto = p_foto;
+
 
 
         oid = _INoticiaRepository.CrearNoticia (noticiaEN);
         return oid;
 }
 
-public void ModificarNoticia (int p_Noticia_OID, string p_descripcion, bool p_esPublicada)
+public void ModificarNoticia (int p_Noticia_OID, string p_descripcion, bool p_esPublicada, string p_titulo, string p_foto)
 {
         NoticiaEN noticiaEN = null;
 
@@ -56,6 +60,8 @@ public void ModificarNoticia (int p_Noticia_OID, string p_descripcion, bool p_es
         noticiaEN.Id = p_Noticia_OID;
         noticiaEN.Descripcion = p_descripcion;
         noticiaEN.EsPublicada = p_esPublicada;
+        noticiaEN.Titulo = p_titulo;
+        noticiaEN.Foto = p_foto;
         //Call to NoticiaRepository
 
         _INoticiaRepository.ModificarNoticia (noticiaEN);
