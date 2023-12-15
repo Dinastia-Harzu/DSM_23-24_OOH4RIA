@@ -9,7 +9,9 @@ namespace NemesisNevulaWeb.Assemblers
         {
             Id = en.Id,
             Descripcion = en.Descripcion,
-            EsPublicada = en.EsPublicada
+            EsPublicada = en.EsPublicada,
+            Titulo = en.Titulo,
+            Foto = en.Foto
         };
 
         public IList<NoticiaVM> ListEN2VM(IList<NoticiaEN> ens)

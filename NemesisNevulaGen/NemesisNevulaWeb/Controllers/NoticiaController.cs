@@ -65,7 +65,9 @@ namespace NemesisNevulaWeb.Controllers
             {
                 new NoticiaCEN(new NoticiaRepository()).CrearNoticia(
                     noticia.Descripcion,
-                    noticia.EsPublicada
+                    noticia.EsPublicada,
+                    noticia.Titulo,
+                    noticia.Foto
                 );
                 return RedirectToAction(nameof(Index));
             }
@@ -97,7 +99,9 @@ namespace NemesisNevulaWeb.Controllers
                 new NoticiaCEN(new NoticiaRepository()).ModificarNoticia(
                     id,
                     noticia.Descripcion,
-                    noticia.EsPublicada
+                    noticia.EsPublicada,
+                    noticia.Titulo,
+                    noticia.Foto
                 );
                 return RedirectToAction(nameof(Index));
             }
