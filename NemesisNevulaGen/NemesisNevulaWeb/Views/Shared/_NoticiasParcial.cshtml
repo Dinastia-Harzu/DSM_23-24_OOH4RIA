@@ -1,5 +1,13 @@
 ﻿@model IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>
    
+@{
+    string alcortardescripcion(string desc)
+    {
+        if (desc.Length > 100) return desc.Substring(0,100) + "...";
+        return desc;
+    }
+
+}
 
 <div class="container">
     <div class="row">
@@ -13,7 +21,7 @@
                     }
                     <div class="card-body  bg-dark">
                         <h5 class="card-title">@item.Titulo</h5>
-                        <p class="card-text">@Html.Raw(item.Descripcion.Substring(0, Math.Min(item.Descripcion.Length, 100)))...</p>
+                        <p class="card-text">@alcortardescripcion(@item.Descripcion)</p>
                         <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-primary">Detalles</a>
                     </div>
                 </div>
@@ -21,3 +29,4 @@
         }
     </div>
 </div>
+
