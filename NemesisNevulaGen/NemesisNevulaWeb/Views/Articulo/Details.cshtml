@@ -1,5 +1,4 @@
-﻿@model NemesisNevulaWeb.Models.ArticuloVM
-
+﻿@model Tuple<NemesisNevulaWeb.Models.ArticuloVM, IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>>
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,75 +10,76 @@
     <h4>ArticuloVM</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Nombre)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Nombre)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Precio)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Precio)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Precio)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tipo)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Tipo)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tipo)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Tipo)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Rareza)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Rareza)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Rareza)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Rareza)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fotografia)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Fotografia)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fotografia)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Fotografia)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Descripcion)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Descripcion)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Valoracion)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Valoracion)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Valoracion)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Valoracion)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EsPublicado)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.EsPublicado)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EsPublicado)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.EsPublicado)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaPublicacion)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.FechaPublicacion)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaPublicacion)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.FechaPublicacion)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Temporada)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Temporada)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Temporada)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Temporada)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Previsualizacion)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item1.Previsualizacion)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Previsualizacion)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item1.Previsualizacion)
         </dd>
     </dl>
 </div>
+@await Html.PartialAsync("_NoticiasParcial", (IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>)Model.Item2);
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Item1.Id }) |
     <a asp-action="Index">Back to List</a>
 </div>
