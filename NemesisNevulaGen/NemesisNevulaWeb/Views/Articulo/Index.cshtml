@@ -79,7 +79,7 @@
                     </div>
                     <div class="card-footer">
                         <p class="card-text valoracion-@Html.DisplayFor(modelItem => item.Valoracion)"></p>
-                        <div class="btn-group" role="group" hidden>
+                        <div class="btn-group" role="group" >
                             @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
                             @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
                             @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
