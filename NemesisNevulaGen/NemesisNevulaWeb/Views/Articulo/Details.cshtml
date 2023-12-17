@@ -8,13 +8,24 @@
 
 <div>
     <hr />
+    <div class="col-md-3">
+        <div class="card bg-black text-white justify-content-between">
+            <div class="card-body">
+                <img class="card-img" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
+                <div class="card-footer text-center">
+                    <p class="card-text valoracion-@Html.DisplayFor(model => model.Item1.Valoracion)"></p>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <p class="card-text fw-bold tiny-etiqueta fs-4" style="background-color: yellow; color:black;">@Html.DisplayFor(model => model.Item1.Precio)</p>
+                    <p class="card-text fw-bold">@Html.DisplayFor(model => model.Item1.Tipo)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Item1.Nombre)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Item1.Nombre)
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Item1.Precio)
         </dt>
