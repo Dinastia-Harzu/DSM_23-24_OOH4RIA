@@ -53,3 +53,10 @@ a:hover {
 .nav-activo {
     color:yellow !important;
 }
+
+.tiny-etiqueta {
+    border-radius: 5px;
+    color: white;
+    height: fit-content;
+    padding: .2em;
+}
