@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InitializeDB", "InitializeD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NemesisNevulaGen.Infraestructure", "NemesisNevulaGen.Infraestructure\NemesisNevulaGen.Infraestructure.csproj", "{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NemesisNevulaGen.ApplicationCore", "NemesisNevulaGen.ApplicationCore\NemesisNevulaGen.ApplicationCore.csproj", "{94BA40C2-039E-44C9-A3A1-A249F99D3633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NemesisNevulaGen.ApplicationCore", "NemesisNevulaGen.ApplicationCore\NemesisNevulaGen.ApplicationCore.csproj", "{5D737BDE-8ED1-48AB-9FDE-D1A5AE9ACBDA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NemesisNevulaWeb", "NemesisNevulaWeb\NemesisNevulaWeb.csproj", "{923C02AA-163E-44D3-BD37-5B6C722E19A6}"
 EndProject
@@ -24,10 +24,10 @@ Global
 		{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94BA40C2-039E-44C9-A3A1-A249F99D3633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94BA40C2-039E-44C9-A3A1-A249F99D3633}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94BA40C2-039E-44C9-A3A1-A249F99D3633}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94BA40C2-039E-44C9-A3A1-A249F99D3633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D737BDE-8ED1-48AB-9FDE-D1A5AE9ACBDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D737BDE-8ED1-48AB-9FDE-D1A5AE9ACBDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D737BDE-8ED1-48AB-9FDE-D1A5AE9ACBDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D737BDE-8ED1-48AB-9FDE-D1A5AE9ACBDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{923C02AA-163E-44D3-BD37-5B6C722E19A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{923C02AA-163E-44D3-BD37-5B6C722E19A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{923C02AA-163E-44D3-BD37-5B6C722E19A6}.Release|Any CPU.ActiveCfg = Release|Any CPU

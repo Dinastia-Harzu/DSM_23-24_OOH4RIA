@@ -111,11 +111,11 @@ public static void InitializeData ()
                 int idUsuarioPremium = usuariopremiumcen.CrearUsuarioPremium ("Bonifacio Conejal", "fnaf2@gmail.com", true, "pfp.png", 2, (float)0.0, "pwd123", DateTime.Now.AddMonths (3));
                 int idUsuario = usuariocen.CrearUsuario ("Chica Gallina", "fnaf3@gmail.com", true, "pfp.png", 2, (float)12.5, "pwd123");
 
-                int idNoticia1 = noticiacen.CrearNoticia ("noticia 2332", false,"titulo","contactanos.jpeg");
-                int idNoticia2 = noticiacen.CrearNoticia ("noticia 32442432", true,"titulo2", "fotoart.jpeg");
+                int idNoticia1 = noticiacen.CrearNoticia ("noticia 2332", false, "titulo", "contactanos.jpeg");
+                int idNoticia2 = noticiacen.CrearNoticia ("noticia 32442432", true, "titulo2", "fotoart.jpeg");
 
-                int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", "Es una guitarra", (float)2.5, "fotoart.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.traje, 0, false, DateTime.Now, "fnaf pelicula", "prevart.png");
-                int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", "Es una pistola", (float)3.9, "fotoart.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.arma, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "prevart.png");
+                int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", "Es una guitarra", (float)2.5, "fotoart.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Traje, 0, false, DateTime.Now, "fnaf pelicula", "prevart.jpeg");
+                int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", "Es una pistola", (float)3.9, "fotoart.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Arma, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "prevart.jpeg");
 
                 int idCompra1 = compracen.CrearCompra (DateTime.Now, idUsuario, idArticulo1, (float)0.0, DateTime.Now.AddDays (1), false);
 
@@ -173,7 +173,7 @@ public static void InitializeData ()
 
 
                 //Read filter 6. Mostrar Articulos Premium
-                IList<ArticuloEN> articulos = articulocen.FiltrarPorRareza (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.comun);
+                IList<ArticuloEN> articulos = articulocen.FiltrarPorRareza (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun);
                 Console.WriteLine ("\n\nLa consulta de Articulos Premium: ");
                 foreach (ArticuloEN art in articulos) {
                         Console.WriteLine (art.Nombre);
@@ -201,7 +201,7 @@ public static void InitializeData ()
                 }
 
                 //Read filter 9. Mostrar Articulos Por Tipo
-                articulos = articulocen.FiltrarPorTipo (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.arma);
+                articulos = articulocen.FiltrarPorTipo (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Arma);
                 Console.WriteLine ("\n\nArticulos tipo: \n");
                 foreach (ArticuloEN art in articulos) {
                         Console.WriteLine (art.Nombre);

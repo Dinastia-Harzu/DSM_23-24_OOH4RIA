@@ -3,5 +3,5 @@ using System;
 
 namespace NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula
 {
-public enum RarezaArticuloEnum { comun=1, raro=2, legendario=3, premium=4 };
+public enum RarezaArticuloEnum { Comun=1, Raro=2, Legendario=3, Premium=4 };
 }

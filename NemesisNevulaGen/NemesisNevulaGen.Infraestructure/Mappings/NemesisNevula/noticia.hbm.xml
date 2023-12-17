@@ -19,7 +19,7 @@
 						<column name="foto"  not-null="true"/>
 					</property>
 					<property name="Descripcion" type="string"> 
-						<column name="descripcion"  not-null="true"/>
+						<column name="descripcion" length="5000" not-null="true"/>
 					</property>
 					<property name="EsPublicada" type="boolean"> 
 						<column name="esPublicada"  not-null="true"/>
