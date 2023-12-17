@@ -18,14 +18,21 @@
 </p>
 <div class="container-fluid">
     <div class="row">
-        @foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
             <div class="col-md-4 mb-4">
                 <div class="@claseCard(item.EsPublicada)">
                     <div class="card-header">
                         Noticia #@Html.DisplayFor(modelItem => item.Id)
                     </div>
                     <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.Titulo)
+                    </div>
+                    <div class="card-body">
                         @Html.DisplayFor(modelItem => item.Descripcion)
+                    </div>
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.Foto)
                     </div>
                     <div class="card-footer btn-group">
                         @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })

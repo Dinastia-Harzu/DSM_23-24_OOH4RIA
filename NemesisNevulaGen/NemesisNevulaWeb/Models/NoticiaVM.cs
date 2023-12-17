@@ -20,16 +20,16 @@ namespace NemesisNevulaWeb.Models
         public required string Titulo { get; set; }
 
         [Display(
-            Prompt = "Describe la noticia",
-            Description = "Descripción de la noticia",
-            Name = "Descripción"
-        )]
+                Prompt = "Describe la noticia",
+                Description = "Descripción de la noticia",
+                Name = "Descripción"
+            )]
         [Required(ErrorMessage = "Debes indicar un nombre para la noticia")]
         [StringLength(
-            maximumLength: 200,
-            ErrorMessage = "La descripción no puede tener más de 200 caracteres"
+            maximumLength: 4000,
+            ErrorMessage = "El título no puede tener más de 50 caracteres"
         )]
-        public required string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
 
         public string? Foto { get; set; }
 
