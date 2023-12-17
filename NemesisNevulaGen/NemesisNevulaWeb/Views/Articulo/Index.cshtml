@@ -6,8 +6,26 @@
 }
 
 <style>
-    display: flex;
-    justify-content: center;
+    .valoracion-1::after {
+        content: '⭐';
+    }
+
+    .valoracion-2::after {
+        content: '⭐⭐';
+    }
+
+    .valoracion-3::after {
+        content: '⭐⭐⭐';
+    }
+
+    .valoracion-4::after {
+        content: '⭐⭐⭐⭐';
+    }
+
+    .valoracion-5::after {
+        content: '⭐⭐⭐⭐⭐';
+    }
+
 </style>
 
 <h1>Index</h1>
@@ -23,16 +41,15 @@
         @foreach (var item in Model)
         {
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="card bg-dark text-white">
+                    <img src="~/css/estilos/imagenes/@Html.DisplayFor(modelItem => item.Fotografia)" class="card-img" alt="@Html.DisplayFor(modelItem => item.Nombre)" />
                     <div class="card-body">
-                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nombre)</h5>
+                        <h5 class="card-title text-warning">@Html.DisplayFor(modelItem => item.Nombre)</h5>
                         <p class="card-text"><strong>Precio:</strong> @Html.DisplayFor(modelItem => item.Precio)</p>
-                        <p class="card-text"><strong>Tipo:</strong> @Html.DisplayFor(modelItem => item.Tipo)</p>
                         <p class="card-text"><strong>Rareza:</strong> @Html.DisplayFor(modelItem => item.Rareza)</p>
-                        <p class="card-text">
-                            <strong>Valoración:</strong> @Html.DisplayFor(modelItem => item.Valoracion) Estrellas
-                            <a asp-controller="ValoracionArticulo" asp-action="Create" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Valorar</a>
-                        </p>
+                        <p class="card-text"><strong>Tipo:</strong> @Html.DisplayFor(modelItem => item.Tipo)</p>
+                        <p class="card-text valoracion-@Html.DisplayFor(modelItem => item.Valoracion)"></p>
+                        <a asp-controller="ValoracionArticulo" asp-action="Create" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Valorar</a>
                     </div>
                     <div class="card-footer">
                         <div class="btn-group" role="group">
