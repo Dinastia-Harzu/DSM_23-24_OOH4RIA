@@ -19,6 +19,7 @@ namespace NemesisNevulaWeb.Controllers
         public IActionResult 
             Index()
         {
+            ViewBag.CurrentPage = "Inicio";
             return View();
         }
 
@@ -31,6 +32,7 @@ namespace NemesisNevulaWeb.Controllers
         public IActionResult
             Contacto()
         {
+            ViewBag.CurrentPage = "Contacto";
             return View();
         }
 

@@ -13,6 +13,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController
         public ActionResult Index()
         {
+            ViewBag.CurrentPage = "Tienda";
             SessionInitialize();
             ArticuloRepository articuloRepository = new ArticuloRepository();
             ArticuloCEN articuloCEN = new ArticuloCEN(articuloRepository);
@@ -28,6 +29,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.CurrentPage = "Tienda";
             SessionInitialize();
             ArticuloRepository artRepo = new ArticuloRepository(session);
             ArticuloCEN articuloCEN = new ArticuloCEN(artRepo);
@@ -42,6 +44,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController/Create
         public ActionResult Create()
         {
+            ViewBag.CurrentPage = "Tienda";
             return View();
         }
 
@@ -50,6 +53,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ArticuloVM articulo)
         {
+            ViewBag.CurrentPage = "Tienda";
             try
             {
                 ArticuloRepository artRepo = new ArticuloRepository();
@@ -78,6 +82,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController/Edit/5
         public ActionResult Edit(int id)
         {
+            ViewBag.CurrentPage = "Tienda";
             SessionInitialize();
             ArticuloRepository artRepo = new ArticuloRepository(session);
             ArticuloCEN articuloCEN = new ArticuloCEN(artRepo);
@@ -94,6 +99,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ArticuloVM articulo)
         {
+            ViewBag.CurrentPage = "Tienda";
             try
             {
                 ArticuloRepository artRepo = new ArticuloRepository();
