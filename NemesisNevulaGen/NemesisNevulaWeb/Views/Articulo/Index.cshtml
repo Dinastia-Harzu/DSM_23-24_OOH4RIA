@@ -67,25 +67,27 @@
         @foreach (var item in Model)
         {
             <div class="col-md-4 mb-4">
-                <div class="card bg-dark text-white position-relative">
-                    <img src="~/css/estilos/imagenes/@Html.DisplayFor(modelItem => item.Fotografia)" class="card-img" alt="@Html.DisplayFor(modelItem => item.Nombre)" />
-                    <p class="card-text rounded-2 position-absolute top-0 end-0 rareza-text" style="background-color: mediumpurple; color: white; height: fit-content; padding: .2em;">@Html.DisplayFor(modelItem => item.Rareza)</p>
-                    <div class="card-body">
-                        <h5 class="card-title text-warning fw-bold text-uppercase">@Html.DisplayFor(modelItem => item.Nombre)</h5>
-                        <div class="d-flex justify-content-between">
-                            <p class="card-text fw-bold" style="padding: .2em;">@Html.DisplayFor(modelItem => item.Precio)</p>
-                            <p class="card-text fw-bold">@Html.DisplayFor(modelItem => item.Tipo)</p>
+                <a class="text-white" href="@Url.Action("Details", new { id = item.Id })">
+                    <div class="card bg-dark text-white position-relative">
+                        <img src="~/css/estilos/imagenes/@Html.DisplayFor(modelItem => item.Fotografia)" class="card-img" alt="@Html.DisplayFor(modelItem => item.Nombre)" />
+                        <p class="card-text position-absolute top-0 end-0 tiny-etiqueta" style="background-color: mediumpurple;">@Html.DisplayFor(modelItem => item.Rareza)</p>
+                        <div class="card-body">
+                            <h5 class="card-title text-warning fw-bold text-uppercase">@Html.DisplayFor(modelItem => item.Nombre)</h5>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text fw-bold tiny-etiqueta fs-4" style="background-color: yellow; color:black;">@Html.DisplayFor(modelItem => item.Precio)</p>
+                                <p class="card-text fw-bold">@Html.DisplayFor(modelItem => item.Tipo)</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text valoracion-@Html.DisplayFor(modelItem => item.Valoracion)"></p>
+                            <div class="btn-group" role="group" hidden>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                                @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                            </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <p class="card-text valoracion-@Html.DisplayFor(modelItem => item.Valoracion)"></p>
-                        <div class="btn-group" role="group" hidden>
-                            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
-                            @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
-                            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
         }
     </div>
