@@ -29,7 +29,8 @@ namespace NemesisNevulaWeb.Controllers
             var viewModel = new Tuple<IEnumerable<NoticiaVM>>(listaNoticias);
 
             // Pasa el modelo IndexViewModel a la vista
-            return View(viewModel);
+            ViewBag.CurrentPage = "Inicio";
+            return View(viewModel);  
         }
 
         public IActionResult 
@@ -41,6 +42,7 @@ namespace NemesisNevulaWeb.Controllers
         public IActionResult
             Contacto()
         {
+            ViewBag.CurrentPage = "Contacto";
             return View();
         }
 

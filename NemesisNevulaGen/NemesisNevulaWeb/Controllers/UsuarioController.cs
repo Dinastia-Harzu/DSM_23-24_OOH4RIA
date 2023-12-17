@@ -81,6 +81,7 @@ namespace NemesisNevulaWeb.Controllers
 
             if (idUser == -1)
                 return RedirectToAction("Login", "Usuario");
+            ViewBag.CurrentPage = "Perfil";
 
             tipoUsuario();
 
@@ -99,6 +100,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: UsuarioController/Details/5
         public ActionResult Details(int id)
         {
+            ViewBag.CurrentPage = "Perfil";
             // Validamos el token del usuario
             int idUser = validarToken();
 
@@ -173,6 +175,7 @@ namespace NemesisNevulaWeb.Controllers
             {
                 return RedirectToAction("Login", "Usuario");
             }
+            ViewBag.CurrentPage = "Perfil";
 
             SessionInitialize();
 
@@ -196,6 +199,7 @@ namespace NemesisNevulaWeb.Controllers
 
             if (idUser == -1)
                 return RedirectToAction("Login", "Usuario");
+            ViewBag.CurrentPage = "Perfil";
 
             try
             {
@@ -253,6 +257,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: UsuarioController/ArtsAdquiridos/5
         public ActionResult ArtsAdquiridos(int id, string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
         {
+            ViewBag.CurrentPage = "Perfil";
             // Muestra de filtros
             Console.WriteLine("\n\n\n--FILTROS--\n");
             Console.WriteLine("Barra de Búsqueda: " + filtroBusqueda + "\n");
@@ -335,6 +340,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: UsuarioController/ArtsFavoritos/5
         public ActionResult ArtsFavoritos(int id, string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
         {
+            ViewBag.CurrentPage = "Perfil";
             // Muestra de filtros
             Console.WriteLine("\n\n\n--FILTROS--\n");
             Console.WriteLine("Barra de Búsqueda: " + filtroBusqueda + "\n");
