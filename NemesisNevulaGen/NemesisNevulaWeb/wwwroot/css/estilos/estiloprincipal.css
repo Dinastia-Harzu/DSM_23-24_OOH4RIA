@@ -1,6 +1,10 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@700&family=Jura:wght@300&family=Tilt+Neon&display=swap');
+
+body {
     color: white;
     background-color: black;
+    font-family: 'Jura', sans-serif;
+
 }
 
 a {
@@ -25,4 +29,27 @@ a:hover {
 .nav-item .nav-link:hover {
     color: yellow;
     border-bottom: 1px solid yellow;
+}
+
+.btn-aceptar {
+    background-color: yellow;
+    color: black;
+    font-weight: bolder;
+}
+
+.btn-cancelar {
+    background-color: mediumpurple;
+    color: white;
+    font-weight: bolder;
+}
+
+.btn-aceptar:hover, .btn-cancelar:hover{
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    font-weight: bolder;
+}
+
+.nav-activo {
+    color:yellow !important;
 }
