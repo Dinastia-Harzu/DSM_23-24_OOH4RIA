@@ -22,7 +22,7 @@
                     <div class="card-body  bg-dark">
                         <h5 class="card-title">@item.Titulo</h5>
                         <p class="card-text">@alcortardescripcion(@item.Descripcion)</p>
-                        <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-primary">Detalles</a>
+                        @Html.ActionLink("Detalles","Details", "Noticia", new { id = item.Id }, new { @class = "btn btn-secondary" })
                     </div>
                 </div>
             </div>

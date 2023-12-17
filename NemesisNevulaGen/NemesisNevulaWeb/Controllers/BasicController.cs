@@ -152,19 +152,19 @@ namespace NemesisNevulaWeb.Controllers
                 switch (filtroTipo)
                 {
                     case "1":
-                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.traje);
+                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.Traje);
                         break;
                     case "2":
-                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.arma);
+                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.Arma);
                         break;
                     case "3":
-                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.nave);
+                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.Nave);
                         break;
                     case "4":
-                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.grafitti);
+                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.Grafitti);
                         break;
                     case "5":
-                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.animacion);
+                        list.RemoveAll(art => art.Tipo != TipoArticuloEnum.Animacion);
                         break;
                 }
             }
@@ -179,16 +179,16 @@ namespace NemesisNevulaWeb.Controllers
                 switch (filtroRareza)
                 {
                     case "1":
-                        list.RemoveAll(art => art.Rareza != RarezaArticuloEnum.comun);
+                        list.RemoveAll(art => art.Rareza != RarezaArticuloEnum.Comun);
                         break;
                     case "2":
-                        list.RemoveAll(art => art.Rareza != RarezaArticuloEnum.raro);
+                        list.RemoveAll(art => art.Rareza != RarezaArticuloEnum.Raro);
                         break;
                     case "3":
-                        list.RemoveAll(art => art.Rareza != RarezaArticuloEnum.legendario);
+                        list.RemoveAll(art => art.Rareza != RarezaArticuloEnum.Legendario);
                         break;
                     case "4":
-                        list.RemoveAll(art => art.Rareza != RarezaArticuloEnum.premium);
+                        list.RemoveAll(art => art.Rareza != RarezaArticuloEnum.Premium);
                         break;
                 }
             }
