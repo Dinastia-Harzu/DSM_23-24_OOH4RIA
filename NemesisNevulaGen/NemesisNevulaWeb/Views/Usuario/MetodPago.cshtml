@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewData["Title"] = "MetodPago";
+}
+
+<h1>MetodPago</h1>
+
+@await Html.PartialAsync("_PaypalParcial", (IEnumerable<NemesisNevulaWeb.Models.PaypalVM>)Model.Item1)
+@await Html.PartialAsync("_TarjetaParcial", (IEnumerable<NemesisNevulaWeb.Models.TarjetaCreditoVM>)Model.Item2)

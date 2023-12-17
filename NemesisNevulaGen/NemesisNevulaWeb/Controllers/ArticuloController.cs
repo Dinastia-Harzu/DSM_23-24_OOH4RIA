@@ -28,6 +28,14 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController/Details/5
         public ActionResult Details(int id)
         {
+
+            NoticiaRepository noticiaRepository = new NoticiaRepository();
+            NoticiaCEN noticiaCEN = new NoticiaCEN(noticiaRepository);
+            IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
+            IEnumerable<NoticiaVM> listaNoticias = new NoticiaAssembler().ListEN2VM(listaEN).ToList();
+
+            // Pasa el modelo IndexViewModel a la vista
+
             SessionInitialize();
             ArticuloRepository artRepo = new ArticuloRepository(session);
             ArticuloCEN articuloCEN = new ArticuloCEN(artRepo);
@@ -36,7 +44,8 @@ namespace NemesisNevulaWeb.Controllers
             ArticuloVM articuloVM = new ArticuloAssembler().ConvertirENToViewModel(articulo);
 
             SessionClose();
-            return View(articuloVM);
+            var viewModel = new Tuple<ArticuloVM, IEnumerable<NoticiaVM>>(articuloVM, listaNoticias);
+            return View(viewModel);
         }
 
         // GET: ArticuloController/Create

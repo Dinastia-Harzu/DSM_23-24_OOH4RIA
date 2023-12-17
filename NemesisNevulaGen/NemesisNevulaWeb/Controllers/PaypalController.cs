@@ -31,6 +31,8 @@ namespace NemesisNevulaWeb.Controllers
 
             IEnumerable<PaypalVM> listPP = new PaypalAssembler().ConvertirListENToViewModel(listEN).ToList();
 
+            
+
             SessionClose();
             return View(listPP);
         }

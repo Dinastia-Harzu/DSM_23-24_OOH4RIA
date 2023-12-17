@@ -1,10 +1,15 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
+
 }
+
 
 <h1>Index</h1>
 
 <h2>¡Bienvenido a la tienda virtual de Nemesis Nevula!</h2>
+<div class="col-md-6">
+    <div id="Noticias">HAOAL</div>
+</div>
 
 
+@await Html.PartialAsync("_NoticiasParcial", (IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>)Model.Item1)

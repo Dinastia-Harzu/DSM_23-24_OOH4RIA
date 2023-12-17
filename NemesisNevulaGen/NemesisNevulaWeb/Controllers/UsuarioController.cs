@@ -257,7 +257,7 @@ namespace NemesisNevulaWeb.Controllers
             Console.WriteLine("\n\n\n--FILTROS--\n");
             Console.WriteLine("Barra de Búsqueda: " + filtroBusqueda + "\n");
             Console.WriteLine("Criterio de ordenacion: " + ordenarPor + "\n");
-            Console.WriteLine("Rareza: "+filtroRareza+ "\n");
+            Console.WriteLine("Rareza: " + filtroRareza + "\n");
             Console.WriteLine("Tipo Articulo: " + filtroTipo + "\n");
             Console.WriteLine("Fecha inicio: " + filtroFechaIni + "\n");
             Console.WriteLine("Fecha final: " + filtroFechaFin + "\n");
@@ -310,7 +310,7 @@ namespace NemesisNevulaWeb.Controllers
                 artRarezas.Add(new SelectListItem
                 {
                     Text = valor.ToString(),
-                    Value = ((int)valor).ToString() 
+                    Value = ((int)valor).ToString()
                 });
             }
             IList<SelectListItem> artTipos = new List<SelectListItem>();
@@ -409,6 +409,36 @@ namespace NemesisNevulaWeb.Controllers
             SessionClose();
 
             return View(userArtsFavsVM);
+        }
+
+        // GET: UsuarioController/MetodPago
+        public ActionResult MetodPago()
+        {
+            // Validación de usuario
+            int idUser = validarToken();
+
+            if (idUser == -1)   // token erroneo o no definido
+                return RedirectToAction("Login", "Usuario");
+
+            SessionInitialize();
+            PaypalRepository ppRepository = new PaypalRepository(session);
+            PaypalCEN ppCEN = new PaypalCEN(ppRepository);
+
+            IList<PaypalEN> listEN = ppCEN.DameTodos(0, -1);
+
+            IEnumerable<PaypalVM> listPP = new PaypalAssembler().ConvertirListENToViewModel(listEN).ToList();
+
+            TarjetaCreditoRepository tjRepository = new TarjetaCreditoRepository(session);
+            TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tjRepository);
+
+            IList<TarjetaCreditoEN> listTEN = tcCEN.DameTodos(0, -1);
+
+            IEnumerable<TarjetaCreditoVM> listTC = new TarjetaCreditoAssembler().ConvertirListENToViewModel(listTEN).ToList();
+
+
+            var viewModel = new Tuple<IEnumerable<PaypalVM>, IEnumerable<TarjetaCreditoVM>>(listPP, listTC);
+            SessionClose();
+            return View(viewModel);
         }
     }
 }

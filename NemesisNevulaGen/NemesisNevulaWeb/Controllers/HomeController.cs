@@ -2,6 +2,7 @@
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
+using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
 using System.Diagnostics;
 
@@ -19,7 +20,16 @@ namespace NemesisNevulaWeb.Controllers
         public IActionResult 
             Index()
         {
-            return View();
+
+            NoticiaRepository noticiaRepository = new NoticiaRepository();
+            NoticiaCEN noticiaCEN = new NoticiaCEN(noticiaRepository);
+            IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
+            IEnumerable<NoticiaVM> listaNoticias = new NoticiaAssembler().ListEN2VM(listaEN).ToList();
+
+            var viewModel = new Tuple<IEnumerable<NoticiaVM>>(listaNoticias);
+
+            // Pasa el modelo IndexViewModel a la vista
+            return View(viewModel);
         }
 
         public IActionResult 
