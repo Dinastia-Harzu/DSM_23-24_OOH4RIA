@@ -1,31 +1,50 @@
 ﻿@model IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>
-   
+
 @{
     string acortarDescripcion(string desc)
     {
         if(desc.Length > 100)
         {
-            return desc.Substring(0,100) + "...";
+            return desc.Substring(0, 100) + "...";
         }
         return desc;
     }
 
+    string obtenerURI(string url)
+    {
+        string uri = url.Substring(1).Split('/')[0];
+        return uri == "" ? "Index" : uri;
+    }
+
+    int alternarCSS(string url)
+    {
+        switch(obtenerURI(url))
+        {
+            case "Index":
+                return 4;
+            case "Articulo":
+                return 12;
+            default:
+                return 4;
+        }
+    }
 }
 
 <div class="container">
+    <h1>Path: @obtenerURI(ViewContext.HttpContext.Request.Path)</h1>
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-md-4 mb-4">
+            <div class="col-md-@alternarCSS(ViewContext.HttpContext.Request.Path) mb-4">
                 <div class="card">
                     @if (!string.IsNullOrEmpty(item.Foto))
                     {
-                        <img src="../css/estilos/imagenes/@item.Foto" class="card-img-top" alt="Imagen de la noticia">
+                        <img src="~/css/estilos/imagenes/@item.Foto" class="card-img-top" alt="Imagen de la noticia">
                     }
-                    <div class="card-body  bg-dark">
+                    <div class="card-body bg-dark">
                         <h5 class="card-title">@item.Titulo</h5>
                         <p class="card-text">@acortarDescripcion(@item.Descripcion)</p>
-                        @Html.ActionLink("Detalles","Details", "Noticia", new { id = item.Id }, new { @class = "btn btn-secondary" })
+                        @Html.ActionLink("Detalles", "Details", "Noticia", new { id = item.Id }, new { @class = "btn btn-secondary" })
                     </div>
                 </div>
             </div>
