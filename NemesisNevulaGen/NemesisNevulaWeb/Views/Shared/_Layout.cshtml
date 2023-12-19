@@ -40,7 +40,7 @@
                             <p class="text-warning mt-2 m-2">0.00 €</p>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @(ViewBag.CurrentPage == "Perfil" ? "nav-activo" : "")" href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">Perfil</a>
+                            <a class="nav-link @(ViewBag.CurrentPage == "Perfil" ? "nav-activo" : "")" href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">@User.FindFirstValue(ClaimTypes.Name)</a>
                         </li>
                         <li class="nav-item">
                             <a href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">
