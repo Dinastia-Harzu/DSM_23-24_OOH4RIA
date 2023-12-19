@@ -2,35 +2,102 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Detalles</h1>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .column {
+        flex: 0 1 300px;
+        padding: 20px;
+        background-color: #fff;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .column:hover {
+            transform: translateY(-5px);
+        }
+
+    h3 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn {
+        margin: 0 5px;
+        padding: 8px 12px;
+        text-decoration: none;
+        font-size: 14px;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-info {
+        background-color: #3498db;
+    }
+
+    .btn-secondary {
+        background-color: #95a5a6;
+    }
+
+    .btn-danger {
+        background-color: #e74c3c;
+    }
+</style>
+
+<h1>¡Compra realizada!</h1>
 
 <div>
-    <h4>CompraVM</h4>
+    <h4>Los detalles de tu compra son:</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-12">
+            <b><span>Fecha de la compra:</span></b><br />
             @Html.DisplayFor(model => model.Fecha)
+            <br />
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PrecioTotal)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-12">
+            <b><span>Precio total de la compra realizada:</span></b><br />
             @Html.DisplayFor(model => model.PrecioTotal)
+            <br />
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaCaducidad)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-12">
+            <b><span>Fecha límite de devolución:</span></b><br />
             @Html.DisplayFor(model => model.FechaCaducidad)
         </dd>
     </dl>
-</div>
 <div>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    <a asp-action="Index">Vuelve a la lista</a>
+    <button class=" btn btn-info">Aceptar</button>
+</div>
 </div>
