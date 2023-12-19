@@ -9,7 +9,7 @@
 <div class="col-12">
     <div class="d-flex flex-row row">
         <div class="w-75">
-            @if (User.FindFirstValue(ClaimTypes.Name) != null)
+            @if (User.FindFirstValue(ClaimTypes.Name) != null && User.FindFirstValue(ClaimTypes.Role) == "Administrador")
             {
                 <div class="">
                     <a class="btn btn-aceptar" href="@Url.Action("Edit", new { id = Model.Item1.Id })">Editar</a>
