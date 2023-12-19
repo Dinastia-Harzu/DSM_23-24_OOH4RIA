@@ -16,6 +16,14 @@ namespace NemesisNevulaWeb.Controllers
 {
     public class UsuarioController : BasicController
     {
+
+        private readonly IWebHostEnvironment _webHost;
+
+        public UsuarioController(IWebHostEnvironment webHost)
+        {
+            _webHost = webHost;
+        }
+
         // GET: UsuarioController/Login
         public ActionResult Login()
         {
@@ -124,7 +132,7 @@ namespace NemesisNevulaWeb.Controllers
             // Validamos el token del usuario
             int idUser = validarToken();
 
-            if (idUser == -1)
+            if (idUser != -1)
                 return RedirectToAction("Index", "Home");
 
             return View();
@@ -133,12 +141,12 @@ namespace NemesisNevulaWeb.Controllers
         // POST: UsuarioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UsuarioVM user)
+        public async Task<ActionResult> CreateAsync(UsuarioVM user)
         {
             // Validamos el token del usuario
             int idUser = validarToken();
 
-            if (idUser == -1)
+            if (idUser != -1)
                 return RedirectToAction("Index", "Home");
 
             try
@@ -155,7 +163,31 @@ namespace NemesisNevulaWeb.Controllers
                 }
                 else
                 {
-                    userCEN.CrearUsuario(user.Nombre, user.Correo, user.ConGoogle, user.Foto_perfil, user.PuntosNevula, user.Cartera, user.Pass);
+                    // Manejamos la subida de foto de perfil
+                    string fileName = "", path = "";
+                    if (user.Foto_perfil2 != null && user.Foto_perfil2.Length > 0)
+                    {
+                        fileName = Path.GetFileName(user.Foto_perfil2.FileName).Trim();
+
+                        string directory = _webHost.WebRootPath + "/FotosPerfil";
+                        path = Path.Combine(directory, fileName);
+
+                        if (!Directory.Exists(directory))
+                            Directory.CreateDirectory(directory);
+
+                        using (var stream = System.IO.File.Create(path))
+                        {
+                            await user.Foto_perfil2.CopyToAsync(stream);
+                        }
+                    }
+                    else
+                    {
+                        fileName = "sinFoto.png";
+                    }
+
+                    fileName = "/FotosPerfil/" + fileName;
+
+                    userCEN.CrearUsuario(user.Nombre, user.Correo, user.ConGoogle, fileName, user.PuntosNevula, user.Cartera, user.Pass);
 
                     return RedirectToAction(nameof(Index));
                 }
