@@ -1,7 +1,19 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using NemesisNevulaWeb.Controllers;
+using System.Security.Claims;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.LoginPath = "/Usuario/Login";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+        option.AccessDeniedPath = "/Usuario/Login";
+    });
 
 var app = builder.Build();
 
@@ -17,6 +29,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

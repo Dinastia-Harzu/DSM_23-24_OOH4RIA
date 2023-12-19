@@ -71,24 +71,21 @@ namespace NemesisNevulaWeb.Controllers
         }        
         
         // Funciones propias:
-        protected int tipoUsuario()
+        protected string tipoUsuario(int id)
         {
-            int result = -1;
-            int idUser = this.validarToken();
+            string rolUsuario = "Visitante";
 
-            if (idUser == -1)
-                return result;
             
             UsuarioRepository usuarioRepository = new();
             UsuarioCEN usuarioCEN = new(usuarioRepository);
 
-            UsuarioEN usuario = usuarioCEN.DamePorOID(idUser);
+            UsuarioEN usuario = usuarioCEN.DamePorOID(id);
 
-            if (usuario is AdministradorEN) result = 2;
-            else if (usuario is UsuarioPremiumEN) result = 1;
-            else result = 0;
+            if (usuario is AdministradorEN) rolUsuario = "Administrador";
+            else if (usuario is UsuarioPremiumEN) rolUsuario = "Premium";
+            else if (usuario is UsuarioEN) rolUsuario = "Normal";
 
-            return result;
+            return rolUsuario;
         }
 
         protected List<ArticuloEN> filtrarXFecha(List<ArticuloEN> list, string filtroFechaIni, string filtroFechaFin)

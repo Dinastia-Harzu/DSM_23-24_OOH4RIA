@@ -6,6 +6,9 @@ using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
 using System.Diagnostics;
 
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+
 namespace NemesisNevulaWeb.Controllers
 {
     public class HomeController : Controller

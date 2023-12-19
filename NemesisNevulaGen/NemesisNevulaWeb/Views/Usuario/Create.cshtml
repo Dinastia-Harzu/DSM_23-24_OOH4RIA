@@ -5,44 +5,66 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class=" card bg-dark text-white" style="border-radius: 1rem; border-color:yellow;">
+                    <div class="card-body p-5">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <h2 class="fw-bold mb-2 text-uppercase  text-center">Te damos la bienvenida</h2>
+                            <hr class="justify-content-center align-items-center " width="100%" />
 
-<h4>UsuarioVM</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+                                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                                        
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group form-outline form-white mb-4 text-center">
+                                            <label asp-for="Foto_perfil2" id="imgInputLabel" class="control-label">
+                                                <img id="imgPreview" src="/FotosPerfil/sinFoto.png" alt="Imagen previsualizada" width="100" height="100" />
+                                            </label>
+                                            <input asp-for="Foto_perfil2" type="file" id="imgInput" required="false" accept="image/*" class="form-control" style="display: none;" />
+                                            <span asp-validation-for="Foto_perfil2" class="text-danger"></span>
+                                        </div>
+                                        
+                                        <div class="form-group form-outline form-white mb-4">
+                                            <label asp-for="Nombre" class="control-label"></label>
+                                            <input asp-for="Nombre" class="form-control" />
+                                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                                        </div>
+                                        
+                                        <div class="form-group form-outline form-white mb-4">
+                                            <label asp-for="Correo" class="control-label"></label>
+                                            <input asp-for="Correo" class="form-control" />
+                                            <span asp-validation-for="Correo" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group form-outline form-white mb-4">
+                                            <label asp-for="Pass" class="control-label"></label>
+                                            <input asp-for="Pass" class="form-control" />
+                                            <span asp-validation-for="Pass" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group  text-center">
+                                            <button class="btn btn-outline-light btn-lg px-5" style="width=100%;" type="submit">Registrarme</button>
+                                        </div>
+                                        <div class="d-flex align-items-center" style="padding:1em;">
+                                            <hr class="flex-grow-1">
+                                            <span class="px-4" style="font-size: 1em;">O inicia sesión...</span>
+                                            <hr class="flex-grow-1">
+                                        </div>
+                                        <div class="form-group  text-center mb-4">
+                                            <button class="control-label form-control-lg">
+                                                Inicia sesión con google
+                                            </button>
+                                        </div>
+                                    </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Correo" class="control-label"></label>
-                <input asp-for="Correo" class="form-control" />
-                <span asp-validation-for="Correo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Foto_perfil" class="control-label"></label>
-                <input asp-for="Foto_perfil" class="form-control" />
-                <span asp-validation-for="Foto_perfil" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Pass" class="control-label"></label>
-                <input asp-for="Pass" class="form-control" />
-                <span asp-validation-for="Pass" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
+<script src="/js/usuarioCreate.js"></script>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
