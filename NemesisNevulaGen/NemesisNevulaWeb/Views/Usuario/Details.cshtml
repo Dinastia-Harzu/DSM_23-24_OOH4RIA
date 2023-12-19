@@ -5,62 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
-    h3 {
-        color: #333;
-        margin-bottom: 10px;
-    }
-
-    .acciones-usuario{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-    }
-</style>
-
-<h1>Mis datos</h1>
-
-<div>
-    <h4>Tus datos personales:</h4>
-    <hr />
-    <div class="row" style="justify-content:center;">
-        <div class="col-sm-3">
-            <b>Foto de perfil: </b><br /><br />
-            <img src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Foto_perfil)" width="300" />
-            <br />
-        </div>
-    <dl class="col-sm-3">
-        <dd class = "col-sm-12">
-            <b>Nombre: </b><br />
-            @Html.DisplayFor(model => model.Nombre)
-            <br /><br />
-        </dd>
-        <dd class = "col-sm-12">
-            <b>Correo: </b><br />
-            @Html.DisplayFor(model => model.Correo)
-            <br /><br />
-        </dd>
-        <dd class = "col-sm-12">
-            <b>Saldo de tu cartera:</b><br />
-            @Html.DisplayFor(model => model.Cartera)
-            <br /><br />
-        </dd>
-        <dd class="col-sm-12">
-            <b>Puntos Nevula:</b><br />
-            @Html.DisplayFor(model => model.PuntosNevula)
-        </dd>
-        </dl>
+<div class="w-100 d-inline-flex justify-content-evenly">
+    <img class="rounded-circle" style="width:200px; height:200px" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Foto_perfil)" alt="@Html.DisplayFor(model => model.Nombre)" />
+    <h1 style="text-align:center;">Hola, @Html.DisplayFor(model => model.Nombre)</h1>
+</div>
+<div class="d-flex justify-content-evenly mt-2">
+    <div class="d-flex justify-content-start">
+        <p class="text-warning text-uppercase fw-bolder mx-1">Cartera: </p>
+        <p class="text-white mx-1">@Html.DisplayFor(model => model.Cartera)</p>
+    </div>
+    <div class="d-flex justify-content-start">
+        <p class="text-warning text-uppercase fw-bolder mx-1">Mis Puntos Nevula: </p>
+        <p class="text-white mx-1">@Html.DisplayFor(model => model.PuntosNevula)</p>
     </div>
 </div>
 <hr />
-<div class="acciones-usuario">
-    @Html.ActionLink("Edita tus datos", "Edit", new { id = Model.Id })<br />
-    <a>Volver</a>
+<div class="d-flex justify-content-evenly">
+    <a class="btn btn-aceptar m-2" href="@Url.Action("ArtsFavoritos", new { id = Model.Id })"><i class="fa-solid fa-star"></i> Mis Favoritos</a>
+    <a class="btn btn-aceptar m-2" href="@Url.Action("ArtsAdquiridos", new { id = Model.Id })"><i class="fa-solid fa-user-astronaut"></i> Mis Artículos</a>
+    <a class="btn btn-aceptar m-2" href="@Url.Action("MetodPago","Usuario", new { id = Model.Id })"><i class="fa-solid fa-dollar-sign"></i> Mis Métodos de pago</a>
+    <a class="btn btn-aceptar m-2" href="@Url.Action("Edit", new { id = Model.Id })"><i class="fa-solid fa-pen-to-square"></i> Editar perfil</a>
 </div>
