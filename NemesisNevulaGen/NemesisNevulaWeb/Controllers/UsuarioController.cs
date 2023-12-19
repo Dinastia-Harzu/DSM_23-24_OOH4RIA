@@ -453,28 +453,54 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: UsuarioController/MetodPago
-        public ActionResult MetodPago()
+        // id de usuario
+        public ActionResult MetodPago(int id)
         {
             // Validación de usuario
-            int idUser = validarToken();
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
-            if (idUser == -1)   // token erroneo o no definido
-                return RedirectToAction("Login", "Usuario");
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
 
             SessionInitialize();
             PaypalRepository ppRepository = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepository);
 
-            IList<PaypalEN> listEN = ppCEN.DameTodos(0, -1);
+            UsuarioRepository usuarioRepository = new UsuarioRepository(session);
+            UsuarioCEN userCEN = new UsuarioCEN(usuarioRepository);
+            UsuarioEN user = userCEN.DamePorOID(id);
 
-            IEnumerable<PaypalVM> listPP = new PaypalAssembler().ConvertirListENToViewModel(listEN).ToList();
+            IList<MetodoPagoEN> listMPEN = user.MetodoPago;
+
+            List<MetodoPagoEN> listaAux = new List<MetodoPagoEN>(listMPEN);
+
+            listaAux.RemoveAll(mp => mp is not PaypalEN);
+
+            List<PaypalEN> ppList = new List<PaypalEN>();
+
+            foreach (var pp in listaAux)
+            {
+                ppList.Add((PaypalEN) pp);
+            }
+
+            IEnumerable<PaypalVM> listPP = new PaypalAssembler().ConvertirListENToViewModel(ppList).ToList();
 
             TarjetaCreditoRepository tjRepository = new TarjetaCreditoRepository(session);
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tjRepository);
 
-            IList<TarjetaCreditoEN> listTEN = tcCEN.DameTodos(0, -1);
+            listaAux = new List<MetodoPagoEN>(listMPEN);
 
-            IEnumerable<TarjetaCreditoVM> listTC = new TarjetaCreditoAssembler().ConvertirListENToViewModel(listTEN).ToList();
+            listaAux.RemoveAll(mp => mp is not TarjetaCreditoEN);
+
+            List<TarjetaCreditoEN> tcList = new List<TarjetaCreditoEN>();
+
+            foreach (var pp in listaAux)
+            {
+                tcList.Add((TarjetaCreditoEN) pp);
+            }
+
+            IEnumerable<TarjetaCreditoVM> listTC = new TarjetaCreditoAssembler().ConvertirListENToViewModel(tcList).ToList();
 
 
             var viewModel = new Tuple<IEnumerable<PaypalVM>, IEnumerable<TarjetaCreditoVM>>(listPP, listTC);

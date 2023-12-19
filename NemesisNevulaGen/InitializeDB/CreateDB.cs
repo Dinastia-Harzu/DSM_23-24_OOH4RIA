@@ -124,6 +124,9 @@ public static void InitializeData ()
 
                 int idCompra1 = compracen.CrearCompra (DateTime.Now, idUsuario, idArticulo1, (float)0.0, DateTime.Now.AddDays (1), false);
 
+                int idTarjeta1 = tarjetacreditocen.CrearTarjetaCredito(NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica","5555777788889999", DateTime.Now.AddMonths(3), "aaaa");
+                int idPayPal1 = tarjetacreditocen.CrearTarjetaCredito(NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica","5555777788889999", DateTime.Now.AddMonths(3), "aaaa");
+
                 // Consultas
 
                 // Encontrar usuario
