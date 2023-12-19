@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
@@ -13,20 +14,6 @@ namespace NemesisNevulaWeb.Controllers
         // GET: NoticiaController
         public ActionResult Index()
         {
-            int idUsuario = validarToken();
-            if(idUsuario == -1)
-            {
-                // Código visitante
-            } else
-            {
-                UsuarioRepository usuarioRepository = new();
-                UsuarioCEN usuarioCEN = new(usuarioRepository);
-                UsuarioEN admin = usuarioCEN.DamePorOID(idUsuario);
-                if(admin is AdministradorEN)
-                {
-                    Console.WriteLine("\n\n\n\n\n\n\n\nEs un administrador\n\n\n\n\n\n\n");
-                }
-            }
             SessionInitialize();
             NoticiaRepository noticiaRepository = new();
             NoticiaCEN noticiaCEN = new(noticiaRepository);
@@ -57,12 +44,14 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: NoticiaController/Create
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: NoticiaController/Create
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(NoticiaVM noticia)
@@ -84,6 +73,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: NoticiaController/Edit/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id)
         {
             SessionInitialize();
@@ -96,6 +86,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: NoticiaController/Edit/5
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, NoticiaVM noticia)
@@ -118,6 +109,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: NoticiaController/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int id)
         {
             new NoticiaCEN(new NoticiaRepository()).BorrarNoticia(id);
@@ -125,6 +117,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: NoticiaController/Delete/5
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

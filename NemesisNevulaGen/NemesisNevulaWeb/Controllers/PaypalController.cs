@@ -10,20 +10,20 @@ using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.Drawing;
 
 namespace NemesisNevulaWeb.Controllers
 {
     public class PaypalController : BasicController
     {
         // GET: PayPalController
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
-            int idUser = validarToken();
-
-            if (idUser == -1)
-                return RedirectToAction("Login","Usuario");
-
             SessionInitialize();
+
             PaypalRepository ppRepository = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepository);
 
@@ -31,22 +31,28 @@ namespace NemesisNevulaWeb.Controllers
 
             IEnumerable<PaypalVM> listPP = new PaypalAssembler().ConvertirListENToViewModel(listEN).ToList();
 
-            
-
             SessionClose();
             return View(listPP);
         }
 
         // GET: PayPalController/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
-            if (id == 0)
-                return RedirectToAction("Index","Home");
             SessionInitialize();
             PaypalRepository ppRepo = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepo);
 
             PaypalEN ppEN = ppCEN.DamePorOID(id);
+
+            // Validamos que el paypal le pertenezca al usuario logueado
+            IList<UsuarioEN> listPpUsers = ppEN.UsuarioPoseedor;
+
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (!listPpUsers.Any(user => user.Id == idUserLogued))
+                return RedirectToAction("Index", "Home");
+
             PaypalVM ppView = new PaypalAssembler().ConvertirENToViewModel(ppEN);
 
             SessionClose();
@@ -54,12 +60,14 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: PayPalController/Create
+        [Authorize]
         public ActionResult Create()
         {
                 return View();
         }
 
         // POST: PayPalController/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(PaypalVM pp)
@@ -77,6 +85,7 @@ namespace NemesisNevulaWeb.Controllers
             }
         }
         // GET: PayPalController/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             SessionInitialize();
@@ -84,6 +93,15 @@ namespace NemesisNevulaWeb.Controllers
             PaypalCEN ppCEN = new PaypalCEN(ppRepo);
 
             PaypalEN ppEN = ppCEN.DamePorOID(id);
+
+            // Validamos que el paypal le pertenezca al usuario logueado
+            IList<UsuarioEN> listPpUsers = ppEN.UsuarioPoseedor;
+
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (!listPpUsers.Any(user => user.Id == idUserLogued))
+                return RedirectToAction("Index", "Home");
+
             PaypalVM ppView = new PaypalAssembler().ConvertirENToViewModel(ppEN);
 
             SessionClose();
@@ -97,9 +115,25 @@ namespace NemesisNevulaWeb.Controllers
         {
             try
             {
+                SessionInitialize();
+
                 PaypalRepository ppRepo = new PaypalRepository();
                 PaypalCEN ppCEN = new PaypalCEN(ppRepo);
+
+                PaypalEN ppEN = ppCEN.DamePorOID(id);
+
+                // Validamos que el paypal le pertenezca al usuario logueado
+                IList<UsuarioEN> listPpUsers = ppEN.UsuarioPoseedor;
+
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                if (!listPpUsers.Any(user => user.Id == idUserLogued))
+                    return RedirectToAction("Index", "Home");
+
                 ppCEN.ModificarPaypal(id,pp.Email,pp.Pass);
+
+                SessionClose();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -109,11 +143,27 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: PayPalController/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
-            PaypalRepository ppRepo = new PaypalRepository();
+            SessionInitialize();
+
+            PaypalRepository ppRepo = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepo);
+
+            PaypalEN ppEN = ppCEN.DamePorOID(id);
+
+            // Validamos que el paypal le pertenezca al usuario logueado
+            IList<UsuarioEN> listPpUsers = ppEN.UsuarioPoseedor;
+
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (!listPpUsers.Any(user => user.Id == idUserLogued))
+                return RedirectToAction("Index", "Home");
+
             ppCEN.BorrarPaypal(id);
+
+            SessionClose();
             return RedirectToAction(nameof(Index));
         }
 
@@ -124,6 +174,23 @@ namespace NemesisNevulaWeb.Controllers
         {
             try
             {
+                SessionInitialize();
+
+                PaypalRepository ppRepo = new PaypalRepository(session);
+                PaypalCEN ppCEN = new PaypalCEN(ppRepo);
+
+                PaypalEN ppEN = ppCEN.DamePorOID(id);
+
+                // Validamos que el paypal le pertenezca al usuario logueado
+                IList<UsuarioEN> listPpUsers = ppEN.UsuarioPoseedor;
+
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                if (!listPpUsers.Any(user => user.Id == idUserLogued))
+                    return RedirectToAction("Index", "Home");
+
+                SessionClose();
+
                 return RedirectToAction(nameof(Index));
             }
             catch

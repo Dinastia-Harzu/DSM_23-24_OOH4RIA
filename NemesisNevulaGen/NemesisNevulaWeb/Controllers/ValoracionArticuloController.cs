@@ -8,19 +8,16 @@ using NemesisNevulaGen.Infraestructure.EN.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
+using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
     public class ValoracionArticuloController : BasicController
     {
         // GET: ValoracionArticuloController
+        [Authorize(Roles = "Administracion")]
         public ActionResult Index()
         {
-            if (validarToken() == -1)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
-
             SessionInitialize();
             ValoracionArticuloRepository valoracionArticuloRepository = new();
             ValoracionArticuloCEN valoracionArticuloCEN = new(valoracionArticuloRepository);
@@ -33,11 +30,6 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ValoracionArticuloController/Details/5
         public ActionResult Details(int id)
         {
-            if (validarToken() == -1)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
-
             SessionInitialize();
             ValoracionArticuloRepository valoracionArticuloRepository = new(session);
             ValoracionArticuloCEN valoracionArticuloCEN = new(valoracionArticuloRepository);
@@ -48,32 +40,26 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: ValoracionArticuloController/Create
+        [Authorize]
         public ActionResult Create()
         {
-            if (validarToken() == -1)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
-
             return View();
         }
 
         // POST: ValoracionArticuloController/Create/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]  
         public ActionResult Create(int id, ValoracionArticuloVM valoracionArticulo)
         {
-            if (validarToken() == -1)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
-
             try
             {
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
                 new ValoracionArticuloCEN(new ValoracionArticuloRepository()).CrearValoracion(
                     valoracionArticulo.Valoracion,
                     id,
-                    validarToken()
+                    idUserLogued
                 );
                 return RedirectToAction(nameof(Index));
             }
@@ -84,38 +70,54 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: ValoracionArticuloController/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
-            if (validarToken() == -1)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
-
             SessionInitialize();
+
             ValoracionArticuloRepository valoracionArticuloRepository= new(session);
             ValoracionArticuloCEN valoracionArticuloCEN = new(valoracionArticuloRepository);
+
             ValoracionArticuloEN valoracionArticuloEN = valoracionArticuloCEN.DamePorOID(id);
+
+            // Validamos que el usuario logueado no intente editar la valoración de otro
+            int idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if(valoracionArticuloEN.Usuario.Id != idUser)
+                RedirectToAction("Index", "Home");
+
             ValoracionArticuloVM valoracionArticulo = new ValoracionArticuloAssembler().EN2VM(valoracionArticuloEN);
             SessionClose();
             return View(valoracionArticulo);
         }
 
         // POST: ValoracionArticuloController/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ValoracionArticuloVM valoracionArticulo)
         {
-            if (validarToken() == -1)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
-
             try
             {
+                SessionInitialize();
+
+                ValoracionArticuloRepository valoracionArticuloRepository = new(session);
+                ValoracionArticuloCEN valoracionArticuloCEN = new(valoracionArticuloRepository);
+
+                ValoracionArticuloEN valoracionArticuloEN = valoracionArticuloCEN.DamePorOID(id);
+
+                // Validamos que el usuario logueado no intente editar la valoración de otro
+                int idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                if (valoracionArticuloEN.Usuario.Id != idUser)
+                    RedirectToAction("Index", "Home");
+
                 new ValoracionArticuloCEN(new ValoracionArticuloRepository()).ModificarValoracion(
                     id,
                     valoracionArticulo.Valoracion
                 );
+
+                SessionClose();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -125,14 +127,25 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: ValoracionArticuloController/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
-            if (validarToken() == -1)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
+            SessionInitialize();
+
+            ValoracionArticuloRepository valoracionArticuloRepository = new(session);
+            ValoracionArticuloCEN valoracionArticuloCEN = new(valoracionArticuloRepository);
+
+            ValoracionArticuloEN valoracionArticuloEN = valoracionArticuloCEN.DamePorOID(id);
+
+            // Validamos que el usuario logueado no intente editar la valoración de otro
+            int idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (valoracionArticuloEN.Usuario.Id != idUser)
+                RedirectToAction("Index", "Home");
 
             new ValoracionArticuloCEN(new ValoracionArticuloRepository()).BorrarValoracion(id);
+
+            SessionClose();
             return RedirectToAction(nameof(Index));
         }
 
@@ -141,13 +154,22 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            if (validarToken() == -1)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
-
             try
             {
+                SessionInitialize();
+
+                ValoracionArticuloRepository valoracionArticuloRepository = new(session);
+                ValoracionArticuloCEN valoracionArticuloCEN = new(valoracionArticuloRepository);
+
+                ValoracionArticuloEN valoracionArticuloEN = valoracionArticuloCEN.DamePorOID(id);
+
+                // Validamos que el usuario logueado no intente editar la valoración de otro
+                int idUser = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                if (valoracionArticuloEN.Usuario.Id != idUser)
+                    RedirectToAction("Index", "Home");
+
+                SessionClose();
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
@@ -9,6 +10,7 @@ using NemesisNevulaWeb.Models;
 
 namespace NemesisNevulaWeb.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class CompraController : BasicController
     {
         // GET: CompraController

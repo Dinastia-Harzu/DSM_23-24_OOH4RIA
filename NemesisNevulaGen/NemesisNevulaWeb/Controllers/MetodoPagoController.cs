@@ -10,11 +10,14 @@ using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 namespace NemesisNevulaWeb.Controllers
 {
     public class MetodoPagoController : BasicController
     {
         // GET: MetodoPagoController
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             SessionInitialize();
@@ -29,13 +32,32 @@ namespace NemesisNevulaWeb.Controllers
             return View(listMP);
         }
 
+        [Authorize]
         // GET: MetodoPagoController/Details/5
         public ActionResult Details(int id)
         {
+            SessionInitialize();
+
+            MetodoPagoRepository mpRepository = new MetodoPagoRepository(session);
+            MetodoPagoCEN mpCEN = new MetodoPagoCEN(mpRepository);
+
+            MetodoPagoEN mp = mpCEN.DamePorOID(id);
+
+            // Validamos que el método de pago le pertenezca al usuario logueado
+            IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
+
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (!listIdUsers.Any(user => user.Id == idUserLogued))
+                return RedirectToAction("Index", "Home");
+
+            SessionClose();
+
             return View();
         }
 
         // GET: MetodoPagoController/Create
+        [Authorize]
         public ActionResult Create(MetodoPagoVM mp)
         {
             try
@@ -52,6 +74,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: MetodoPagoController/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -67,8 +90,26 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: MetodoPagoController/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
+            SessionInitialize();
+
+            MetodoPagoRepository mpRepository = new MetodoPagoRepository(session);
+            MetodoPagoCEN mpCEN = new MetodoPagoCEN(mpRepository);
+
+            MetodoPagoEN mp = mpCEN.DamePorOID(id);
+
+            // Validamos que el método de pago le pertenezca al usuario logueado
+            IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
+
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (!listIdUsers.Any(user => user.Id == idUserLogued))
+                return RedirectToAction("Index", "Home");
+
+            SessionClose();
+
             return View();
         }
 
@@ -79,6 +120,23 @@ namespace NemesisNevulaWeb.Controllers
         {
             try
             {
+                SessionInitialize();
+
+                MetodoPagoRepository mpRepository = new MetodoPagoRepository(session);
+                MetodoPagoCEN mpCEN = new MetodoPagoCEN(mpRepository);
+
+                MetodoPagoEN mp = mpCEN.DamePorOID(id);
+
+                // Validamos que el método de pago le pertenezca al usuario logueado
+                IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
+
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                if (!listIdUsers.Any(user => user.Id == idUserLogued))
+                    return RedirectToAction("Index", "Home");
+
+                SessionClose();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -88,8 +146,26 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: MetodoPagoController/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
+            SessionInitialize();
+
+            MetodoPagoRepository mpRepository = new MetodoPagoRepository(session);
+            MetodoPagoCEN mpCEN = new MetodoPagoCEN(mpRepository);
+
+            MetodoPagoEN mp = mpCEN.DamePorOID(id);
+
+            // Validamos que el método de pago le pertenezca al usuario logueado
+            IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
+
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (!listIdUsers.Any(user => user.Id == idUserLogued))
+                return RedirectToAction("Index", "Home");
+
+            SessionClose();
+
             return View();
         }
 
@@ -100,6 +176,23 @@ namespace NemesisNevulaWeb.Controllers
         {
             try
             {
+                SessionInitialize();
+
+                MetodoPagoRepository mpRepository = new MetodoPagoRepository(session);
+                MetodoPagoCEN mpCEN = new MetodoPagoCEN(mpRepository);
+
+                MetodoPagoEN mp = mpCEN.DamePorOID(id);
+
+                // Validamos que el método de pago le pertenezca al usuario logueado
+                IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
+
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                if (!listIdUsers.Any(user => user.Id == idUserLogued))
+                    return RedirectToAction("Index", "Home");
+
+                SessionClose();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
