@@ -10,19 +10,32 @@
     }
 
     .imagen-en-marco {
-        max-width: 100%;
+        max-width: 750px;
         height: auto;
-        border: 10px solid white;
         filter: brightness(80%) grayscale(20%);
+        display: block; 
+      
+    }
+
+    .clase {
+        justify-content: center;
+    }
+
+    hr {
+        width: 100%;
+        margin: 10px 0; /* Ajusta el margen superior e inferior según sea necesario */
     }
 </style>
 
-<div class="container-fluid d-flex flex-row">
-    <div class="d-flex flex-column w-100">
-        <h2>@Html.DisplayFor(model => model.Item1.Titulo)</h2>
-        <img class="imagen-en-marco" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Foto)" alt="@Html.DisplayFor(model => model.Item1.Titulo)" />
+<div class="container-fluid d-flex flex-row clase">
+    <div class="d-flex flex-column w-100 m-3 align-items-center">
         
-        <p class="text-noticia" style="white-space: pre-line;">@Html.DisplayFor(model => model.Item1.Descripcion)</p>
+        <h1 style="text-align:center; text-transform: uppercase;" class="text-warning">@Html.DisplayFor(model => model.Item1.Titulo)</h1>
+        <hr />
+
+        <img class="imagen-en-marco m-3 mx-auto" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Foto)" alt="@Html.DisplayFor(model => model.Item1.Titulo)" />
+
+        <p class="text-noticia" style="white-space: pre-line; font-size:large;">@Html.DisplayFor(model => model.Item1.Descripcion)</p>
     </div>
     <div class="w-25">
         @await Html.PartialAsync("_NoticiasParcial", (IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>)Model.Item2)
