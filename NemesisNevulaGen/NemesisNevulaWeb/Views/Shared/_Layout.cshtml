@@ -37,15 +37,30 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <p class="text-warning mt-2 m-2">0.00 €</p>
+                            @if (User.FindFirstValue(ClaimTypes.Name) != null)
+                            {
+                                <p class="text-warning mt-2 m-2">0.00 €</p>
+                            }
                         </li>
+                        @if (User.FindFirstValue(ClaimTypes.Name) != null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewBag.CurrentPage == "Perfil" ? "nav-activo" : "")" href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">@User.FindFirstValue(ClaimTypes.Name)</a>
+                            </li>
+                        }
+                        else {
+                            <li class="nav-item d-flex justify-content-between">
+                                <a class="nav-link m-1 @(ViewBag.CurrentPage == "Login" ? "nav-activo" : "") btn btn-aceptar" href="@Url.Action("Login","Usuario")">Identifícarse</a>
+                                <a class="nav-link m-1 @(ViewBag.CurrentPage == "Registro" ? "nav-activo" : "") btn btn-cancelar" href="@Url.Action("Create","Usuario")">Registrarse</a>
+                            </li>
+                        }
                         <li class="nav-item">
-                            <a class="nav-link @(ViewBag.CurrentPage == "Perfil" ? "nav-activo" : "")" href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">@User.FindFirstValue(ClaimTypes.Name)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">
-                                <img class="rounded-circle" src="~/css/estilos/imagenes/ge.jpeg" alt="foto de usuario" style="width: 40px; height: 40px;" />
-                            </a>
+                            @if (User.FindFirstValue(ClaimTypes.Name) != null)
+                            {
+                                <a href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">
+                                    <img class="rounded-circle" src="~/css/estilos/imagenes/ge.jpeg" alt="foto de usuario" style="width: 40px; height: 40px;" />
+                                </a>
+                            }
                         </li>
                     </ul>
                 </div>

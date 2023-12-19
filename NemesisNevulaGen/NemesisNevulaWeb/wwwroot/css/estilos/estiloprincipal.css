@@ -33,20 +33,20 @@ a:hover {
 
 .btn-aceptar {
     background-color: yellow;
-    color: black;
+    color: black !important;
     font-weight: bolder;
 }
 
 .btn-cancelar {
     background-color: mediumpurple;
-    color: white;
+    color: white !important;
     font-weight: bolder;
 }
 
 .btn-aceptar:hover, .btn-cancelar:hover{
     background-color: black;
     border: 1px solid white;
-    color: white;
+    color: white !important;
     font-weight: bolder;
 }
 
