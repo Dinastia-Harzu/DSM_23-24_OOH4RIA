@@ -1,43 +1,30 @@
-﻿@model NemesisNevulaWeb.Models.NoticiaVM
+﻿@model Tuple<NemesisNevulaWeb.Models.NoticiaVM, IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>>
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Html.DisplayFor(model => model.Item1.Titulo);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .text-noticia {
+        text-align: justify;
+    }
 
-<h1>Details</h1>
+    .imagen-en-marco {
+        max-width: 100%;
+        height: auto;
+        border: 10px solid white;
+        filter: brightness(80%) grayscale(20%);
+    }
+</style>
 
-<div>
-    <h4>NoticiaVM</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Foto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Foto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EsPublicada)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EsPublicada)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+<div class="container-fluid d-flex flex-row">
+    <div class="d-flex flex-column w-100">
+        <h2>@Html.DisplayFor(model => model.Item1.Titulo)</h2>
+        <img class="imagen-en-marco" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Foto)" alt="@Html.DisplayFor(model => model.Item1.Titulo)" />
+        
+        <p class="text-noticia" style="white-space: pre-line;">@Html.DisplayFor(model => model.Item1.Descripcion)</p>
+    </div>
+    <div class="w-25">
+        @await Html.PartialAsync("_NoticiasParcial", (IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>)Model.Item2)
+    </div>
 </div>

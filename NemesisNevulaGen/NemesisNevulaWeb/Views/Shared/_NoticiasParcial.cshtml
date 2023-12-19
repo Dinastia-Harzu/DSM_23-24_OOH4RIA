@@ -24,6 +24,8 @@
                 return 4;
             case "Articulo":
                 return 12;
+            case "Noticia":
+                return 12;
             default:
                 return 4;
         }
@@ -34,6 +36,8 @@
         switch(obtenerURI(url))
         {
             case "Articulo":
+                return 2;
+            case "Noticia":
                 return 2;
             default: return -1;
         }
@@ -82,36 +86,24 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-md-4 mb-4">
-                <a href="@Url.Action("Details", "Noticia", new { id = item.Id })" class="">
-                    <div class="card animated-card">
-                        <img src="../css/estilos/imagenes/@item.Foto" class="card-img-top" alt="Imagen de la noticia">
-                        <div class="card-body bg-dark">
-                            <h4 class="card-title text-warning" style="text-transform: uppercase;">@item.Titulo</h4>
-                            <p class="card-text" style="color:white;">@alcortardescripcion(@item.Descripcion)</p>
-                        </div>
-                    </div>
-                </a>
             @if (numNoticias(ViewContext.HttpContext.Request.Path) == i)
             {
                 break;
             }
             <div class="col-md-@alternarCSS(ViewContext.HttpContext.Request.Path) mb-4">
-                <div class="card">
-                    @if (!string.IsNullOrEmpty(item.Foto))
-                    {
+                <a href="@Url.Action("Details", "Noticia", new { id = item.Id })" class="">
+                    <div class="card animated-card">
                         <img src="~/css/estilos/imagenes/@item.Foto" class="card-img-top" alt="Imagen de la noticia">
-                    }
-                    <div class="card-body bg-dark">
-                        <h5 class="card-title">@item.Titulo</h5>
-                        <p class="card-text">@acortarDescripcion(@item.Descripcion)</p>
-                        @Html.ActionLink("Detalles", "Details", "Noticia", new { id = item.Id }, new { @class = "btn btn-secondary" })
+                        <div class="card-body bg-dark">
+                            <h4 class="card-title text-warning" style="text-transform: uppercase;">@item.Titulo</h4>
+                            <p class="card-text" style="color:white;">@acortarDescripcion(@item.Descripcion)</p>
+                        </div>
                     </div>
-                </div>
+                </a> 
             </div>
             i++;
         }
     </div>
-</div>
+
 
 
