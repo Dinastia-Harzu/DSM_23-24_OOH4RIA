@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
@@ -51,6 +52,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: ArticuloController/Create
+        [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             ViewBag.CurrentPage = "Tienda";
@@ -58,6 +60,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: ArticuloController/Create
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ArticuloVM articulo)
@@ -89,6 +92,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: ArticuloController/Edit/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id)
         {
             ViewBag.CurrentPage = "Tienda";
@@ -104,6 +108,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: ArticuloController/Edit/5
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ArticuloVM articulo)
@@ -136,6 +141,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: ArticuloController/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int id)
         {
             ArticuloRepository artRepo = new ArticuloRepository();
@@ -146,6 +152,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: ArticuloController/Delete/5
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
