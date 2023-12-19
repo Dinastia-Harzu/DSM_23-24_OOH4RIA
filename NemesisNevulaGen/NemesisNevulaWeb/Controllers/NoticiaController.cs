@@ -46,8 +46,14 @@ namespace NemesisNevulaWeb.Controllers
             NoticiaEN noticiaEN = noticiaCEN.DamePorOID(id);
             NoticiaVM noticiaVM = new NoticiaAssembler().EN2VM(noticiaEN);
 
+            IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
+            IEnumerable<NoticiaVM> listaNoticias = new NoticiaAssembler().ListEN2VM(listaEN).ToList();
+            
+
             SessionClose();
-            return View(noticiaVM);
+
+            var viewModel = new Tuple<NoticiaVM, IEnumerable<NoticiaVM>>(noticiaVM, listaNoticias);
+            return View(viewModel);
         }
 
         // GET: NoticiaController/Create
