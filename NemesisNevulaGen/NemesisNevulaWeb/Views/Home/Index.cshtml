@@ -2,12 +2,12 @@
     ViewData["Title"] = "Index";
 
 }
+<div class="titulo" style="text-align:center;">
+    <h1>¡Bienvenido a la tienda virtual de Nemesis Nevula!</h1>
+    <h2>Descubre nuestras novedades</h2>
+</div>
 
 
-<h1>Index</h1>
-
-<h2>¡Bienvenido a la tienda virtual de Nemesis Nevula!</h2>
-
-
-
+@await Html.PartialAsync("_CarouselNoticiaParcial", (IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>)Model.Item1)
+<h2 class="m-5" style="text-align: center;">Nuestras últimas noticias</h2>
 @await Html.PartialAsync("_NoticiasParcial", (IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>)Model.Item1)
