@@ -107,15 +107,20 @@ public static void InitializeData ()
 
                 /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
 
-                int idAdmin = administradorcen.CrearAdmin ("Federico Alfredo", "fnaf1@gmail.com", false, "pfp.png", 12, (float)1.25, "contrasenya");
-                int idUsuarioPremium = usuariopremiumcen.CrearUsuarioPremium ("Bonifacio Conejal", "fnaf2@gmail.com", true, "pfp.png", 2, (float)0.0, "pwd123", DateTime.Now.AddMonths (3));
-                int idUsuario = usuariocen.CrearUsuario ("Chica Gallina", "fnaf3@gmail.com", true, "pfp.png", 2, (float)12.5, "pwd123");
+                int idAdmin = administradorcen.CrearAdmin ("Federico Alfredo", "fnaf1@gmail.com", false, "pfp1.png", 12, (float)1.25, "pwd123");
+                int idUsuarioPremium = usuariopremiumcen.CrearUsuarioPremium ("Bonifacio Conejal", "fnaf2@gmail.com", true, "pfp2.png", 2, (float)0.0, "pwd123", DateTime.Now.AddMonths (3));
+                int idUsuario = usuariocen.CrearUsuario ("Carmen Gallina", "fnaf3@gmail.com", true, "pfp3.png", 2, (float)12.5, "pwd123");
 
                 int idNoticia1 = noticiacen.CrearNoticia ("noticia 2332", false, "titulo", "contactanos.jpeg");
                 int idNoticia2 = noticiacen.CrearNoticia ("noticia 32442432", true, "titulo2", "fotoart.jpeg");
 
-                int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", "Es una guitarra", (float)2.5, "fotoart.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Traje, 0, false, DateTime.Now, "fnaf pelicula", "prevart.jpeg");
-                int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", "Es una pistola", (float)3.9, "fotoart.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Arma, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "prevart.jpeg");
+                String descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
+                int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", descripcion, (float)2.5, "ge.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Traje, 0, false, DateTime.Now, "fnaf pelicula", "prevart.jpeg");
+                int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", descripcion, (float)3.9, "pe.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Arma, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "prevart.jpeg");
+                int idArticulo3 = articulocen.CrearArticulo ("Traje cósmico", descripcion, (float)3.9, "tc.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Raro, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Traje, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "prevart.jpeg");
+                int idArticulo4 = articulocen.CrearArticulo ("Pintada planetaria", descripcion, (float)3.9, "pp.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Grafitti, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "prevart.jpeg");
+                int idArticulo5 = articulocen.CrearArticulo ("Nave alfa", descripcion, (float)3.9, "na.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Legendario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Nave, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "prevart.jpeg");
 
                 int idCompra1 = compracen.CrearCompra (DateTime.Now, idUsuario, idArticulo1, (float)0.0, DateTime.Now.AddDays (1), false);
 
