@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NemesisNevulaWeb.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/estilos/estiloprincipal.css" asp-append-version="true" />
-    <script>
-        String loc = 
-    </script>
+
 </head>
 <body>
     <header>
@@ -38,7 +36,15 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
+                            <p class="text-warning mt-2 m-2">0.00 €</p>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link @(ViewBag.CurrentPage == "Perfil" ? "nav-activo" : "")" asp-area="" asp-controller="Usuario" asp-action="Index">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="@(ViewBag.CurrentPage == "Perfil" ? "nav-activo" : "")" asp-area="" asp-controller="Usuario" asp-action="Index">
+                                <img class="rounded-circle" src="~/css/estilos/imagenes/ge.jpeg" alt="foto de usuario" style="width: 40px; height: 40px;" />
+                            </a>
                         </li>
                     </ul>
                 </div>
