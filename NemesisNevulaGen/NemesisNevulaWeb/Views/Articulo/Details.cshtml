@@ -1,37 +1,44 @@
 ﻿@model Tuple<NemesisNevulaWeb.Models.ArticuloVM, IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>>
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Html.DisplayFor(model => model.Item1.Nombre);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="d-flex flex-row">
+<div class="container-fluid d-flex flex-row">
     <div>
-        <div class="d-flex flex-row">
-            <img class="card-img w-25" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
-            <div class="card bg-black text-white flex-fill">
-                <div class="card-body">
+        <div class="d-flex flex-row w-auto">
+            <div class="w-50">
+                <img class="card-img w-100 h-100" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
+            </div>
+            <div class="card bg-black text-white flex-fill w-50">
+                <div class="card-body w-100">
                     <h1>@Html.DisplayFor(model => model.Item1.Nombre)</h1>
                     <hr />
                     <div class="d-flex justify-content-between">
-                        <p class="card-text fw-bold tiny-etiqueta fs-4" style="background-color: yellow; color:black;">@Html.DisplayFor(model => model.Item1.Precio)</p>
-                        <p class="card-text tiny-etiqueta" style="background-color: mediumpurple;">@Html.DisplayFor(model => model.Item1.Rareza)</p>
+                        <p class="card-text fw-bold tiny-etiqueta fs-4 precio">@Html.DisplayFor(model => model.Item1.Precio)</p>
+                        <p class="card-text tiny-etiqueta color-@Html.DisplayFor(model => model.Item1.Rareza)">@Html.DisplayFor(model => model.Item1.Rareza)</p>
                     </div>
                     <p class="card-text">Temporada: <strong class="fw-bolder">@Html.DisplayFor(model => model.Item1.Temporada)</strong></p>
                     <p class="card-text fw-bold">🏷️ @Html.DisplayFor(model => model.Item1.Tipo)</p>
                     <p class="card-text fw-bold">@Html.DisplayFor(model => model.Item1.Descripcion)</p>
                     <div class="card-footer d-flex flex-column justify-content-center">
-                        <a class="btn btn-aceptar">Comprar</a>
+                        <a class="btn btn-aceptar" href="@Url.Action("Edit", new { id = Model.Item1.Id })">Comprar</a>
                         <a class="btn btn-cancelar mt-2">Regalar</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="text-start">
-            <p class="card-text valoracion-@Html.DisplayFor(model => model.Item1.Valoracion) fs-3"></p>
-        </div>
     </div>
-
+    <div class="w-25">
         @await Html.PartialAsync("_NoticiasParcial", (IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>)Model.Item2)
-
+    </div>
+</div>
+<div class="text-start">
+    <p class="card-text valoracion-@Html.DisplayFor(model => model.Item1.Valoracion) fs-3"></p>
+    <h3>Previsualización</h3>
+    <hr>
+    <div class="w-50 d-flex align-content-lg-center">
+        <img class="card-img w-100 h-100 mb-4" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
+    </div>
 </div>
 <div class="">
     <a class="btn btn-aceptar" asp-action="Index">Volver</a>

@@ -96,3 +96,27 @@ a:hover {
     color: yellow;
     content: '★★★★★';
 }
+
+.color-Comun {
+    font-weight: bolder;
+    background-color: mediumpurple;
+}
+.color-Raro {
+    font-weight: bolder;
+    color: black;
+    background-color: aqua;
+}
+.color-Legendario {
+    font-weight: bolder;
+    background-color: orange;
+}
+.color-Premium {
+    font-weight: bolder;
+    color: black;
+    background-color: lawngreen;
+}
+
+.precio {
+    background-color: yellow;
+    color: black;
+}

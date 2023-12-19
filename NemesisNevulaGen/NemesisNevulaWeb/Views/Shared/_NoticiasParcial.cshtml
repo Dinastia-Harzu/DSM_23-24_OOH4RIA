@@ -28,13 +28,32 @@
                 return 4;
         }
     }
+
+    int numNoticias(string url)
+    {
+        switch(obtenerURI(url))
+        {
+            case "Articulo":
+                return 2;
+            default: return -1;
+        }
+    }
+
+    var i = 0;
 }
 
+
+
 <div class="container">
-    <h1>Path: @obtenerURI(ViewContext.HttpContext.Request.Path)</h1>
+    <h1>Noticias</h1>
+    <hr/>
     <div class="row">
         @foreach (var item in Model)
         {
+            @if (numNoticias(ViewContext.HttpContext.Request.Path) == i)
+            {
+                break;
+            }
             <div class="col-md-@alternarCSS(ViewContext.HttpContext.Request.Path) mb-4">
                 <div class="card">
                     @if (!string.IsNullOrEmpty(item.Foto))
@@ -48,6 +67,7 @@
                     </div>
                 </div>
             </div>
+            i++;
         }
     </div>
 </div>

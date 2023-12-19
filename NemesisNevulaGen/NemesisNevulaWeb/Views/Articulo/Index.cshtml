@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<NemesisNevulaWeb.Models.ArticuloVM>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tienda";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -34,11 +34,11 @@
                 <a class="text-white" href="@Url.Action("Details", new { id = item.Id })">
                     <div class="card bg-dark text-white position-relative">
                         <img src="~/css/estilos/imagenes/@Html.DisplayFor(modelItem => item.Fotografia)" class="card-img" alt="@Html.DisplayFor(modelItem => item.Nombre)" />
-                        <p class="card-text position-absolute top-0 end-0 tiny-etiqueta" style="background-color: mediumpurple;">@Html.DisplayFor(modelItem => item.Rareza)</p>
+                        <p class="card-text position-absolute top-0 end-0 tiny-etiqueta color-@Html.DisplayFor(model => item.Rareza)">@Html.DisplayFor(modelItem => item.Rareza)</p>
                         <div class="card-body">
                             <h5 class="card-title text-warning fw-bold text-uppercase">@Html.DisplayFor(modelItem => item.Nombre)</h5>
                             <div class="d-flex justify-content-between">
-                                <p class="card-text fw-bold tiny-etiqueta fs-4" style="background-color: yellow; color:black;">@Html.DisplayFor(modelItem => item.Precio)</p>
+                                <p class="card-text fw-bold tiny-etiqueta fs-4 precio">@Html.DisplayFor(modelItem => item.Precio)</p>
                                 <p class="card-text fw-bold">@Html.DisplayFor(modelItem => item.Tipo)</p>
                             </div>
                         </div>
