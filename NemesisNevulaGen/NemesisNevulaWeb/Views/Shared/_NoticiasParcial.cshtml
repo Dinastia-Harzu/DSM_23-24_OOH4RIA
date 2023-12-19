@@ -83,7 +83,7 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            @if(item.EsPublicada == true)
+            @if(item.EsPublicada)
             {
                @if (numNoticias(ViewContext.HttpContext.Request.Path) == i)
             {
