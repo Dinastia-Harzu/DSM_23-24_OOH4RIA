@@ -27,7 +27,6 @@ namespace NemesisNevulaWeb.Models
         [Display(Prompt = "Inserte su foto de perfil", Description = "Foto de perfil del usuario", Name = "Foto de perfil")]
         public IFormFile Foto_perfil2 { get; set; }
 
-
         [ScaffoldColumn(false)]
         public int PuntosNevula { get; set; }
 

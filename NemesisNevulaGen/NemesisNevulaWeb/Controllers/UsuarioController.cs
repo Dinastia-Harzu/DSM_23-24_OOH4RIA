@@ -12,6 +12,11 @@ using NemesisNevulaWeb.Models;
 using NHibernate.Id.Insert;
 using System.Collections.Generic;
 
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+
 namespace NemesisNevulaWeb.Controllers
 {
     public class UsuarioController : BasicController
@@ -27,22 +32,18 @@ namespace NemesisNevulaWeb.Controllers
         // GET: UsuarioController/Login
         public ActionResult Login()
         {
-            if (validarToken() != -1)
-            {
+            if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
-            }
 
             return View();
         }
 
         // POST: UsuarioController/Login
+        [AllowAnonymous]
         [HttpPost]
-        public ActionResult Login(LoginUsuarioVM login)
+        public async Task<ActionResult> Login(LoginUsuarioVM login)
         {
-            // Validamos el token del usuario
-            int idUser = validarToken();
-
-            if (idUser != -1)
+            if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
 
             UsuarioRepository userRepo = new();
@@ -50,48 +51,50 @@ namespace NemesisNevulaWeb.Controllers
 
             IList<UsuarioEN> users = userCEN.DamePorNombre(login.Nombre);
 
-            if (users.Count == 1)
-            {
-                UsuarioEN user = users[0];
-
-                string token = userCEN.Login(user.Id, login.Pass);   // Función que devuelve token si se inicia sesión correctamente
-                if (token != null)
-                {
-                    Response.Cookies.Append("token", token, new CookieOptions
-                    {
-                        Expires = DateTime.Now.AddHours(2),
-                        HttpOnly = true,
-                        Secure = true,
-                        SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict
-                    });
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "La contraseña no coinicide con la del usuario introducido");
-                    return View();
-                }
-            }
-            else
+            if (users.Count == 0)
             {
                 ModelState.AddModelError("", "No existe un usuario con ese nombre");
                 return View();
             }
+            UsuarioEN user = users[0];
 
-            return View();
+            string token = userCEN.Login(user.Id, login.Pass);   // Función que devuelve token si se inicia sesión correctamente
+            if (token == null)
+            {
+                ModelState.AddModelError("", "La contraseña no coinicide con la del usuario introducido");
+                return View();
+            }
+
+            // Recogemos el rol del usuario
+            string rolUser = tipoUsuario(user.Id);
+
+            // Creamos los campos del usuario logueado
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),   // ID del usuario
+                new Claim(ClaimTypes.Name, user.Nombre),    // Nombre de usurio
+                new Claim(ClaimTypes.Role, rolUser)     // Rol
+            };
+
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));  
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        public async Task<ActionResult> logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: UsuarioController
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
-            // Validamos el token del usuario
-            int idUser = validarToken();
-
-            if (idUser == -1)
-                return RedirectToAction("Login", "Usuario");
-
-            tipoUsuario();
-
             SessionInitialize();
             UsuarioRepository userRepo = new();
             UsuarioCEN userCEN = new(userRepo);
@@ -105,13 +108,15 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: UsuarioController/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
-            // Validamos el token del usuario
-            int idUser = validarToken();
+            // Validamos el token del usuario registrado
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
-            if (idUser == -1)
-                return RedirectToAction("Login", "Usuario");
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
 
             SessionInitialize();
 
@@ -129,10 +134,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: UsuarioController/Create
         public ActionResult Create()
         {
-            // Validamos el token del usuario
-            int idUser = validarToken();
-
-            if (idUser != -1)
+            if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
 
             return View();
@@ -144,9 +146,7 @@ namespace NemesisNevulaWeb.Controllers
         public async Task<ActionResult> CreateAsync(UsuarioVM user)
         {
             // Validamos el token del usuario
-            int idUser = validarToken();
-
-            if (idUser != -1)
+            if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
 
             try
@@ -199,12 +199,14 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: UsuarioController/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
-            if (validarToken() == -1)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
+
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
 
             SessionInitialize();
 
@@ -219,15 +221,16 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: UsuarioController/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, UsuarioVM user)
         {
-            // Validamos el token del usuario
-            int idUser = validarToken();
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
-            if (idUser == -1)
-                return RedirectToAction("Login", "Usuario");
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
 
             try
             {
@@ -245,13 +248,14 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: UsuarioController/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
-            // Validamos el token del usuario
-            int idUser = validarToken();
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
-            if (idUser == -1)
-                return RedirectToAction("Login", "Usuario");
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
 
             UsuarioRepository userRepo = new();
             UsuarioCEN userCEN = new(userRepo);
@@ -262,15 +266,16 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: UsuarioController/Delete/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            // Validamos el token del usuario
-            int idUser = validarToken();
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
-            if (idUser == -1)
-                return RedirectToAction("Login", "Usuario");
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
 
             try
             {
@@ -294,14 +299,11 @@ namespace NemesisNevulaWeb.Controllers
             Console.WriteLine("Fecha inicio: " + filtroFechaIni + "\n");
             Console.WriteLine("Fecha final: " + filtroFechaFin + "\n");
 
-            //Validación de usuario
-            int idUser = validarToken();
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
-            if (idUser == -1)   // token erroneo o no definido
-                return RedirectToAction("Login", "Usuario");
-
-            if (idUser != id)   // usuario de token != usuario pedido por url
-                return RedirectToAction(nameof(Index)); // CAMBIAR A PAGINA ERROR 404 O AVISO
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
 
             SessionInitialize();
 
@@ -376,14 +378,11 @@ namespace NemesisNevulaWeb.Controllers
             Console.WriteLine("Fecha inicio: " + filtroFechaIni + "\n");
             Console.WriteLine("Fecha final: " + filtroFechaFin + "\n");
 
-            // Validación de usuario
-            int idUser = validarToken();
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
-            if (idUser == -1)   // token erroneo o no definido
-                return RedirectToAction("Login", "Usuario");
-
-            if (idUser != id)   // usuario de token != usuario pedido por url
-                return RedirectToAction(nameof(Index)); // CAMBIAR A PAGINA ERROR 404 O AVISO
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
 
             SessionInitialize();
 

@@ -5,6 +5,9 @@ using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Models;
 using System.Diagnostics;
 
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+
 namespace NemesisNevulaWeb.Controllers
 {
     public class HomeController : Controller
@@ -19,6 +22,9 @@ namespace NemesisNevulaWeb.Controllers
         public IActionResult 
             Index()
         {
+            if(User.Identity.IsAuthenticated)
+                Console.WriteLine("Rol del usuario: " + User.FindFirstValue(ClaimTypes.Role));
+
             return View();
         }
 
