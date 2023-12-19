@@ -11,7 +11,7 @@
         <div class="w-75">
             @if (User.FindFirstValue(ClaimTypes.Name) != null && User.FindFirstValue(ClaimTypes.Role) == "Administrador")
             {
-                <div class="">
+                <div class="mb-2">
                     <a class="btn btn-aceptar" href="@Url.Action("Edit", new { id = Model.Item1.Id })">Editar</a>
                     <a class="btn btn-cancelar" href="@Url.Action("Delete", new { id = Model.Item1.Id })">Borrar</a>
                 </div>

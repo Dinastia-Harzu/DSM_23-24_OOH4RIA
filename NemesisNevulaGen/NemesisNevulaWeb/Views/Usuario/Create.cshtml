@@ -20,7 +20,7 @@
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                         <div class="form-group form-outline form-white mb-4 text-center">
                                             <label asp-for="Foto_perfil2" id="imgInputLabel" class="control-label">
-                                                <img id="imgPreview" src="/FotosPerfil/sinFoto.png" alt="Imagen previsualizada" width="100" height="100" />
+                                                <img id="imgPreview" class=" rounded-circle" src="/FotosPerfil/sinFoto.png" alt="Imagen previsualizada" style="width:100px;height:100px;cursor:pointer;"/>
                                             </label>
                                             <input asp-for="Foto_perfil2" type="file" id="imgInput" required="false" accept="image/*" class="form-control" style="display: none;" />
                                             <span asp-validation-for="Foto_perfil2" class="text-danger"></span>
