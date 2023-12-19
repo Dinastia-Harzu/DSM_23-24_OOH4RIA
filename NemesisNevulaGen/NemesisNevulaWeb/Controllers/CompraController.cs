@@ -73,29 +73,31 @@ namespace NemesisNevulaWeb.Controllers
             ViewData["articulosItems"] = articulosItems;
 
             //-----------------------------------------------------------------------------------
-            return Create(id, precio, new CompraVM());
+            int idUsuario = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            UsuarioEN p_usuario = usuarioCEN.DamePorOID(idUsuario);
+            ArticuloEN p_articulo = articuloCEN.DamePorOID(id);
+            CompraEN compraEN = new CompraEN(1, DateTime.Now, p_usuario, p_articulo, precio, DateTime.Now.AddDays(30), false, null);
 
-            return View();
+            ViewData["id_art"] = id;
+
+            return View(new CompraAssembler().ConvertirENToViewModel(compraEN));
+
+            //return View();
         }
 
         // POST: CompraController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, int precio, CompraVM comp)
+        public ActionResult Create(CompraVM comp)
         {
             try
             {
                 CompraRepository compraRepository = new CompraRepository();
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
 
-                // Obtenemos los datos necesarios para crear la compra: 
-                DateTime fechacompra = DateTime.Now;
-                int idUsuario = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-                DateTime fechacaducidad = DateTime.Now.AddDays(30);
-
                 // Creamos compra
-                compraCEN.CrearCompra(fechacompra, idUsuario, id, precio, fechacaducidad, false);
-                return RedirectToAction("Details", new {id = id});
+                int result_comp = compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, comp.FechaCaducidad, false);
+                return RedirectToAction("Details", new {id = result_comp});
 
             }
             catch
