@@ -38,7 +38,7 @@
             case "Articulo":
                 return 2;
             case "Noticia":
-                return 2;
+                return 4;
             default: return -1;
         }
     }
@@ -60,9 +60,6 @@
         background-color: #584383 !important;
     }
 
-
-   
-
     @@keyframes moveUp {
         0% {
             transform: translateY(0);
@@ -81,12 +78,14 @@
 </style>
 
 <div class="container">
-    <h1>Noticias</h1>
+    <h1 style="text-align:center;">Noticias</h1>
     <hr/>
     <div class="row">
         @foreach (var item in Model)
         {
-            @if (numNoticias(ViewContext.HttpContext.Request.Path) == i)
+            @if(item.EsPublicada)
+            {
+               @if (numNoticias(ViewContext.HttpContext.Request.Path) == i)
             {
                 break;
             }
@@ -101,7 +100,9 @@
                     </div>
                 </a> 
             </div>
-            i++;
+            i++; 
+            }
+            
         }
     </div>
 
