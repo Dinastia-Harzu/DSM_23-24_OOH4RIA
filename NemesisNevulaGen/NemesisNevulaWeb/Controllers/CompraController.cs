@@ -6,6 +6,7 @@ using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
+using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
@@ -40,7 +41,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: CompraController/Create
-        public ActionResult Create()
+        public ActionResult Create(int id, int precio)
         {
             UsuarioRepository usuarioRepository = new UsuarioRepository();
             UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
@@ -54,6 +55,7 @@ namespace NemesisNevulaWeb.Controllers
             }
 
             ViewData["usuariosItems"] = usuariosItems;
+
 
             // --------------------------------------------------------------------------------
 
@@ -70,22 +72,31 @@ namespace NemesisNevulaWeb.Controllers
 
             ViewData["articulosItems"] = articulosItems;
 
+            //-----------------------------------------------------------------------------------
+            return Create(id, precio, new CompraVM());
+
             return View();
         }
 
         // POST: CompraController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CompraVM comp)
+        public ActionResult Create(int id, int precio, CompraVM comp)
         {
             try
             {
                 CompraRepository compraRepository = new CompraRepository();
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
 
-                // CREACION NO DEFINITIVA: A ESPERAS DE COMO SE HACE
-                compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, comp.FechaCaducidad, false);
-                return RedirectToAction(nameof(Index));
+                // Obtenemos los datos necesarios para crear la compra: 
+                DateTime fechacompra = DateTime.Now;
+                int idUsuario = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                DateTime fechacaducidad = DateTime.Now.AddDays(30);
+
+                // Creamos compra
+                compraCEN.CrearCompra(fechacompra, idUsuario, id, precio, fechacaducidad, false);
+                return RedirectToAction("Details", new {id = id});
+
             }
             catch
             {

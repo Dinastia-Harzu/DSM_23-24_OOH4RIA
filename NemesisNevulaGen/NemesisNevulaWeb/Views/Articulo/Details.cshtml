@@ -22,6 +22,7 @@
                     <p class="card-text fw-bold">@Html.DisplayFor(model => model.Item1.Descripcion)</p>
                     <div class="card-footer d-flex flex-column justify-content-center">
                         <a class="btn btn-aceptar" href="@Url.Action("Edit", new { id = Model.Item1.Id })">Comprar</a>
+                        <a class="btn btn-aceptar" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@Model.Item1.Precio">Comprar bien</a>
                         <a class="btn btn-cancelar mt-2">Regalar</a>
                     </div>
                 </div>
