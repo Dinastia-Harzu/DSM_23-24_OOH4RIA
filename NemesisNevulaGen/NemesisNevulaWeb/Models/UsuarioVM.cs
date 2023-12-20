@@ -25,7 +25,7 @@ namespace NemesisNevulaWeb.Models
         public string Foto_perfil { get; set; }
 
         [Display(Prompt = "Inserte su foto de perfil", Description = "Foto de perfil del usuario", Name = "Foto de perfil")]
-        public IFormFile Foto_perfil2 { get; set; }
+        public IFormFile? Foto_perfil2 { get; set; }
 
         [ScaffoldColumn(false)]
         public int PuntosNevula { get; set; }
@@ -36,9 +36,8 @@ namespace NemesisNevulaWeb.Models
         public float Cartera { get; set; }
 
         [Display(Prompt = "Introduzca su contraseña", Description = "Contraseña del usuario", Name = "Contraseña")]
-        [Required(ErrorMessage = "Debe introducir una contraseña")]
         [DataType(DataType.Password)]
         // [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*?]).{8,50}$", ErrorMessage = "La contraseña tiene que tener al menos 8 caracteres, alguna mayúscula y símbolo especial como !@#$%^&*?")]
-        public string Pass { get; set; }
+        public string? Pass { get; set; }
     }
 }

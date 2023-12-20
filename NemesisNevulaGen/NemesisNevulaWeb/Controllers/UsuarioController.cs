@@ -240,11 +240,13 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, UsuarioVM user)
+        public async Task<ActionResult> EditAsync(int id, UsuarioVM user)
         {
             
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
+
+            Console.WriteLine("¿Entramos?");
 
             if (idUserString != id.ToString() && rolUser != "Administrador")
                 return RedirectToAction("Index", "Home");
@@ -252,17 +254,64 @@ namespace NemesisNevulaWeb.Controllers
             if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Perfil";
 
+            Console.WriteLine("ENTRAMOS");
+
             try
             {
                 UsuarioRepository userRepo = new();
                 UsuarioCEN userCEN = new(userRepo);
 
-                userCEN.ModificarUsuario(id, user.Nombre, user.Correo, user.ConGoogle, user.Foto_perfil, user.PuntosNevula, user.Cartera, user.Pass);
+                Console.WriteLine("Foto: " + user.Foto_perfil2);
+
+                // Manejamos la subida de foto de perfil
+                string fileName = "", path = "", miDirectorio="/FotosPerfil/";
+                if (user.Foto_perfil2 != null && user.Foto_perfil2.Length > 0)
+                {
+                    Console.WriteLine("Foto definida");
+
+                    fileName = Path.GetFileName(user.Foto_perfil2.FileName).Trim();
+
+                    Console.WriteLine("Nombre foto: "+fileName);
+
+                    string directory = _webHost.WebRootPath + "/FotosPerfil";
+                    path = Path.Combine(directory, fileName);
+
+                    if (!Directory.Exists(directory))
+                        Directory.CreateDirectory(directory);
+
+                    using (var stream = System.IO.File.Create(path))
+                    {
+                        await user.Foto_perfil2.CopyToAsync(stream);
+                    }
+
+                    fileName = miDirectorio + fileName;
+                }
+                else
+                {
+                    Console.WriteLine("NO HAY FOTO");
+                    fileName = user.Foto_perfil;
+                    Console.WriteLine("Nombre de foto antigua: " + fileName);
+                }
+
+                // Si no ha introducido valor para cambiar de contraseña...
+                UsuarioEN userAux = userCEN.DamePorOID(id);
+
+                string userPass = "";
+
+                if (user.Pass == null)
+                    userPass = userAux.Pass;
+                else
+                    userPass = user.Pass;
+
+                Console.WriteLine("Strig imagen definitivo: " + fileName);
+
+                userCEN.ModificarUsuario(id, user.Nombre, user.Correo, userAux.ConGoogle, fileName, userAux.PuntosNevula, userAux.Cartera, userPass);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine("ERROR FATAL: "+e.Message);
                 return View();
             }
         }
@@ -530,6 +579,7 @@ namespace NemesisNevulaWeb.Controllers
             return View(viewModel);
         }
 
+        /*
         //GET: UsuarioController/MetodosPago/5
         [Authorize]
         public ActionResult MetodosPago(int id) 
@@ -545,13 +595,12 @@ namespace NemesisNevulaWeb.Controllers
             UsuarioCEN userCEN = new(userRepository);
 
             // Recogemos los métodos de pago del usuario y los convertiimos a VM
-            UsuarioEN user = userCEN.DamePorOID(id);
-
-            IList<MetodoPagoEN> mpsUserListEN = user.MetodoPago;
+            IList<MetodoPagoEN> mpsUserListEN = userCEN.DameMetodosDePago(id);
 
             IEnumerable<MetodoPagoVM> mpsUserListVM = new MetodoPagoAssembler().ConvertirListENToViewModel(mpsUserListEN).ToList();
 
             return View(mpsUserListVM);
         }
+        */
     }
 }
