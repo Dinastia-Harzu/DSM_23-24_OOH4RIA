@@ -1,4 +1,6 @@
 ﻿@model NemesisNevulaWeb.Models.UsuarioVM
+@using Microsoft.AspNetCore.Identity;
+@using System.Security.Claims;
 
 @{
     ViewData["Title"] = "Details";
@@ -11,19 +13,26 @@
     <h1 style="text-align:center;">Hola, @Html.DisplayFor(model => model.Nombre)</h1>
 </div>
 <div class="d-flex justify-content-evenly mt-2">
-    <div class="d-flex justify-content-start">
-        <p class="text-warning text-uppercase fw-bolder mx-1">Cartera: </p>
-        <p class="text-white mx-1">@Html.DisplayFor(model => model.Cartera)</p>
-    </div>
-    <div class="d-flex justify-content-start">
-        <p class="text-warning text-uppercase fw-bolder mx-1">Mis Puntos Nevula: </p>
-        <p class="text-white mx-1">@Html.DisplayFor(model => model.PuntosNevula)</p>
-    </div>
+    @if (User.FindFirstValue(ClaimTypes.Role) != "Administrador")
+    {
+        <div class="d-flex justify-content-start">
+            <p class="text-warning text-uppercase fw-bolder mx-1">Cartera: </p>
+                <p class="text-white mx-1">@Html.DisplayFor(model => model.Cartera)</p>
+        </div>
+        <div class="d-flex justify-content-start">
+            <p class="text-warning text-uppercase fw-bolder mx-1">Mis Puntos Nevula: </p>
+            <p class="text-white mx-1">@Html.DisplayFor(model => model.PuntosNevula)</p>
+        </div>
+    }
 </div>
 <hr />
 <div class="d-flex justify-content-evenly">
-    <a class="btn btn-aceptar m-2" href="@Url.Action("ArtsFavoritos", new { id = Model.Id })"><i class="fa-solid fa-star"></i> Mis Favoritos</a>
-    <a class="btn btn-aceptar m-2" href="@Url.Action("ArtsAdquiridos", new { id = Model.Id })"><i class="fa-solid fa-user-astronaut"></i> Mis Artículos</a>
-    <a class="btn btn-aceptar m-2" href="@Url.Action("MetodPago","Usuario", new { id = Model.Id })"><i class="fa-solid fa-dollar-sign"></i> Mis Métodos de pago</a>
+    @if (User.FindFirstValue(ClaimTypes.Role) != "Administrador")
+    {
+        <a class="btn btn-aceptar m-2" href="@Url.Action("ArtsFavoritos", new { id = Model.Id })"><i class="fa-solid fa-star"></i> Mis Favoritos</a>
+        <a class="btn btn-aceptar m-2" href="@Url.Action("ArtsAdquiridos", new { id = Model.Id })"><i class="fa-solid fa-user-astronaut"></i> Mis Artículos</a>
+        <a class="btn btn-aceptar m-2" href="@Url.Action("MetodPago","Usuario", new { id = Model.Id })"><i class="fa-solid fa-dollar-sign"></i> Mis Métodos de pago</a>
+    }
     <a class="btn btn-aceptar m-2" href="@Url.Action("Edit", new { id = Model.Id })"><i class="fa-solid fa-pen-to-square"></i> Editar perfil</a>
+    <a class="btn btn-cancelar m-2" href="@Url.Action("Logout","Usuario")"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
 </div>

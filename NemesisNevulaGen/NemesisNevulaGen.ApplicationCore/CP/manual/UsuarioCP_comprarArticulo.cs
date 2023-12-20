@@ -16,66 +16,70 @@ using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
 
 namespace NemesisNevulaGen.ApplicationCore.CP.NemesisNevula
 {
-public partial class UsuarioCP : GenericBasicCP
-{
-public int ComprarArticulo (int p_Usuario_OID, int p_articulo, bool p_aplicarDescuento)
-{
-        /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_comprarArticulo) ENABLED START*/
-
-        int compra_OID = -1;
-
-        try
+    public partial class UsuarioCP : GenericBasicCP
+    {
+        public int ComprarArticulo(int p_Usuario_OID, int p_articulo, bool p_aplicarDescuento)
         {
-                CPSession.SessionInitializeTransaction ();
+            /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_comprarArticulo) ENABLED START*/
 
-                UsuarioCEN usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
-                CompraCEN compraCEN = new CompraCEN (CPSession.UnitRepo.CompraRepository);
-                ArticuloCEN articuloCEN = new ArticuloCEN (CPSession.UnitRepo.ArticuloRepository);
+            int compra_OID = -1;
 
-                CompraCP compraCP = new CompraCP (CPSession);
+            try
+            {
+                CPSession.SessionInitializeTransaction();
 
-                UsuarioEN usuario = usuarioCEN.DamePorOID (p_Usuario_OID);
-                ArticuloEN articulo = articuloCEN.DamePorOID (p_articulo);
+                UsuarioCEN usuarioCEN = new UsuarioCEN(CPSession.UnitRepo.UsuarioRepository);
+                CompraCEN compraCEN = new CompraCEN(CPSession.UnitRepo.CompraRepository);
+                ArticuloCEN articuloCEN = new ArticuloCEN(CPSession.UnitRepo.ArticuloRepository);
+
+                CompraCP compraCP = new CompraCP(CPSession);
+
+                UsuarioEN usuario = usuarioCEN.DamePorOID(p_Usuario_OID);
+                ArticuloEN articulo = articuloCEN.DamePorOID(p_articulo);
 
                 // Calculamos el precio final del articulo
                 float precioTotal = articulo.Precio;
-                if (p_aplicarDescuento == true) {
-                        precioTotal = compraCP.AplicarDescuento (p_aplicarDescuento, p_Usuario_OID, p_articulo, articulo.Precio);
+                if (p_aplicarDescuento == true)
+                {
+                    precioTotal = compraCP.AplicarDescuento(p_aplicarDescuento, p_Usuario_OID, p_articulo, articulo.Precio);
                 }
 
                 if (usuario.Cartera < precioTotal)
-                        Console.WriteLine ("Error: No tiene saldo suficiente en la cartera");
-                else{
-                        usuario.Cartera -= precioTotal;
-                        string aux = usuario.Cartera.ToString ("0.00");
-                        usuario.Cartera = float.Parse (aux);
+                    Console.WriteLine("Error: No tiene saldo suficiente en la cartera");
+                else
+                {
+                    usuario.Cartera -= precioTotal;
+                    string aux = usuario.Cartera.ToString("0.00");
+                    usuario.Cartera = float.Parse(aux);
 
-                        IList<int> artsActualizados = new List<int>();
-                        artsActualizados.Add (articulo.Id);
-                        usuarioCEN.AnyadirArticulo (p_Usuario_OID, artsActualizados);
+                    IList<int> artsActualizados = new List<int>();
+                    artsActualizados.Add(articulo.Id);
+                    usuarioCEN.AnyadirArticulo(p_Usuario_OID, artsActualizados);
 
-                        compra_OID = compraCEN.CrearCompra (DateTime.Now, p_Usuario_OID, p_articulo, precioTotal, false);
+                    compra_OID = compraCEN.CrearCompra(DateTime.Now, p_Usuario_OID, p_articulo, precioTotal, false);
 
-                        // Actualizamos el usuario, ya que hemos modificado el valor en su cartera
-                        usuarioCEN.get_IUsuarioRepository ().ModificarUsuario (usuario);
+                    int puntos = (int)compraCEN.DamePorOID(compra_OID).PrecioTotal * 5;
+                    usuario.PuntosNevula += puntos;
+
+                    // Actualizamos el usuario, ya que hemos modificado el valor en su cartera
+                    usuarioCEN.get_IUsuarioRepository().ModificarUsuario(usuario);
                 }
 
-                CPSession.Commit ();
-        }
-        catch (Exception ex)
-        {
-                CPSession.RollBack ();
+                CPSession.Commit();
+            }
+            catch (Exception ex)
+            {
+                CPSession.RollBack();
                 throw ex;
-                return compra_OID;
-        }
-        finally
-        {
-                CPSession.SessionClose ();
-        }
+            }
+            finally
+            {
+                CPSession.SessionClose();
+            }
 
-        return compra_OID;
+            return compra_OID;
 
-        /*PROTECTED REGION END*/
-}
-}
+            /*PROTECTED REGION END*/
+        }
+    }
 }

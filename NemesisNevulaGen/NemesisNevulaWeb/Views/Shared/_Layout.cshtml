@@ -10,11 +10,10 @@
     if (User.Identity.IsAuthenticated)
     {    
         userData = User.FindFirstValue(ClaimTypes.UserData);
-        cartera = userData.Split('#')[0];
+        if (User.FindFirstValue(ClaimTypes.Role) != "Administrador") cartera = float.Parse(userData.Split('#')[0]).ToString("0.00")+ " €";
         foto = userData.Split('#')[1];        
     }
 }
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +52,7 @@
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <p class="text-warning mt-2 m-2">@cartera €</p>
+                                <p class="text-warning mt-2 m-2">@cartera</p>
                             }
                         </li>
                         @if (User.Identity.IsAuthenticated)
