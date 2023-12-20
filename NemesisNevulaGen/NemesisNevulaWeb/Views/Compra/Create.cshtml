@@ -26,18 +26,26 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="col-sm-12 mb-4">
-                <div><strong>Nombre del artículo a comprar:</strong></div>
+                @if ((bool)ViewData["regalo"])
+                {
+                    <div><strong>Artículo a regalar:</strong></div>
+                    <input name="regalo" type="number" value="1" hidden/>
+                } else {
+                    <div><strong>Artículo a comprar:</strong></div>
+                    <input name="regalo" type="number" value="0" hidden />
+                }
                 <div>@ViewData["nom_art"]</div>
             </div>
 
-            <b>Fecha de compra:</b><br />
-            <span>@Model.Fecha.ToShortDateString()</span>
-            <br /><br />
-            <div class="form-group" hidden>
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control"/>
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>
+            @if((bool)ViewData["regalo"])
+            {
+                <b>¿A quien quieres regalárselo?:</b>
+                <br />
+                <div class="form-group">
+                    <input name="nom_usu_r" type="text" class="form-control" /> 
+                </div>
+                <br />
+            }
 
             <b>Precio total:</b><br />
             <span>@formatearPrecio(Model.PrecioTotal)</span>
