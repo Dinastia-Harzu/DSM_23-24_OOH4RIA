@@ -10,6 +10,12 @@ namespace NemesisNevulaWeb.Controllers
 {
     public class ArticuloController : BasicController
     {
+        private readonly IWebHostEnvironment _webHost;
+
+        public ArticuloController(IWebHostEnvironment webHost)
+        {
+            _webHost = webHost;
+        }
         // GET: ArticuloController
         public ActionResult Index()
         {
@@ -22,6 +28,22 @@ namespace NemesisNevulaWeb.Controllers
 
             IEnumerable<ArticuloVM> listArts = new ArticuloAssembler().ConvertirListENToViewModel(listEN).ToList();
 
+            SessionClose();
+            return View(listArts);
+        }
+
+        // GET: ArticuloController vista admin
+        public ActionResult VistaAdmin()
+        {
+            
+            SessionInitialize();
+            ArticuloRepository articuloRepository = new ArticuloRepository();
+            ArticuloCEN articuloCEN = new ArticuloCEN(articuloRepository);
+
+            IList<ArticuloEN> listEN = articuloCEN.DameTodos(0, -1);
+
+            IEnumerable<ArticuloVM> listArts = new ArticuloAssembler().ConvertirListENToViewModel(listEN).ToList();
+            ViewBag.CurrentPage = "TodosArticulos";
             SessionClose();
             return View(listArts);
         }
@@ -53,40 +75,62 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController/Create
         public ActionResult Create()
         {
-            ViewBag.CurrentPage = "Tienda";
+            ViewBag.CurrentPage = "CrearArticulo";
             return View();
         }
 
         // POST: ArticuloController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ArticuloVM articulo)
+        public async Task<ActionResult> CreateAsync(ArticuloVM articulo)
         {
-            ViewBag.CurrentPage = "Tienda";
-            try
-            {
-                ArticuloRepository artRepo = new ArticuloRepository();
-                ArticuloCEN articuloCEN = new ArticuloCEN(artRepo);
-                articuloCEN.CrearArticulo(
-                    articulo.Nombre,
-                    articulo.Descripcion,
-                    articulo.Precio,
-                    articulo.Fotografia,
-                    articulo.Rareza,
-                    articulo.Tipo,
-                    articulo.Valoracion,
-                    articulo.EsPublicado,
-                    articulo.FechaPublicacion,
-                    articulo.Temporada,
-                    articulo.Previsualizacion
-                );
-                return RedirectToAction(nameof(Index));
+            ViewBag.CurrentPage = "CrearArticulo";
+                ArticuloRepository artiRepo = new();
+                ArticuloCEN artiCEN = new(artiRepo);
+
+                // Validamos el token del usuario
+
+                try
+                {
+
+                // Manejamos la subida de foto de perfil
+                string fileName = "", path = "";
+                if (articulo.Fotografia2 != null && articulo.Fotografia2.Length > 0)
+                {
+                    Console.WriteLine("DENTRO DEL IF" + articulo.Fotografia2);
+                    fileName = Path.GetFileName(articulo.Fotografia2.FileName).Trim();
+
+                    string directory = _webHost.WebRootPath + "/css/estilos/imagenes/";
+                    path = Path.Combine(directory, fileName);
+
+                    if (!Directory.Exists(directory))
+                        Directory.CreateDirectory(directory);
+
+                    using (var stream = System.IO.File.Create(path))
+                    {
+                        await articulo.Fotografia2.CopyToAsync(stream);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("DENTRO DEL ELSE" + articulo.Fotografia2);
+                    fileName = "noImage.jpg";
+                }
+
+                fileName = "/css/estilos/imagenes/" + fileName;
+
+
+                artiCEN.CrearArticulo(articulo.Nombre, articulo.Descripcion, articulo.Precio, fileName, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.EsPublicado, articulo.FechaPublicacion, articulo.Temporada, articulo.Previsualizacion);
+
+                    return RedirectToAction(nameof(Index));
+
+                }
+                catch (Exception e)
+                {
+
+                    return View();
+                }
             }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: ArticuloController/Edit/5
         public ActionResult Edit(int id)
@@ -103,34 +147,66 @@ namespace NemesisNevulaWeb.Controllers
             return View(articulo);
         }
 
+        
+
         // POST: ArticuloController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, ArticuloVM articulo)
+        public async Task<ActionResult> EditAsync(int id, ArticuloVM articulo)
         {
+            Console.WriteLine("pRINCIPIO" + articulo.Fotografia);
             ViewBag.CurrentPage = "Tienda";
+            ArticuloRepository artiRepo = new();
+            ArticuloCEN artiCEN = new(artiRepo);
+
+            // Validamos el token del usuario
+
             try
             {
-                ArticuloRepository artRepo = new ArticuloRepository();
-                ArticuloCEN articuloCEN = new ArticuloCEN(artRepo);
-                articuloCEN.ModificarArticulo(
-                    id,
-                    articulo.Nombre,
-                    articulo.Descripcion,
-                    articulo.Precio,
-                    articulo.Fotografia,
-                    articulo.Rareza,
-                    articulo.Tipo,
-                    articulo.Valoracion,
-                    articulo.EsPublicado,
-                    articulo.FechaPublicacion,
-                    articulo.Temporada,
-                    articulo.Previsualizacion
-                );
+
+                // Manejamos la subida de foto de perfil
+                string fileName = "", path = "";
+                if (articulo.Fotografia2 != null && articulo.Fotografia2.Length > 0)
+                {
+                    string midirectorio = "/css/estilos/imagenes/";
+                    Console.WriteLine("HOLIWIS22 \n" + articulo.Fotografia2 + " \n");
+                    Console.WriteLine(articulo.Fotografia2);
+                    fileName = Path.GetFileName(articulo.Fotografia2.FileName).Trim();
+
+                    string directory = _webHost.WebRootPath + midirectorio;
+                    path = Path.Combine(directory, fileName);
+
+                    Console.WriteLine("antes del directory \n");
+                    if (!Directory.Exists(directory))
+                        Directory.CreateDirectory(directory);
+
+                    Console.WriteLine("antes del path \n");
+                    using (var stream = System.IO.File.Create(path))
+                    {
+                        await articulo.Fotografia2.CopyToAsync(stream);
+                    }
+                    Console.WriteLine("HASTA AQUI \n");
+                    fileName = midirectorio + fileName;
+                }
+                else
+                {
+                    Console.WriteLine("ME MATO YA" + fileName);
+                   
+                    fileName = articulo.Fotografia;
+                    Console.WriteLine("ME MATO YA DESPUES" + fileName);
+                }
+
+
+
+                Console.WriteLine("antes de modificar" + articulo.Fotografia);
+                artiCEN.ModificarArticulo(id, articulo.Nombre, articulo.Descripcion, articulo.Precio, fileName, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.EsPublicado, articulo.FechaPublicacion, articulo.Temporada, articulo.Previsualizacion);
+                Console.WriteLine("DESPUES de modificar" + articulo.Fotografia2);
                 return RedirectToAction(nameof(Index));
+
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine("eXCEPCION" + e.Message + articulo.Fotografia);
                 return View();
             }
         }

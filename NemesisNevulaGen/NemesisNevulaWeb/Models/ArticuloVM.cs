@@ -67,7 +67,8 @@ namespace NemesisNevulaWeb.Models
             maximumLength: 51,
             ErrorMessage = "El nombre de la fotografía no debe superar los 51 caracteres"
         )]
-        public string Fotografia { get; set; }
+        public string? Fotografia { get; set; }
+        public IFormFile? Fotografia2 { get; set; }
 
         [Display(
             Prompt = "Describe el artículo",
@@ -135,5 +136,6 @@ namespace NemesisNevulaWeb.Models
             ErrorMessage = "El nombre del fichero no puede tener más de 51 caracteres"
         )]
         public string Previsualizacion { get; set; }
+
     }
 }

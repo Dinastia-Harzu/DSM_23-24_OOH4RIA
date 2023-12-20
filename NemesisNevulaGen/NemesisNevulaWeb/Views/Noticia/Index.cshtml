@@ -1,46 +1,83 @@
 ﻿@model IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>
+@using Microsoft.AspNetCore.Identity;
+@using System.Security.Claims;
+
 
 @{
     ViewData["Title"] = "Index";
-    string claseCard(bool publicada) => "card" + (publicada ? "" : " alert-secondary");
+    //string claseCard(bool publicada) => "card" + (publicada ? "" : " alert-secondary");
+    string acortarDescripcion(string desc)
+    {
+        if (desc.Length > 100)
+        {
+            return desc.Substring(0, 100) + "...";
+        }
+        return desc;
+    }
 }
 
 <style>
+    img  {
+        height:12em;
+    }
     .card {
         text-align: center;
     }
 </style>
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Crear noticia</a>
-</p>
+<h1 style="text-transform:uppercase; text-align:center;" class="text-warning">Publica tus noticias</h1>
+<h2>Noticias publicadas</h2>
+<hr />
 <div class="container-fluid">
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-md-4 mb-4">
-                <div class="@claseCard(item.EsPublicada)">
-                    <div class="card-header">
-                        Noticia #@Html.DisplayFor(modelItem => item.Id)
-                    </div>
-                    <div class="card-body">
-                        @Html.DisplayFor(modelItem => item.Titulo)
-                    </div>
-                    <div class="card-body">
-                        @Html.DisplayFor(modelItem => item.Descripcion)
-                    </div>
-                    <div class="card-body">
-                        @Html.DisplayFor(modelItem => item.Foto)
-                    </div>
-                    <div class="card-footer btn-group">
-                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
-                        @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-secondary" })
-                        @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
-                    </div>
+            @if (item.EsPublicada)
+            {
+                <div class="col-md-4 mb-4">
+                    <a href="@Url.Action("Details", "Noticia", new { id = item.Id })" class="">
+                        <div class="card animated-card">
+                            <img src="@item.Foto" class="card-img-top" alt="Imagen de la noticia">
+                            <div class="card-body bg-dark">
+                                <h4 class="card-title text-warning" style="text-transform: uppercase;">@item.Titulo</h4>
+                                <p class="card-text" style="color:white;">@acortarDescripcion(@item.Descripcion)</p>
+                                <div class="m-1 p-1">
+                                    @Html.ActionLink("Editar", "Edit", "Noticia", new { id = item.Id }, new { @class = "btn btn-aceptar" })
+                                    @Html.ActionLink("Borrar", "Delete", "Noticia", new { id = item.Id }, new { @class = "btn btn-cancelar" })
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
+
+            }
         }
     </div>
+</div>
+<h2>Noticias sin publicar</h2>
+<hr />
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {     
+            @if (!item.EsPublicada)
+            {   
+                <div class="col-md-4 mb-4">
+                    <a href="@Url.Action("Details", "Noticia", new { id = item.Id })" class="">
+                        <div class="card animated-card">
+                            <img src="@item.Foto" class="card-img-top" alt="Imagen de la noticia">
+                            <div class="card-body bg-dark">
+                                <h4 class="card-title text-warning" style="text-transform: uppercase;">@item.Titulo</h4>
+                                <p class="card-text" style="color:white;">@acortarDescripcion(@item.Descripcion)</p>
+                                    <div class="m-1 p-1">
+                                        @Html.ActionLink("Editar", "Edit", "Noticia", new { id = item.Id }, new { @class = "btn btn-aceptar" })
+                                        @Html.ActionLink("Borrar", "Delete", "Noticia", new { id = item.Id }, new { @class = "btn btn-cancelar" })
+                                    </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+               
+            }
+        }
+</div>
 </div>

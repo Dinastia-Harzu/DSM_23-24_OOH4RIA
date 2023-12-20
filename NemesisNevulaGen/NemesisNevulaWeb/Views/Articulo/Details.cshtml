@@ -7,7 +7,7 @@
     <div>
         <div class="d-flex flex-row w-auto">
             <div class="w-50">
-                <img class="card-img w-100 h-100" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
+                <img class="card-img w-100 h-100" src="@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Fotografia)" />
             </div>
             <div class="card bg-black text-white flex-fill w-50">
                 <div class="card-body w-100">
@@ -22,6 +22,7 @@
                     <p class="card-text fw-bold">@Html.DisplayFor(model => model.Item1.Descripcion)</p>
                     <div class="card-footer d-flex flex-column justify-content-center">
                         <a class="btn btn-aceptar" href="@Url.Action("Edit", new { id = Model.Item1.Id })">Comprar</a>
+                        <a class="btn btn-aceptar" href="@Url.Action("Delete", new { id = Model.Item1.Id })">atpc</a>
                         <a class="btn btn-cancelar mt-2">Regalar</a>
                     </div>
                 </div>

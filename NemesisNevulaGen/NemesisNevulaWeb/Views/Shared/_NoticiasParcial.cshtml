@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>
 
+@using Microsoft.AspNetCore.Identity;
+@using System.Security.Claims;
+
+
 @{
     string acortarDescripcion(string desc)
     {
@@ -46,36 +50,6 @@
     var i = 0;
 }
 
-<style>
-    .card {
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .card:hover{
-            background-color: #584383 !important;
-            transform: translateY(-10px);
-    }
-        .card:hover .card-body {
-        
-        background-color: #584383 !important;
-    }
-
-    @@keyframes moveUp {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-5px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    .animated-card {
-        animation: moveUp 1s ease; /* Agregar la animación al elemento */
-    }
-</style>
 
 <div class="container">
     <h1 style="text-align:center;">Noticias</h1>
@@ -92,11 +66,18 @@
             <div class="col-md-@alternarCSS(ViewContext.HttpContext.Request.Path) mb-4">
                 <a href="@Url.Action("Details", "Noticia", new { id = item.Id })" class="">
                     <div class="card animated-card">
-                        <img src="~/css/estilos/imagenes/@item.Foto" class="card-img-top" alt="Imagen de la noticia">
+                        <img src="@item.Foto" class="card-img-top" alt="Imagen de la noticia">
                         <div class="card-body bg-dark">
                             <h4 class="card-title text-warning" style="text-transform: uppercase;">@item.Titulo</h4>
                             <p class="card-text" style="color:white;">@acortarDescripcion(@item.Descripcion)</p>
-                        </div>
+                                @if (User.FindFirstValue(ClaimTypes.Role) == "Administrador")
+                                {
+                                    <div class="m-1 p-1">
+                                        @Html.ActionLink("Editar", "Edit", "Noticia", new { id = item.Id }, new { @class = "btn btn-aceptar" })
+                                        @Html.ActionLink("Borrar", "Delete", "Noticia", new { id = item.Id }, new { @class = "btn btn-cancelar" })
+                                    </div>
+                                        }
+                            </div>
                     </div>
                 </a> 
             </div>

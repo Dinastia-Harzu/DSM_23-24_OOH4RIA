@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - NemesisNevulaWeb</title>
@@ -12,6 +15,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NemesisNevulaWeb.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/estilos/estiloprincipal.css" asp-append-version="true" />
+     
+
     <script src="https://kit.fontawesome.com/547a5afd2a.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -31,11 +36,36 @@
                         <li class="nav-item">
                             <a class="nav-link @(ViewBag.CurrentPage == "Tienda" ? "nav-activo" : "")" asp-area="" asp-controller="Articulo" asp-action="Index">Tienda</a>
                         </li>
+                        @if (User.FindFirstValue(ClaimTypes.Role) == "Administrador")
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(ViewBag.CurrentPage == "CrearArticulo" ? "nav-activo" : (ViewBag.CurrentPage == "CrearNoticia" ? "nav-activo" : ""))" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Añadir
+                                </a>
+                                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                                    <a class="nav-link   @(ViewBag.CurrentPage == "CrearArticulo" ? "nav-activo" : "")" asp-area="" asp-controller="Articulo" asp-action="Create">Artículo</a>
+                                    <a class="nav-link   @(ViewBag.CurrentPage == "CrearNoticia" ? "nav-activo" : "")"  asp-area="nav-link" asp-controller="Noticia" asp-action="Create">Noticia</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewBag.CurrentPage == "TodasNoticias" ? "nav-activo" : "")" asp-area="" asp-controller="Noticia" asp-action="Index">Todas las noticias</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a class="nav-link @(ViewBag.CurrentPage == "TodosArticulos" ? "nav-activo" : "")" asp-area="" asp-controller="Articulo" asp-action="VistaAdmin">Todos los artículos</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link @(ViewBag.CurrentPage == "Contacto" ? "nav-activo" : "")" asp-area="" asp-controller="Home" asp-action="Contacto">Contáctanos</a>
                         </li>
+                       
                     </ul>
                     <ul class="navbar-nav">
+                        @if (User.FindFirstValue(ClaimTypes.Role) == "Normal")
+                        {
+                            <li class="nav-item d-flex align-content-center ">
+                                <a class="btn btn-premium nav-link @(ViewBag.CurrentPage == "PREMIUM" ? "nav-activo" : "")" asp-area="" asp-controller="Usuario" asp-action="Details" style="color:black;">PREMIUM</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <p class="text-warning mt-2 m-2">0.00 €</p>
                         </li>
