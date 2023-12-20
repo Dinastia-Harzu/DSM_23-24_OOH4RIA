@@ -6,6 +6,12 @@
 @{
     ViewData["Title"] = Html.DisplayFor(model => model.Item1.Nombre);
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string floatToString(float precio)
+    {
+        string rep = precio.ToString("0.00");
+        return rep.Replace(",", ".");
+    }
 }
 
 <div class="col-12">
@@ -41,7 +47,7 @@
                             }
                             else
                             {
-                                <a class="btn btn-aceptar" href="">Comprar</a>
+                                <a class="btn btn-aceptar" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)">Comprar</a>
                                 <a class="btn btn-cancelar mt-2" href="">Regalar</a>
                             }
                         </div>

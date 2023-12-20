@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
+using NemesisNevulaGen.ApplicationCore.CP.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
+using NemesisNevulaGen.Infraestructure.CP;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
+using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
@@ -42,7 +45,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: CompraController/Create
-        public ActionResult Create()
+        public ActionResult Create(int id, float precio)
         {
             UsuarioRepository usuarioRepository = new UsuarioRepository();
             UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
@@ -56,6 +59,7 @@ namespace NemesisNevulaWeb.Controllers
             }
 
             ViewData["usuariosItems"] = usuariosItems;
+
 
             // --------------------------------------------------------------------------------
 
@@ -72,7 +76,22 @@ namespace NemesisNevulaWeb.Controllers
 
             ViewData["articulosItems"] = articulosItems;
 
-            return View();
+            Console.WriteLine(id);
+            Console.WriteLine(precio);
+
+            //-----------------------------------------------------------------------------------
+            int idUsuario = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            UsuarioEN p_usuario = usuarioCEN.DamePorOID(idUsuario);
+            ArticuloEN p_articulo = articuloCEN.DamePorOID(id);
+
+
+            CompraEN compraEN = new CompraEN(1, DateTime.Now, p_usuario, p_articulo, precio, false, null);
+
+            // ViewData["id_art"] = id;
+
+            return View(new CompraAssembler().ConvertirENToViewModel(compraEN));
+
+            //return View();
         }
 
         // POST: CompraController/Create
@@ -85,9 +104,20 @@ namespace NemesisNevulaWeb.Controllers
                 CompraRepository compraRepository = new CompraRepository();
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
 
-                // CREACION NO DEFINITIVA: A ESPERAS DE COMO SE HACE
-                compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, false);
-                return RedirectToAction(nameof(Index));
+                string desc = Request.Form["desc"];
+
+                UsuarioRepository usuarioRepository = new UsuarioRepository();
+                UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
+                UsuarioEN usu = usuarioCEN.DamePorOID(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
+                // Compranos articulo
+                UsuarioCP usuarioCP = new(new SessionCPNHibernate());
+                usuarioCP.ComprarArticulo(usu.Id, comp.IdArticulo, (desc != null));
+
+                // Creamos compra
+                int result_comp = compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, false);
+                return RedirectToAction("Details", new {id = result_comp});
+
             }
             catch
             {
