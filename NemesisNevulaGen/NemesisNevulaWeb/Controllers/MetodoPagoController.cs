@@ -44,11 +44,11 @@ namespace NemesisNevulaWeb.Controllers
             MetodoPagoEN mp = mpCEN.DamePorOID(id);
 
             // Validamos que el método de pago le pertenezca al usuario logueado
-            IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
-
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            if (!listIdUsers.Any(user => user.Id == idUserLogued))
+            UsuarioEN userTc = mp.UsuarioPoseedor;
+
+            if (userTc.Id != idUserLogued)
                 return RedirectToAction("Index", "Home");
 
             SessionClose();
@@ -64,7 +64,10 @@ namespace NemesisNevulaWeb.Controllers
             {
                 MetodoPagoRepository mpRepo = new MetodoPagoRepository();
                 MetodoPagoCEN mpCEN = new MetodoPagoCEN(mpRepo);
-                mpCEN.CrearMetodoPago();
+
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                mpCEN.CrearMetodoPago(idUserLogued);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -101,11 +104,11 @@ namespace NemesisNevulaWeb.Controllers
             MetodoPagoEN mp = mpCEN.DamePorOID(id);
 
             // Validamos que el método de pago le pertenezca al usuario logueado
-            IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
-
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            if (!listIdUsers.Any(user => user.Id == idUserLogued))
+            UsuarioEN userTc = mp.UsuarioPoseedor;
+
+            if (userTc.Id != idUserLogued)
                 return RedirectToAction("Index", "Home");
 
             SessionClose();
@@ -128,11 +131,11 @@ namespace NemesisNevulaWeb.Controllers
                 MetodoPagoEN mp = mpCEN.DamePorOID(id);
 
                 // Validamos que el método de pago le pertenezca al usuario logueado
-                IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
-
                 int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                if (!listIdUsers.Any(user => user.Id == idUserLogued))
+                UsuarioEN userTc = mp.UsuarioPoseedor;
+
+                if (userTc.Id != idUserLogued)
                     return RedirectToAction("Index", "Home");
 
                 SessionClose();
@@ -157,11 +160,11 @@ namespace NemesisNevulaWeb.Controllers
             MetodoPagoEN mp = mpCEN.DamePorOID(id);
 
             // Validamos que el método de pago le pertenezca al usuario logueado
-            IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
-
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            if (!listIdUsers.Any(user => user.Id == idUserLogued))
+            UsuarioEN userTc = mp.UsuarioPoseedor;
+
+            if (userTc.Id != idUserLogued)
                 return RedirectToAction("Index", "Home");
 
             SessionClose();
@@ -184,11 +187,11 @@ namespace NemesisNevulaWeb.Controllers
                 MetodoPagoEN mp = mpCEN.DamePorOID(id);
 
                 // Validamos que el método de pago le pertenezca al usuario logueado
-                IList<UsuarioEN> listIdUsers = mp.UsuarioPoseedor;
-
                 int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                if (!listIdUsers.Any(user => user.Id == idUserLogued))
+                UsuarioEN userTc = mp.UsuarioPoseedor;
+
+                if (userTc.Id != idUserLogued)
                     return RedirectToAction("Index", "Home");
 
                 SessionClose();

@@ -52,5 +52,8 @@ void AnyadirArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p
 void QuitarArticulo (int p_Usuario_OID, System.Collections.Generic.IList<int> p_articulo_OIDs);
 
 System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> DamePorNombre (string p_nombre);
+
+
+System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN> DameMetodosDePago (int p_idUser);
 }
 }

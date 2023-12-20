@@ -105,9 +105,6 @@ public void ModifyDefault (CompraEN compra)
                 compraNH.PrecioTotal = compra.PrecioTotal;
 
 
-                compraNH.FechaCaducidad = compra.FechaCaducidad;
-
-
                 compraNH.Regalado = compra.Regalado;
 
 
@@ -185,9 +182,6 @@ public void ModificarCompra (CompraEN compra)
 
 
                 compraNH.PrecioTotal = compra.PrecioTotal;
-
-
-                compraNH.FechaCaducidad = compra.FechaCaducidad;
 
 
                 compraNH.Regalado = compra.Regalado;

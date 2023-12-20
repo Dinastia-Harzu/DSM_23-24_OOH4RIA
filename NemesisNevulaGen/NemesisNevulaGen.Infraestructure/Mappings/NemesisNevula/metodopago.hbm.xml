@@ -16,15 +16,10 @@
 			
 			
 		  			
-						<bag name="UsuarioPoseedor" table="[usuario_metodoPago]" inverse="true" >
-							<key>
-								
-									<column name="FK_idMetodoPago_idMetodoPago"/> 
-							</key>
-      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH">
-									<column name="FK_idUsuario_idUsuario"/> 
-      						</many-to-many>
-    					</bag>
+						<many-to-one name="UsuarioPoseedor" class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.UsuarioNH" >	
+								<column name="FK_idUsuario_idUsuario"/> 
+						</many-to-one>
+											 					
 					
 					
 		

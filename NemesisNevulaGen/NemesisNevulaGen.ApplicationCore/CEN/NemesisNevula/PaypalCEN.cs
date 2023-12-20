@@ -30,13 +30,21 @@ public IPaypalRepository get_IPaypalRepository ()
         return this._IPaypalRepository;
 }
 
-public int CrearPaypal (string p_email, String p_pass)
+public int CrearPaypal (int p_usuarioPoseedor, string p_email, String p_pass)
 {
         PaypalEN paypalEN = null;
         int oid;
 
         //Initialized PaypalEN
         paypalEN = new PaypalEN ();
+
+        if (p_usuarioPoseedor != -1) {
+                // El argumento p_usuarioPoseedor -> Property usuarioPoseedor es oid = false
+                // Lista de oids id
+                paypalEN.UsuarioPoseedor = new NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN ();
+                paypalEN.UsuarioPoseedor.Id = p_usuarioPoseedor;
+        }
+
         paypalEN.Email = p_email;
 
         paypalEN.Pass = Utils.Util.GetEncondeMD5 (p_pass);

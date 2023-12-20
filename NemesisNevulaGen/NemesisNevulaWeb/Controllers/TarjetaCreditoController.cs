@@ -50,9 +50,9 @@ namespace NemesisNevulaWeb.Controllers
             // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            IList<UsuarioEN> listTcUsers = tcEN.UsuarioPoseedor;
+            UsuarioEN userTc = tcEN.UsuarioPoseedor;
 
-            if (!listTcUsers.Any(tc => tc.Id == idUserLogued))
+            if (userTc.Id != idUserLogued)
                 return RedirectToAction("Index", "Home");
 
             TarjetaCreditoVM tcView = new TarjetaCreditoAssembler().ConvertirENToViewModel(tcEN);
@@ -78,7 +78,10 @@ namespace NemesisNevulaWeb.Controllers
             {
                 TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository();
                 TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
-                tcCEN.CrearTarjetaCredito(tc.TipoTarjeta,tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
+
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                tcCEN.CrearTarjetaCredito(idUserLogued, tc.TipoTarjeta,tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -100,9 +103,9 @@ namespace NemesisNevulaWeb.Controllers
             // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            IList<UsuarioEN> listTcUsers = tcEN.UsuarioPoseedor;
+            UsuarioEN userTc = tcEN.UsuarioPoseedor;
 
-            if (!listTcUsers.Any(tc => tc.Id == idUserLogued))
+            if (userTc.Id != idUserLogued)
                 return RedirectToAction("Index", "Home");
 
             TarjetaCreditoVM tcView = new TarjetaCreditoAssembler().ConvertirENToViewModel(tcEN);
@@ -128,9 +131,9 @@ namespace NemesisNevulaWeb.Controllers
                 // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
                 int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                IList<UsuarioEN> listTcUsers = tcEN.UsuarioPoseedor;
+                UsuarioEN userTc = tcEN.UsuarioPoseedor;
 
-                if (!listTcUsers.Any(tc => tc.Id == idUserLogued))
+                if (userTc.Id != idUserLogued)
                     return RedirectToAction("Index", "Home");
 
                 tcCEN.ModificarTarjetaCredito(id,tc.TipoTarjeta,tc.CodigoSeguridad,tc.Numero, tc.FechaExpedicion,tc.NombreEnTarjeta);
@@ -158,9 +161,9 @@ namespace NemesisNevulaWeb.Controllers
             // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            IList<UsuarioEN> listTcUsers = tcEN.UsuarioPoseedor;
+            UsuarioEN userTc = tcEN.UsuarioPoseedor;
 
-            if (!listTcUsers.Any(tc => tc.Id == idUserLogued))
+            if (userTc.Id != idUserLogued)
                 return RedirectToAction("Index", "Home");
 
             tcCEN.BorrarTarjetaCredito(id);
@@ -187,9 +190,9 @@ namespace NemesisNevulaWeb.Controllers
                 // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
                 int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                IList<UsuarioEN> listTcUsers = tcEN.UsuarioPoseedor;
+                UsuarioEN userTc = tcEN.UsuarioPoseedor;
 
-                if (!listTcUsers.Any(tc => tc.Id == idUserLogued))
+                if (userTc.Id != idUserLogued)
                     return RedirectToAction("Index", "Home");
 
                 SessionClose();

@@ -84,7 +84,7 @@ public TarjetaCreditoEN() : base ()
 
 
 public TarjetaCreditoEN(int id, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, string nombreEnTarjeta, string numero, Nullable<DateTime> fechaExpedicion, string codigoSeguridad
-                        , System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPoseedor
+                        , NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioPoseedor
                         )
 {
         this.init (Id, tipoTarjeta, nombreEnTarjeta, numero, fechaExpedicion, codigoSeguridad, usuarioPoseedor);
@@ -97,7 +97,7 @@ public TarjetaCreditoEN(TarjetaCreditoEN tarjetaCredito)
 }
 
 private void init (int id
-                   , NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, string nombreEnTarjeta, string numero, Nullable<DateTime> fechaExpedicion, string codigoSeguridad, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPoseedor)
+                   , NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum tipoTarjeta, string nombreEnTarjeta, string numero, Nullable<DateTime> fechaExpedicion, string codigoSeguridad, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioPoseedor)
 {
         this.Id = id;
 

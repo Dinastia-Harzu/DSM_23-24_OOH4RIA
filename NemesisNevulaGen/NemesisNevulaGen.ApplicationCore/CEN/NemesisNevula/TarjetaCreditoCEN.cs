@@ -30,13 +30,21 @@ public ITarjetaCreditoRepository get_ITarjetaCreditoRepository ()
         return this._ITarjetaCreditoRepository;
 }
 
-public int CrearTarjetaCredito (NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum p_tipoTarjeta, string p_nombreEnTarjeta, string p_numero, Nullable<DateTime> p_fechaExpedicion, string p_codigoSeguridad)
+public int CrearTarjetaCredito (int p_usuarioPoseedor, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum p_tipoTarjeta, string p_nombreEnTarjeta, string p_numero, Nullable<DateTime> p_fechaExpedicion, string p_codigoSeguridad)
 {
         TarjetaCreditoEN tarjetaCreditoEN = null;
         int oid;
 
         //Initialized TarjetaCreditoEN
         tarjetaCreditoEN = new TarjetaCreditoEN ();
+
+        if (p_usuarioPoseedor != -1) {
+                // El argumento p_usuarioPoseedor -> Property usuarioPoseedor es oid = false
+                // Lista de oids id
+                tarjetaCreditoEN.UsuarioPoseedor = new NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN ();
+                tarjetaCreditoEN.UsuarioPoseedor.Id = p_usuarioPoseedor;
+        }
+
         tarjetaCreditoEN.TipoTarjeta = p_tipoTarjeta;
 
         tarjetaCreditoEN.NombreEnTarjeta = p_nombreEnTarjeta;
