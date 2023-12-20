@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
+using NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
@@ -22,6 +24,34 @@ namespace NemesisNevulaWeb.Controllers
             IList<ArticuloEN> listEN = articuloCEN.DameTodos(0, -1);
 
             IEnumerable<ArticuloVM> listArts = new ArticuloAssembler().ConvertirListENToViewModel(listEN).ToList();
+
+            // Recogemos los enumerados
+            Array valoresRarezaEnum = Enum.GetValues(typeof(RarezaArticuloEnum));
+            Array valoresTipoArtEnum = Enum.GetValues(typeof(TipoArticuloEnum));
+
+            // Creamos una lista de select items y se los inyectamos
+            IList<SelectListItem> artRarezas = new List<SelectListItem>();
+            foreach (var valor in valoresRarezaEnum)
+            {
+                artRarezas.Add(new SelectListItem
+                {
+                    Text = valor.ToString(),
+                    Value = ((int)valor).ToString()
+                });
+            }
+            IList<SelectListItem> artTipos = new List<SelectListItem>();
+            foreach (var valor in valoresTipoArtEnum)
+            {
+                artTipos.Add(new SelectListItem
+                {
+                    Text = valor.ToString(),
+                    Value = ((int)valor).ToString()
+                });
+            }
+
+            // Creamos un ViewData con los valores obtenidos
+            ViewData["artRarezas"] = artRarezas;
+            ViewData["artTipos"] = artTipos;
 
             SessionClose();
             return View(listArts);
@@ -170,6 +200,74 @@ namespace NemesisNevulaWeb.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult FiltrarArts(string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
+        {
+            ViewBag.CurrentPage = "Tienda";
+            Console.WriteLine("\n\n\n--FILTROS--\n");
+            Console.WriteLine("Barra de Búsqueda: " + filtroBusqueda + "\n");
+            Console.WriteLine("Criterio de ordenacion: " + ordenarPor + "\n");
+            Console.WriteLine("Rareza: " + filtroRareza + "\n");
+            Console.WriteLine("Tipo Articulo: " + filtroTipo + "\n");
+            Console.WriteLine("Fecha inicio: " + filtroFechaIni + "\n");
+            Console.WriteLine("Fecha final: " + filtroFechaFin + "\n");
+
+            SessionInitialize();
+
+            ArticuloRepository artRepo = new(session);
+            ArticuloCEN artCEN = new(artRepo);
+
+            IList<ArticuloEN> artsList = artCEN.DameTodos(0,-1);
+
+            // FILTROS:
+            artsList = ordenar(artsList, ordenarPor);
+
+            List<ArticuloEN> listaAux = new(artsList);
+
+            listaAux = filtrarXRareza(listaAux, filtroRareza);
+
+            listaAux = filtrarXTipo(listaAux, filtroTipo);
+
+            listaAux = filtrarXFecha(listaAux, filtroFechaIni, filtroFechaFin);
+
+            listaAux = filtrarXInput(listaAux, filtroBusqueda);
+
+            artsList = listaAux;
+
+            IEnumerable<ArticuloVM> listArts = new ArticuloAssembler().ConvertirListENToViewModel(artsList).ToList();
+
+            // Recogemos los enumerados
+            Array valoresRarezaEnum = Enum.GetValues(typeof(RarezaArticuloEnum));
+            Array valoresTipoArtEnum = Enum.GetValues(typeof(TipoArticuloEnum));
+
+            // Creamos una lista de select items y se los inyectamos
+            IList<SelectListItem> artRarezas = new List<SelectListItem>();
+            foreach (var valor in valoresRarezaEnum)
+            {
+                artRarezas.Add(new SelectListItem
+                {
+                    Text = valor.ToString(),
+                    Value = ((int)valor).ToString()
+                });
+            }
+            IList<SelectListItem> artTipos = new List<SelectListItem>();
+            foreach (var valor in valoresTipoArtEnum)
+            {
+                artTipos.Add(new SelectListItem
+                {
+                    Text = valor.ToString(),
+                    Value = ((int)valor).ToString()
+                });
+            }
+
+            // Creamos un ViewData con los valores obtenidos
+            ViewData["artRarezas"] = artRarezas;
+            ViewData["artTipos"] = artTipos;
+
+            SessionClose();
+
+            return View(listArts);
         }
     }
 }

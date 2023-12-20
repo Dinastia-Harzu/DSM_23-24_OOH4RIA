@@ -57,7 +57,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Articulo\" />
     <Folder Include="Views\MetodoPago\" />
     <Folder Include="wwwroot\css\estilos\NewFolder\" />
   </ItemGroup>

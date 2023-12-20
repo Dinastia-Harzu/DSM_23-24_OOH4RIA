@@ -245,7 +245,7 @@ public static void InitializeData ()
 
                 // Custom transaction 2. Agregar fondos
                 float cantidad_af = 10;
-                int usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "https://picsum.photos/200", 100, 25, "password");
+                int usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "te.jpeg", 100, 25, "password");
                 int metodo_af = metodopagocen.CrearMetodoPago (usuario_af);
                 UsuarioCP usuarioCP = new(new SessionCPNHibernate ());
                 Console.WriteLine ("\n\nAgregando " + cantidad_af + "euros a la cuenta:\n");

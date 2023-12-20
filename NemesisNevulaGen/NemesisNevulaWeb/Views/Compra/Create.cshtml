@@ -13,79 +13,12 @@
 }
 
 <style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
 
-    .container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .column {
-        flex: 0 1 300px;
-        padding: 20px;
-        background-color: #fff;
-        text-align: center;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease-in-out;
-    }
-
-        .column:hover {
-            transform: translateY(-5px);
-        }
-
-    h3 {
-        color: #333;
-        margin-bottom: 10px;
-    }
-
-    p {
-        color: #666;
-        margin-bottom: 15px;
-    }
-
-    .btn-group {
-        display: flex;
-        justify-content: center;
-    }
-
-    .btn {
-        margin: 0 5px;
-        padding: 8px 12px;
-        text-decoration: none;
-        font-size: 14px;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-    }
-
-    .btn-info {
-        background-color: #3498db;
-    }
-
-    .btn-secondary {
-        background-color: #95a5a6;
-    }
-
-    .btn-danger {
-        background-color: #e74c3c;
-    }
 </style>
 
-<h1>Confirmación de compra</h1>
+<h1 class="text-center text-warning text-uppercase">Confirmación de compra</h1>
 
-<h4>Comprueba que tus datos de compra son correctos</h4>
+<h4 class="text-center">Comprueba que tus datos de compra son correctos</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -110,8 +43,8 @@
                 <span asp-validation-for="PrecioTotal" class="text-danger"></span>
             </div>
 
-            <label for="descuento"><b>¿Quieres aplicar un descuento?:</b> </label><br />
-            <input name="desc" type="checkbox" id="descuento" />
+            <label for="descuento"><b>¿Quieres aplicar un descuento?</b> </label>
+            <input class="btn btn-aceptar" name="desc" type="checkbox" id="descuento" />
             <br /><br />
             
             <div class="form-group" hidden>

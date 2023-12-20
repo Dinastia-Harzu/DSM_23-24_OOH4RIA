@@ -13,10 +13,10 @@ using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
-    [Authorize(Roles = "Administrador")]
     public class CompraController : BasicController
     {
         // GET: CompraController
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             SessionInitialize();
