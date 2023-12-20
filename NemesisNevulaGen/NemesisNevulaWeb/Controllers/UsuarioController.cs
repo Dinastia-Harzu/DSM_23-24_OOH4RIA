@@ -499,7 +499,14 @@ namespace NemesisNevulaWeb.Controllers
             UsuarioRepository userRepository = new();
             UsuarioCEN userCEN = new(userRepository);
 
-            return View();
+            // Recogemos los métodos de pago del usuario y los convertiimos a VM
+            UsuarioEN user = userCEN.DamePorOID(id);
+
+            IList<MetodoPagoEN> mpsUserListEN = user.MetodoPago;
+
+            IEnumerable<MetodoPagoVM> mpsUserListVM = new MetodoPagoAssembler().ConvertirListENToViewModel(mpsUserListEN).ToList();
+
+            return View(mpsUserListVM);
         }
     }
 }
