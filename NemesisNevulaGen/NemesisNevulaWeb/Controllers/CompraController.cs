@@ -13,10 +13,10 @@ using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
-    [Authorize(Roles = "Administrador")]
     public class CompraController : BasicController
     {
         // GET: CompraController
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             SessionInitialize();
@@ -39,6 +39,9 @@ namespace NemesisNevulaWeb.Controllers
 
             CompraEN compraEN = compraCEN.DamePorOID(id);
             CompraVM compraVM = new CompraAssembler().ConvertirENToViewModel(compraEN);
+
+            // Obtenemos el nombre del objeto para mostrarlo
+            ViewData["nom_art"] = compraEN.Articulo.Nombre;
 
             SessionClose();
             return View(compraVM);
@@ -76,9 +79,6 @@ namespace NemesisNevulaWeb.Controllers
 
             ViewData["articulosItems"] = articulosItems;
 
-            Console.WriteLine(id);
-            Console.WriteLine(precio);
-
             //-----------------------------------------------------------------------------------
             int idUsuario = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             UsuarioEN p_usuario = usuarioCEN.DamePorOID(idUsuario);
@@ -87,8 +87,14 @@ namespace NemesisNevulaWeb.Controllers
 
             CompraEN compraEN = new CompraEN(1, DateTime.Now, p_usuario, p_articulo, precio, false, null);
 
-            // ViewData["id_art"] = id;
+            // ------------------------------------------------------------------------------------
+            // Ver el precio y el saldo para ver lo de los botones
+            ViewData["suficiente"] = (p_usuario.Cartera > precio);
 
+            // Ver el nombre del articulo
+            ViewData["nom_art"] = p_articulo.Nombre;
+
+            // Vista final
             return View(new CompraAssembler().ConvertirENToViewModel(compraEN));
 
             //return View();
@@ -110,12 +116,17 @@ namespace NemesisNevulaWeb.Controllers
                 UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
                 UsuarioEN usu = usuarioCEN.DamePorOID(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
+                // Precio descontado
+                // Precio descontado
+                float precio_descontado = comp.PrecioTotal;
+                if (desc != null) { precio_descontado -= (float)usu.PuntosNevula / 100; }
+
                 // Compranos articulo
                 UsuarioCP usuarioCP = new(new SessionCPNHibernate());
                 usuarioCP.ComprarArticulo(usu.Id, comp.IdArticulo, (desc != null));
 
                 // Creamos compra
-                int result_comp = compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, false);
+                int result_comp = compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, precio_descontado, false);
                 return RedirectToAction("Details", new {id = result_comp});
 
             }

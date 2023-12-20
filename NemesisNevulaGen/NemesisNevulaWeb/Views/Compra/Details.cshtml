@@ -81,10 +81,15 @@
     <hr />
     <div class="row">
         <div class = "col-sm-12 mb-4">
-            <div><strong>Fecha de la compra:</strong></div>
-            <div>@Html.DisplayFor(model => model.Fecha)</div>
-            
+            <div><strong>Nombre del artículo comprado:</strong></div>
+            <div>@ViewData["nom_art"]</div> 
         </div>
+
+        <div class = "col-sm-12 mb-4">
+            <div><strong>Fecha de la compra:</strong></div>
+            <div>@Html.DisplayFor(model => model.Fecha)</div> 
+        </div>
+
         <div class = "col-sm-12 mb-4">
             <div><strong>Precio total de la compra realizada:</strong></div>
             <div>@floatToString(Model.PrecioTotal)</div>

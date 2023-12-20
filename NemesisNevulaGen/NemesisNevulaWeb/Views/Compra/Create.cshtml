@@ -92,6 +92,11 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            <div class="col-sm-12 mb-4">
+                <div><strong>Nombre del artículo a comprar:</strong></div>
+                <div>@ViewData["nom_art"]</div>
+            </div>
+
             <b>Fecha de compra:</b><br />
             <span>@Model.Fecha.ToShortDateString()</span>
             <br /><br />
@@ -126,9 +131,17 @@
                 <span asp-validation-for="IdArticulo" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <input type="submit" value="Aceptar" class="btn btn-primary" />
-            </div>
+            @if((bool)ViewData["suficiente"])
+            {
+                <div class="form-group">
+                    <input type="submit" value="Aceptar" class="btn btn-primary" />
+                </div>
+            }
+
+            else
+            {
+                <p>¡No tienes saldo suficiente!</p>
+            }
         </form>
     </div>
 </div>
