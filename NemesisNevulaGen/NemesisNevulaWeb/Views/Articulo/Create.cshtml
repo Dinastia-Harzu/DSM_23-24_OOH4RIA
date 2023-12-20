@@ -1,83 +1,114 @@
 ﻿@model NemesisNevulaWeb.Models.ArticuloVM
+@using NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<section class="vh-100 gradient-custom mb-5">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100 mb-5">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class=" card bg-dark text-white" style="border-radius: 1rem; border-color:yellow;">
+                    <div class="card-body p-5">
+                        <div class="">
+                            <h2 class="fw-bold mb-2 text-uppercase  text-center">Nuevo artículo</h2>
+                            <hr class="justify-content-center align-items-center " width="100%" />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group form-outline form-white mb-4 text-center">
+                                            <label asp-for="Fotografia2" id="imgInputLabel" class="control-label">
+                                                <img id="imgPreview" src="/css/estilos/imagenes/noImage.jpg" alt="Imagen previsualizada" width="100" height="100" />
+                                            </label>
+                                            <input asp-for="Fotografia2" type="file" id="imgInput" required="false" accept="image/*" class="form-control" style="display: none;" />
+                                            <span asp-validation-for="Fotografia2" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Nombre" class="control-label"></label>
+                                            <input asp-for="Nombre" class="form-control" />
+                                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group mb-4">
+                                            <label asp-for="Precio" class="control-label"></label>
+                                            <input asp-for="Precio" type="number" class="form-control" />
+                                            <span asp-validation-for="Precio" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group row mb-4">
+                                            <div class="col-md-6">
+                                                @Html.LabelFor(model => model.Tipo, "Tipo", htmlAttributes: new { @class = "control-label" })
+                                                @Html.DropDownListFor(model => model.Tipo, Enum.GetValues(typeof(TipoArticuloEnum)).Cast<TipoArticuloEnum>().Select(v => new SelectListItem
+                                           {
+                                               Text = v.ToString(),
+                                               Value = ((int)v).ToString()
+                                           }), "Seleccione un tipo de artículo", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                                            </div>
 
-<h4>ArticuloVM</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Precio" class="control-label"></label>
-                <input asp-for="Precio" class="form-control" />
-                <span asp-validation-for="Precio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tipo" class="control-label"></label>
-                <input asp-for="Tipo" class="form-control" />
-                <span asp-validation-for="Tipo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rareza" class="control-label"></label>
-                <input asp-for="Rareza" class="form-control" />
-                <span asp-validation-for="Rareza" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fotografia" class="control-label"></label>
-                <input asp-for="Fotografia" class="form-control" />
-                <span asp-validation-for="Fotografia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+                                            <div class="col-md-6">
+                                                @Html.LabelFor(model => model.Rareza, "Rareza", htmlAttributes: new { @class = "control-label" })
+                                                @Html.DropDownListFor(model => model.Rareza, Enum.GetValues(typeof(RarezaArticuloEnum)).Cast<RarezaArticuloEnum>().Select(v => new SelectListItem
+                                           {
+                                               Text = v.ToString(),
+                                               Value = ((int)v).ToString()
+                                           }), "Seleccione la rareza del artículo", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Rareza, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+            <div class="form-group mb-4">
                 <label asp-for="Descripcion" class="control-label"></label>
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
-            <div class="form-group">
+                                        <div class="form-group mb-4" hidden>
                 <label asp-for="Valoracion" class="control-label"></label>
-                <input asp-for="Valoracion" class="form-control" />
+                <input asp-for="Valoracion" class="form-control" type="hidden" value="0" />
+                <span class="text-muted">Valoración: 0</span>
                 <span asp-validation-for="Valoracion" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div class="form-group mb-4" hidden>
+                <label asp-for="FechaPublicacion" class="control-label"></label>
+                <input asp-for="FechaPublicacion" class="form-control" type="hidden" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                <span class="text-muted">Fecha de Publicación: @DateTime.Now.ToString("yyyy-MM-dd")</span>
+                <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check mb-4">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="EsPublicado" /> @Html.DisplayNameFor(model => model.EsPublicado)
                 </label>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaPublicacion" class="control-label"></label>
-                <input asp-for="FechaPublicacion" class="form-control" />
-                <span asp-validation-for="FechaPublicacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label asp-for="Temporada" class="control-label"></label>
                 <input asp-for="Temporada" class="form-control" />
                 <span asp-validation-for="Temporada" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-4">
                 <label asp-for="Previsualizacion" class="control-label"></label>
                 <input asp-for="Previsualizacion" class="form-control" />
                 <span asp-validation-for="Previsualizacion" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form-group d-flex justify-content-center">
+                <div class="p-1">
+                    <input type="submit" value="Guardar" class="btn btn-aceptar" />
+                </div>
+                <div class="p-1">
+                    <a asp-action="VistaAdmin" asp-controller="Articulo" class="btn btn-cancelar">Cancelar</a>
+                </div>
             </div>
-        </form>
-    </div>
-</div>
+            </form>
+                                </div>
+                            </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/js/usuarioCreate.js"></script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

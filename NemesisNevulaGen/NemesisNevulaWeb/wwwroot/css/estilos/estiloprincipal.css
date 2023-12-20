@@ -43,7 +43,13 @@ a:hover {
     font-weight: bolder;
 }
 
-.btn-aceptar:hover, .btn-cancelar:hover{
+.btn-premium {
+    background-color: lawngreen;
+    color: black;
+    font-weight: bolder;
+}
+
+.btn-aceptar:hover, .btn-cancelar:hover, .btn-premium:hover{
     background-color: black;
     border: 1px solid white;
     color: white !important;

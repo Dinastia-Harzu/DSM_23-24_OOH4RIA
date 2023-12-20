@@ -32,6 +32,7 @@ namespace NemesisNevulaWeb.Models
         public string? Descripcion { get; set; }
 
         public string? Foto { get; set; }
+        public IFormFile? Foto2 { get; set; }
 
         [Display(Prompt = "¿Publicas la noticia?")]
         public bool EsPublicada { get; set; }
