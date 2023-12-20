@@ -1,6 +1,8 @@
-﻿@model Tuple<NemesisNevulaWeb.Models.ArticuloVM, IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>>
+﻿@model Tuple<NemesisNevulaWeb.Models.ArticuloVM, IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>, IEnumerable<NemesisNevulaWeb.Models.ArticuloVM>>
+
 @using Microsoft.AspNetCore.Identity;
 @using System.Security.Claims;
+
 @{
     ViewData["Title"] = Html.DisplayFor(model => model.Item1.Nombre);
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -58,6 +60,9 @@
         <div class="w-50 d-flex align-content-lg-center">
             <img class="card-img w-100 h-100 mb-4" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
         </div>
+    </div>
+    <div class="w-25 col">
+        @await Html.PartialAsync("_ArticulosParcial", (IEnumerable<NemesisNevulaWeb.Models.ArticuloVM>)Model.Item3)
     </div>
     <div class="d-flex justify-content-end">
         <a class="btn btn-aceptar" asp-action="Index">Volver</a>

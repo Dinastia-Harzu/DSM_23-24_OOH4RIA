@@ -35,6 +35,11 @@ namespace NemesisNevulaWeb.Controllers
             NoticiaCEN noticiaCEN = new NoticiaCEN(noticiaRepository);
             IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
             IEnumerable<NoticiaVM> listaNoticias = new NoticiaAssembler().ListEN2VM(listaEN).ToList();
+            
+            ArticuloRepository articuloRepository = new ArticuloRepository();
+            ArticuloCEN articuloCEN1 = new ArticuloCEN(articuloRepository);
+            IList<ArticuloEN> artEN = articuloCEN1.DameTodos(0, -1);
+            IEnumerable<ArticuloVM> ar = new ArticuloAssembler().ConvertirListENToViewModel(artEN).ToList();
 
             // Pasa el modelo IndexViewModel a la vista
 
@@ -47,7 +52,7 @@ namespace NemesisNevulaWeb.Controllers
             ArticuloVM articuloVM = new ArticuloAssembler().ConvertirENToViewModel(articulo);
 
             SessionClose();
-            var viewModel = new Tuple<ArticuloVM, IEnumerable<NoticiaVM>>(articuloVM, listaNoticias);
+            var viewModel = new Tuple<ArticuloVM, IEnumerable<NoticiaVM>, IEnumerable<ArticuloVM>>(articuloVM, listaNoticias,ar);
             return View(viewModel);
         }
 

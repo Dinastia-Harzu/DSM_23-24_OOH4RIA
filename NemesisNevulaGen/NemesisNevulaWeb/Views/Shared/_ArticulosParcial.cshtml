@@ -1,0 +1,88 @@
+﻿@model IEnumerable<NemesisNevulaWeb.Models.ArticuloVM>
+
+@{
+
+    string obtenerURI(string url)
+    {
+        string uri = url.Substring(1).Split('/')[0];
+        return uri == "" ? "Index" : uri;
+    }
+
+    int alternarCSS(string url)
+    {
+        switch (obtenerURI(url))
+        {
+            case "Index":
+                return 4;
+            case "Articulo":
+                return 12;
+            case "Noticia":
+                return 12;
+            default:
+                return 4;
+        }
+    }
+
+    int numArticulos(string url)
+    {
+        switch (obtenerURI(url))
+        {
+            case "Articulo":
+                return 3;
+            default: return -1;
+        }
+    }
+
+    var i = 0;
+}
+
+<style>
+    .card {
+        cursor: pointer;
+    }
+
+    .card:hover {
+        background-color: #584383 !important; /* Color de fondo al hacer hover */
+        transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+    }
+</style>
+
+<div class="container m-2">
+    <h1 class="text-center">Otros Artículos...</h1>
+    <hr />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            @if (item.EsPublicado)
+            {
+                @if (numArticulos(ViewContext.HttpContext.Request.Path) == i)
+                {
+                    break;
+                }
+
+                <div class="col-md-4 mb-4">
+                    <a class="text-white" href="@Url.Action("Details", new { id = item.Id })">
+                        <div class="card bg-dark text-white position-relative">
+                            <img src="~/css/estilos/imagenes/@Html.DisplayFor(modelItem => item.Fotografia)" class="card-img" alt="@Html.DisplayFor(modelItem => item.Nombre)" />
+                            <p class="card-text position-absolute top-0 end-0 tiny-etiqueta color-@Html.DisplayFor(model => item.Rareza)">@Html.DisplayFor(modelItem => item.Rareza)</p>
+                            <div class="card-body">
+                                <h5 class="card-title text-warning fw-bold text-uppercase">@Html.DisplayFor(modelItem => item.Nombre)</h5>
+                                <div class="d-flex justify-content-between">
+                                    <p class="card-text fw-bold tiny-etiqueta fs-4 precio">@Html.DisplayFor(modelItem => item.Precio)</p>
+                                    <p class="card-text fw-bold">@Html.DisplayFor(modelItem => item.Tipo)</p>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <p class="card-text valoracion-@Html.DisplayFor(modelItem => item.Valoracion)"></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                i++;
+            }
+
+        }
+    </div>
+
+
+
