@@ -5,6 +5,11 @@
     IEnumerable <SelectListItem> usuariosItems = (IEnumerable<SelectListItem>)ViewData["usuariosItems"];
     IEnumerable <SelectListItem> articulosItems = (IEnumerable<SelectListItem>)ViewData["articulosItems"];
 
+    string formatearPrecio(float precio)
+    {
+        return precio.ToString("F2") + " €";
+    }
+
 }
 
 <style>
@@ -97,7 +102,7 @@
             </div>
 
             <b>Precio total:</b><br />
-            <span>@Model.PrecioTotal</span>
+            <span>@formatearPrecio(Model.PrecioTotal)</span>
             <br /><br />
             <div class="form-group" hidden>
                 <label asp-for="PrecioTotal" class="control-label"></label>
@@ -108,15 +113,6 @@
             <label for="descuento"><b>¿Quieres aplicar un descuento?:</b> </label><br />
             <input name="desc" type="checkbox" id="descuento" />
             <br /><br />
-
-            <b>Fecha límite de devolución:</b><br />
-            <span>@Model.FechaCaducidad.ToShortDateString()</span>
-            <br /><br />
-            <div class="form-group" hidden>
-                <label asp-for="FechaCaducidad" class="control-label"></label>
-                <input asp-for="FechaCaducidad" class="form-control" />
-                <span asp-validation-for="FechaCaducidad" class="text-danger"></span>
-            </div>
             
             <div class="form-group" hidden>
                 <label asp-for="IdComprador" class="control-label"></label>

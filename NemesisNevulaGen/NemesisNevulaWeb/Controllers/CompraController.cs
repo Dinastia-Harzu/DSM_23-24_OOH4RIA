@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
+using NemesisNevulaGen.ApplicationCore.CP.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
+using NemesisNevulaGen.Infraestructure.CP;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
@@ -41,7 +43,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: CompraController/Create
-        public ActionResult Create(int id, int precio)
+        public ActionResult Create(int id, float precio)
         {
             UsuarioRepository usuarioRepository = new UsuarioRepository();
             UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
@@ -72,13 +74,18 @@ namespace NemesisNevulaWeb.Controllers
 
             ViewData["articulosItems"] = articulosItems;
 
+            Console.WriteLine(id);
+            Console.WriteLine(precio);
+
             //-----------------------------------------------------------------------------------
             int idUsuario = Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             UsuarioEN p_usuario = usuarioCEN.DamePorOID(idUsuario);
             ArticuloEN p_articulo = articuloCEN.DamePorOID(id);
-            CompraEN compraEN = new CompraEN(1, DateTime.Now, p_usuario, p_articulo, precio, DateTime.Now.AddDays(30), false, null);
 
-            ViewData["id_art"] = id;
+
+            CompraEN compraEN = new CompraEN(1, DateTime.Now, p_usuario, p_articulo, precio, false, null);
+
+            // ViewData["id_art"] = id;
 
             return View(new CompraAssembler().ConvertirENToViewModel(compraEN));
 
@@ -97,22 +104,16 @@ namespace NemesisNevulaWeb.Controllers
 
                 string desc = Request.Form["desc"];
 
-                if(desc != null)
-                {
-                    UsuarioRepository usuarioRepository = new UsuarioRepository();
-                    UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
-                    UsuarioEN usu = usuarioCEN.DamePorOID(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+                UsuarioRepository usuarioRepository = new UsuarioRepository();
+                UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
+                UsuarioEN usu = usuarioCEN.DamePorOID(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-                    // Funcion para aplicar descuento: A cambiar
-                    comp.PrecioTotal -= (usu.PuntosNevula / 2);
-
-                    // Modificamos usuario (no se si se hara así)
-                    usuarioCEN.ModificarUsuario(usu.Id, usu.Nombre, usu.Correo, usu.ConGoogle, 
-                    usu.Foto_perfil, 0, usu.Cartera - comp.PrecioTotal, usu.Pass);
-                }
+                // Compranos articulo
+                UsuarioCP usuarioCP = new(new SessionCPNHibernate());
+                usuarioCP.ComprarArticulo(usu.Id, comp.IdArticulo, (desc != null));
 
                 // Creamos compra
-                int result_comp = compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, comp.FechaCaducidad, false);
+                int result_comp = compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, false);
                 return RedirectToAction("Details", new {id = result_comp});
 
             }
@@ -146,7 +147,7 @@ namespace NemesisNevulaWeb.Controllers
             {
                 CompraRepository compraRepository = new CompraRepository();
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
-                compraCEN.ModificarCompra(comp.Id, comp.Fecha, comp.PrecioTotal, comp.FechaCaducidad, false);
+                compraCEN.ModificarCompra(comp.Id, comp.Fecha, comp.PrecioTotal, false);
 
                 return RedirectToAction(nameof(Index));
             }

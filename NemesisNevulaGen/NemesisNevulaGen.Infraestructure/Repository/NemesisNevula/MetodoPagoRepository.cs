@@ -123,6 +123,14 @@ public int CrearMetodoPago (MetodoPagoEN metodoPago)
         try
         {
                 SessionInitializeTransaction ();
+                if (metodoPago.UsuarioPoseedor != null) {
+                        // Argumento OID y no colección.
+                        metodoPagoNH
+                        .UsuarioPoseedor = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN)session.Load (typeof(NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN), metodoPago.UsuarioPoseedor.Id);
+
+                        metodoPagoNH.UsuarioPoseedor.MetodoPago
+                        .Add (metodoPagoNH);
+                }
 
                 session.Save (metodoPagoNH);
                 SessionCommit ();

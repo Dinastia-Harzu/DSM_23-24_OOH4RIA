@@ -10,6 +10,7 @@ using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
+using System.Security.Claims;
 namespace NemesisNevulaWeb.Controllers
 {
     public class MetodoPagoController : BasicController
@@ -42,7 +43,7 @@ namespace NemesisNevulaWeb.Controllers
             {
                 MetodoPagoRepository mpRepo = new MetodoPagoRepository();
                 MetodoPagoCEN mpCEN = new MetodoPagoCEN(mpRepo);
-                mpCEN.CrearMetodoPago();
+                mpCEN.CrearMetodoPago(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
                 return RedirectToAction(nameof(Index));
             }
             catch

@@ -11,6 +11,7 @@ using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
 using NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula;
+using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
@@ -63,7 +64,7 @@ namespace NemesisNevulaWeb.Controllers
             {
                 TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository();
                 TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
-                tcCEN.CrearTarjetaCredito(tc.TipoTarjeta,tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
+                tcCEN.CrearTarjetaCredito(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)), tc.TipoTarjeta,tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
                 return RedirectToAction(nameof(Index));
             }
             catch

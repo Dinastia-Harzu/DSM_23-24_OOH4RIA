@@ -52,7 +52,7 @@ public int ComprarArticulo (int p_Usuario_OID, int p_articulo, bool p_aplicarDes
                         artsActualizados.Add (articulo.Id);
                         usuarioCEN.AnyadirArticulo (p_Usuario_OID, artsActualizados);
 
-                        compra_OID = compraCEN.CrearCompra (DateTime.Now, p_Usuario_OID, p_articulo, precioTotal, DateTime.Now.AddHours (2), false);
+                        compra_OID = compraCEN.CrearCompra (DateTime.Now, p_Usuario_OID, p_articulo, precioTotal, false);
 
                         // Actualizamos el usuario, ya que hemos modificado el valor en su cartera
                         usuarioCEN.get_IUsuarioRepository ().ModificarUsuario (usuario);

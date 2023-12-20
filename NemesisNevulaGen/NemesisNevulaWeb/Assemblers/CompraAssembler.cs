@@ -18,7 +18,6 @@ namespace NemesisNevulaWeb.Assemblers
             comp.Id = en.Id;
             comp.Fecha = en.Fecha == null ? System.DateTime.MinValue : (DateTime)en.Fecha;
             comp.PrecioTotal = en.PrecioTotal;
-            comp.FechaCaducidad = en.FechaCaducidad == null ? System.DateTime.MinValue : (DateTime)en.FechaCaducidad;
             comp.IdComprador = en.UsuarioComprador.Id;
             comp.IdArticulo = en.Articulo == null ? 0 : en.Articulo.Id;
             return comp;

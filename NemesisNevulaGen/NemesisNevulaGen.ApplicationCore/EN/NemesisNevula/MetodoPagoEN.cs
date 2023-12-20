@@ -15,7 +15,7 @@ private int id;
 /**
  *	Atributo usuarioPoseedor
  */
-private System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPoseedor;
+private NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioPoseedor;
 
 
 
@@ -28,7 +28,7 @@ public virtual int Id {
 
 
 
-public virtual System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> UsuarioPoseedor {
+public virtual NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN UsuarioPoseedor {
         get { return usuarioPoseedor; } set { usuarioPoseedor = value;  }
 }
 
@@ -38,12 +38,11 @@ public virtual System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore
 
 public MetodoPagoEN()
 {
-        usuarioPoseedor = new System.Collections.Generic.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN>();
 }
 
 
 
-public MetodoPagoEN(int id, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPoseedor
+public MetodoPagoEN(int id, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioPoseedor
                     )
 {
         this.init (Id, usuarioPoseedor);
@@ -56,7 +55,7 @@ public MetodoPagoEN(MetodoPagoEN metodoPago)
 }
 
 private void init (int id
-                   , System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPoseedor)
+                   , NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioPoseedor)
 {
         this.Id = id;
 

@@ -63,15 +63,15 @@
 					
 			
 		  			
-						<bag name="MetodoPago" table="[usuario_metodoPago]"  >
+						<bag name="MetodoPago" >
 							<key>
+							
 								
-									<column name="FK_idUsuario_idUsuario"/> 
-							</key>
-      						<many-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.MetodoPagoNH">
-									<column name="FK_idMetodoPago_idMetodoPago"/> 
-      						</many-to-many>
-    					</bag>
+								<column name="FK_idUsuario_idUsuario"/>
+					      	</key>
+							<one-to-many class="NemesisNevulaGen.Infraestructure.EN.NemesisNevula.MetodoPagoNH"/>
+					    </bag>
+					
 			
 		  			
 						<bag name="Articulo" table="[articulo_usuario_2]" inverse="true" >
@@ -128,5 +128,6 @@
 		  <query name="UsuarioNHReadAllHQL">from UsuarioNH</query>
 		  <query name="UsuarioNHdameArticulosCompradosHQL"><![CDATA[SELECT art FROM UsuarioNH as user INNER JOIN user.Articulo as art where user.id=:p_idUser]]></query>
 		  <query name="UsuarioNHdamePorNombreHQL"><![CDATA[FROM UsuarioNH as us WHERE us.Nombre =:p_nombre]]></query>
+		  <query name="UsuarioNHdameMetodosDePagoHQL"><![CDATA[SELECT mp FROM UsuarioNH as user INNER JOIN user.MetodoPago as mp where user.id=:p_idUser]]></query>
 		</hibernate-mapping>
 	

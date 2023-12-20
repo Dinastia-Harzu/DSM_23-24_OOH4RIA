@@ -3,16 +3,14 @@
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string floatToString(float precio)
+    {
+        return precio.ToString("F2") + " €";
+    }
 }
 
 <style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
     .container {
         display: flex;
         flex-wrap: wrap;
@@ -81,23 +79,18 @@
 <div>
     <h4>Los detalles de tu compra son:</h4>
     <hr />
-    <dl class="row">
-        <dd class = "col-sm-12">
-            <b><span>Fecha de la compra:</span></b><br />
-            @Html.DisplayFor(model => model.Fecha)
-            <br />
-        </dd>
-        <dd class = "col-sm-12">
-            <b><span>Precio total de la compra realizada:</span></b><br />
-            @Html.DisplayFor(model => model.PrecioTotal)
-            <br />
-        </dd>
-        <dd class = "col-sm-12">
-            <b><span>Fecha límite de devolución:</span></b><br />
-            @Html.DisplayFor(model => model.FechaCaducidad)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class = "col-sm-12 mb-4">
+            <div><strong>Fecha de la compra:</strong></div>
+            <div>@Html.DisplayFor(model => model.Fecha)</div>
+            
+        </div>
+        <div class = "col-sm-12 mb-4">
+            <div><strong>Precio total de la compra realizada:</strong></div>
+            <div>@floatToString(Model.PrecioTotal)</div>
+        </div>
+    </div>
 <div>
-    <button class=" btn btn-info">Aceptar</button>
+    <a class="btn btn-info" asp-controller="Articulo" asp-action="Index">Aceptar</a>
 </div>
 </div>

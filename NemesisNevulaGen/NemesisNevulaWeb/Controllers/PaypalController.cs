@@ -10,6 +10,7 @@ using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
+using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
@@ -68,7 +69,7 @@ namespace NemesisNevulaWeb.Controllers
             {
                 PaypalRepository ppRepo = new PaypalRepository();
                 PaypalCEN ppCEN = new PaypalCEN(ppRepo);
-                ppCEN.CrearPaypal(pp.Email, pp.Pass);
+                ppCEN.CrearPaypal(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)), pp.Email, pp.Pass);
                 return RedirectToAction(nameof(Index));
             }
             catch

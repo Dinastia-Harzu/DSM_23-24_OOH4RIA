@@ -509,5 +509,35 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
 
         return result;
 }
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN> DameMetodosDePago (int p_idUser)
+{
+        System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioNH self where SELECT mp FROM UsuarioNH as user INNER JOIN user.MetodoPago as mp where user.id=:p_idUser";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioNHdameMetodosDePagoHQL");
+                query.SetParameter ("p_idUser", p_idUser);
+
+                result = query.List<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is NemesisNevulaGen.ApplicationCore.Exceptions.ModelException)
+                        throw;
+                else throw new NemesisNevulaGen.ApplicationCore.Exceptions.DataLayerException ("Error in UsuarioRepository.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

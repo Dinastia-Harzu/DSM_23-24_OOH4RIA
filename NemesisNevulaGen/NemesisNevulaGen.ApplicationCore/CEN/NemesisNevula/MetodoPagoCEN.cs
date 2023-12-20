@@ -30,13 +30,21 @@ public IMetodoPagoRepository get_IMetodoPagoRepository ()
         return this._IMetodoPagoRepository;
 }
 
-public int CrearMetodoPago ()
+public int CrearMetodoPago (int p_usuarioPoseedor)
 {
         MetodoPagoEN metodoPagoEN = null;
         int oid;
 
         //Initialized MetodoPagoEN
         metodoPagoEN = new MetodoPagoEN ();
+
+        if (p_usuarioPoseedor != -1) {
+                // El argumento p_usuarioPoseedor -> Property usuarioPoseedor es oid = false
+                // Lista de oids id
+                metodoPagoEN.UsuarioPoseedor = new NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN ();
+                metodoPagoEN.UsuarioPoseedor.Id = p_usuarioPoseedor;
+        }
+
 
 
         oid = _IMetodoPagoRepository.CrearMetodoPago (metodoPagoEN);
