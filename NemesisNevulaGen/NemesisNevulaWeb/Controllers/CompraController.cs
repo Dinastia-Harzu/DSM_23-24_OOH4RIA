@@ -95,6 +95,22 @@ namespace NemesisNevulaWeb.Controllers
                 CompraRepository compraRepository = new CompraRepository();
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
 
+                string desc = Request.Form["desc"];
+
+                if(desc != null)
+                {
+                    UsuarioRepository usuarioRepository = new UsuarioRepository();
+                    UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
+                    UsuarioEN usu = usuarioCEN.DamePorOID(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
+                    // Funcion para aplicar descuento: A cambiar
+                    comp.PrecioTotal -= (usu.PuntosNevula / 2);
+
+                    // Modificamos usuario (no se si se hara así)
+                    usuarioCEN.ModificarUsuario(usu.Id, usu.Nombre, usu.Correo, usu.ConGoogle, 
+                    usu.Foto_perfil, 0, usu.Cartera - comp.PrecioTotal, usu.Pass);
+                }
+
                 // Creamos compra
                 int result_comp = compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, comp.FechaCaducidad, false);
                 return RedirectToAction("Details", new {id = result_comp});
