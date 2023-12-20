@@ -47,8 +47,8 @@
                             }
                             else
                             {
-                                <a class="btn btn-aceptar" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="0">Comprar</a>
-                                <a class="btn btn-cancelar mt-2" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="1">Regalar</a>
+                                <a class="btn btn-aceptar" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="false">Comprar</a>
+                                <a class="btn btn-cancelar mt-2" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="true">Regalar</a>
                             }
                         </div>
                     </div>

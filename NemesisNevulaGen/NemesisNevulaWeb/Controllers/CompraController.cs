@@ -48,7 +48,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: CompraController/Create
-        public ActionResult Create(int id, float precio)
+        public ActionResult Create(int id, float precio, bool regalo)
         {
             UsuarioRepository usuarioRepository = new UsuarioRepository();
             UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
@@ -94,6 +94,9 @@ namespace NemesisNevulaWeb.Controllers
             // Ver el nombre del articulo
             ViewData["nom_art"] = p_articulo.Nombre;
 
+            // Ver si se regala el articulo
+            ViewData["regalo"] = regalo;
+
             // Vista final
             return View(new CompraAssembler().ConvertirENToViewModel(compraEN));
 
@@ -117,16 +120,36 @@ namespace NemesisNevulaWeb.Controllers
                 UsuarioEN usu = usuarioCEN.DamePorOID(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
                 // Precio descontado
-                // Precio descontado
                 float precio_descontado = comp.PrecioTotal;
                 if (desc != null) { precio_descontado -= (float)usu.PuntosNevula / 100; }
 
                 // Compranos articulo
                 UsuarioCP usuarioCP = new(new SessionCPNHibernate());
-                usuarioCP.ComprarArticulo(usu.Id, comp.IdArticulo, (desc != null));
+                CompraCP compraCP = new(new SessionCPNHibernate());
 
-                // Creamos compra
-                int result_comp = compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, precio_descontado, false);
+                // Vemos si se va a comprar o regalar
+                int regalo = Int32.Parse(Request.Form["regalo"]);
+
+                int result_comp = 0; 
+                if (regalo == 0) {
+
+                    // Compramos el articulo
+                    usuarioCP.ComprarArticulo(usu.Id, comp.IdArticulo, (desc != null));
+
+                    // Creamos compra
+                    result_comp = compraCEN.CrearCompra(DateTime.Now, comp.IdComprador, comp.IdArticulo, precio_descontado, false);
+
+                } else {
+
+                    // Creamos compra
+                    result_comp = compraCEN.CrearCompra(DateTime.Now, comp.IdComprador, comp.IdArticulo, precio_descontado, true);
+
+                    // Regalamos
+                    string nom_usu_r = Request.Form["nom_usu_r"];
+                    UsuarioEN usu_r = usuarioCEN.DamePorNombre(nom_usu_r).First();
+                    compraCP.Regalar(result_comp, usu_r.Id);
+
+                }
                 return RedirectToAction("Details", new {id = result_comp});
 
             }
