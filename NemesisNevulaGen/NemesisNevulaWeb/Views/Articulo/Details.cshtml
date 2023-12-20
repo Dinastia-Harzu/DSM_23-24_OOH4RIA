@@ -32,8 +32,16 @@
                         <p class="card-text fw-bold">🏷️ @Html.DisplayFor(model => model.Item1.Tipo)</p>
                         <p class="card-text fw-bold">@Html.DisplayFor(model => model.Item1.Descripcion)</p>
                         <div class="card-footer d-flex flex-column justify-content-center">
-                            <a class="btn btn-aceptar" href="@Url.Action("Edit", new { id = Model.Item1.Id })">Comprar</a>
-                            <a class="btn btn-cancelar mt-2">Regalar</a>
+                            @if (User.FindFirstValue(ClaimTypes.Name) == null)
+                            {
+                                <a class="btn btn-aceptar" href="@Url.Action("Login","Usuario")">Comprar</a>
+                                <a class="btn btn-cancelar mt-2" href="@Url.Action("Login","Usuario")">Regalar</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-aceptar" href="">Comprar</a>
+                                <a class="btn btn-cancelar mt-2" href="">Regalar</a>
+                            }
                         </div>
                     </div>
                 </div>
