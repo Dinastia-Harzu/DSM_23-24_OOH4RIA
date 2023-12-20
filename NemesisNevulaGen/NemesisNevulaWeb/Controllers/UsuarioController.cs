@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using NemesisNevulaGen.ApplicationCore.CP.NemesisNevula;
+using NemesisNevulaGen.Infraestructure.CP;
 
 namespace NemesisNevulaWeb.Controllers
 {
@@ -579,28 +581,27 @@ namespace NemesisNevulaWeb.Controllers
             return View(viewModel);
         }
 
-        /*
-        //GET: UsuarioController/MetodosPago/5
+        // GET: UsuarioController/DevolverArticulo/5
         [Authorize]
-        public ActionResult MetodosPago(int id) 
+        public ActionResult DevolverArticulo(int id)
         {
+            UsuarioRepository userRepo = new();
+            UsuarioCEN userCEN = new(userRepo);
+            UsuarioCP userCP = new(new SessionCPNHibernate());
 
-            // Validamos que el usuario introducido sea el que está registrado
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            UsuarioEN userLogued = userCEN.DamePorOID(idUserLogued);
 
-            if (idUserLogued != id)
-                return RedirectToAction("Index", "Home");
+            // Buscamos si el usuario tiene ese artículo
+            IList<ArticuloEN> artsComprados = userCEN.DameArticulosComprados(idUserLogued);
 
-            UsuarioRepository userRepository = new();
-            UsuarioCEN userCEN = new(userRepository);
+            if (!artsComprados.Any(art => art.Id == id))
+                return RedirectToAction("ArtsAdquiridos", new {id = idUserLogued});
 
-            // Recogemos los métodos de pago del usuario y los convertiimos a VM
-            IList<MetodoPagoEN> mpsUserListEN = userCEN.DameMetodosDePago(id);
+            // Si tiene el articulo comprado, procedemos a la devolución del importe
+            userCP.DevolverArticulo(idUserLogued, id);
 
-            IEnumerable<MetodoPagoVM> mpsUserListVM = new MetodoPagoAssembler().ConvertirListENToViewModel(mpsUserListEN).ToList();
-
-            return View(mpsUserListVM);
+            return RedirectToAction("ArtsAdquiridos", new { id = idUserLogued });
         }
-        */
     }
 }
