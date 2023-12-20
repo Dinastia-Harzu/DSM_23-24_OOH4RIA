@@ -15,6 +15,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: AdministradorController
         public ActionResult Index()
         {
+            
             SessionInitialize();
             AdministradorRepository adminRepository = new AdministradorRepository();
             AdministradorCEN adminCEN = new AdministradorCEN(adminRepository);
@@ -29,6 +30,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: AdministradorController/Details/5
         public ActionResult Details(int id)
         {
+            
             SessionInitialize();
             AdministradorRepository administradorRepository = new AdministradorRepository(session);
             AdministradorCEN administradorCEN = new AdministradorCEN(administradorRepository);
@@ -43,6 +45,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: AdministradorController/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -51,6 +54,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(AdministradorVM admin)
         {
+            
             try
             {
                 AdministradorRepository adminRepository = new AdministradorRepository();
@@ -71,6 +75,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: AdministradorController/Edit/5
         public ActionResult Edit(int id)
         {
+            
             SessionInitialize();
             AdministradorRepository administradorRepository = new AdministradorRepository(session);
             AdministradorCEN administradorCEN = new AdministradorCEN(administradorRepository);
@@ -87,6 +92,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, AdministradorVM admin)
         {
+            
             try
             {
                 AdministradorRepository adminRepository = new AdministradorRepository();

@@ -17,6 +17,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
+            
             SessionInitialize();
             UsuarioPremiumRepository usupremRepository = new UsuarioPremiumRepository();
             UsuarioPremiumCEN usupremCEN = new UsuarioPremiumCEN(usupremRepository);
@@ -32,6 +33,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador,Premium")]
         public ActionResult Details(int id)
         {
+            
             SessionInitialize();
             UsuarioPremiumRepository usupremRepository = new UsuarioPremiumRepository(session);
             UsuarioPremiumCEN usupremCEN = new UsuarioPremiumCEN(usupremRepository);
@@ -57,6 +59,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -66,6 +69,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(UsuarioPremiumVM usuprem)
         {
+            
             try
             {
                 UsuarioPremiumRepository usupremRepository = new UsuarioPremiumRepository();
@@ -86,6 +90,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador,Premium")]
         public ActionResult Edit(int id)
         {
+            
             SessionInitialize();
             UsuarioPremiumRepository usupremRepository = new UsuarioPremiumRepository(session);
             UsuarioPremiumCEN usupremCEN = new UsuarioPremiumCEN(usupremRepository);
@@ -113,6 +118,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, UsuarioPremiumVM usup)
         {
+            
             try
             {
                 UsuarioPremiumRepository usupremRepository = new UsuarioPremiumRepository();
@@ -141,6 +147,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador,Premium")]
         public ActionResult Delete(int id)
         {
+            
             UsuarioPremiumRepository usupremRepository = new UsuarioPremiumRepository();
             UsuarioPremiumCEN usupremCEN = new UsuarioPremiumCEN(usupremRepository);
 
@@ -162,6 +169,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            
             try
             {
                 // Verificamos que el usuario logueado sea el mismo que el de la id

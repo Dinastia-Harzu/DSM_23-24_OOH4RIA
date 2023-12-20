@@ -3,15 +3,16 @@
 @using System.Security.Claims;
 
 @{
-    string userData = "";
+    string nombre = "";
     string cartera = "";
     string foto = "";
 
     if (User.Identity.IsAuthenticated)
-    {    
-        userData = User.FindFirstValue(ClaimTypes.UserData);
-        if (User.FindFirstValue(ClaimTypes.Role) != "Administrador") cartera = float.Parse(userData.Split('#')[0]).ToString("0.00")+ " €";
-        foto = userData.Split('#')[1];        
+    {
+        string car = ViewData["cartera"].ToString();
+        if (User.FindFirstValue(ClaimTypes.Role) != "Administrador") cartera = float.Parse(car).ToString("0.00") + " €";
+        foto = ViewData["foto"].ToString();
+        nombre = ViewData["nombre"].ToString();
     }
 }
 
@@ -88,7 +89,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link @(ViewBag.CurrentPage == "Perfil" ? "nav-activo" : "")" href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">@User.FindFirstValue(ClaimTypes.Name)</a>
+                                <a class="nav-link @(ViewBag.CurrentPage == "Perfil" ? "nav-activo" : "")" href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">@nombre</a>
                             </li>
                         }
                         else {

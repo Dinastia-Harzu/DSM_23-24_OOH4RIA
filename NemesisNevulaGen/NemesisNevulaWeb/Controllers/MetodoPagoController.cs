@@ -20,6 +20,8 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
+            ViewBag.CurrentPage = "Perfil";
             SessionInitialize();
             MetodoPagoRepository mpRepository = new MetodoPagoRepository(session);
             MetodoPagoCEN mpCEN = new MetodoPagoCEN(mpRepository);
@@ -36,6 +38,9 @@ namespace NemesisNevulaWeb.Controllers
         // GET: MetodoPagoController/Details/5
         public ActionResult Details(int id)
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
+            ViewBag.CurrentPage = "Perfil";
+
             SessionInitialize();
 
             MetodoPagoRepository mpRepository = new MetodoPagoRepository(session);
@@ -60,6 +65,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Create(MetodoPagoVM mp)
         {
+            
             try
             {
                 MetodoPagoRepository mpRepo = new MetodoPagoRepository();
@@ -82,6 +88,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
+            
             try
             {
                 return RedirectToAction(nameof(Index));
@@ -96,6 +103,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
+            
             SessionInitialize();
 
             MetodoPagoRepository mpRepository = new MetodoPagoRepository(session);
@@ -121,6 +129,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
         {
+            
             try
             {
                 SessionInitialize();
@@ -152,6 +161,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            
             SessionInitialize();
 
             MetodoPagoRepository mpRepository = new MetodoPagoRepository(session);
@@ -177,6 +187,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            
             try
             {
                 SessionInitialize();

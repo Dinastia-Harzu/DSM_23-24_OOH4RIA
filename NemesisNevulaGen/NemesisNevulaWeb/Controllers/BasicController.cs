@@ -10,6 +10,8 @@ using ISession = NHibernate.ISession;
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula;
+using System.Security.Claims;
+using System.Configuration;
 
 namespace NemesisNevulaWeb.Controllers
 {
@@ -191,6 +193,20 @@ namespace NemesisNevulaWeb.Controllers
             }
 
             return list;
+        }
+
+        protected void actualizarEstado ()
+        {
+            
+            UsuarioRepository usuarioRepository = new();
+            UsuarioCEN usuarioCEN = new(usuarioRepository);
+
+            
+            UsuarioEN usuario = usuarioCEN.DamePorOID(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
+            ViewData["cartera"] = usuario.Cartera;
+            ViewData["foto"] = usuario.Foto_perfil;
+            ViewData["nombre"] = usuario.Nombre;
         }
     }
 }

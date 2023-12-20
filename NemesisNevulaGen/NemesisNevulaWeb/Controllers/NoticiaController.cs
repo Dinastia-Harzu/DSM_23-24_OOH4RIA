@@ -32,6 +32,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: NoticiaController
         public ActionResult Index()
         {
+            
             SessionInitialize();
             NoticiaRepository noticiaRepository = new();
             NoticiaCEN noticiaCEN = new(noticiaRepository);
@@ -45,6 +46,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: NoticiaController/Details/5
         public ActionResult Details(int id)
         {
+            
             SessionInitialize();
             NoticiaRepository noticiaRepository = new(session);
             NoticiaCEN noticiaCEN = new(noticiaRepository);
@@ -130,6 +132,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id)
         {
+            
             SessionInitialize();
             NoticiaRepository noticiaRepository = new(session);
             NoticiaCEN noticiaCEN = new(noticiaRepository);
@@ -203,6 +206,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int id)
         {
+            
             new NoticiaCEN(new NoticiaRepository()).BorrarNoticia(id);
             return RedirectToAction(nameof(Index));
         }
@@ -213,6 +217,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            
             try
             {
                 return RedirectToAction(nameof(Index));

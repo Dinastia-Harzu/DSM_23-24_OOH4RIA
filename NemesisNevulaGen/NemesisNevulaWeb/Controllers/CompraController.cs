@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,6 +20,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
+            
             SessionInitialize();
             CompraRepository compraRepository = new CompraRepository();
             CompraCEN compraCEN = new CompraCEN(compraRepository);
@@ -33,6 +35,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: CompraController/Details/5
         public ActionResult Details(int id)
         {
+            
             SessionInitialize();
             CompraRepository compraRepository = new CompraRepository(session);
             CompraCEN compraCEN = new CompraCEN(compraRepository);
@@ -50,6 +53,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: CompraController/Create
         public ActionResult Create(int id, float precio)
         {
+            
             UsuarioRepository usuarioRepository = new UsuarioRepository();
             UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
 
@@ -62,7 +66,6 @@ namespace NemesisNevulaWeb.Controllers
             }
 
             ViewData["usuariosItems"] = usuariosItems;
-
 
             // --------------------------------------------------------------------------------
 
@@ -91,8 +94,23 @@ namespace NemesisNevulaWeb.Controllers
             // Ver el precio y el saldo para ver lo de los botones
             ViewData["suficiente"] = (p_usuario.Cartera > precio);
 
-            // Ver el nombre del articulo
-            ViewData["nom_art"] = p_articulo.Nombre;
+            if (p_usuario.Cartera > precio)
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    string cartera = User.FindFirstValue(ClaimTypes.UserData).Split("#")[0];
+                    string foto = User.FindFirstValue(ClaimTypes.UserData).Split("#")[1];
+                    ((ClaimsIdentity)User.Identity).RemoveClaim(User.FindFirst(ClaimTypes.UserData));
+                    var actualizado = new Claim(ClaimTypes.UserData, p_usuario.Cartera+"#"+foto);
+                    ((ClaimsIdentity)User.Identity).AddClaim(actualizado);
+                    HttpContext.SignInAsync(User);
+                    ViewData["cartera"] = p_usuario.Cartera;
+                    
+                }
+
+            }
+                // Ver el nombre del articulo
+                ViewData["nom_art"] = p_articulo.Nombre;
 
             // Vista final
             return View(new CompraAssembler().ConvertirENToViewModel(compraEN));
@@ -105,6 +123,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CompraVM comp)
         {
+            
             try
             {
                 CompraRepository compraRepository = new CompraRepository();
@@ -139,6 +158,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: CompraController/Edit/5
         public ActionResult Edit(int id)
         {
+            
             SessionInitialize();
             CompraRepository compraRepository = new CompraRepository(session);
             CompraCEN compraCEN = new CompraCEN(compraRepository);
@@ -156,6 +176,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, CompraVM comp)
         {
+            
             try
             {
                 CompraRepository compraRepository = new CompraRepository();
@@ -173,6 +194,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: CompraController/Delete/5
         public ActionResult Delete(int id)
         {
+            
             CompraRepository compraRepository = new CompraRepository();
             CompraCEN compraCEN = new CompraCEN(compraRepository);
             compraCEN.BorrarCompra(id);
@@ -184,6 +206,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            
             try
             {
                 return RedirectToAction(nameof(Index));
