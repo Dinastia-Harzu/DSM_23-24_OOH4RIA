@@ -2,6 +2,20 @@
 @using Microsoft.AspNetCore.Identity;
 @using System.Security.Claims;
 
+@{
+    string userData = "";
+    string cartera = "";
+    string foto = "";
+
+    if (User.Identity.IsAuthenticated)
+    {    
+        userData = User.FindFirstValue(ClaimTypes.UserData);
+        cartera = userData.Split('#')[0];
+        foto = userData.Split('#')[1];        
+    }
+}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,12 +51,12 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            @if (User.FindFirstValue(ClaimTypes.Name) != null)
+                            @if (User.Identity.IsAuthenticated)
                             {
-                                <p class="text-warning mt-2 m-2">0.00 €</p>
+                                <p class="text-warning mt-2 m-2">@cartera €</p>
                             }
                         </li>
-                        @if (User.FindFirstValue(ClaimTypes.Name) != null)
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link @(ViewBag.CurrentPage == "Perfil" ? "nav-activo" : "")" href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">@User.FindFirstValue(ClaimTypes.Name)</a>
@@ -55,10 +69,10 @@
                             </li>
                         }
                         <li class="nav-item">
-                            @if (User.FindFirstValue(ClaimTypes.Name) != null)
+                            @if (User.Identity.IsAuthenticated)
                             {
                                 <a href="@Url.Action("Details","Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier)})">
-                                    <img class="rounded-circle" src="~/css/estilos/imagenes/ge.jpeg" alt="foto de usuario" style="width: 40px; height: 40px;" />
+                                    <img class="rounded-circle" src="~/css/estilos/imagenes/@foto" alt="foto de usuario" style="width: 40px; height: 40px;" />
                                 </a>
                             }
                         </li>

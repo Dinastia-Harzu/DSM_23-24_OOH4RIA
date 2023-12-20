@@ -74,7 +74,8 @@ namespace NemesisNevulaWeb.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),   // ID del usuario
                 new Claim(ClaimTypes.Name, user.Nombre),    // Nombre de usurio
-                new Claim(ClaimTypes.Role, rolUser)     // Rol
+                new Claim(ClaimTypes.Role, rolUser),     // Rol
+                new Claim(ClaimTypes.UserData, user.Cartera+"#"+user.Foto_perfil)
             };
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
