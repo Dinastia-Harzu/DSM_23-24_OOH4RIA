@@ -114,7 +114,6 @@ namespace NemesisNevulaWeb.Controllers
         public ActionResult Create()
         {
             if (User.Identity.IsAuthenticated) actualizarEstado();
-            ViewBag.CurrentPage = "Tienda";
             ViewBag.CurrentPage = "CrearArticulo";
             return View();
         }

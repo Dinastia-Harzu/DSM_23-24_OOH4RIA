@@ -110,26 +110,13 @@ public static void InitializeData ()
                 int idAdmin = administradorcen.CrearAdmin ("Federico Alfredo", "fnaf1@gmail.com", false, "te.jpeg", 12, (float)1.25, "contrasenya");
                 int idUsuarioPremium = usuariopremiumcen.CrearUsuarioPremium ("Bonifacio Conejal", "fnaf2@gmail.com", true, "na.jpeg", 2, (float)0.00, "pwd123", DateTime.Now.AddMonths (3));
                 int idUsuario = usuariocen.CrearUsuario ("Chica Gallina", "fnaf3@gmail.com", true, "ge.jpeg", 2, (float)12.5, "pwd123");
+                int usuario_af = usuariocen.CrearUsuario("Arturo", "agrg11@alu.ua.es", false, "te.jpeg", 100, 25, "password");
 
-                String descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-                String noti = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet iaculis nulla. Aliquam et lacus et sem vulputate volutpat. Sed dui massa, pretium a volutpat nec, lobortis quis velit. Nunc tempor sem ac eros iaculis malesuada. Etiam a efficitur tellus, id convallis tellus. Proin semper turpis eu massa accumsan, quis volutpat enim scelerisque. Phasellus auctor nisi nec ex dapibus, id vehicula nisl mollis. Nullam ut tortor euismod, rhoncus urna ut, rutrum eros. Etiam aliquam ligula in justo ornare, at semper tellus tempor. Aenean non orci euismod nisl mattis aliquet sit amet in metus. Aliquam congue laoreet posuere. Proin venenatis in nulla et venenatis. Aliquam tristique molestie lectus a tincidunt. Praesent gravida velit non purus posuere, eget sollicitudin erat scelerisque. Nulla facilisi. In dapibus faucibus aliquet.\r\n\r\nDuis mollis justo turpis, et pretium nibh ornare id. Quisque consequat, velit a blandit fermentum, massa lacus consectetur ante, sodales mattis enim mauris rhoncus leo. Aenean non pellentesque justo, eu facilisis augue. Nullam hendrerit sit amet nunc sed tincidunt. Ut aliquet mi metus, ac cursus erat porta vel. Quisque vehicula ex nisl, sed egestas lectus pellentesque eu. Sed elementum mattis lacinia.\r\n\r\nPellentesque sed laoreet lectus. Sed gravida sem quis magna fermentum laoreet. Suspendisse rhoncus leo eget commodo pretium. Fusce nisi purus, venenatis a lacus eget, semper fringilla libero. Fusce efficitur lacinia eros, nec auctor mauris interdum vel. Donec vitae posuere magna, quis condimentum turpis. Pellentesque in orci eu turpis gravida pretium. Donec maximus convallis erat. Fusce gravida placerat tellus.\r\n\r\nInteger convallis malesuada neque, ut consequat quam finibus quis. Nullam porta risus nec lorem porta, at gravida ligula luctus. Donec sodales eros arcu, et semper odio pretium vel. Sed id maximus sem. Etiam mattis, enim nec maximus consequat, dui tellus consequat dui, in maximus ante eros sit amet odio. Duis elementum tellus ac lorem placerat commodo. Duis tincidunt volutpat odio eget efficitur. Phasellus elementum magna ipsum. Sed sem orci, condimentum nec dui aliquam, hendrerit posuere felis. Ut sed sodales enim. Donec venenatis est ac metus ullamcorper congue. Morbi pulvinar eros a turpis consequat, nec tempor erat dictum. Suspendisse elementum tempor laoreet. Pellentesque odio diam, accumsan in dui id, tristique cursus libero. Nullam vitae dignissim orci, at mollis massa. Etiam maximus auctor lorem nec viverra.\r\n\r\nNulla pulvinar congue libero sit amet rutrum. Aliquam a ex a massa facilisis sagittis. Etiam ligula ante, rhoncus vel erat sed, consequat blandit ipsum. Fusce ligula lectus, placerat non tincidunt vel, interdum non eros. Praesent orci augue, lobortis ac ante eu, eleifend accumsan libero. Proin nec enim vel ligula lobortis sodales. Maecenas et diam hendrerit, feugiat ipsum et, euismod nisl. Integer sit amet diam sit amet leo sagittis aliquet. Mauris faucibus purus libero, eu consectetur magna iaculis sed.";
-                int idNoticia1 = noticiacen.CrearNoticia (noti, false, "Nuevos artículos!", "pe.jpeg");
-                int idNoticia2 = noticiacen.CrearNoticia (noti, true, "Próximas temporadas", "contactanos.jpeg");
-                int idNoticia3 = noticiacen.CrearNoticia (noti, true, "Cósmico y universal", "pp.jpeg");
-                int idNoticia4 = noticiacen.CrearNoticia (noti, true, "¡Nueva invasión!", "contactanos.jpeg");
-                int idNoticia5 = noticiacen.CrearNoticia (noti, true, "Recompensas novedosas", "te.jpeg");
+                // int idCompra1 = compracen.CrearCompra (DateTime.Now, idUsuario, idArticulo1, (float)0.00, false);
 
-                int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", descripcion, (float)1.2, "ge.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Animacion, 0, false, DateTime.Now, "fnaf pelicula", "ge.jpeg");
-                int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", descripcion, (float)1.0, "pe.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Arma, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "pe.jpeg");
-                int idArticulo3 = articulocen.CrearArticulo ("Traje cósmico", descripcion, (float)3.9, "tc.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Raro, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Traje, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "tc.jpeg");
-                int idArticulo4 = articulocen.CrearArticulo ("Pintada planetaria", descripcion, (float)5.9, "pp.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Grafitti, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "pp.jpeg");
-                int idArticulo5 = articulocen.CrearArticulo ("Nave alfa", descripcion, (float)10.0, "na.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Legendario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Nave, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "na.jpeg");
-
-                int idCompra1 = compracen.CrearCompra (DateTime.Now, idUsuario, idArticulo1, (float)0.00, false);
-
-                int idTarjeta1 = tarjetacreditocen.CrearTarjetaCredito (idUsuario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica", "5555777788889999", DateTime.Now.AddMonths (3), "aaaa");
-                int idPayPal1 = paypalcen.CrearPaypal (idUsuario, "fnaf3@gmail.com", "clave super chula");
-
+                // int idTarjeta1 = tarjetacreditocen.CrearTarjetaCredito (idUsuario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica", "5555777788889999", DateTime.Now.AddMonths (3), "aaaa");
+                // int idPayPal1 = paypalcen.CrearPaypal (idUsuario, "fnaf3@gmail.com", "clave super chula");
+                /*
                 IList<MetodoPagoEN> metodosPago = usuariocen.DameMetodosDePago (idUsuario);
 
                 foreach (MetodoPagoEN art in metodosPago) {
@@ -245,7 +232,7 @@ public static void InitializeData ()
 
                 // Custom transaction 2. Agregar fondos
                 float cantidad_af = 10;
-                int usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "te.jpeg", 100, 25, "password");
+                usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "te.jpeg", 100, 25, "password");
                 int metodo_af = metodopagocen.CrearMetodoPago (usuario_af);
                 UsuarioCP usuarioCP = new(new SessionCPNHibernate ());
                 Console.WriteLine ("\n\nAgregando " + cantidad_af + "euros a la cuenta:\n");
@@ -375,10 +362,10 @@ public static void InitializeData ()
                 }
                 else{
                         Console.WriteLine ("La compra no se ha realizado correctamente");
-                }
+                }*/
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

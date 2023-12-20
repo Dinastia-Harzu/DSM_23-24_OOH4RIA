@@ -38,6 +38,7 @@ namespace NemesisNevulaWeb.Controllers
             NoticiaCEN noticiaCEN = new(noticiaRepository);
             IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
             IEnumerable<NoticiaVM> listaNoticias = new NoticiaAssembler().ListEN2VM(listaEN).ToList();
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "TodasNoticias";
             SessionClose();
             return View(listaNoticias);
@@ -68,6 +69,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "CrearNoticia";
             return View();
         }
@@ -78,6 +80,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync(NoticiaVM noticia)
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "CrearNoticia";
             Console.WriteLine("HOLIWIS" + noticia.Foto2);
             NoticiaRepository notiRepo = new();
