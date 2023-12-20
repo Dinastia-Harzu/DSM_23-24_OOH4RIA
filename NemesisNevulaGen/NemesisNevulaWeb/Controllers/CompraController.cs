@@ -141,14 +141,18 @@ namespace NemesisNevulaWeb.Controllers
 
                 } else {
 
-                    // Creamos compra
-                    result_comp = compraCEN.CrearCompra(DateTime.Now, comp.IdComprador, comp.IdArticulo, precio_descontado, true);
-
                     // Regalamos
                     string nom_usu_r = Request.Form["nom_usu_r"];
                     UsuarioEN usu_r = usuarioCEN.DamePorNombre(nom_usu_r).First();
-                    compraCP.Regalar(result_comp, usu_r.Id);
 
+                    // Creamos compra
+                    if (!(usu_r is AdministradorEN)) {
+                        result_comp = compraCEN.CrearCompra(DateTime.Now, comp.IdComprador, comp.IdArticulo, precio_descontado, true);
+                        compraCP.Regalar(result_comp, usu_r.Id);
+                    } else {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    
                 }
                 return RedirectToAction("Details", new {id = result_comp});
 
