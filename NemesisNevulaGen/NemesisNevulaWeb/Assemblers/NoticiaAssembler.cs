@@ -11,7 +11,7 @@ namespace NemesisNevulaWeb.Assemblers
             Descripcion = en.Descripcion,
             EsPublicada = en.EsPublicada,
             Titulo = en.Titulo,
-            Foto = en.Foto
+            Foto = en.Foto == null? "noImage.jpg" : en.Foto,
         };
 
         public IList<NoticiaVM> ListEN2VM(IList<NoticiaEN> ens)

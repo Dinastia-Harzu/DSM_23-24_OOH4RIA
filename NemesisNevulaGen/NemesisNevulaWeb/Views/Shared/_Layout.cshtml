@@ -76,7 +76,7 @@
                         @if (User.FindFirstValue(ClaimTypes.Role) == "Normal")
                         {
                             <li class="nav-item d-flex align-content-center ">
-                                <a class="btn btn-premium nav-link @(ViewBag.CurrentPage == "PREMIUM" ? "nav-activo" : "")" asp-area="" asp-controller="Usuario" asp-action="Details" style="color:black;">PREMIUM</a>
+                                <a class="btn btn-premium nav-link @(ViewBag.CurrentPage == "PREMIUM" ? "nav-activo" : "")" asp-area="" asp-controller="Usuario" asp-action="PremiumActualizar" style="color:black;">PREMIUM</a>
                             </li>
                         }
                         <li class="nav-item">
