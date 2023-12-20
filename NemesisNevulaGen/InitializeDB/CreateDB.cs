@@ -108,13 +108,16 @@ public static void InitializeData ()
                 /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
 
                 int idAdmin = administradorcen.CrearAdmin ("Federico Alfredo", "fnaf1@gmail.com", false, "te.jpeg", 12, (float)1.25, "contrasenya");
-                int idUsuarioPremium = usuariopremiumcen.CrearUsuarioPremium ("Bonifacio Conejal", "fnaf2@gmail.com", true, "na.jpeg", 2, (float)0.0, "pwd123", DateTime.Now.AddMonths (3));
+                int idUsuarioPremium = usuariopremiumcen.CrearUsuarioPremium ("Bonifacio Conejal", "fnaf2@gmail.com", true, "na.jpeg", 2, (float)0.00, "pwd123", DateTime.Now.AddMonths (3));
                 int idUsuario = usuariocen.CrearUsuario ("Chica Gallina", "fnaf3@gmail.com", true, "ge.jpeg", 2, (float)12.5, "pwd123");
 
-                int idNoticia1 = noticiacen.CrearNoticia ("noticia 2332", false, "titulo", "contactanos.jpeg");
-                int idNoticia2 = noticiacen.CrearNoticia ("noticia 32442432", true, "titulo2", "pe.jpeg");
-
                 String descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
+                int idNoticia1 = noticiacen.CrearNoticia (descripcion, false, "Nuevos artículos!", "pe.jpeg");
+                int idNoticia2 = noticiacen.CrearNoticia (descripcion, true, "Próximas temporadas", "contactanos.jpeg");
+                int idNoticia3 = noticiacen.CrearNoticia (descripcion, true, "Cósmico y universal", "pp.jpeg");
+                int idNoticia4 = noticiacen.CrearNoticia (descripcion, true, "¡Nueva invasión!", "contactanos.jpeg");
+                int idNoticia5 = noticiacen.CrearNoticia (descripcion, true, "Recompensas novedosas", "te.jpeg");
 
                 int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", descripcion, (float)2.5, "ge.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Animacion, 0, false, DateTime.Now, "fnaf pelicula", "ge.jpeg");
                 int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", descripcion, (float)3.9, "pe.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Arma, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "pe.jpeg");
@@ -122,7 +125,7 @@ public static void InitializeData ()
                 int idArticulo4 = articulocen.CrearArticulo ("Pintada planetaria", descripcion, (float)3.9, "pp.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Grafitti, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "pp.jpeg");
                 int idArticulo5 = articulocen.CrearArticulo ("Nave alfa", descripcion, (float)3.9, "na.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Legendario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Nave, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "na.jpeg");
 
-                int idCompra1 = compracen.CrearCompra (DateTime.Now, idUsuario, idArticulo1, (float)0.0, false);
+                int idCompra1 = compracen.CrearCompra (DateTime.Now, idUsuario, idArticulo1, (float)0.00, false);
 
                 int idTarjeta1 = tarjetacreditocen.CrearTarjetaCredito (idUsuario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica", "5555777788889999", DateTime.Now.AddMonths (3), "aaaa");
                 int idPayPal1 = tarjetacreditocen.CrearTarjetaCredito (idUsuario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica", "5555777788889999", DateTime.Now.AddMonths (3), "aaaa");
@@ -132,9 +135,6 @@ public static void InitializeData ()
                 foreach (MetodoPagoEN art in metodosPago) {
                         Console.WriteLine ("\n\nMP de Chica: " + art.Id);
                 }
-
-                int idTarjeta1 = tarjetacreditocen.CrearTarjetaCredito(NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica","5555777788889999", DateTime.Now.AddMonths(3), "aaaa");
-                int idPayPal1 = tarjetacreditocen.CrearTarjetaCredito(NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica","5555777788889999", DateTime.Now.AddMonths(3), "aaaa");
 
                 // Consultas
 
@@ -244,18 +244,13 @@ public static void InitializeData ()
                 compraCP.AplicarDescuento (true, idUsuario, idArticulo1, (float)5.5);
 
                 // Custom transaction 2. Agregar fondos
-                float cantidad_af = 10.00f;
-                int usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "https://picsum.photos/200", 100, 25.00f, "password");
-                int compra_af = compracen.CrearCompra (
-                        DateTime.Now,
-                        usuario_af,
-                        -1,
-                        cantidad_af,
-                        false
-                        );
+                float cantidad_af = 10;
+                int usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "https://picsum.photos/200", 100, 25, "password");
+                int metodo_af = metodopagocen.CrearMetodoPago (usuario_af);
                 UsuarioCP usuarioCP = new(new SessionCPNHibernate ());
-                Console.WriteLine ("\n\nAgregando " + cantidad_af + "€ a la cuenta:\n");
-                usuarioCP.AgregarFondos (usuario_af, compra_af, cantidad_af);
+                Console.WriteLine ("\n\nAgregando " + cantidad_af + "euros a la cuenta:\n");
+                usuarioCP.AgregarFondos (usuario_af, metodo_af, cantidad_af);
+                Console.WriteLine ("\n\nCartera actual del usuario " + usuariocen.DamePorOID(usuario_af).Cartera + "euros en la cuenta:\n");
 
                 // Valorar Articulo
                 UsuarioCP usuarioCP2 = new(new SessionCPNHibernate ());
@@ -288,6 +283,7 @@ public static void InitializeData ()
                 int idCompra2a = usuarioCP.ComprarArticulo (idUsuario, idArticulo2, false);
                 Console.WriteLine ("EL ID DE LA COMPRA ES: " + idCompra1a);
 
+                usuario = usuariocen.DamePorOID(usuario.Id);
                 Console.WriteLine ("\nMonedero final del usuario: " + usuario.Cartera + "\n");
 
                 articulosUser = usuariocen.DameArticulosComprados (usuario.Id);
@@ -302,7 +298,7 @@ public static void InitializeData ()
                 Console.WriteLine ("* PRUEBA DE DEVOLUCION *");
                 Console.WriteLine ("************************");
 
-                Console.WriteLine ("\n\n Se puede devolver?: "+compracen.DevolucionPermitida(idCompra1a));
+                Console.WriteLine ("\n\n Se puede devolver?: " + compracen.DevolucionPermitida (idCompra1a));
 
                 Console.WriteLine ("\nMonedero actual del usuario: " + usuario.Cartera + "\n");
 
@@ -316,6 +312,8 @@ public static void InitializeData ()
                 Console.WriteLine ("\nDevolviendo articulo 1...\n");
                 Console.WriteLine ("OID de la Compra: " + idCompra1a);
                 usuarioCP.DevolverArticulo (idUsuario, idCompra1a);
+
+                usuario = usuariocen.DamePorOID(usuario.Id);
 
                 Console.WriteLine ("\nMonedero final del usuario: " + usuario.Cartera + "\n");
 

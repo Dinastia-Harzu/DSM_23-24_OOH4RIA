@@ -18,28 +18,29 @@ namespace NemesisNevulaGen.ApplicationCore.CP.NemesisNevula
 {
 public partial class UsuarioCP : GenericBasicCP
 {
-public void AgregarFondos (int p_oid, int p_compra, float p_cantidad)
+public bool AgregarFondos (int p_oid, int p_metodoPago, float p_cantidad)
 {
         /*PROTECTED REGION ID(NemesisNevulaGen.ApplicationCore.CP.NemesisNevula_Usuario_agregarFondos) ENABLED START*/
 
         UsuarioCEN usuarioCEN = null;
-        CompraCEN compraCEN = null;
+        MetodoPagoCEN metodoPagoCEN = null;
+            bool vuelta = false;
 
         try
         {
                 CPSession.SessionInitializeTransaction ();
                 usuarioCEN = new  UsuarioCEN (CPSession.UnitRepo.UsuarioRepository);
-                compraCEN = new CompraCEN (CPSession.UnitRepo.CompraRepository);
+                metodoPagoCEN = new MetodoPagoCEN (CPSession.UnitRepo.MetodoPagoRepository);
 
 
                 UsuarioEN usuario = usuarioCEN.DamePorOID (p_oid);
-                CompraEN compra = compraCEN.DamePorOID (p_compra);
+                MetodoPagoEN compra = metodoPagoCEN.DamePorOID (p_metodoPago);
 
                 usuario.Cartera += p_cantidad;
-                compra.PrecioTotal = p_cantidad;
 
-                Console.WriteLine ("\n\nSe ha añadido a la cartera " + compra.PrecioTotal + "€.");
+                Console.WriteLine ("\n\nSe ha añadido a la cartera " + p_cantidad + "€.");
                 Console.WriteLine ("\n\nAhora el usuario cuenta con " + usuario.Cartera + "€ en la cartera.");
+                vuelta = true;
 
                 usuarioCEN.get_IUsuarioRepository ().ModificarUsuario (usuario);
 
@@ -54,6 +55,7 @@ public void AgregarFondos (int p_oid, int p_compra, float p_cantidad)
         {
                 CPSession.SessionClose ();
         }
+        return vuelta;
 
         /*PROTECTED REGION END*/
 }

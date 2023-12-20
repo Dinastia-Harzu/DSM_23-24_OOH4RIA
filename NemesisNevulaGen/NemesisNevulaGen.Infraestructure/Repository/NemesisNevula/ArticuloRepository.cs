@@ -532,7 +532,7 @@ finally
 					try
 					{
 							SessionInitializeTransaction();		
-							//String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Nombre LIKE '%' + :p_nombre+ '%' AND art.EsPublicado = true ";
+							//String sql = @"FROM ArticuloNH self where FROM ArticuloNH AS art WHERE art.Nombre LIKE '%' + :p_nombre + '%' AND art.EsPublicado = true ";
 	                                        //IQuery query = session.CreateQuery(sql);
 	                                        IQuery query = (IQuery)session.GetNamedQuery("ArticuloNHfiltrarPorNombreHQL");
 	                                                query.SetParameter("p_nombre",p_nombre);

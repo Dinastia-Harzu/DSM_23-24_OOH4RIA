@@ -47,6 +47,8 @@ public int ComprarArticulo (int p_Usuario_OID, int p_articulo, bool p_aplicarDes
                         Console.WriteLine ("Error: No tiene saldo suficiente en la cartera");
                 else{
                         usuario.Cartera -= precioTotal;
+                        string aux = usuario.Cartera.ToString ("0.00");
+                        usuario.Cartera = float.Parse (aux);
 
                         IList<int> artsActualizados = new List<int>();
                         artsActualizados.Add (articulo.Id);
