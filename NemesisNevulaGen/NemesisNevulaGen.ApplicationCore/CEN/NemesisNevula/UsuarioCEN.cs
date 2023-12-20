@@ -142,6 +142,10 @@ public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.Neme
 {
         return _IUsuarioRepository.DamePorNombre (p_nombre);
 }
+public System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.MetodoPagoEN> DameMetodosDePago (int p_idUser)
+{
+        return _IUsuarioRepository.DameMetodosDePago (p_idUser);
+}
 
 
 

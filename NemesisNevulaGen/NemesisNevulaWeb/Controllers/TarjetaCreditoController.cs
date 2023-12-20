@@ -11,12 +11,15 @@ using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
 using NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
     public class TarjetaCreditoController : BasicController
     {
         // GET: TarjetaCreditoController
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             int idUser = validarToken();
@@ -35,6 +38,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: TarjetaCreditoController/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             SessionInitialize();
@@ -42,6 +46,15 @@ namespace NemesisNevulaWeb.Controllers
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
 
             TarjetaCreditoEN tcEN = tcCEN.DamePorOID(id);
+
+            // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            UsuarioEN userTc = tcEN.UsuarioPoseedor;
+
+            if (userTc.Id != idUserLogued)
+                return RedirectToAction("Index", "Home");
+
             TarjetaCreditoVM tcView = new TarjetaCreditoAssembler().ConvertirENToViewModel(tcEN);
 
             SessionClose();
@@ -49,12 +62,14 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: TarjetaCreditoController/Create
+        [Authorize]
         public ActionResult Create()
         { 
             return View();
         }
 
         // POST: TarjetaCreditoController/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TarjetaCreditoVM tc)
@@ -63,7 +78,10 @@ namespace NemesisNevulaWeb.Controllers
             {
                 TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository();
                 TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
-                tcCEN.CrearTarjetaCredito(tc.TipoTarjeta,tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
+
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                tcCEN.CrearTarjetaCredito(idUserLogued, tc.TipoTarjeta,tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -73,6 +91,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: TarjetaCreditoController/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             SessionInitialize();
@@ -80,6 +99,15 @@ namespace NemesisNevulaWeb.Controllers
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
 
             TarjetaCreditoEN tcEN = tcCEN.DamePorOID(id);
+
+            // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            UsuarioEN userTc = tcEN.UsuarioPoseedor;
+
+            if (userTc.Id != idUserLogued)
+                return RedirectToAction("Index", "Home");
+
             TarjetaCreditoVM tcView = new TarjetaCreditoAssembler().ConvertirENToViewModel(tcEN);
 
             SessionClose();
@@ -93,9 +121,24 @@ namespace NemesisNevulaWeb.Controllers
         {
             try
             {
-                TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository();
+                SessionInitialize();
+
+                TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
                 TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
+
+                TarjetaCreditoEN tcEN = tcCEN.DamePorOID(id);
+
+                // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                UsuarioEN userTc = tcEN.UsuarioPoseedor;
+
+                if (userTc.Id != idUserLogued)
+                    return RedirectToAction("Index", "Home");
+
                 tcCEN.ModificarTarjetaCredito(id,tc.TipoTarjeta,tc.CodigoSeguridad,tc.Numero, tc.FechaExpedicion,tc.NombreEnTarjeta);
+
+                SessionClose();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -105,21 +148,54 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: TarjetaCreditoController/Delete/5
+        [Authorize]
         public ActionResult Delete(int id)
         {
-            TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository();
+            SessionInitialize();
+
+            TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
+
+            TarjetaCreditoEN tcEN = tcCEN.DamePorOID(id);
+
+            // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            UsuarioEN userTc = tcEN.UsuarioPoseedor;
+
+            if (userTc.Id != idUserLogued)
+                return RedirectToAction("Index", "Home");
+
             tcCEN.BorrarTarjetaCredito(id);
+
+            SessionClose();
             return RedirectToAction(nameof(Index));
         }
 
         // POST: TarjetaCreditoController/Delete/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
+                SessionInitialize();
+
+                TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
+                TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
+
+                TarjetaCreditoEN tcEN = tcCEN.DamePorOID(id);
+
+                // Validamos que la tarjeta de crédito le pertenezca al usuario logueado
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                UsuarioEN userTc = tcEN.UsuarioPoseedor;
+
+                if (userTc.Id != idUserLogued)
+                    return RedirectToAction("Index", "Home");
+
+                SessionClose();
                 return RedirectToAction(nameof(Index));
             }
             catch

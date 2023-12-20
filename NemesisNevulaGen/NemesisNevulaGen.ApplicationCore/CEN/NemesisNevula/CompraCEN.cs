@@ -30,7 +30,7 @@ public ICompraRepository get_ICompraRepository ()
         return this._ICompraRepository;
 }
 
-public int CrearCompra (Nullable<DateTime> p_fecha, int p_usuarioComprador, int p_articulo, float p_precioTotal, Nullable<DateTime> p_fechaCaducidad, bool p_regalado)
+public int CrearCompra (Nullable<DateTime> p_fecha, int p_usuarioComprador, int p_articulo, float p_precioTotal, bool p_regalado)
 {
         CompraEN compraEN = null;
         int oid;
@@ -57,8 +57,6 @@ public int CrearCompra (Nullable<DateTime> p_fecha, int p_usuarioComprador, int 
 
         compraEN.PrecioTotal = p_precioTotal;
 
-        compraEN.FechaCaducidad = p_fechaCaducidad;
-
         compraEN.Regalado = p_regalado;
 
 
@@ -67,7 +65,7 @@ public int CrearCompra (Nullable<DateTime> p_fecha, int p_usuarioComprador, int 
         return oid;
 }
 
-public void ModificarCompra (int p_Compra_OID, Nullable<DateTime> p_fecha, float p_precioTotal, Nullable<DateTime> p_fechaCaducidad, bool p_regalado)
+public void ModificarCompra (int p_Compra_OID, Nullable<DateTime> p_fecha, float p_precioTotal, bool p_regalado)
 {
         CompraEN compraEN = null;
 
@@ -76,7 +74,6 @@ public void ModificarCompra (int p_Compra_OID, Nullable<DateTime> p_fecha, float
         compraEN.Id = p_Compra_OID;
         compraEN.Fecha = p_fecha;
         compraEN.PrecioTotal = p_precioTotal;
-        compraEN.FechaCaducidad = p_fechaCaducidad;
         compraEN.Regalado = p_regalado;
         //Call to CompraRepository
 

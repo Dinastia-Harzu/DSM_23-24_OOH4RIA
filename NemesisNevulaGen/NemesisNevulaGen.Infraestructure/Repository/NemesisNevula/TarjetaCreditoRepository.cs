@@ -137,6 +137,14 @@ public int CrearTarjetaCredito (TarjetaCreditoEN tarjetaCredito)
         try
         {
                 SessionInitializeTransaction ();
+                if (tarjetaCredito.UsuarioPoseedor != null) {
+                        // Argumento OID y no colección.
+                        tarjetaCreditoNH
+                        .UsuarioPoseedor = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN)session.Load (typeof(NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN), tarjetaCredito.UsuarioPoseedor.Id);
+
+                        tarjetaCreditoNH.UsuarioPoseedor.MetodoPago
+                        .Add (tarjetaCreditoNH);
+                }
 
                 session.Save (tarjetaCreditoNH);
                 SessionCommit ();

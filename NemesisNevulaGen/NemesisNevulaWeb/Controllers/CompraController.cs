@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
@@ -9,6 +10,7 @@ using NemesisNevulaWeb.Models;
 
 namespace NemesisNevulaWeb.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class CompraController : BasicController
     {
         // GET: CompraController
@@ -84,7 +86,7 @@ namespace NemesisNevulaWeb.Controllers
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
 
                 // CREACION NO DEFINITIVA: A ESPERAS DE COMO SE HACE
-                compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, comp.FechaCaducidad, false);
+                compraCEN.CrearCompra(comp.Fecha, comp.IdComprador, comp.IdArticulo, comp.PrecioTotal, false);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -117,7 +119,7 @@ namespace NemesisNevulaWeb.Controllers
             {
                 CompraRepository compraRepository = new CompraRepository();
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
-                compraCEN.ModificarCompra(comp.Id, comp.Fecha, comp.PrecioTotal, comp.FechaCaducidad, false);
+                compraCEN.ModificarCompra(comp.Id, comp.Fecha, comp.PrecioTotal, false);
 
                 return RedirectToAction(nameof(Index));
             }

@@ -45,7 +45,7 @@ public PaypalEN() : base ()
 
 
 public PaypalEN(int id, string email, String pass
-                , System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPoseedor
+                , NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioPoseedor
                 )
 {
         this.init (Id, email, pass, usuarioPoseedor);
@@ -58,7 +58,7 @@ public PaypalEN(PaypalEN paypal)
 }
 
 private void init (int id
-                   , string email, String pass, System.Collections.Generic.IList<NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN> usuarioPoseedor)
+                   , string email, String pass, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioPoseedor)
 {
         this.Id = id;
 

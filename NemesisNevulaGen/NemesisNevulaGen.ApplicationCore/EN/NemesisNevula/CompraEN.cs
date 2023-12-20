@@ -41,13 +41,6 @@ private float precioTotal;
 
 
 /**
- *	Atributo fechaCaducidad
- */
-private Nullable<DateTime> fechaCaducidad;
-
-
-
-/**
  *	Atributo regalado
  */
 private bool regalado;
@@ -94,12 +87,6 @@ public virtual float PrecioTotal {
 
 
 
-public virtual Nullable<DateTime> FechaCaducidad {
-        get { return fechaCaducidad; } set { fechaCaducidad = value;  }
-}
-
-
-
 public virtual bool Regalado {
         get { return regalado; } set { regalado = value;  }
 }
@@ -120,20 +107,20 @@ public CompraEN()
 
 
 
-public CompraEN(int id, Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, float precioTotal, Nullable<DateTime> fechaCaducidad, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado
+public CompraEN(int id, Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, float precioTotal, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado
                 )
 {
-        this.init (Id, fecha, usuarioComprador, articulo, precioTotal, fechaCaducidad, regalado, usuarioRegalado);
+        this.init (Id, fecha, usuarioComprador, articulo, precioTotal, regalado, usuarioRegalado);
 }
 
 
 public CompraEN(CompraEN compra)
 {
-        this.init (compra.Id, compra.Fecha, compra.UsuarioComprador, compra.Articulo, compra.PrecioTotal, compra.FechaCaducidad, compra.Regalado, compra.UsuarioRegalado);
+        this.init (compra.Id, compra.Fecha, compra.UsuarioComprador, compra.Articulo, compra.PrecioTotal, compra.Regalado, compra.UsuarioRegalado);
 }
 
 private void init (int id
-                   , Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, float precioTotal, Nullable<DateTime> fechaCaducidad, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado)
+                   , Nullable<DateTime> fecha, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioComprador, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.ArticuloEN articulo, float precioTotal, bool regalado, NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN usuarioRegalado)
 {
         this.Id = id;
 
@@ -145,8 +132,6 @@ private void init (int id
         this.Articulo = articulo;
 
         this.PrecioTotal = precioTotal;
-
-        this.FechaCaducidad = fechaCaducidad;
 
         this.Regalado = regalado;
 

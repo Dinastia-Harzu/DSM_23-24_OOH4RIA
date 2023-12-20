@@ -30,6 +30,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: UsuarioController/Login
+        [AllowAnonymous]
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
@@ -78,7 +79,7 @@ namespace NemesisNevulaWeb.Controllers
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));  
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
             return RedirectToAction("Index", "Home");
         }
@@ -136,6 +137,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: UsuarioController/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             if (User.Identity.IsAuthenticated)
@@ -145,6 +147,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: UsuarioController/Create
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync(UsuarioVM user)
@@ -296,8 +299,16 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: UsuarioController/ArtsAdquiridos/5
+        [Authorize]
         public ActionResult ArtsAdquiridos(int id, string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
         {
+            // Validamos que solo el usuario propio o el administrador pueda ver los articulos adquiridos
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
+
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
+
             ViewBag.CurrentPage = "Perfil";
             // Muestra de filtros
             Console.WriteLine("\n\n\n--FILTROS--\n");
@@ -307,9 +318,6 @@ namespace NemesisNevulaWeb.Controllers
             Console.WriteLine("Tipo Articulo: " + filtroTipo + "\n");
             Console.WriteLine("Fecha inicio: " + filtroFechaIni + "\n");
             Console.WriteLine("Fecha final: " + filtroFechaFin + "\n");
-
-            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
             if (idUserString != id.ToString() && rolUser != "Administrador")
                 return RedirectToAction("Index", "Home");
@@ -376,8 +384,15 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // GET: UsuarioController/ArtsFavoritos/5
+        [Authorize]
         public ActionResult ArtsFavoritos(int id, string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
         {
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string rolUser = User.FindFirstValue(ClaimTypes.Role);
+
+            if (idUserString != id.ToString() && rolUser != "Administrador")
+                return RedirectToAction("Index", "Home");
+
             ViewBag.CurrentPage = "Perfil";
             // Muestra de filtros
             Console.WriteLine("\n\n\n--FILTROS--\n");
@@ -387,12 +402,6 @@ namespace NemesisNevulaWeb.Controllers
             Console.WriteLine("Tipo Articulo: " + filtroTipo + "\n");
             Console.WriteLine("Fecha inicio: " + filtroFechaIni + "\n");
             Console.WriteLine("Fecha final: " + filtroFechaFin + "\n");
-
-            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string rolUser = User.FindFirstValue(ClaimTypes.Role);
-
-            if (idUserString != id.ToString() && rolUser != "Administrador")
-                return RedirectToAction("Index", "Home");
 
             SessionInitialize();
 
@@ -506,6 +515,29 @@ namespace NemesisNevulaWeb.Controllers
             var viewModel = new Tuple<IEnumerable<PaypalVM>, IEnumerable<TarjetaCreditoVM>>(listPP, listTC);
             SessionClose();
             return View(viewModel);
+        }
+
+        //GET: UsuarioController/MetodosPago/5
+        [Authorize]
+        public ActionResult MetodosPago(int id) 
+        {
+            // Validamos que el usuario introducido sea el que está registrado
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (idUserLogued != id)
+                return RedirectToAction("Index", "Home");
+
+            UsuarioRepository userRepository = new();
+            UsuarioCEN userCEN = new(userRepository);
+
+            // Recogemos los métodos de pago del usuario y los convertiimos a VM
+            UsuarioEN user = userCEN.DamePorOID(id);
+
+            IList<MetodoPagoEN> mpsUserListEN = user.MetodoPago;
+
+            IEnumerable<MetodoPagoVM> mpsUserListVM = new MetodoPagoAssembler().ConvertirListENToViewModel(mpsUserListEN).ToList();
+
+            return View(mpsUserListVM);
         }
     }
 }

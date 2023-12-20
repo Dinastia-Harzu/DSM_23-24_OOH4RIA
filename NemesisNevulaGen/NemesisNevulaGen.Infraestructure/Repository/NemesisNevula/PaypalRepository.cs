@@ -128,6 +128,14 @@ public int CrearPaypal (PaypalEN paypal)
         try
         {
                 SessionInitializeTransaction ();
+                if (paypal.UsuarioPoseedor != null) {
+                        // Argumento OID y no colección.
+                        paypalNH
+                        .UsuarioPoseedor = (NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN)session.Load (typeof(NemesisNevulaGen.ApplicationCore.EN.NemesisNevula.UsuarioEN), paypal.UsuarioPoseedor.Id);
+
+                        paypalNH.UsuarioPoseedor.MetodoPago
+                        .Add (paypalNH);
+                }
 
                 session.Save (paypalNH);
                 SessionCommit ();
