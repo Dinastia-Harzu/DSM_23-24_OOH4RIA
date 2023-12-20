@@ -319,9 +319,6 @@ namespace NemesisNevulaWeb.Controllers
             Console.WriteLine("Fecha inicio: " + filtroFechaIni + "\n");
             Console.WriteLine("Fecha final: " + filtroFechaFin + "\n");
 
-            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string rolUser = User.FindFirstValue(ClaimTypes.Role);
-
             if (idUserString != id.ToString() && rolUser != "Administrador")
                 return RedirectToAction("Index", "Home");
 
@@ -487,6 +484,22 @@ namespace NemesisNevulaWeb.Controllers
             var viewModel = new Tuple<IEnumerable<PaypalVM>, IEnumerable<TarjetaCreditoVM>>(listPP, listTC);
             SessionClose();
             return View(viewModel);
+        }
+
+        //GET: UsuarioController/MetodosPago/5
+        [Authorize]
+        public ActionResult MetodosPago(int id) 
+        {
+            // Validamos que el usuario introducido sea el que está registrado
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            if (idUserLogued != id)
+                return RedirectToAction("Index", "Home");
+
+            UsuarioRepository userRepository = new();
+            UsuarioCEN userCEN = new(userRepository);
+
+            return View();
         }
     }
 }
