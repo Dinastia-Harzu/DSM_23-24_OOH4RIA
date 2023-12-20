@@ -82,7 +82,7 @@ namespace NemesisNevulaWeb.Controllers
                 int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
                 tcCEN.CrearTarjetaCredito(idUserLogued, tc.TipoTarjeta,tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
             }
             catch
             {
@@ -105,8 +105,13 @@ namespace NemesisNevulaWeb.Controllers
 
             UsuarioEN userTc = tcEN.UsuarioPoseedor;
 
+            Console.WriteLine("Poseedor de la tarjeta: " + userTc.Id);
+            Console.WriteLine("Usuario logueado: " + userTc.Id);
+
             if (userTc.Id != idUserLogued)
                 return RedirectToAction("Index", "Home");
+
+            Console.WriteLine("Usuario poseedor y logueado son los mismos");
 
             TarjetaCreditoVM tcView = new TarjetaCreditoAssembler().ConvertirENToViewModel(tcEN);
 
@@ -115,6 +120,7 @@ namespace NemesisNevulaWeb.Controllers
         }
 
         // POST: TarjetaCreditoController/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, TarjetaCreditoVM tc)
@@ -136,13 +142,20 @@ namespace NemesisNevulaWeb.Controllers
                 if (userTc.Id != idUserLogued)
                     return RedirectToAction("Index", "Home");
 
-                tcCEN.ModificarTarjetaCredito(id,tc.TipoTarjeta,tc.CodigoSeguridad,tc.Numero, tc.FechaExpedicion,tc.NombreEnTarjeta);
-
                 SessionClose();
-                return RedirectToAction(nameof(Index));
+
+                tcRepo = new TarjetaCreditoRepository();
+                tcCEN = new TarjetaCreditoCEN(tcRepo);
+
+                Console.WriteLine("Nombre actualizado? " + tc.NombreEnTarjeta);
+
+                tcCEN.ModificarTarjetaCredito(id,tc.TipoTarjeta,tc.NombreEnTarjeta,tc.Numero, tc.FechaExpedicion,tc.CodigoSeguridad);
+
+                return RedirectToAction("MetodPago", "Usuario", new {id = idUserLogued});
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine("TarjetaCredito/Edit -> ERROR FATAL: "+e.Message);
                 return View();
             }
         }
@@ -163,13 +176,22 @@ namespace NemesisNevulaWeb.Controllers
 
             UsuarioEN userTc = tcEN.UsuarioPoseedor;
 
+            Console.WriteLine("\nPoseedor de la tarjeta: " + userTc.Id + "\n");
+            Console.WriteLine("Usuario logueado: " + userTc.Id + "\n");
+
             if (userTc.Id != idUserLogued)
                 return RedirectToAction("Index", "Home");
 
-            tcCEN.BorrarTarjetaCredito(id);
+            Console.WriteLine("Usuario poseedor y logueado son los mismos" + "\n");
 
             SessionClose();
-            return RedirectToAction(nameof(Index));
+
+            tcRepo = new TarjetaCreditoRepository();
+            tcCEN = new TarjetaCreditoCEN(tcRepo);
+
+            tcCEN.BorrarTarjetaCredito(id);
+
+            return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
         }
 
         // POST: TarjetaCreditoController/Delete/5
@@ -180,6 +202,7 @@ namespace NemesisNevulaWeb.Controllers
         {
             try
             {
+                Console.WriteLine("Borrando Tarjeta de crédito con id " + id + "...");
                 SessionInitialize();
 
                 TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
@@ -196,7 +219,7 @@ namespace NemesisNevulaWeb.Controllers
                     return RedirectToAction("Index", "Home");
 
                 SessionClose();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
             }
             catch
             {

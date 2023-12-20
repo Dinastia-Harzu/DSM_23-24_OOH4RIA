@@ -286,6 +286,7 @@ namespace NemesisNevulaWeb.Controllers
 
                 // Si no ha introducido valor para cambiar de contraseña...
                 UsuarioEN userAux = userCEN.DamePorOID(id);
+
                 string userPass = "";
 
                 if (user.Pass == null)
@@ -565,6 +566,7 @@ namespace NemesisNevulaWeb.Controllers
             return View(viewModel);
         }
 
+        /*
         //GET: UsuarioController/MetodosPago/5
         [Authorize]
         public ActionResult MetodosPago(int id) 
@@ -579,13 +581,12 @@ namespace NemesisNevulaWeb.Controllers
             UsuarioCEN userCEN = new(userRepository);
 
             // Recogemos los métodos de pago del usuario y los convertiimos a VM
-            UsuarioEN user = userCEN.DamePorOID(id);
-
-            IList<MetodoPagoEN> mpsUserListEN = user.MetodoPago;
+            IList<MetodoPagoEN> mpsUserListEN = userCEN.DameMetodosDePago(id);
 
             IEnumerable<MetodoPagoVM> mpsUserListVM = new MetodoPagoAssembler().ConvertirListENToViewModel(mpsUserListEN).ToList();
 
             return View(mpsUserListVM);
         }
+        */
     }
 }
