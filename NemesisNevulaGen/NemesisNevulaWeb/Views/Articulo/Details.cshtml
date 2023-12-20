@@ -17,7 +17,7 @@
 <div class="col-12">
     <div class="d-flex flex-row row">
         <div class="w-75">
-            @if (User.FindFirstValue(ClaimTypes.Name) != null && User.FindFirstValue(ClaimTypes.Role) == "Administrador")
+            @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Role) == "Administrador")
             {
                 <div class="mb-2">
                     <a class="btn btn-aceptar" href="@Url.Action("Edit", new { id = Model.Item1.Id })">Editar</a>
@@ -40,7 +40,7 @@
                         <p class="card-text fw-bold">🏷️ @Html.DisplayFor(model => model.Item1.Tipo)</p>
                         <p class="card-text fw-bold">@Html.DisplayFor(model => model.Item1.Descripcion)</p>
                         <div class="card-footer d-flex flex-column justify-content-center">
-                            @if (User.FindFirstValue(ClaimTypes.Name) == null)
+                            @if (!User.Identity.IsAuthenticated)
                             {
                                 <a class="btn btn-aceptar" href="@Url.Action("Login","Usuario")">Comprar</a>
                                 <a class="btn btn-cancelar mt-2" href="@Url.Action("Login","Usuario")">Regalar</a>
