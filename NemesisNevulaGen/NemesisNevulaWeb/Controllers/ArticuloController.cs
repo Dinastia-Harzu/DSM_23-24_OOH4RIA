@@ -16,6 +16,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
             SessionInitialize();
             ArticuloRepository articuloRepository = new ArticuloRepository();
@@ -60,7 +61,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController/Details/5
         public ActionResult Details(int id)
         {
-
+            
             NoticiaRepository noticiaRepository = new NoticiaRepository();
             NoticiaCEN noticiaCEN = new NoticiaCEN(noticiaRepository);
             IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
@@ -72,7 +73,7 @@ namespace NemesisNevulaWeb.Controllers
             IEnumerable<ArticuloVM> ar = new ArticuloAssembler().ConvertirListENToViewModel(artEN).ToList();
 
             // Pasa el modelo IndexViewModel a la vista
-
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
             SessionInitialize();
             ArticuloRepository artRepo = new ArticuloRepository(session);
@@ -90,6 +91,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
             return View();
         }
@@ -100,6 +102,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ArticuloVM articulo)
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
             try
             {
@@ -130,6 +133,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id)
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
             SessionInitialize();
             ArticuloRepository artRepo = new ArticuloRepository(session);
@@ -148,6 +152,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ArticuloVM articulo)
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
             try
             {
@@ -204,6 +209,7 @@ namespace NemesisNevulaWeb.Controllers
 
         public ActionResult FiltrarArts(string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
             Console.WriteLine("\n\n\n--FILTROS--\n");
             Console.WriteLine("Barra de Búsqueda: " + filtroBusqueda + "\n");

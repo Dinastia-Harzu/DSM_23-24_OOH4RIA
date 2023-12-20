@@ -39,6 +39,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
+            
             SessionInitialize();
             PaypalRepository ppRepo = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepo);
@@ -63,7 +64,8 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Create()
         {
-                return View();
+            
+            return View();
         }
 
         // POST: PayPalController/Create
@@ -72,6 +74,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PaypalVM pp)
         {
+            
             try
             {
                 PaypalRepository ppRepo = new PaypalRepository();
@@ -91,6 +94,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
+            
             SessionInitialize();
             PaypalRepository ppRepo = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepo);
@@ -116,6 +120,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id,PaypalVM pp)
         {
+            
             try
             {
                 SessionInitialize();
@@ -149,6 +154,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            
             SessionInitialize();
 
             PaypalRepository ppRepo = new PaypalRepository(session);
@@ -175,6 +181,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            
             try
             {
                 SessionInitialize();

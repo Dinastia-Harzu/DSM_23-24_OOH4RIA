@@ -18,6 +18,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administracion")]
         public ActionResult Index()
         {
+            
             SessionInitialize();
             ValoracionArticuloRepository valoracionArticuloRepository = new();
             ValoracionArticuloCEN valoracionArticuloCEN = new(valoracionArticuloRepository);
@@ -30,6 +31,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ValoracionArticuloController/Details/5
         public ActionResult Details(int id)
         {
+            
             SessionInitialize();
             ValoracionArticuloRepository valoracionArticuloRepository = new(session);
             ValoracionArticuloCEN valoracionArticuloCEN = new(valoracionArticuloRepository);
@@ -43,6 +45,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -52,6 +55,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]  
         public ActionResult Create(int id, ValoracionArticuloVM valoracionArticulo)
         {
+            
             try
             {
                 int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -73,6 +77,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
+            
             SessionInitialize();
 
             ValoracionArticuloRepository valoracionArticuloRepository= new(session);
@@ -97,6 +102,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ValoracionArticuloVM valoracionArticulo)
         {
+            
             try
             {
                 SessionInitialize();
@@ -130,6 +136,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            
             SessionInitialize();
 
             ValoracionArticuloRepository valoracionArticuloRepository = new(session);
@@ -154,6 +161,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            
             try
             {
                 SessionInitialize();

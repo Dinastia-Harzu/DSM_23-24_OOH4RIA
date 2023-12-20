@@ -46,7 +46,6 @@ namespace NemesisNevulaWeb.Controllers
         {
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
-
             UsuarioRepository userRepo = new();
             UsuarioCEN userCEN = new(userRepo);
 
@@ -97,6 +96,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Perfil";
 
             SessionInitialize();
@@ -115,10 +115,12 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
+            
             // Validamos el token del usuario registrado
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Perfil";
 
             if (idUserString != id.ToString() && rolUser != "Administrador")
@@ -141,6 +143,7 @@ namespace NemesisNevulaWeb.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         {
+            
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
 
@@ -153,6 +156,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync(UsuarioVM user)
         {
+            
             // Validamos el token del usuario
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
@@ -210,12 +214,14 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
+            
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
             if (idUserString != id.ToString() && rolUser != "Administrador")
                 return RedirectToAction("Index", "Home");
-
+            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Perfil";
 
             SessionInitialize();
@@ -236,12 +242,14 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, UsuarioVM user)
         {
+            
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
             if (idUserString != id.ToString() && rolUser != "Administrador")
                 return RedirectToAction("Index", "Home");
 
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Perfil";
 
             try
@@ -263,6 +271,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
@@ -283,6 +292,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
@@ -303,6 +313,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult ArtsAdquiridos(int id, string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
         {
+            
             // Validamos que solo el usuario propio o el administrador pueda ver los articulos adquiridos
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
@@ -310,7 +321,9 @@ namespace NemesisNevulaWeb.Controllers
             if (idUserString != id.ToString() && rolUser != "Administrador")
                 return RedirectToAction("Index", "Home");
 
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Perfil";
+
             // Muestra de filtros
             Console.WriteLine("\n\n\n--FILTROS--\n");
             Console.WriteLine("Barra de Búsqueda: " + filtroBusqueda + "\n");
@@ -388,12 +401,14 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult ArtsFavoritos(int id, string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
         {
+            
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
             if (idUserString != id.ToString() && rolUser != "Administrador")
                 return RedirectToAction("Index", "Home");
 
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Perfil";
             // Muestra de filtros
             Console.WriteLine("\n\n\n--FILTROS--\n");
@@ -464,14 +479,11 @@ namespace NemesisNevulaWeb.Controllers
 
         // GET: UsuarioController/MetodPago
         // id de usuario
+        [Authorize]
         public ActionResult MetodPago(int id)
         {
-            // Validación de usuario
-            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            string rolUser = User.FindFirstValue(ClaimTypes.Role);
-
-            if (idUserString != id.ToString() && rolUser != "Administrador")
-                return RedirectToAction("Index", "Home");
+            if (User.Identity.IsAuthenticated) actualizarEstado();
+            ViewBag.CurrentPage = "Perfil";
 
             SessionInitialize();
             PaypalRepository ppRepository = new PaypalRepository(session);
@@ -522,6 +534,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult MetodosPago(int id) 
         {
+
             // Validamos que el usuario introducido sea el que está registrado
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 

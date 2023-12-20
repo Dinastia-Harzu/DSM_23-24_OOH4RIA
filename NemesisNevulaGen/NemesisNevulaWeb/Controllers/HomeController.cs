@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BasicController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -23,7 +23,7 @@ namespace NemesisNevulaWeb.Controllers
         public IActionResult 
             Index()
         {
-
+            
             NoticiaRepository noticiaRepository = new NoticiaRepository();
             NoticiaCEN noticiaCEN = new NoticiaCEN(noticiaRepository);
             IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
@@ -32,6 +32,7 @@ namespace NemesisNevulaWeb.Controllers
             var viewModel = new Tuple<IEnumerable<NoticiaVM>>(listaNoticias);
 
             // Pasa el modelo IndexViewModel a la vista
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Inicio";
             return View(viewModel);  
         }
@@ -39,12 +40,14 @@ namespace NemesisNevulaWeb.Controllers
         public IActionResult 
             Privacy()
         {
+            
             return View();
         }
 
         public IActionResult
             Contacto()
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Contacto";
             return View();
         }
@@ -52,6 +55,7 @@ namespace NemesisNevulaWeb.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

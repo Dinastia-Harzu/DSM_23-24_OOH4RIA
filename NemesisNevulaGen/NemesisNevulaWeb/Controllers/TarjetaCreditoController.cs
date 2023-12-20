@@ -21,10 +21,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: TarjetaCreditoController
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
-        {
-            int idUser = validarToken();
-            if (idUser == -1)
-                return RedirectToAction("Login", "Usuario");
+        { 
             SessionInitialize();
             TarjetaCreditoRepository tjRepository = new TarjetaCreditoRepository(session);
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tjRepository);
@@ -41,6 +38,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
+            
             SessionInitialize();
             TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
@@ -64,7 +62,8 @@ namespace NemesisNevulaWeb.Controllers
         // GET: TarjetaCreditoController/Create
         [Authorize]
         public ActionResult Create()
-        { 
+        {
+            
             return View();
         }
 
@@ -94,6 +93,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
+            
             SessionInitialize();
             TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
@@ -151,6 +151,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            
             SessionInitialize();
 
             TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
