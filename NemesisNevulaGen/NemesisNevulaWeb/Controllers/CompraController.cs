@@ -118,7 +118,7 @@ namespace NemesisNevulaWeb.Controllers
             
             try
             {
-
+                if (User.Identity.IsAuthenticated) actualizarEstado();
                 CompraRepository compraRepository = new CompraRepository();
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
 
