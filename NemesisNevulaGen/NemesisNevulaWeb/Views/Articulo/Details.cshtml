@@ -61,7 +61,7 @@
                                     if (lotiene)
                                     {
                                         <a class="btn btn-premium nav-link" asp-controller="Usuario" asp-action="DevolverArticulo" asp-route-id="@Model.Item1.Id">Devolver</a>
-                                        <a class="btn btn-cancelar mt-2" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="1">Regalar</a>
+                                        <a class="btn btn-cancelar mt-2" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="True">Regalar</a>
 
                                     }
                                     else
@@ -72,12 +72,11 @@
                                         }
                                         else
                                         {
-                                            <a class="btn btn-aceptar" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="0">Comprar</a>
+                                            <a class="btn btn-aceptar mt-2" href="@Url.Action("Create", "Compra", new { id = Model.Item1.Id, precio=Model.Item1.Precio, regalo=false })">Comprar</a>
                                             if (!rareza.Equals("Premium"))
                                             {
-                                                <a class="btn btn-cancelar mt-2" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="1">Regalar</a>
+                                                <a class="btn btn-cancelar mt-2" href="@Url.Action("Create", "Compra", new { id = Model.Item1.Id, precio=Model.Item1.Precio, regalo=true })">Regalar</a>
                                             }
-
                                         }
                                     }
                                     

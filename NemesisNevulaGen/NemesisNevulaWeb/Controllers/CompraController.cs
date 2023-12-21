@@ -96,18 +96,7 @@ namespace NemesisNevulaWeb.Controllers
 
             if (p_usuario.Cartera > precio)
             {
-                if (User.Identity.IsAuthenticated)
-                {
-                    string cartera = User.FindFirstValue(ClaimTypes.UserData).Split("#")[0];
-                    string foto = User.FindFirstValue(ClaimTypes.UserData).Split("#")[1];
-                    ((ClaimsIdentity)User.Identity).RemoveClaim(User.FindFirst(ClaimTypes.UserData));
-                    var actualizado = new Claim(ClaimTypes.UserData, p_usuario.Cartera + "#" + foto);
-                    ((ClaimsIdentity)User.Identity).AddClaim(actualizado);
-                    HttpContext.SignInAsync(User);
-                    ViewData["cartera"] = p_usuario.Cartera;
-
-                }
-
+                if (User.Identity.IsAuthenticated) actualizarEstado();
             }
             // Ver el nombre del articulo
             ViewData["nom_art"] = p_articulo.Nombre;
@@ -138,6 +127,8 @@ namespace NemesisNevulaWeb.Controllers
                 UsuarioRepository usuarioRepository = new UsuarioRepository();
                 UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
                 UsuarioEN usu = usuarioCEN.DamePorOID(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+                ArticuloRepository articuloRepository = new ArticuloRepository();
+                ArticuloCEN articuloCEN = new ArticuloCEN(articuloRepository);
 
                 // Precio descontado
                 float precio_descontado = comp.PrecioTotal;
@@ -147,6 +138,7 @@ namespace NemesisNevulaWeb.Controllers
                 UsuarioCP usuarioCP = new(new SessionCPNHibernate());
                 CompraCP compraCP = new(new SessionCPNHibernate());
 
+
                 // Vemos si se va a comprar o regalar
                 int regalo = Int32.Parse(Request.Form["regalo"]);
 
@@ -154,6 +146,7 @@ namespace NemesisNevulaWeb.Controllers
                 if (regalo == 0)
                 {
 
+                    ViewData["regalo"] = false;
                     // Compramos el articulo
                     usuarioCP.ComprarArticulo(usu.Id, comp.IdArticulo, (desc != null));
 
@@ -163,7 +156,7 @@ namespace NemesisNevulaWeb.Controllers
                 }
                 else
                 {
-
+                    ViewData["regalo"] = true;
                     // Regalamos
                     string nom_usu_r = Request.Form["nom_usu_r"];
                     UsuarioEN usu_r = usuarioCEN.DamePorNombre(nom_usu_r).First();
@@ -178,9 +171,29 @@ namespace NemesisNevulaWeb.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
-
                 }
+
+                IList<ArticuloEN> listaArticulos = articuloCEN.DameTodos(0, -1);
+                IList<SelectListItem> articulosItems = new List<SelectListItem>();
+
+                foreach (ArticuloEN articulo in listaArticulos)
+                {
+                    articulosItems.Add(new SelectListItem { Text = articulo.Id.ToString(), Value = articulo.Id.ToString() });
+                }
+
+                IList<UsuarioEN> listaUsuarios = usuarioCEN.DameTodos(0, -1);
+                IList<SelectListItem> usuariosItems = new List<SelectListItem>();
+
+                foreach (UsuarioEN usuario in listaUsuarios)
+                {
+                    usuariosItems.Add(new SelectListItem { Text = usuario.Id.ToString(), Value = usuario.Id.ToString() });
+                }
+
+                ViewData["usuariosItems"] = usuariosItems;
+                ViewData["articulosItems"] = articulosItems;
+
                 return RedirectToAction("Details", new { id = result_comp });
+
 
             }
             catch

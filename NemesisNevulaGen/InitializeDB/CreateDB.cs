@@ -108,7 +108,7 @@ public static void InitializeData ()
 
                 /*PROTECTED REGION ID(initializeDataMethod) ENABLED START*/
 
-                int idAdmin = administradorcen.CrearAdmin ("Federico Alfredo", "fnaf1@gmail.com", false, "css/estilos/imagenes/te.jpeg", 12, (float)1.25, "contrasenya");
+                int idAdmin = administradorcen.CrearAdmin ("Federico Alfredo", "fnaf1@gmail.com", false, "/css/estilos/imagenes/te.jpeg", 12, (float)1.25, "contrasenya");
                 UsuarioPremiumCP usuarioPremiumCP = new UsuarioPremiumCP (new SessionCPNHibernate ());
                 int idusr = usuariocen.CrearUsuario ("Bonifacio Conejal", "fnaf2@gmail.com", true, "/css/estilos/imagenes/na.jpeg", 2, (float)20.00, "pwd123");
                 int idUsuario = usuariocen.CrearUsuario ("Chica Gallina", "fnaf3@gmail.com", true, "/css/estilos/imagenes/ge.jpeg", 2, (float)12.5, "pwd123");

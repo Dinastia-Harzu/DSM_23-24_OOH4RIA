@@ -40,7 +40,7 @@ namespace NemesisNevulaWeb.Controllers
         public IActionResult 
             Privacy()
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             return View();
         }
 

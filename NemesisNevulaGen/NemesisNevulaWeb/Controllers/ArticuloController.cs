@@ -98,11 +98,19 @@ namespace NemesisNevulaWeb.Controllers
             // Pasa el modelo IndexViewModel a la vista
             if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
+
             SessionInitialize();
-            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            int idUserString;
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                idUserString = 0;
+            }
+            else idUserString = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             UsuarioRepository userRepo = new UsuarioRepository(session);
             UsuarioCEN userCEN = new(userRepo);
-            IList<ArticuloEN> userArts = userCEN.DameArticulosComprados(int.Parse(idUserString));
+            IList<ArticuloEN> userArts = userCEN.DameArticulosComprados(idUserString);
             IEnumerable<ArticuloVM> userArtsVM = new ArticuloAssembler().ConvertirListENToViewModel(userArts).ToList();
 
             ArticuloRepository artRepo = new ArticuloRepository(session);
