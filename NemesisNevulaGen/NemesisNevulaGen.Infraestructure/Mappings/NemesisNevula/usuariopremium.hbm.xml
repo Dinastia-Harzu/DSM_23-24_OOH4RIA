@@ -16,12 +16,7 @@
 
 			
 					
-					<property name="FechaCaducidad" type="date"> 
-						<column name="fechaCaducidad"  not-null="true"/>
-					</property>
 			
-			
-					
 		
  	  
 		 </joined-subclass>

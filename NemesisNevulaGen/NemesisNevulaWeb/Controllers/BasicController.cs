@@ -204,7 +204,8 @@ namespace NemesisNevulaWeb.Controllers
             
             UsuarioEN usuario = usuarioCEN.DamePorOID(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
-            ViewData["cartera"] = usuario.Cartera;
+            if (User.FindFirstValue(ClaimTypes.Role) != "Administrador") ViewData["cartera"] = usuario.Cartera;
+            else ViewData["cartera"] = "";
             ViewData["foto"] = usuario.Foto_perfil;
             ViewData["nombre"] = usuario.Nombre;
         }

@@ -23,7 +23,6 @@ namespace NemesisNevulaWeb.Assemblers
             usup.Foto_perfil = en.Foto_perfil;
             usup.PuntosNevula = en.PuntosNevula;
             usup.Pass = en.Pass;
-            usup.FechaCaducidad = en.FechaCaducidad == null ? System.DateTime.MinValue : (DateTime)en.FechaCaducidad; ;
             return usup;
         }
         public IList<UsuarioPremiumVM> ConvertirListENToViewModel(IList<UsuarioPremiumEN> list)

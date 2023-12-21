@@ -53,7 +53,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: CompraController/Create
         public ActionResult Create(int id, float precio, bool regalo)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             UsuarioRepository usuarioRepository = new UsuarioRepository();
             UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
 
@@ -96,17 +96,7 @@ namespace NemesisNevulaWeb.Controllers
 
             if (p_usuario.Cartera > precio)
             {
-                if (User.Identity.IsAuthenticated)
-                {
-                    string cartera = User.FindFirstValue(ClaimTypes.UserData).Split("#")[0];
-                    string foto = User.FindFirstValue(ClaimTypes.UserData).Split("#")[1];
-                    ((ClaimsIdentity)User.Identity).RemoveClaim(User.FindFirst(ClaimTypes.UserData));
-                    var actualizado = new Claim(ClaimTypes.UserData, p_usuario.Cartera+"#"+foto);
-                    ((ClaimsIdentity)User.Identity).AddClaim(actualizado);
-                    HttpContext.SignInAsync(User);
-                    ViewData["cartera"] = p_usuario.Cartera;
-                    
-                }
+                if (User.Identity.IsAuthenticated) actualizarEstado();
 
             }
                 // Ver el nombre del articulo

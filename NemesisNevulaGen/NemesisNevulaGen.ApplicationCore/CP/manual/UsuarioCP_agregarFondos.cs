@@ -24,7 +24,7 @@ public bool AgregarFondos (int p_oid, int p_metodoPago, float p_cantidad)
 
         UsuarioCEN usuarioCEN = null;
         MetodoPagoCEN metodoPagoCEN = null;
-            bool vuelta = false;
+        bool vuelta = false;
 
         try
         {

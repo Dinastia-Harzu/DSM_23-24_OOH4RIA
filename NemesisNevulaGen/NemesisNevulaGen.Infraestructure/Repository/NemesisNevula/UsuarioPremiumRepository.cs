@@ -96,9 +96,6 @@ public void ModifyDefault (UsuarioPremiumEN usuarioPremium)
         {
                 SessionInitializeTransaction ();
                 UsuarioPremiumNH usuarioPremiumNH = (UsuarioPremiumNH)session.Load (typeof(UsuarioPremiumNH), usuarioPremium.Id);
-
-                usuarioPremiumNH.FechaCaducidad = usuarioPremium.FechaCaducidad;
-
                 session.Update (usuarioPremiumNH);
                 SessionCommit ();
         }
@@ -172,9 +169,6 @@ public void ModificarUsuarioPremium (UsuarioPremiumEN usuarioPremium)
 
 
                 usuarioPremiumNH.Pass = usuarioPremium.Pass;
-
-
-                usuarioPremiumNH.FechaCaducidad = usuarioPremium.FechaCaducidad;
 
                 session.Update (usuarioPremiumNH);
                 SessionCommit ();

@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
+using NemesisNevulaGen.ApplicationCore.CP.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
+using NemesisNevulaGen.Infraestructure.CP;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
@@ -74,9 +76,10 @@ namespace NemesisNevulaWeb.Controllers
             {
                 UsuarioPremiumRepository usupremRepository = new UsuarioPremiumRepository();
                 UsuarioPremiumCEN usupremCEN = new UsuarioPremiumCEN(usupremRepository);
+                UsuarioPremiumCP usuariopremiumCP = new UsuarioPremiumCP(new SessionCPNHibernate());
 
-                usupremCEN.CrearUsuarioPremium(usuprem.Nombre, usuprem.Correo, usuprem.ConGoogle, usuprem.Foto_perfil, usuprem.PuntosNevula, usuprem.Cartera,
-                usuprem.Pass, usuprem.FechaCaducidad);
+                usuariopremiumCP.CrearUsuarioPremium(usuprem.Nombre, usuprem.Correo, usuprem.ConGoogle, usuprem.Foto_perfil, usuprem.PuntosNevula, usuprem.Cartera,
+                usuprem.Pass);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -133,7 +136,7 @@ namespace NemesisNevulaWeb.Controllers
                     return RedirectToAction("Index", "Home");
 
                 usupremCEN.ModificarUsuarioPremium(usup.Id, usup.Nombre, usup.Correo, usup.ConGoogle, usup.Foto_perfil, usup.PuntosNevula,
-                usup.Cartera, usup.Pass, usup.FechaCaducidad);
+                usup.Cartera, usup.Pass);
 
                 return RedirectToAction(nameof(Index));
             }

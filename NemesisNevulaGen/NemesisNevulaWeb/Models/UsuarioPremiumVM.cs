@@ -41,9 +41,6 @@ namespace NemesisNevulaWeb.Models {
         //[DataType(DataType.Password)]
         //public string Pass { get; set; }
 
-        [Display(Prompt = "Escribe la fecha de caducidad del usuario premium", Description = "Fecha de caducidad del usuario premium", Name = "fechaCaducidad")]
-		[DataType(DataType.Date, ErrorMessage = "Indica la fecha de caducidad del usuario premium")]
-		public DateTime FechaCaducidad { get; set; }
 
 		public UsuarioPremiumVM ()
 		{
