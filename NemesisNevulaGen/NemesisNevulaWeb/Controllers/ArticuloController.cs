@@ -67,7 +67,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController vista admin
         public ActionResult VistaAdmin()
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
             ArticuloRepository articuloRepository = new ArticuloRepository();
             ArticuloCEN articuloCEN = new ArticuloCEN(articuloRepository);
@@ -140,7 +140,7 @@ namespace NemesisNevulaWeb.Controllers
                     Console.WriteLine("DENTRO DEL IF" + articulo.Fotografia2);
                     fileName = Path.GetFileName(articulo.Fotografia2.FileName).Trim();
 
-                    string directory = _webHost.WebRootPath + "/css/estilos/imagenes/";
+                    string directory = _webHost.WebRootPath + "css/estilos/imagenes/";
                     path = Path.Combine(directory, fileName);
 
                     if (!Directory.Exists(directory))
@@ -157,7 +157,7 @@ namespace NemesisNevulaWeb.Controllers
                     fileName = "noImage.jpg";
                 }
 
-                fileName = "/css/estilos/imagenes/" + fileName;
+                fileName = "css/estilos/imagenes/" + fileName;
 
 
                 artiCEN.CrearArticulo(articulo.Nombre, articulo.Descripcion, articulo.Precio, fileName, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.EsPublicado, articulo.FechaPublicacion, articulo.Temporada, articulo.Previsualizacion);
@@ -211,9 +211,7 @@ namespace NemesisNevulaWeb.Controllers
                 string fileName = "", path = "";
                 if (articulo.Fotografia2 != null && articulo.Fotografia2.Length > 0)
                 {
-                    string midirectorio = "/css/estilos/imagenes/";
-                    Console.WriteLine("HOLIWIS22 \n" + articulo.Fotografia2 + " \n");
-                    Console.WriteLine(articulo.Fotografia2);
+                    string midirectorio = "css/estilos/imagenes/";
                     fileName = Path.GetFileName(articulo.Fotografia2.FileName).Trim();
 
                     string directory = _webHost.WebRootPath + midirectorio;
@@ -228,15 +226,11 @@ namespace NemesisNevulaWeb.Controllers
                     {
                         await articulo.Fotografia2.CopyToAsync(stream);
                     }
-                    Console.WriteLine("HASTA AQUI \n");
                     fileName = midirectorio + fileName;
                 }
                 else
                 {
-                    Console.WriteLine("ME MATO YA" + fileName);
-                   
                     fileName = articulo.Fotografia;
-                    Console.WriteLine("ME MATO YA DESPUES" + fileName);
                 }
 
 

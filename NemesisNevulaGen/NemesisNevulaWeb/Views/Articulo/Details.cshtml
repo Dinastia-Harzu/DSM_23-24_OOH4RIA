@@ -12,7 +12,6 @@
         string rep = precio.ToString("0.00");
         return rep.Replace(",", ".");
     }
-
 }
 
 <div class="col-12">
@@ -27,7 +26,7 @@
             }
             <div class="d-flex flex-row col">
                 <div class="w-50">
-                    <img class="card-img w-100 h-100" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
+                    <img class="card-img w-100 h-100" src="@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
                 </div>
                 <div class="card bg-black text-white flex-fill w-50">
                     <div class="card-body w-100">
@@ -68,7 +67,7 @@
         <h3>Previsualización</h3>
         <hr/>
         <div class="w-50 d-flex align-content-lg-center">
-            <img class="card-img w-100 h-100 mb-4" src="~/css/estilos/imagenes/@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
+            <img class="card-img w-100 h-100 mb-4" src="@Html.DisplayFor(model => model.Item1.Fotografia)" alt="@Html.DisplayFor(model => model.Item1.Nombre)" />
         </div>
     </div>
     <div class="w-25 col">
