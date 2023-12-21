@@ -55,7 +55,7 @@ namespace NemesisNevulaWeb.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
