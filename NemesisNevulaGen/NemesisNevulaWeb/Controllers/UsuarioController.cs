@@ -41,6 +41,14 @@ namespace NemesisNevulaWeb.Controllers
             return View();
         }
 
+        public ActionResult PremiumActualizar()
+        {
+            if (!User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+
+            return View();
+        }
+
         // POST: UsuarioController/Login
         [AllowAnonymous]
         [HttpPost]
@@ -604,4 +612,13 @@ namespace NemesisNevulaWeb.Controllers
             return RedirectToAction("ArtsAdquiridos", new { id = idUserLogued });
         }
     }
+
+
+    //[Authorize]
+    //[HttpPost]
+    //[ValidateAntiForgeryToken]
+    //public ActionResult ActualizarPremiumResult(int id, UsuarioVM user)
+    //{
+        //string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    //}
 }

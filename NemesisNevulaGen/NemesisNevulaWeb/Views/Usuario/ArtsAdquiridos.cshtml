@@ -76,7 +76,7 @@
             <div class="col-md-4 mb-4">
                 <a class="text-white" href="@Url.Action("Details","Articulo", new { id = item.Id })">
                     <div class="card bg-dark text-white position-relative">
-                        <img src="~/css/estilos/imagenes/@Html.DisplayFor(modelItem => item.Fotografia)" class="card-img" alt="@Html.DisplayFor(modelItem => item.Nombre)" />
+                        <img src="@Html.DisplayFor(modelItem => item.Fotografia)" class="card-img" alt="@Html.DisplayFor(modelItem => item.Nombre)" />
                         <p class="card-text position-absolute top-0 end-0 tiny-etiqueta color-@Html.DisplayFor(model => item.Rareza)">@Html.DisplayFor(modelItem => item.Rareza)</p>
                         <div class="card-body">
                             <h5 class="card-title text-warning fw-bold text-uppercase">@Html.DisplayFor(modelItem => item.Nombre)</h5>
