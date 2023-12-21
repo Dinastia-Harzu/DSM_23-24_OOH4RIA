@@ -2,7 +2,24 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using NemesisNevulaWeb.Controllers;
 using System.Security.Claims;
 
-var builder = WebApplication.CreateBuilder(args);
+const int DESARROLLO = 0;
+const int PRODUCCION = 1;
+
+// Cambiar el valor de esta variable para cambiar el modo
+int modo = PRODUCCION;
+WebApplicationBuilder builder;
+
+if(modo == DESARROLLO)
+{
+    builder = WebApplication.CreateBuilder(args);
+}
+else
+{
+    builder = WebApplication.CreateBuilder(new WebApplicationOptions
+    {
+        EnvironmentName = Environments.Production
+    });
+}
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
