@@ -82,7 +82,6 @@ namespace NemesisNevulaWeb.Controllers
         {
             if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "CrearNoticia";
-            Console.WriteLine("HOLIWIS" + noticia.Foto2);
             NoticiaRepository notiRepo = new();
             NoticiaCEN notiCEN = new(notiRepo);
 
@@ -103,7 +102,7 @@ namespace NemesisNevulaWeb.Controllers
                     Console.WriteLine("antes del direcitorio" + noticia.Foto2);
                     if (!Directory.Exists(directory))
                         Directory.CreateDirectory(directory);
-                    Console.WriteLine("antes delIO" + noticia.Foto2);
+                    Console.WriteLine("antes del IO" + noticia.Foto2);
 
                     if (!System.IO.File.Exists(path))
                     {
@@ -124,8 +123,6 @@ namespace NemesisNevulaWeb.Controllers
 
                 fileName = "/css/estilos/imagenes/" + fileName;
 
-
-                Console.WriteLine("wowowo" + noticia.Foto2);
                 notiCEN.CrearNoticia(noticia.Descripcion, noticia.EsPublicada, noticia.Titulo, fileName);
 
                 return RedirectToAction(nameof(Index));
@@ -159,8 +156,6 @@ namespace NemesisNevulaWeb.Controllers
         public async Task<ActionResult> EditAsync(int id, NoticiaVM noticia)
         {
 
-            Console.WriteLine("HOLIWIS" + noticia.Foto2);
-            Console.WriteLine("HOLIWIS DOS" + noticia.Foto);
             NoticiaRepository notiRepo = new();
             NoticiaCEN notiCEN = new(notiRepo);
             ViewBag.CurrentPage = "CrearNoticia";
@@ -174,7 +169,6 @@ namespace NemesisNevulaWeb.Controllers
                 if (noticia.Foto2 != null && noticia.Foto2.Length > 0)
                 {
                     string midirectorio = "/css/estilos/imagenes/";
-                    Console.WriteLine("HOLIWIS22" + noticia.Foto2);
                     Console.WriteLine(noticia.Foto2);
                     fileName = Path.GetFileName(noticia.Foto2.FileName).Trim();
 
@@ -196,7 +190,6 @@ namespace NemesisNevulaWeb.Controllers
                 }
                 else
                 {
-                    Console.WriteLine("ME MATO YA" + noticia.Foto2);
                     fileName = noticia.Foto;
                 }
 

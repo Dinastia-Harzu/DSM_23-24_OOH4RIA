@@ -247,7 +247,6 @@ namespace NemesisNevulaWeb.Controllers
                             await articulo.Fotografia2.CopyToAsync(stream);
                         }
                     }
-                    Console.WriteLine("HASTA AQUI \n");
                     fileName = midirectorio + fileName;
                 }
                 else

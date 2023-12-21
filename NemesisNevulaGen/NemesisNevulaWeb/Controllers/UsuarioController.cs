@@ -256,15 +256,12 @@ namespace NemesisNevulaWeb.Controllers
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
-            Console.WriteLine("¿Entramos?");
-
             if (idUserString != id.ToString() && rolUser != "Administrador")
                 return RedirectToAction("Index", "Home");
 
             if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Perfil";
 
-            Console.WriteLine("ENTRAMOS");
 
             try
             {
