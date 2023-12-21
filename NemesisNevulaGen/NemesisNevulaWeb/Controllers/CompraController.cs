@@ -50,6 +50,7 @@ namespace NemesisNevulaWeb.Controllers
             return View(compraVM);
         }
 
+        /*
         // GET: CompraController/Create
         public ActionResult Create(int id, float precio, bool regalo)
         {
@@ -198,6 +199,134 @@ namespace NemesisNevulaWeb.Controllers
             }
             catch
             {
+                return View();
+            }
+        }
+        */
+       
+        // GET: CompraController/Create
+        public ActionResult Create(int id, float precio, bool regalo)
+        {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
+
+            UsuarioRepository usuarioRepository = new UsuarioRepository();
+            UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
+
+            ArticuloRepository articuloRepository = new();
+            ArticuloCEN articuloCEN = new(articuloRepository);
+
+            // Recogemos el usuario logueado
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            UsuarioEN userEN = usuarioCEN.DamePorOID(idUserLogued);
+
+            ArticuloEN artEN = articuloCEN.DamePorOID(id);
+
+            CompraEN compraEN = new CompraEN(-1, DateTime.Now, userEN, artEN, precio, false, null);     // Compra auxiliar que no viaja a la BD (Necesario para el VM)
+
+            // ------------------------------------------------------------------------------------
+            // Ver el precio y el saldo para ver lo de los botones
+            ViewData["suficiente"] = (userEN.Cartera > precio);
+
+            if (userEN.Cartera > precio)
+            {
+                if (User.Identity.IsAuthenticated) actualizarEstado();
+            }
+            // Ver el nombre del articulo
+            ViewData["nom_art"] = artEN.Nombre;
+
+            // Ver si se regala el articulo
+            ViewData["regalo"] = regalo;
+
+            // Recogemos todos los usuario de la BD
+            IList<UsuarioEN> listUsersEN = usuarioCEN.DameTodos(0, -1);
+
+            // Creamos una lista de select items y se los inyectamos
+            IList<SelectListItem> listUsersSLI = new List<SelectListItem>();
+            foreach (UsuarioEN user in listUsersEN)
+            {
+                listUsersSLI.Add(new SelectListItem
+                {
+                    Text = user.Nombre,
+                    Value = user.Nombre
+                });
+            }
+
+            ViewData["listUsers"] = listUsersSLI;
+
+            // Vista final
+            return View(new CompraAssembler().ConvertirENToViewModel(compraEN));
+        }
+
+        // POST: CompraController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(int id, CompraVM comp, string usuarioReceptor)
+        {
+
+            try
+            {
+                if (User.Identity.IsAuthenticated) actualizarEstado();
+
+                CompraRepository compraRepository = new CompraRepository();
+                CompraCEN compraCEN = new CompraCEN(compraRepository);
+
+                UsuarioRepository usuarioRepository = new UsuarioRepository();
+                UsuarioCEN usuarioCEN = new UsuarioCEN(usuarioRepository);
+
+                UsuarioEN usu = usuarioCEN.DamePorOID(Int32.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
+
+                ArticuloRepository articuloRepository = new ArticuloRepository();
+                ArticuloCEN articuloCEN = new ArticuloCEN(articuloRepository);
+
+                // Declaramos los CPs
+                UsuarioCP usuarioCP = new(new SessionCPNHibernate());
+                CompraCP compraCP = new(new SessionCPNHibernate());
+
+                bool aplicarDescuento = false;
+                string desc = Request.Form["desc"];
+
+                if (!string.IsNullOrEmpty(desc))
+                {
+                    if (desc == "on") aplicarDescuento = true;
+                    else aplicarDescuento = false;
+                }
+               
+                /*
+                // Recogemos el usuario logueado
+                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                UsuarioEN usu = usuarioCEN.DamePorOID(idUserLogued);
+                */
+
+                // Recogemos el articulo a comprar
+                ArticuloEN art = articuloCEN.DamePorOID(id);
+
+                // Vemos si se va a comprar o regalar
+                int regalo = int.Parse(Request.Form["regalo"]);
+
+                // Compramos el articulo
+                    int idCompra = usuarioCP.ComprarArticulo(usu.Id, id, aplicarDescuento);
+
+                if (regalo == 0)
+                    ViewData["regalo"] = false;
+                else
+                {
+                    ViewData["regalo"] = true;
+
+                    // Recogemos el usuario objetivo
+                    string userObjetivoNombre = usuarioReceptor;
+                    UsuarioEN userObjetivo = usuarioCEN.DamePorNombre(userObjetivoNombre).First();
+
+                    // Si no es Admin, compramos y regalamos el artículo
+                    if (!(userObjetivo is AdministradorEN))
+                        compraCP.Regalar(idCompra, userObjetivo.Id);      
+                }
+
+                return RedirectToAction("Details", "Articulo", new { id = art.Id });
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("[POST] Compra/Create ERROR FATAL: " + e.Message);
+
                 return View();
             }
         }
