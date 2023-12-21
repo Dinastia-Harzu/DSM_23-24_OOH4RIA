@@ -64,7 +64,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             return View();
         }
 
@@ -74,7 +74,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PaypalVM pp)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             try
             {
                 PaypalRepository ppRepo = new PaypalRepository();
