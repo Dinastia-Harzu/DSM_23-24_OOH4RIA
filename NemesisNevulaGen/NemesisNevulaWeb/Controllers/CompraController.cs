@@ -98,14 +98,7 @@ namespace NemesisNevulaWeb.Controllers
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    string cartera = User.FindFirstValue(ClaimTypes.UserData).Split("#")[0];
-                    string foto = User.FindFirstValue(ClaimTypes.UserData).Split("#")[1];
-                    ((ClaimsIdentity)User.Identity).RemoveClaim(User.FindFirst(ClaimTypes.UserData));
-                    var actualizado = new Claim(ClaimTypes.UserData, p_usuario.Cartera+"#"+foto);
-                    ((ClaimsIdentity)User.Identity).AddClaim(actualizado);
-                    HttpContext.SignInAsync(User);
-                    ViewData["cartera"] = p_usuario.Cartera;
-                    
+                    actualizarEstado();
                 }
 
             }
