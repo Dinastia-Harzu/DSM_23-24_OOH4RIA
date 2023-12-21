@@ -21,7 +21,7 @@
 <div class="col-12">
     <div class="d-flex flex-row row">
         <div class="w-75">
-            @if (User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Role) == "Administrador")
+            @if(User.Identity.IsAuthenticated && User.FindFirstValue(ClaimTypes.Role) == "Administrador")
             {
                 <div class="mb-2">
                     <a class="btn btn-aceptar" href="@Url.Action("Edit", new { id = Model.Item1.Id })">Editar</a>
@@ -88,13 +88,40 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="p-2 col-3 d-flex justify-content-center">
+                    <p class="card-text valoracion-@Html.DisplayFor(model => model.Item1.Valoracion) fs-3"></p>
+                    <form asp-action=""></form>
+                </div>
+            </div>
+            <div class="row">
+                <h3>Valorar</h3>
+                <div class="btn-group">
+                    @for(int i = 1; i <= 5; i++)
+                    {
+                        @if(@User.Identity.IsAuthenticated)
+                        {
+                            <a
+                                asp-controller="ValoracionArticulo"
+                                asp-action="Create"
+                                asp-route-valoracion="@i"
+                                asp-route-usuario="@int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))"
+                                asp-route-articulo="@Model.Item1.Id"
+                                class="btn btn-primary btn-sm"
+                            >@i ★</a>
+                        } else
+                        {
+                            @Html.ActionLink(i + "★", "Login", "Usuario", new { @class = "btn btn-primary btn-sm" });
+                        }
+                    }
+                </div>
+            </div>
         </div>
         <div class="w-25 col">
             @await Html.PartialAsync("_NoticiasParcial", (IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>)Model.Item2)
         </div>
     </div>
     <div class="text-start row">
-        <p class="card-text valoracion-@Html.DisplayFor(model => model.Item1.Valoracion) fs-3"></p>
         <h3>Previsualización</h3>
         <hr/>
         <div class="w-50 d-flex align-content-lg-center">

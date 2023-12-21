@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Completion;
 using NemesisNevulaGen.ApplicationCore.CEN.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.CP.NemesisNevula;
 using NemesisNevulaGen.ApplicationCore.EN.NemesisNevula;
+using NemesisNevulaGen.Infraestructure.CP;
 using NemesisNevulaGen.Infraestructure.EN.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
@@ -41,12 +43,68 @@ namespace NemesisNevulaWeb.Controllers
             return View(valoracionArticuloVM);
         }
 
-        // GET: ValoracionArticuloController/Create
+        // GET: ValoracionArticuloController/Create/:valoracion/:usuario/:articulo
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Create(int valoracion, int usuario, int articulo)
         {
-            
-            return View();
+            try
+            {
+                SessionInitialize();
+
+                UsuarioRepository usuarioRepository = new(session);
+                UsuarioCEN usuarioCEN = new(usuarioRepository);
+                UsuarioEN usuarioEN = usuarioCEN.DamePorOID(usuario);
+                List<ValoracionArticuloEN> listaOriginal = new(usuarioEN.ValoracionArticulo);
+                
+                UsuarioCP usuarioCP = new(new SessionCPNHibernate());
+                usuarioCP.ValorarArticulo(usuario, articulo, valoracion);
+
+                SessionClose();
+                SessionInitialize();
+
+                ValoracionArticuloRepository valoracionArticuloRepository = new(session);
+                ValoracionArticuloCEN valoracionArticuloCEN = new(valoracionArticuloRepository);
+
+                usuarioRepository = new(session);
+                usuarioCEN = new(usuarioRepository);
+                usuarioEN = usuarioCEN.DamePorOID(usuario);
+
+                List<ValoracionArticuloEN> listaActualizada = new(usuarioEN.ValoracionArticulo);
+                int idValoracionArticulo = -1;
+
+                List<int> listaIDsOriginal = new();
+                foreach(ValoracionArticuloEN val in listaOriginal)
+                {
+                    listaIDsOriginal.Add(val.Id);
+                }
+                List<int> listaIDsActualizada = new();
+                foreach(ValoracionArticuloEN val in listaActualizada)
+                {
+                    listaIDsActualizada.Add(val.Id);
+                }
+                foreach(int id in listaIDsActualizada)
+                {
+                    if(!listaIDsOriginal.Contains(id))
+                    {
+                        idValoracionArticulo = id;
+                        break;
+                    }
+                }
+                if(idValoracionArticulo == -1)
+                {
+                    throw new Exception("No existe la valoración");
+                }
+
+                ValoracionArticuloEN valoracionArticuloEN = valoracionArticuloCEN.DamePorOID(idValoracionArticulo);
+                ValoracionArticuloVM valoracionArticulo = new ValoracionArticuloAssembler().EN2VM(valoracionArticuloEN);
+
+                SessionClose();
+
+                return RedirectToAction("Details", "Articulo", new { id = articulo });
+            } catch
+            {
+                return RedirectToAction("Details", "Articulo", new { id = articulo });
+            }
         }
 
         // POST: ValoracionArticuloController/Create/5
@@ -58,14 +116,8 @@ namespace NemesisNevulaWeb.Controllers
             
             try
             {
-                int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
-                new ValoracionArticuloCEN(new ValoracionArticuloRepository()).CrearValoracion(
-                    valoracionArticulo.Valoracion,
-                    id,
-                    idUserLogued
-                );
-                return RedirectToAction(nameof(Index));
+                // Nada que ver por aquí                
+                return RedirectToAction("Details", "Articulo", new { id = id });
             }
             catch
             {
