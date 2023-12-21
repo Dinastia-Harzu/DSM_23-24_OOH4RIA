@@ -23,7 +23,7 @@ namespace NemesisNevulaWeb.Controllers
         public IActionResult 
             Index()
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             NoticiaRepository noticiaRepository = new NoticiaRepository();
             NoticiaCEN noticiaCEN = new NoticiaCEN(noticiaRepository);
             IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
@@ -55,7 +55,7 @@ namespace NemesisNevulaWeb.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
