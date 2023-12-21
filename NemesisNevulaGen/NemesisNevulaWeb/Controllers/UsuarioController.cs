@@ -621,5 +621,71 @@ namespace NemesisNevulaWeb.Controllers
 
             return RedirectToAction("ArtsAdquiridos", new { id = idUserLogued });
         }
+
+        // GET: UsuarioController/AnyadirFondos
+        [Authorize]
+        public ActionResult AnyadirFondos()
+        {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
+
+            UsuarioRepository userRepo = new();
+            UsuarioCEN userCEN = new(userRepo);
+
+            // Recogemos la lista de métodos de pago del usuario
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            IList<MetodoPagoEN> mpsUserLogued = userCEN.DameMetodosDePago(idUserLogued);
+
+            // Creamos una lista de items seleccionables con los datos
+            IList<SelectListItem> mpsSeleccionables = new List<SelectListItem>();
+            string texto="", valor="";
+            PaypalEN paypal;
+            TarjetaCreditoEN tarjeta;
+            foreach (var mp in mpsUserLogued)
+            {
+                if (mp is PaypalEN)
+                {
+                    paypal = (PaypalEN)mp;
+
+                    texto = "Paypal: " + paypal.Email;
+                    valor = paypal.Id.ToString();
+                }
+                else if (mp is TarjetaCreditoEN)
+                {
+                    tarjeta = (TarjetaCreditoEN)mp;
+
+                    texto = tarjeta.TipoTarjeta + ": " + tarjeta.NombreEnTarjeta + " - " + tarjeta.Numero;
+                    valor = tarjeta.Id.ToString();
+                }
+
+                mpsSeleccionables.Add(new SelectListItem
+                {
+                    Text = texto,
+                    Value = valor
+                });
+            }
+
+            ViewData["mpsSeleccionables"] = mpsSeleccionables;
+
+            return View();
+        }
+
+        // POST: UsuarioController/AnyadirFondos
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AnyadirFondos(AnyadirFondosVM afVM)
+        {
+            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            UsuarioRepository userRepo = new();
+            UsuarioCEN userCEN = new(userRepo);
+            UsuarioCP userCP = new(new SessionCPNHibernate());
+
+            UsuarioEN userLogued = userCEN.DamePorOID(idUserLogued);
+
+            userCP.AgregarFondos(idUserLogued, afVM.MetodoPago, afVM.Cantidad);
+
+            return RedirectToAction("Details", "Usuario", new {id = idUserLogued});
+        }
     }
 }

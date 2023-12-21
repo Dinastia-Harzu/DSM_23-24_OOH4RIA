@@ -1,0 +1,40 @@
+﻿@model NemesisNevulaWeb.Models.AnyadirFondosVM
+
+@{
+    ViewData["Title"] = "AnyadirFondos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    IEnumerable<SelectListItem> mpsSeleccionables = (IEnumerable<SelectListItem>)ViewData["mpsSeleccionables"];
+}
+
+<h1>AnyadirFondos</h1>
+
+<h4>AnyadirFondosVM</h4>
+<hr />
+<div class=" d-flex justify-content-center">
+    <div class="col-md-4 w-50">
+        <form asp-action="AnyadirFondos">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-2">
+                <label for="ordenarPor" class="control-label">Orden</label>
+                <select class="form-select" id="MetodoPago" name="MetodoPago" asp-items="mpsSeleccionables"></select>    
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Cantidad" class="control-label form-control-lg"></label>
+                <input asp-for="Cantidad" class="form-control form-control-lg" />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex mb-2 justify-content-end">
+                <input type="submit" value="Enviar" class="btn btn-aceptar" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
