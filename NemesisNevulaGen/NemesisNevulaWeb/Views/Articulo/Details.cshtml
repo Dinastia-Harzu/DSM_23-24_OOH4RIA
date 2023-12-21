@@ -94,28 +94,31 @@
                     <form asp-action=""></form>
                 </div>
             </div>
-            <div class="row">
-                <h3>Valorar</h3>
-                <div class="btn-group">
-                    @for(int i = 1; i <= 5; i++)
-                    {
-                        @if(@User.Identity.IsAuthenticated)
+            @if (lotiene)
+            {
+                <div class="row d-flex justify-content-center">
+                    <h3>Valorar</h3>
+                    <div class="btn-group">
+                        @for(int i = 1; i <= 5; i++)
                         {
-                            <a
-                                asp-controller="ValoracionArticulo"
-                                asp-action="Create"
-                                asp-route-valoracion="@i"
-                                asp-route-usuario="@int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))"
-                                asp-route-articulo="@Model.Item1.Id"
-                                class="btn btn-primary btn-sm"
-                            >@i ★</a>
-                        } else
-                        {
-                            @Html.ActionLink(i + "★", "Login", "Usuario", new { @class = "btn btn-primary btn-sm" });
+                            @if(@User.Identity.IsAuthenticated)
+                            {
+                                <a
+                                    asp-controller="ValoracionArticulo"
+                                    asp-action="Create"
+                                    asp-route-valoracion="@i"
+                                    asp-route-usuario="@int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier))"
+                                    asp-route-articulo="@Model.Item1.Id"
+                                    class="btn btn-aceptar btn-sm"
+                                >@i ★</a>
+                            } else
+                            {
+                                @Html.ActionLink(i + "★", "Login", "Usuario", new { @class = "btn btn-aceptar btn-sm" });
+                            }
                         }
-                    }
+                    </div>
                 </div>
-            </div>
+            }
         </div>
         <div class="w-25 col">
             @await Html.PartialAsync("_NoticiasParcial", (IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>)Model.Item2)

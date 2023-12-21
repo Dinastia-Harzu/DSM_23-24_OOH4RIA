@@ -41,14 +41,6 @@ namespace NemesisNevulaWeb.Controllers
             return View();
         }
 
-        public ActionResult PremiumActualizar()
-        {
-            if (!User.Identity.IsAuthenticated)
-                return RedirectToAction("Index", "Home");
-
-            return View();
-        }
-
         // POST: UsuarioController/Login
         [AllowAnonymous]
         [HttpPost]

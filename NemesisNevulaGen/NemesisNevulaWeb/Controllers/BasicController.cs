@@ -76,7 +76,6 @@ namespace NemesisNevulaWeb.Controllers
         protected string tipoUsuario(int id)
         {
             string rolUsuario = "Visitante";
-
             
             UsuarioRepository usuarioRepository = new();
             UsuarioCEN usuarioCEN = new(usuarioRepository);
