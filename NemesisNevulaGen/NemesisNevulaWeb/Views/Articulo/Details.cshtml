@@ -60,7 +60,7 @@
                                 {
                                     if (lotiene)
                                     {
-                                        <a class="btn btn-premium nav-link" href="#" disabled>Ya adquirido</a>
+                                        <a class="btn btn-premium nav-link" asp-controller="Usuario" asp-action="DevolverArticulo" asp-route-id="@Model.Item1.Id">Devolver</a>
                                         <a class="btn btn-cancelar mt-2" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="1">Regalar</a>
 
                                     }
