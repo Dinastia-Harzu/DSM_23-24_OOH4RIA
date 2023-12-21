@@ -8,6 +8,7 @@ using NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula;
 using NemesisNevulaGen.Infraestructure.Repository.NemesisNevula;
 using NemesisNevulaWeb.Assemblers;
 using NemesisNevulaWeb.Models;
+using System.Security.Claims;
 
 namespace NemesisNevulaWeb.Controllers
 {
@@ -98,6 +99,12 @@ namespace NemesisNevulaWeb.Controllers
             if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
             SessionInitialize();
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            UsuarioRepository userRepo = new UsuarioRepository(session);
+            UsuarioCEN userCEN = new(userRepo);
+            IList<ArticuloEN> userArts = userCEN.DameArticulosComprados(int.Parse(idUserString));
+            IEnumerable<ArticuloVM> userArtsVM = new ArticuloAssembler().ConvertirListENToViewModel(userArts).ToList();
+
             ArticuloRepository artRepo = new ArticuloRepository(session);
             ArticuloCEN articuloCEN = new ArticuloCEN(artRepo);
 
@@ -105,7 +112,7 @@ namespace NemesisNevulaWeb.Controllers
             ArticuloVM articuloVM = new ArticuloAssembler().ConvertirENToViewModel(articulo);
 
             SessionClose();
-            var viewModel = new Tuple<ArticuloVM, IEnumerable<NoticiaVM>, IEnumerable<ArticuloVM>>(articuloVM, listaNoticias,ar);
+            var viewModel = new Tuple<ArticuloVM, IEnumerable<NoticiaVM>, IEnumerable<ArticuloVM>, IEnumerable<ArticuloVM>>(articuloVM, listaNoticias,ar, userArtsVM);
             return View(viewModel);
         }
 
@@ -145,10 +152,12 @@ namespace NemesisNevulaWeb.Controllers
 
                     if (!Directory.Exists(directory))
                         Directory.CreateDirectory(directory);
-
-                    using (var stream = System.IO.File.Create(path))
+                    if (!System.IO.File.Exists(path))
                     {
-                        await articulo.Fotografia2.CopyToAsync(stream);
+                        using (var stream = System.IO.File.Create(path))
+                        {
+                            await articulo.Fotografia2.CopyToAsync(stream);
+                        }
                     }
                 }
                 else
@@ -157,18 +166,19 @@ namespace NemesisNevulaWeb.Controllers
                     fileName = "noImage.jpg";
                 }
 
-                fileName = "css/estilos/imagenes/" + fileName;
+                fileName = "/css/estilos/imagenes/" + fileName;
+                var previ = fileName;
+                Console.WriteLine("DENTRO DEL ELSE" + fileName);
 
-
-                artiCEN.CrearArticulo(articulo.Nombre, articulo.Descripcion, articulo.Precio, fileName, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.EsPublicado, articulo.FechaPublicacion, articulo.Temporada, articulo.Previsualizacion);
+                artiCEN.CrearArticulo(articulo.Nombre, articulo.Descripcion, articulo.Precio, fileName, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.EsPublicado, articulo.FechaPublicacion, articulo.Temporada, previ);
 
                     return RedirectToAction(nameof(Index));
 
                 }
                 catch (Exception e)
                 {
-
-                    return View();
+                Console.WriteLine("excepcion" + e);
+                return View();
                 }
             }
 
@@ -222,10 +232,14 @@ namespace NemesisNevulaWeb.Controllers
                         Directory.CreateDirectory(directory);
 
                     Console.WriteLine("antes del path \n");
-                    using (var stream = System.IO.File.Create(path))
+                    if (!System.IO.File.Exists(path))
                     {
-                        await articulo.Fotografia2.CopyToAsync(stream);
+                        using (var stream = System.IO.File.Create(path))
+                        {
+                            await articulo.Fotografia2.CopyToAsync(stream);
+                        }
                     }
+                    Console.WriteLine("HASTA AQUI \n");
                     fileName = midirectorio + fileName;
                 }
                 else
@@ -235,7 +249,7 @@ namespace NemesisNevulaWeb.Controllers
 
 
 
-                Console.WriteLine("antes de modificar" + articulo.Fotografia);
+                Console.WriteLine("antes de modificar" + articulo.Fotografia +"\n");
                 artiCEN.ModificarArticulo(id, articulo.Nombre, articulo.Descripcion, articulo.Precio, fileName, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.EsPublicado, articulo.FechaPublicacion, articulo.Temporada, articulo.Previsualizacion);
                 Console.WriteLine("DESPUES de modificar" + articulo.Fotografia2);
                 return RedirectToAction(nameof(Index));

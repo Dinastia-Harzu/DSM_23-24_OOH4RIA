@@ -100,15 +100,22 @@ namespace NemesisNevulaWeb.Controllers
 
                         string directory = _webHost.WebRootPath + "css/estilos/imagenes/";
                         path = Path.Combine(directory, fileName);
-
-                        if (!Directory.Exists(directory))
+                    Console.WriteLine("antes del direcitorio" + noticia.Foto2);
+                    if (!Directory.Exists(directory))
                             Directory.CreateDirectory(directory);
+                    Console.WriteLine("antes delIO" + noticia.Foto2);
 
+                    if (!System.IO.File.Exists(path))
+                    {
                         using (var stream = System.IO.File.Create(path))
                         {
                             await noticia.Foto2.CopyToAsync(stream);
                         }
                     }
+                       
+
+                    Console.WriteLine("Aqui delante" + noticia.Foto2);
+                }
                     else
                     {
                     Console.WriteLine("DENTRO DEL ELSE" + noticia.Foto2);
@@ -117,16 +124,16 @@ namespace NemesisNevulaWeb.Controllers
 
                     fileName = "css/estilos/imagenes/" + fileName;
 
-                  
 
-                    notiCEN.CrearNoticia(noticia.Descripcion, noticia.EsPublicada, noticia.Titulo, fileName);
+                Console.WriteLine("wowowo" + noticia.Foto2);
+                notiCEN.CrearNoticia(noticia.Descripcion, noticia.EsPublicada, noticia.Titulo, fileName);
 
                     return RedirectToAction(nameof(Index));
                 
             }
             catch (Exception e)
             {
-               
+                Console.WriteLine("DENTRO DEL ELSE" + e);
                 return View();
             }
         }
@@ -172,12 +179,14 @@ namespace NemesisNevulaWeb.Controllers
                     if (!Directory.Exists(directory))
                         Directory.CreateDirectory(directory);
 
-                    
+                    if (!System.IO.File.Exists(path))
+                    {
                         using (var stream = System.IO.File.Create(path))
                         {
                             await noticia.Foto2.CopyToAsync(stream);
                         }
-                    
+                    }
+
                     fileName = midirectorio + fileName;
                 }
                 else

@@ -1,4 +1,6 @@
 ﻿@model NemesisNevulaWeb.Models.PaypalVM
+@using System.Security.Claims;
+@using Microsoft.AspNetCore.Identity;
 
 @{
     ViewData["Title"] = "Details";
@@ -26,6 +28,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id  }) |
+    @Html.ActionLink("Volver", "MetodPago", "Usuario", new { id = User.FindFirstValue(ClaimTypes.NameIdentifier) })
 </div>

@@ -1,4 +1,5 @@
-﻿@model Tuple<NemesisNevulaWeb.Models.ArticuloVM, IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>, IEnumerable<NemesisNevulaWeb.Models.ArticuloVM>>
+﻿@model Tuple<NemesisNevulaWeb.Models.ArticuloVM, IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>, IEnumerable<NemesisNevulaWeb.Models.ArticuloVM>, IEnumerable<NemesisNevulaWeb.Models.ArticuloVM>>
+@using NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula
 
 @using Microsoft.AspNetCore.Identity;
 @using System.Security.Claims;
@@ -12,7 +13,10 @@
         string rep = precio.ToString("0.00");
         return rep.Replace(",", ".");
     }
+    var lotiene = Model.Item4.Any(item => item.Id == Model.Item1.Id);
 }
+
+
 
 <div class="col-12">
     <div class="d-flex flex-row row">
@@ -42,15 +46,42 @@
                         <div class="card-footer d-flex flex-column justify-content-center">
                             @if (!User.Identity.IsAuthenticated)
                             {
-                                <a class="btn btn-aceptar" href="@Url.Action("Login","Usuario")">Comprar</a>
+                               
+                                    <a class="btn btn-aceptar" href="@Url.Action("Login","Usuario")">Comprar</a>
+                             
+                                
                                 <a class="btn btn-cancelar mt-2" href="@Url.Action("Login","Usuario")">Regalar</a>
                             }
                             else
                             {
+                                var rareza = Enum.GetName(typeof(RarezaArticuloEnum), Model.Item1.Rareza);
+                                @Html.DisplayFor(model => model.Item1.Rareza)
                                 if (User.FindFirstValue(ClaimTypes.Role) != "Administrador")
                                 {
-                                    <a class="btn btn-aceptar" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="0">Comprar</a>
-                                    <a class="btn btn-cancelar mt-2" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="1">Regalar</a>
+                                    if (lotiene)
+                                    {
+                                        <a class="btn btn-premium nav-link" href="#" disabled>Ya adquirido</a>
+                                        <a class="btn btn-cancelar mt-2" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="1">Regalar</a>
+
+                                    }
+                                    else
+                                    {
+                                        if (User.FindFirstValue(ClaimTypes.Role) == "Normal" && rareza.Equals("Premium"))
+                                        {
+                                            <a class="btn btn-premium nav-link" href="@Url.Action("PremiumActualizar","Usuario")">Comprar ahora</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-aceptar" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="0">Comprar</a>
+                                            if (!rareza.Equals("Premium"))
+                                            {
+                                                <a class="btn btn-cancelar mt-2" asp-controller="Compra" asp-action="Create" asp-route-id="@Model.Item1.Id" asp-route-precio="@floatToString(Model.Item1.Precio)" asp-route-regalo="1">Regalar</a>
+                                            }
+
+                                        }
+                                    }
+                                    
+                                    
                                 }
                             }
                         </div>

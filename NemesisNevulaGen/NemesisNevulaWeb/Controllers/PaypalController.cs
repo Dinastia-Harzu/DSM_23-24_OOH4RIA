@@ -83,7 +83,7 @@ namespace NemesisNevulaWeb.Controllers
                 int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
                 ppCEN.CrearPaypal(idUserLogued, pp.Email, pp.Pass);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued});
             }
             catch
             {
@@ -107,7 +107,7 @@ namespace NemesisNevulaWeb.Controllers
             UsuarioEN userTc = ppEN.UsuarioPoseedor;
 
             if (userTc.Id != idUserLogued)
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("MetodPago", "Usuario", new {id = idUserLogued});
 
             PaypalVM ppView = new PaypalAssembler().ConvertirENToViewModel(ppEN);
 
@@ -142,7 +142,7 @@ namespace NemesisNevulaWeb.Controllers
 
                 SessionClose();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
             }
             catch
             {
@@ -170,10 +170,14 @@ namespace NemesisNevulaWeb.Controllers
             if (userTc.Id != idUserLogued)
                 return RedirectToAction("Index", "Home");
 
+            SessionClose();
+
+            ppRepo = new PaypalRepository();
+            ppCEN = new PaypalCEN(ppRepo);
+
             ppCEN.BorrarPaypal(id);
 
-            SessionClose();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
         }
 
         // POST: PayPalController/Delete/5
@@ -201,7 +205,7 @@ namespace NemesisNevulaWeb.Controllers
 
                 SessionClose();
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
             }
             catch
             {

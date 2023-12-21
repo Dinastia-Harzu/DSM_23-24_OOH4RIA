@@ -81,13 +81,13 @@
     <hr />
     <div class="row">
         <div class = "col-sm-12 mb-4">
-            <div><strong>Nombre del artículo comprado:</strong></div>
+            <div><strong>Nombre del artículo:</strong></div>
             <div>@ViewData["nom_art"]</div> 
         </div>
 
         <div class = "col-sm-12 mb-4">
             <div><strong>Fecha de la compra:</strong></div>
-            <div>@Html.DisplayFor(model => model.Fecha)</div> 
+            <div>@DateTime.Now.ToShortDateString()</div> 
         </div>
 
         <div class = "col-sm-12 mb-4">
