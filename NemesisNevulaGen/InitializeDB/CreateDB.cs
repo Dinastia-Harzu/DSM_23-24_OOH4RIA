@@ -110,26 +110,26 @@ public static void InitializeData ()
 
                 int idAdmin = administradorcen.CrearAdmin ("Federico Alfredo", "fnaf1@gmail.com", false, "css/estilos/imagenes/te.jpeg", 12, (float)1.25, "contrasenya");
                 UsuarioPremiumCP usuarioPremiumCP = new UsuarioPremiumCP (new SessionCPNHibernate ());
-                int idusr = usuariocen.CrearUsuario ("Bonifacio Conejal", "fnaf2@gmail.com", true, "css/estilos/imagenes/na.jpeg", 2, (float)20.00, "pwd123");
-                int idUsuario = usuariocen.CrearUsuario ("Chica Gallina", "fnaf3@gmail.com", true, "css/estilos/imagenes/ge.jpeg", 2, (float)12.5, "pwd123");
-                int usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "css/estilos/imagenes/te.jpeg", 100, 25, "password");
+                int idusr = usuariocen.CrearUsuario ("Bonifacio Conejal", "fnaf2@gmail.com", true, "/css/estilos/imagenes/na.jpeg", 2, (float)20.00, "pwd123");
+                int idUsuario = usuariocen.CrearUsuario ("Chica Gallina", "fnaf3@gmail.com", true, "/css/estilos/imagenes/ge.jpeg", 2, (float)12.5, "pwd123");
+                int usuario_af = usuariocen.CrearUsuario ("Arturo", "agrg11@alu.ua.es", false, "/css/estilos/imagenes/te.jpeg", 100, 25, "password");
 
                 Console.WriteLine("\n\nCREAMOS USUARIO NORMAL\n\n");
                 Console.WriteLine("ID NUEVO USUARIO: "+ idusr +"\n\n");
 
                 String descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
                 
-                int idNoticia1 = noticiacen.CrearNoticia(descripcion, false, "Nuevos artículos!", "css/estilos/imagenes/pe.jpeg");
-                int idNoticia2 = noticiacen.CrearNoticia(descripcion, true, "Próximas temporadas", "css/estilos/imagenes/contactanos.jpeg");
-                int idNoticia3 = noticiacen.CrearNoticia(descripcion, true, "Cósmico y universal", "css/estilos/imagenes/pp.jpeg");
-                int idNoticia4 = noticiacen.CrearNoticia(descripcion, true, "¡Nueva invasión!", "css/estilos/imagenes/contactanos.jpeg");
-                int idNoticia5 = noticiacen.CrearNoticia(descripcion, true, "Recompensas novedosas", "css/estilos/imagenes/te.jpeg");
+                int idNoticia1 = noticiacen.CrearNoticia(descripcion, false, "Nuevos artículos!", "/css/estilos/imagenes/pe.jpeg");
+                int idNoticia2 = noticiacen.CrearNoticia(descripcion, true, "Próximas temporadas", "/css/estilos/imagenes/contactanos.jpeg");
+                int idNoticia3 = noticiacen.CrearNoticia(descripcion, true, "Cósmico y universal", "/css/estilos/imagenes/pp.jpeg");
+                int idNoticia4 = noticiacen.CrearNoticia(descripcion, true, "¡Nueva invasión!", "/css/estilos/imagenes/contactanos.jpeg");
+                int idNoticia5 = noticiacen.CrearNoticia(descripcion, true, "Recompensas novedosas", "/css/estilos/imagenes/te.jpeg");
                 
-                int idArticulo1 = articulocen.CrearArticulo("Guitarra espacial", descripcion, (float)2.5, "css/estilos/imagenes/ge.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Animacion, 0, false, DateTime.Now, "fnaf pelicula", "css/estilos/imagenes/ge.jpeg");
-                int idArticulo2 = articulocen.CrearArticulo("Pistola estelar", descripcion, (float)3.9, "css/estilos/imagenes/pe.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Arma, 0, true, DateTime.Now.AddMonths(94), "fnaf pelicula", "css/estilos/imagenes/pe.jpeg");
-                int idArticulo3 = articulocen.CrearArticulo("Traje cósmico", descripcion, (float)3.9, "css/estilos/imagenes/tc.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Raro, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Traje, 0, true, DateTime.Now.AddMonths(94), "fnaf pelicula", "css/estilos/imagenes/tc.jpeg");
-                int idArticulo4 = articulocen.CrearArticulo("Pintada planetaria", descripcion, (float)3.9, "css/estilos/imagenes/pp.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Grafitti, 0, true, DateTime.Now.AddMonths(94), "fnaf pelicula", "css/estilos/imagenes/pp.jpeg");
-                int idArticulo5 = articulocen.CrearArticulo("Nave alfa", descripcion, (float)3.9, "css/estilos/imagenes/na.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Legendario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Nave, 0, true, DateTime.Now.AddMonths(94), "fnaf pelicula", "css/estilos/imagenes/na.jpeg");
+                int idArticulo1 = articulocen.CrearArticulo("Guitarra espacial", descripcion, (float)2.5, "/css/estilos/imagenes/ge.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Animacion, 0, false, DateTime.Now, "fnaf pelicula", "css/estilos/imagenes/ge.jpeg");
+                int idArticulo2 = articulocen.CrearArticulo("Pistola estelar", descripcion, (float)3.9, "/css/estilos/imagenes/pe.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Arma, 0, true, DateTime.Now.AddMonths(94), "fnaf pelicula", "css/estilos/imagenes/pe.jpeg");
+                int idArticulo3 = articulocen.CrearArticulo("Traje cósmico", descripcion, (float)3.9, "/css/estilos/imagenes/tc.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Raro, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Traje, 0, true, DateTime.Now.AddMonths(94), "fnaf pelicula", "css/estilos/imagenes/tc.jpeg");
+                int idArticulo4 = articulocen.CrearArticulo("Pintada planetaria", descripcion, (float)3.9, "/css/estilos/imagenes/pp.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Grafitti, 0, true, DateTime.Now.AddMonths(94), "fnaf pelicula", "css/estilos/imagenes/pp.jpeg");
+                int idArticulo5 = articulocen.CrearArticulo("Nave alfa", descripcion, (float)3.9, "/css/estilos/imagenes/na.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Legendario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Nave, 0, true, DateTime.Now.AddMonths(94), "fnaf pelicula", "css/estilos/imagenes/na.jpeg");
                 
                 int idTarjeta1 = tarjetacreditocen.CrearTarjetaCredito(idUsuario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica", "5555777788889999", DateTime.Now.AddMonths(3), "aaaa");
                 int idPayPal1 = tarjetacreditocen.CrearTarjetaCredito(idUsuario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica", "5555777788889999", DateTime.Now.AddMonths(3), "aaaa");

@@ -20,7 +20,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
-            
+
             SessionInitialize();
             CompraRepository compraRepository = new CompraRepository();
             CompraCEN compraCEN = new CompraCEN(compraRepository);
@@ -96,10 +96,21 @@ namespace NemesisNevulaWeb.Controllers
 
             if (p_usuario.Cartera > precio)
             {
-                if (User.Identity.IsAuthenticated) actualizarEstado();
+                if (User.Identity.IsAuthenticated)
+                {
+                    string cartera = User.FindFirstValue(ClaimTypes.UserData).Split("#")[0];
+                    string foto = User.FindFirstValue(ClaimTypes.UserData).Split("#")[1];
+                    ((ClaimsIdentity)User.Identity).RemoveClaim(User.FindFirst(ClaimTypes.UserData));
+                    var actualizado = new Claim(ClaimTypes.UserData, p_usuario.Cartera + "#" + foto);
+                    ((ClaimsIdentity)User.Identity).AddClaim(actualizado);
+                    HttpContext.SignInAsync(User);
+                    ViewData["cartera"] = p_usuario.Cartera;
+
+                }
+
             }
-                // Ver el nombre del articulo
-                ViewData["nom_art"] = p_articulo.Nombre;
+            // Ver el nombre del articulo
+            ViewData["nom_art"] = p_articulo.Nombre;
 
             // Ver si se regala el articulo
             ViewData["regalo"] = regalo;
@@ -115,10 +126,9 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CompraVM comp)
         {
-            
+
             try
             {
-
                 CompraRepository compraRepository = new CompraRepository();
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
 
@@ -139,8 +149,9 @@ namespace NemesisNevulaWeb.Controllers
                 // Vemos si se va a comprar o regalar
                 int regalo = Int32.Parse(Request.Form["regalo"]);
 
-                int result_comp = 0; 
-                if (regalo == 0) {
+                int result_comp = 0;
+                if (regalo == 0)
+                {
 
                     // Compramos el articulo
                     usuarioCP.ComprarArticulo(usu.Id, comp.IdArticulo, (desc != null));
@@ -148,22 +159,27 @@ namespace NemesisNevulaWeb.Controllers
                     // Creamos compra
                     result_comp = compraCEN.CrearCompra(DateTime.Now, comp.IdComprador, comp.IdArticulo, precio_descontado, false);
 
-                } else {
+                }
+                else
+                {
 
                     // Regalamos
                     string nom_usu_r = Request.Form["nom_usu_r"];
                     UsuarioEN usu_r = usuarioCEN.DamePorNombre(nom_usu_r).First();
 
                     // Creamos compra
-                    if (!(usu_r is AdministradorEN)) {
+                    if (!(usu_r is AdministradorEN))
+                    {
                         result_comp = compraCEN.CrearCompra(DateTime.Now, comp.IdComprador, comp.IdArticulo, precio_descontado, true);
                         compraCP.Regalar(result_comp, usu_r.Id);
-                    } else {
+                    }
+                    else
+                    {
                         return RedirectToAction("Index", "Home");
                     }
-                    
+
                 }
-                return RedirectToAction("Details", new {id = result_comp});
+                return RedirectToAction("Details", new { id = result_comp });
 
             }
             catch
@@ -175,7 +191,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: CompraController/Edit/5
         public ActionResult Edit(int id)
         {
-            
+
             SessionInitialize();
             CompraRepository compraRepository = new CompraRepository(session);
             CompraCEN compraCEN = new CompraCEN(compraRepository);
@@ -193,7 +209,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, CompraVM comp)
         {
-            
+
             try
             {
                 CompraRepository compraRepository = new CompraRepository();
@@ -211,7 +227,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: CompraController/Delete/5
         public ActionResult Delete(int id)
         {
-            
+
             CompraRepository compraRepository = new CompraRepository();
             CompraCEN compraCEN = new CompraCEN(compraRepository);
             compraCEN.BorrarCompra(id);
@@ -223,7 +239,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            
+
             try
             {
                 return RedirectToAction(nameof(Index));

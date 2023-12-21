@@ -1,28 +1,28 @@
-﻿@model NemesisNevulaWeb.Models.CompraVM
+﻿
+@model NemesisNevulaWeb.Models.CompraVM
 
 @{
     ViewData["Title"] = "Create";
-    IEnumerable <SelectListItem> usuariosItems = (IEnumerable<SelectListItem>)ViewData["usuariosItems"];
-    IEnumerable <SelectListItem> articulosItems = (IEnumerable<SelectListItem>)ViewData["articulosItems"];
+    IEnumerable<SelectListItem> usuariosItems = (IEnumerable<SelectListItem>)ViewData["usuariosItems"];
+    IEnumerable<SelectListItem> articulosItems = (IEnumerable<SelectListItem>)ViewData["articulosItems"];
 
     string formatearPrecio(float precio)
     {
         return precio.ToString("F2") + " €";
     }
-
 }
 
-<style>
+<div class="container mt-5">
+    <h1 class="text-center text-warning text-uppercase">Confirmación de compra</h1>
+    <h4 class="text-center">Comprueba que tus datos de compra son correctos</h4>
+    <hr />
 
-</style>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-light shadow bg-dark">
+                <div class="card-body">
+                    <form asp-action="Create">
 
-<h1 class="text-center text-warning text-uppercase">Confirmación de compra</h1>
-
-<h4 class="text-center">Comprueba que tus datos de compra son correctos</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="col-sm-12 mb-4">
@@ -59,35 +59,54 @@
             <label for="descuento"><b>¿Quieres aplicar un descuento?</b> </label>
             <input class="btn btn-aceptar" name="desc" type="checkbox" id="descuento" />
             <br /><br />
-            
-            <div class="form-group" hidden>
-                <label asp-for="IdComprador" class="control-label"></label>
-                <select class="form-select" asp-for="IdComprador" asp-items="usuariosItems"></select>
-                <span asp-validation-for="IdComprador" class="text-danger"></span>
-            </div>
 
-            <div class="form-group" hidden>
-                <label asp-for="IdArticulo" class="control-label"></label>
-                <select class="form-select" asp-for="IdArticulo" asp-items="articulosItems"></select>
-                <span asp-validation-for="IdArticulo" class="text-danger"></span>
-            </div>
+                        <div class="form-group" hidden>
+                            <label asp-for="IdComprador" class="control-label"></label>
+                            <select class="form-select" asp-for="IdComprador" asp-items="usuariosItems"></select>
+                            <span asp-validation-for="IdComprador" class="text-danger"></span>
+                        </div>
 
-            @if((bool)ViewData["suficiente"])
-            {
-                <div class="form-group">
-                    <input type="submit" value="Aceptar" class="btn btn-primary" />
+                        <div class="form-group" hidden>
+                            <label asp-for="IdArticulo" class="control-label"></label>
+                            <select class="form-select" asp-for="IdArticulo" asp-items="articulosItems"></select>
+                            <span asp-validation-for="IdArticulo" class="text-danger"></span>
+                        </div>
+
+                        @if ((bool)ViewData["suficiente"])
+                        {
+                            <div class="form-group d-flex justify-content-center">
+                                <div class="p-1">
+                                    <input type="submit" value="Aceptar" class="btn btn-aceptar" />
+                                </div>
+                                <div class="p-1">
+                                    <a asp-action="Index" class="btn btn-cancelar">Cancelar</a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group d-flex justify-content-center">
+                                <div class="p-1">
+                                    <p class="text-danger">¡No tienes saldo suficiente!</p>
+                                </div>
+                                
+                            </div>
+                            <div class="p-1">
+                                <a asp-action="Index" class="btn btn-cancelar">Cancelar</a>
+                            </div>
+                        }
+                       
+                    </form>
                 </div>
-            }
-
-            else
-            {
-                <p>¡No tienes saldo suficiente!</p>
-            }
-        </form>
+            </div>
+        </div>
     </div>
 </div>
 
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
+
+

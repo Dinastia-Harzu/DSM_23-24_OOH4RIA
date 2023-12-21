@@ -98,19 +98,11 @@ namespace NemesisNevulaWeb.Controllers
             // Pasa el modelo IndexViewModel a la vista
             if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
-
             SessionInitialize();
-
-            int idUserString;
-
-            if (!User.Identity.IsAuthenticated)
-            {
-                idUserString = 0;
-            }
-            else idUserString = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             UsuarioRepository userRepo = new UsuarioRepository(session);
             UsuarioCEN userCEN = new(userRepo);
-            IList<ArticuloEN> userArts = userCEN.DameArticulosComprados(idUserString);
+            IList<ArticuloEN> userArts = userCEN.DameArticulosComprados(int.Parse(idUserString));
             IEnumerable<ArticuloVM> userArtsVM = new ArticuloAssembler().ConvertirListENToViewModel(userArts).ToList();
 
             ArticuloRepository artRepo = new ArticuloRepository(session);
@@ -140,13 +132,13 @@ namespace NemesisNevulaWeb.Controllers
         public async Task<ActionResult> CreateAsync(ArticuloVM articulo)
         {
             ViewBag.CurrentPage = "CrearArticulo";
-                ArticuloRepository artiRepo = new();
-                ArticuloCEN artiCEN = new(artiRepo);
+            ArticuloRepository artiRepo = new();
+            ArticuloCEN artiCEN = new(artiRepo);
 
-                // Validamos el token del usuario
+            // Validamos el token del usuario
 
-                try
-                {
+            try
+            {
 
                 // Manejamos la subida de foto de perfil
                 string fileName = "", path = "";
@@ -155,7 +147,7 @@ namespace NemesisNevulaWeb.Controllers
                     Console.WriteLine("DENTRO DEL IF" + articulo.Fotografia2);
                     fileName = Path.GetFileName(articulo.Fotografia2.FileName).Trim();
 
-                    string directory = _webHost.WebRootPath + "css/estilos/imagenes/";
+                    string directory = _webHost.WebRootPath + "/css/estilos/imagenes/";
                     path = Path.Combine(directory, fileName);
 
                     if (!Directory.Exists(directory))
@@ -180,15 +172,15 @@ namespace NemesisNevulaWeb.Controllers
 
                 artiCEN.CrearArticulo(articulo.Nombre, articulo.Descripcion, articulo.Precio, fileName, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.EsPublicado, articulo.FechaPublicacion, articulo.Temporada, previ);
 
-                    return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
 
-                }
-                catch (Exception e)
-                {
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine("excepcion" + e);
                 return View();
-                }
             }
+        }
 
         // GET: ArticuloController/Edit/5
         [Authorize(Roles = "Administrador")]
@@ -202,12 +194,12 @@ namespace NemesisNevulaWeb.Controllers
 
             ArticuloEN articuloEN = articuloCEN.DamePorOID(id);
             ArticuloVM articulo = new ArticuloAssembler().ConvertirENToViewModel(articuloEN);
-            
+
             SessionClose();
             return View(articulo);
         }
 
-        
+
 
         // POST: ArticuloController/Edit/5
         [Authorize(Roles = "Administrador")]
@@ -229,7 +221,7 @@ namespace NemesisNevulaWeb.Controllers
                 string fileName = "", path = "";
                 if (articulo.Fotografia2 != null && articulo.Fotografia2.Length > 0)
                 {
-                    string midirectorio = "css/estilos/imagenes/";
+                    string midirectorio = "/css/estilos/imagenes/";
                     fileName = Path.GetFileName(articulo.Fotografia2.FileName).Trim();
 
                     string directory = _webHost.WebRootPath + midirectorio;
@@ -257,7 +249,7 @@ namespace NemesisNevulaWeb.Controllers
 
 
 
-                Console.WriteLine("antes de modificar" + articulo.Fotografia +"\n");
+                Console.WriteLine("antes de modificar" + articulo.Fotografia + "\n");
                 artiCEN.ModificarArticulo(id, articulo.Nombre, articulo.Descripcion, articulo.Precio, fileName, articulo.Rareza, articulo.Tipo, articulo.Valoracion, articulo.EsPublicado, articulo.FechaPublicacion, articulo.Temporada, articulo.Previsualizacion);
                 Console.WriteLine("DESPUES de modificar" + articulo.Fotografia2);
                 return RedirectToAction(nameof(Index));
@@ -314,7 +306,7 @@ namespace NemesisNevulaWeb.Controllers
             ArticuloRepository artRepo = new(session);
             ArticuloCEN artCEN = new(artRepo);
 
-            IList<ArticuloEN> artsList = artCEN.DameTodos(0,-1);
+            IList<ArticuloEN> artsList = artCEN.DameTodos(0, -1);
 
             // FILTROS:
             artsList = ordenar(artsList, ordenarPor);

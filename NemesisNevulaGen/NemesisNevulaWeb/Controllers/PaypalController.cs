@@ -18,7 +18,7 @@ namespace NemesisNevulaWeb.Controllers
 {
     public class PaypalController : BasicController
     {
-        // GET: PayPalController
+
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
@@ -39,7 +39,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
             PaypalRepository ppRepo = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepo);
@@ -65,6 +65,7 @@ namespace NemesisNevulaWeb.Controllers
         public ActionResult Create()
         {
             if (User.Identity.IsAuthenticated) actualizarEstado();
+
             return View();
         }
 
@@ -74,7 +75,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PaypalVM pp)
         {
-            if (User.Identity.IsAuthenticated) actualizarEstado();
+
             try
             {
                 PaypalRepository ppRepo = new PaypalRepository();
@@ -83,7 +84,7 @@ namespace NemesisNevulaWeb.Controllers
                 int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
                 ppCEN.CrearPaypal(idUserLogued, pp.Email, pp.Pass);
-                return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued});
+                return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
             }
             catch
             {
@@ -94,7 +95,8 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
+
             SessionInitialize();
             PaypalRepository ppRepo = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepo);
@@ -107,7 +109,7 @@ namespace NemesisNevulaWeb.Controllers
             UsuarioEN userTc = ppEN.UsuarioPoseedor;
 
             if (userTc.Id != idUserLogued)
-                return RedirectToAction("MetodPago", "Usuario", new {id = idUserLogued});
+                return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
 
             PaypalVM ppView = new PaypalAssembler().ConvertirENToViewModel(ppEN);
 
@@ -118,9 +120,9 @@ namespace NemesisNevulaWeb.Controllers
         // POST: PayPalController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id,PaypalVM pp)
+        public ActionResult Edit(int id, PaypalVM pp)
         {
-            
+
             try
             {
                 SessionInitialize();
@@ -138,7 +140,7 @@ namespace NemesisNevulaWeb.Controllers
                 if (userTc.Id != idUserLogued)
                     return RedirectToAction("Index", "Home");
 
-                ppCEN.ModificarPaypal(id,pp.Email,pp.Pass);
+                ppCEN.ModificarPaypal(id, pp.Email, pp.Pass);
 
                 SessionClose();
 
@@ -154,7 +156,8 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
+
             SessionInitialize();
 
             PaypalRepository ppRepo = new PaypalRepository(session);
@@ -185,7 +188,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            
+
             try
             {
                 SessionInitialize();
