@@ -35,7 +35,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: CompraController/Details/5
         public ActionResult Details(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
             CompraRepository compraRepository = new CompraRepository(session);
             CompraCEN compraCEN = new CompraCEN(compraRepository);
@@ -97,7 +97,6 @@ namespace NemesisNevulaWeb.Controllers
             if (p_usuario.Cartera > precio)
             {
                 if (User.Identity.IsAuthenticated) actualizarEstado();
-
             }
                 // Ver el nombre del articulo
                 ViewData["nom_art"] = p_articulo.Nombre;
@@ -119,6 +118,7 @@ namespace NemesisNevulaWeb.Controllers
             
             try
             {
+
                 CompraRepository compraRepository = new CompraRepository();
                 CompraCEN compraCEN = new CompraCEN(compraRepository);
 

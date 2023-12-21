@@ -84,12 +84,12 @@ namespace NemesisNevulaWeb.Controllers
         // GET: ArticuloController/Details/5
         public ActionResult Details(int id)
         {
-            
+
             NoticiaRepository noticiaRepository = new NoticiaRepository();
             NoticiaCEN noticiaCEN = new NoticiaCEN(noticiaRepository);
             IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
             IEnumerable<NoticiaVM> listaNoticias = new NoticiaAssembler().ListEN2VM(listaEN).ToList();
-            
+
             ArticuloRepository articuloRepository = new ArticuloRepository();
             ArticuloCEN articuloCEN1 = new ArticuloCEN(articuloRepository);
             IList<ArticuloEN> artEN = articuloCEN1.DameTodos(0, -1);
@@ -98,11 +98,19 @@ namespace NemesisNevulaWeb.Controllers
             // Pasa el modelo IndexViewModel a la vista
             if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Tienda";
+
             SessionInitialize();
-            string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            int idUserString;
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                idUserString = 0;
+            }
+            else idUserString = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             UsuarioRepository userRepo = new UsuarioRepository(session);
             UsuarioCEN userCEN = new(userRepo);
-            IList<ArticuloEN> userArts = userCEN.DameArticulosComprados(int.Parse(idUserString));
+            IList<ArticuloEN> userArts = userCEN.DameArticulosComprados(idUserString);
             IEnumerable<ArticuloVM> userArtsVM = new ArticuloAssembler().ConvertirListENToViewModel(userArts).ToList();
 
             ArticuloRepository artRepo = new ArticuloRepository(session);
@@ -112,7 +120,7 @@ namespace NemesisNevulaWeb.Controllers
             ArticuloVM articuloVM = new ArticuloAssembler().ConvertirENToViewModel(articulo);
 
             SessionClose();
-            var viewModel = new Tuple<ArticuloVM, IEnumerable<NoticiaVM>, IEnumerable<ArticuloVM>, IEnumerable<ArticuloVM>>(articuloVM, listaNoticias,ar, userArtsVM);
+            var viewModel = new Tuple<ArticuloVM, IEnumerable<NoticiaVM>, IEnumerable<ArticuloVM>, IEnumerable<ArticuloVM>>(articuloVM, listaNoticias, ar, userArtsVM);
             return View(viewModel);
         }
 
