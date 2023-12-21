@@ -21,7 +21,8 @@ namespace NemesisNevulaWeb.Controllers
         // GET: TarjetaCreditoController
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
-        { 
+        {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
             TarjetaCreditoRepository tjRepository = new TarjetaCreditoRepository(session);
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tjRepository);
@@ -38,7 +39,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
             TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
@@ -63,7 +64,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             return View();
         }
 
@@ -75,6 +76,7 @@ namespace NemesisNevulaWeb.Controllers
         {
             try
             {
+                if (User.Identity.IsAuthenticated) actualizarEstado();
                 TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository();
                 TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
 
@@ -93,7 +95,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
             TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
             TarjetaCreditoCEN tcCEN = new TarjetaCreditoCEN(tcRepo);
@@ -127,6 +129,7 @@ namespace NemesisNevulaWeb.Controllers
         {
             try
             {
+                if (User.Identity.IsAuthenticated) actualizarEstado();
                 SessionInitialize();
 
                 TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);

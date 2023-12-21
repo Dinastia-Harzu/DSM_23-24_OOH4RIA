@@ -3,7 +3,7 @@
 <p>
     @Html.ActionLink("Crear Paypal", "Create", "Paypal")
 </p>
-<table class="table">
+<table class="table text-white mt-1">
     <thead>
         <tr>
             <th>
@@ -25,9 +25,9 @@
                 @Html.DisplayFor(modelItem => item.Pass)
             </td>
             <td>
-                    @Html.ActionLink("Edit", "Edit", "Paypal", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", "Paypal", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", "Paypal", new { id = item.Id })
+                    @Html.ActionLink("Editar", "Edit", "Paypal", new { id = item.Id }) |
+                    @Html.ActionLink("Detalles", "Details", "Paypal", new { id = item.Id }) |
+                    @Html.ActionLink("Eliminar", "Delete", "Paypal", new { id = item.Id })
             </td>
         </tr>
 }

@@ -1,5 +1,6 @@
 ﻿@model NemesisNevulaWeb.Models.AnyadirFondosVM
-
+@using Microsoft.AspNetCore.Identity;
+@using System.Security.Claims;
 @{
     ViewData["Title"] = "AnyadirFondos";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,33 +8,30 @@
     IEnumerable<SelectListItem> mpsSeleccionables = (IEnumerable<SelectListItem>)ViewData["mpsSeleccionables"];
 }
 
-<h1>AnyadirFondos</h1>
+<h1 class="text-center text-warning fw-bolder">Añadir fondos a tu cuenta</h1>
 
-<h4>AnyadirFondosVM</h4>
 <hr />
 <div class=" d-flex justify-content-center">
     <div class="col-md-4 w-50">
         <form asp-action="AnyadirFondos">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group mb-2">
-                <label for="ordenarPor" class="control-label">Orden</label>
-                <select class="form-select" id="MetodoPago" name="MetodoPago" asp-items="mpsSeleccionables"></select>    
+                <label for="ordenarPor" class="control-label">Método de pago</label>
+                <select class="form-select" id="MetodoPago" name="MetodoPago" asp-items="mpsSeleccionables" required></select>    
             </div>
             <div class="form-group mb-2">
                 <label asp-for="Cantidad" class="control-label form-control-lg"></label>
-                <input asp-for="Cantidad" class="form-control form-control-lg" />
+                <input asp-for="Cantidad" type="number" class="form-control form-control-lg" />
                 <span asp-validation-for="Cantidad" class="text-danger"></span>
             </div>
             <div class="form-group d-flex mb-2 justify-content-end">
-                <input type="submit" value="Enviar" class="btn btn-aceptar" />
+                <input type="submit" value="Enviar" class="btn btn-aceptar m-1" />
+                @Html.ActionLink("Cancelar", "MetodPago", "Usuario", new {id=User.FindFirstValue(ClaimTypes.NameIdentifier)}, new { @class = "btn btn-cancelar m-1" })
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

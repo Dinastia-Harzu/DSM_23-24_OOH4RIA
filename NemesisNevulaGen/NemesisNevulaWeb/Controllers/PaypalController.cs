@@ -22,6 +22,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
 
             PaypalRepository ppRepository = new PaypalRepository(session);
@@ -39,7 +40,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
             PaypalRepository ppRepo = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepo);
@@ -94,7 +95,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
             PaypalRepository ppRepo = new PaypalRepository(session);
             PaypalCEN ppCEN = new PaypalCEN(ppRepo);
@@ -123,6 +124,7 @@ namespace NemesisNevulaWeb.Controllers
             
             try
             {
+                if (User.Identity.IsAuthenticated) actualizarEstado();
                 SessionInitialize();
 
                 PaypalRepository ppRepo = new PaypalRepository();

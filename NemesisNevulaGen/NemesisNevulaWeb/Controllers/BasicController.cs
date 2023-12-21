@@ -194,13 +194,12 @@ namespace NemesisNevulaWeb.Controllers
             return list;
         }
 
-        protected void actualizarEstado ()
+        public void actualizarEstado ()
         {
             
             UsuarioRepository usuarioRepository = new();
             UsuarioCEN usuarioCEN = new(usuarioRepository);
 
-            
             UsuarioEN usuario = usuarioCEN.DamePorOID(int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
             if (User.FindFirstValue(ClaimTypes.Role) != "Administrador") ViewData["cartera"] = usuario.Cartera;
