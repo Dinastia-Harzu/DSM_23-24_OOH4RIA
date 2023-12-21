@@ -29,7 +29,6 @@
 <div class="d-flex justify-content-evenly">
     @if (User.FindFirstValue(ClaimTypes.Role) != "Administrador")
     {
-        <a class="btn btn-aceptar m-2" href="@Url.Action("ArtsFavoritos", new { id = Model.Id })"><i class="fa-solid fa-star"></i> Mis Favoritos</a>
         <a class="btn btn-aceptar m-2" href="@Url.Action("ArtsAdquiridos", new { id = Model.Id })"><i class="fa-solid fa-user-astronaut"></i> Mis Artículos</a>
         <a class="btn btn-aceptar m-2" href="@Url.Action("MetodPago","Usuario", new { id = Model.Id })"><i class="fa-solid fa-dollar-sign"></i> Mis Métodos de pago</a>
     }

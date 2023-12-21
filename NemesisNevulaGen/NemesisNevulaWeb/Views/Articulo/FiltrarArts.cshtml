@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<NemesisNevulaWeb.Models.ArticuloVM>
+@using System.Security.Claims;
+@using Microsoft.AspNetCore.Identity;
 
 @{
     ViewData["Title"] = "Tienda";
@@ -82,9 +84,12 @@
 </div>
 
 <div>
-    <p>
-        <a asp-action="Create" class="btn btn-aceptar">Crear artículo</a>
-    </p>
+    @if (User.FindFirstValue(ClaimTypes.Role) == "Administrador")
+    {
+        <p>
+            <a asp-action="Create" class="btn btn-aceptar">Crear artículo</a>
+        </p>   
+    }
 </div>
 
 <div class="container-fluid">

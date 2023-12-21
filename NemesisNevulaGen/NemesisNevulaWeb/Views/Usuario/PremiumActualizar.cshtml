@@ -12,10 +12,6 @@
     <h3 class="text-center">Descubre todas nuestras novedades para los usuarios más exclusivos</h3>
 </div>
 
-<div class="d-flex justify-content-center mb-4">
-    @Html.ActionLink("Actualizar a Premium", "Create", new { usr = User.FindFirstValue(ClaimTypes.NameIdentifier) }, new { @class = "btn btn-premium" })
-</div>
-
 <div class="row container">
     <div class="card col-sm bg-dark mx-lg-3">
         <div class="card-header text-center text-warning">
