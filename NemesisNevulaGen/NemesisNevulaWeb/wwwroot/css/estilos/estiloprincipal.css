@@ -62,39 +62,32 @@ a:hover {
 }
 
 .valoracion-0::after {
-    font-size: larger;
-    color: yellow;
     content: '☆☆☆☆☆';
 }
 
 .valoracion-1::after {
-    font-size: larger;
-    color: yellow;
     content: '★☆☆☆☆';
 }
 
 .valoracion-2::after {
-    font-size: larger;
-    color: yellow;
     content: '★★☆☆☆';
 }
 
 .valoracion-3::after {
-    font-size: larger;
-    color: yellow;
     content: '★★★☆☆';
 }
 
 .valoracion-4::after {
-    font-size: larger;
-    color: yellow;
     content: '★★★★☆';
 }
 
 .valoracion-5::after {
-    font-size: larger;
-    color: yellow;
     content: '★★★★★';
+}
+
+.valoracion-0, .valoracion-1, .valoracion-2, .valoracion-3, .valoracion-4, .valoracion-5 {
+    color: yellow;
+    font-size: larger;
 }
 
 .color-Comun {
