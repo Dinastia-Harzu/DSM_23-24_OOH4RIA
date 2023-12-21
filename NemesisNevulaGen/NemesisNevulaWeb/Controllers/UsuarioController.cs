@@ -593,32 +593,33 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult DevolverArticulo(int id)
         {
-            UsuarioRepository userRepo = new();
+            SessionInitialize();
+
+            UsuarioRepository userRepo = new(session);
             UsuarioCEN userCEN = new(userRepo);
             UsuarioCP userCP = new(new SessionCPNHibernate());
 
+            // Recogemos el usuario
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             UsuarioEN userLogued = userCEN.DamePorOID(idUserLogued);
 
-            // Buscamos si el usuario tiene ese artículo
-            IList<ArticuloEN> artsComprados = userCEN.DameArticulosComprados(idUserLogued);
+            // Buscamos si el usuario tiene una compra relacionada con ese articulo
+            IList<CompraEN> comprasUser = userLogued.CompraUsuario;
 
-            if (!artsComprados.Any(art => art.Id == id))
-                return RedirectToAction("ArtsAdquiridos", new {id = idUserLogued});
+            CompraEN compraUserArt = comprasUser.FirstOrDefault(compra => compra.Articulo.Id == id);
+            Console.WriteLine("\n\nFecha de compra: " + compraUserArt.Fecha + "\n\n");
+
+            if(compraUserArt == null)
+                RedirectToAction("ArtsAdquiridos", new { id = idUserLogued });
+
+            int idCompra = compraUserArt.Id;
 
             // Si tiene el articulo comprado, procedemos a la devolución del importe
-            userCP.DevolverArticulo(idUserLogued, id);
+            userCP.DevolverArticulo(idUserLogued, idCompra);
+
+            SessionClose();
 
             return RedirectToAction("ArtsAdquiridos", new { id = idUserLogued });
         }
     }
-
-
-    //[Authorize]
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public ActionResult ActualizarPremiumResult(int id, UsuarioVM user)
-    //{
-        //string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    //}
 }

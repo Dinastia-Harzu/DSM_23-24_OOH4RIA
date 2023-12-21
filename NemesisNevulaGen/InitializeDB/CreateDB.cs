@@ -120,13 +120,13 @@ public static void InitializeData ()
                 int idNoticia4 = noticiacen.CrearNoticia (noti, true, "¡Nueva invasión!", "/css/estilos/imagenes/contactanos.jpeg");
                 int idNoticia5 = noticiacen.CrearNoticia (noti, true, "Recompensas novedosas", "/css/estilos/imagenes/te.jpeg");
 
-                int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", descripcion, (float)1.2, "/css/estilos/imagenes/ge.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Premium, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Animacion, 0, false, DateTime.Now, "fnaf pelicula", "ge.jpeg");
+                int idArticulo1 = articulocen.CrearArticulo ("Guitarra espacial", descripcion, (float)1.2, "/css/estilos/imagenes/ge.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Raro, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Animacion, 0, false, DateTime.Now, "fnaf pelicula", "ge.jpeg");
                 int idArticulo2 = articulocen.CrearArticulo ("Pistola estelar", descripcion, (float)3.9, "/css/estilos/imagenes/pe.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Arma, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "pe.jpeg");
                 int idArticulo3 = articulocen.CrearArticulo ("Traje cósmico", descripcion, (float)3.9, "/css/estilos/imagenes/tc.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Raro, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Traje, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "tc.jpeg");
                 int idArticulo4 = articulocen.CrearArticulo ("Pintada planetaria", descripcion, (float)3.9, "/css/estilos/imagenes/pp.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Comun, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Grafitti, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "pp.jpeg");
                 int idArticulo5 = articulocen.CrearArticulo ("Nave alfa", descripcion, (float)3.9, "/css/estilos/imagenes/na.jpeg", NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.RarezaArticuloEnum.Legendario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoArticuloEnum.Nave, 0, true, DateTime.Now.AddMonths (94), "fnaf pelicula", "na.jpeg");
 
-                int idCompra1 = compracen.CrearCompra (DateTime.Now, idUsuario, idArticulo1, (float)0.00, false);
+                int idCompra1 = compracen.CrearCompra (DateTime.Now, idUsuario, idArticulo1, (float)1.20, false);
 
                 int idTarjeta1 = tarjetacreditocen.CrearTarjetaCredito (idUsuario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica", "5555777788889999", DateTime.Now.AddMonths (3), "aaaa");
                 int idPayPal1 = tarjetacreditocen.CrearTarjetaCredito (idUsuario, NemesisNevulaGen.ApplicationCore.Enumerated.NemesisNevula.TipoTarjetaEnum.Mastercard, "Chica", "5555777788889999", DateTime.Now.AddMonths (3), "aaaa");
@@ -376,7 +376,7 @@ public static void InitializeData ()
                 }
                 else{
                         Console.WriteLine ("La compra no se ha realizado correctamente");
-                }*/
+                }
 
                 /*PROTECTED REGION END*/
             }
