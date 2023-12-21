@@ -32,7 +32,7 @@ namespace NemesisNevulaWeb.Controllers
         // GET: NoticiaController
         public ActionResult Index()
         {
-            
+
             SessionInitialize();
             NoticiaRepository noticiaRepository = new();
             NoticiaCEN noticiaCEN = new(noticiaRepository);
@@ -57,7 +57,7 @@ namespace NemesisNevulaWeb.Controllers
 
             IList<NoticiaEN> listaEN = noticiaCEN.DameTodos(0, -1);
             IEnumerable<NoticiaVM> listaNoticias = new NoticiaAssembler().ListEN2VM(listaEN).ToList();
-            
+
 
             SessionClose();
 
@@ -85,24 +85,24 @@ namespace NemesisNevulaWeb.Controllers
             Console.WriteLine("HOLIWIS" + noticia.Foto2);
             NoticiaRepository notiRepo = new();
             NoticiaCEN notiCEN = new(notiRepo);
-            
+
             // Validamos el token del usuario
-           
+
             try
             {
-              
-                    // Manejamos la subida de foto de perfil
-                    string fileName = "", path = "";
-                    if (noticia.Foto2 != null && noticia.Foto2.Length > 0)
-                    {
-                        Console.WriteLine( "DENTRO DEL IF" + noticia.Foto2);
-                        fileName = Path.GetFileName(noticia.Foto2.FileName).Trim();
 
-                        string directory = _webHost.WebRootPath + "css/estilos/imagenes/";
-                        path = Path.Combine(directory, fileName);
+                // Manejamos la subida de foto de perfil
+                string fileName = "", path = "";
+                if (noticia.Foto2 != null && noticia.Foto2.Length > 0)
+                {
+                    Console.WriteLine("DENTRO DEL IF" + noticia.Foto2);
+                    fileName = Path.GetFileName(noticia.Foto2.FileName).Trim();
+
+                    string directory = _webHost.WebRootPath + "/css/estilos/imagenes/";
+                    path = Path.Combine(directory, fileName);
                     Console.WriteLine("antes del direcitorio" + noticia.Foto2);
                     if (!Directory.Exists(directory))
-                            Directory.CreateDirectory(directory);
+                        Directory.CreateDirectory(directory);
                     Console.WriteLine("antes delIO" + noticia.Foto2);
 
                     if (!System.IO.File.Exists(path))
@@ -112,24 +112,24 @@ namespace NemesisNevulaWeb.Controllers
                             await noticia.Foto2.CopyToAsync(stream);
                         }
                     }
-                       
+
 
                     Console.WriteLine("Aqui delante" + noticia.Foto2);
                 }
-                    else
-                    {
+                else
+                {
                     Console.WriteLine("DENTRO DEL ELSE" + noticia.Foto2);
                     fileName = "noImage.jpg";
-                    }
+                }
 
-                    fileName = "css/estilos/imagenes/" + fileName;
+                fileName = "/css/estilos/imagenes/" + fileName;
 
 
                 Console.WriteLine("wowowo" + noticia.Foto2);
                 notiCEN.CrearNoticia(noticia.Descripcion, noticia.EsPublicada, noticia.Titulo, fileName);
 
-                    return RedirectToAction(nameof(Index));
-                
+                return RedirectToAction(nameof(Index));
+
             }
             catch (Exception e)
             {
@@ -142,7 +142,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
             NoticiaRepository noticiaRepository = new(session);
             NoticiaCEN noticiaCEN = new(noticiaRepository);
@@ -158,7 +158,9 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync(int id, NoticiaVM noticia)
         {
-            if (User.Identity.IsAuthenticated) actualizarEstado();
+
+            Console.WriteLine("HOLIWIS" + noticia.Foto2);
+            Console.WriteLine("HOLIWIS DOS" + noticia.Foto);
             NoticiaRepository notiRepo = new();
             NoticiaCEN notiCEN = new(notiRepo);
             ViewBag.CurrentPage = "CrearNoticia";
@@ -166,11 +168,14 @@ namespace NemesisNevulaWeb.Controllers
 
             try
             {
+
                 // Manejamos la subida de foto de perfil
                 string fileName = "", path = "";
                 if (noticia.Foto2 != null && noticia.Foto2.Length > 0)
                 {
-                    string midirectorio = "css/estilos/imagenes/";
+                    string midirectorio = "/css/estilos/imagenes/";
+                    Console.WriteLine("HOLIWIS22" + noticia.Foto2);
+                    Console.WriteLine(noticia.Foto2);
                     fileName = Path.GetFileName(noticia.Foto2.FileName).Trim();
 
                     string directory = _webHost.WebRootPath + midirectorio;
@@ -191,17 +196,21 @@ namespace NemesisNevulaWeb.Controllers
                 }
                 else
                 {
+                    Console.WriteLine("ME MATO YA" + noticia.Foto2);
                     fileName = noticia.Foto;
                 }
 
-                
+
+
+                Console.WriteLine("antes de modificar" + noticia.Foto2);
                 notiCEN.ModificarNoticia(id, noticia.Descripcion, noticia.EsPublicada, noticia.Titulo, fileName);
+                Console.WriteLine("DESPUES de modificar" + noticia.Foto2);
                 return RedirectToAction(nameof(Index));
 
             }
             catch (Exception e)
             {
-                Console.WriteLine("antes de modificar" + e.Message +noticia.Foto2);
+                Console.WriteLine("antes de modificar" + e.Message + noticia.Foto2);
                 return View();
             }
         }
@@ -210,7 +219,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int id)
         {
-            
+
             new NoticiaCEN(new NoticiaRepository()).BorrarNoticia(id);
             return RedirectToAction(nameof(Index));
         }
@@ -221,7 +230,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            
+
             try
             {
                 return RedirectToAction(nameof(Index));

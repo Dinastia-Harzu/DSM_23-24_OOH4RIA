@@ -7,7 +7,7 @@
 @{
     string acortarDescripcion(string desc)
     {
-        if(desc.Length > 100)
+        if (desc.Length > 100)
         {
             return desc.Substring(0, 100) + "...";
         }
@@ -22,7 +22,7 @@
 
     int alternarCSS(string url)
     {
-        switch(obtenerURI(url))
+        switch (obtenerURI(url))
         {
             case "Index":
                 return 4;
@@ -37,7 +37,7 @@
 
     int numNoticias(string url)
     {
-        switch(obtenerURI(url))
+        switch (obtenerURI(url))
         {
             case "Articulo":
                 return 1;
@@ -52,40 +52,39 @@
 
 
 <div class="container">
-    <h1 style="text-align:center;">Noticias</h1>
-    <hr/>
+    <h1 style="text-align:center; text-transform:uppercase;">Noticias</h1>
+    <hr />
     <div class="row">
         @foreach (var item in Model)
         {
-            @if(item.EsPublicada)
+            @if (item.EsPublicada)
             {
-               @if (numNoticias(ViewContext.HttpContext.Request.Path) == i)
-            {
-                break;
-            }
-            <div class="col-md-@alternarCSS(ViewContext.HttpContext.Request.Path) mb-4">
-                <a href="@Url.Action("Details", "Noticia", new { id = item.Id })" class="">
-                    <div class="card animated-card">
-                        <img src="@item.Foto" class="card-img-top" alt="Imagen de la noticia">
-                        <div class="card-body bg-dark">
-                            <h4 class="card-title text-warning" style="text-transform: uppercase;">@item.Titulo</h4>
-                            <p class="card-text" style="color:white;">@acortarDescripcion(@item.Descripcion)</p>
+                @if (numNoticias(ViewContext.HttpContext.Request.Path) == i)
+                {
+                    break;
+                }
+                <div class="col-md-@alternarCSS(ViewContext.HttpContext.Request.Path) mb-4">
+                    <a href="@Url.Action("Details", "Noticia", new { id = item.Id })" class="">
+                        <div class="card animated-card">
+                            <img src="@item.Foto" class="card-img-top" alt="Imagen de la noticia">
+                            <div class="card-body bg-dark">
+                                <h4 class="card-title text-warning" style="text-transform: uppercase;">@item.Titulo</h4>
+                                <p class="card-text" style="color:white;">@acortarDescripcion(@item.Descripcion)</p>
                                 @if (User.FindFirstValue(ClaimTypes.Role) == "Administrador")
                                 {
                                     <div class="m-1 p-1">
                                         @Html.ActionLink("Editar", "Edit", "Noticia", new { id = item.Id }, new { @class = "btn btn-aceptar" })
                                         @Html.ActionLink("Borrar", "Delete", "Noticia", new { id = item.Id }, new { @class = "btn btn-cancelar" })
                                     </div>
-                                        }
+                                }
                             </div>
-                    </div>
-                </a> 
-            </div>
-            i++; 
+                        </div>
+                    </a>
+                </div>
+                i++;
             }
-            
+
         }
     </div>
-
 
 

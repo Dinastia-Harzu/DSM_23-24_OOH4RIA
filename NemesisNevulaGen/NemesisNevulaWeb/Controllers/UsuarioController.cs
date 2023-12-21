@@ -16,8 +16,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
-using NemesisNevulaGen.ApplicationCore.CP.NemesisNevula;
-using NemesisNevulaGen.Infraestructure.CP;
 
 namespace NemesisNevulaWeb.Controllers
 {
@@ -36,6 +34,15 @@ namespace NemesisNevulaWeb.Controllers
         public ActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+
+            return View();
+        }
+
+        public ActionResult PremiumActualizar()
+        {
+            if (User.Identity.IsAuthenticated) actualizarEstado();
+            if (!User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
 
             return View();
@@ -117,7 +124,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            
+
             // Validamos el token del usuario registrado
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
@@ -145,7 +152,7 @@ namespace NemesisNevulaWeb.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         {
-            
+
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
 
@@ -158,7 +165,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateAsync(UsuarioVM user)
         {
-            
+
             // Validamos el token del usuario
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
@@ -216,13 +223,13 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            
+
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
             if (idUserString != id.ToString() && rolUser != "Administrador")
                 return RedirectToAction("Index", "Home");
-            
+
             if (User.Identity.IsAuthenticated) actualizarEstado();
             ViewBag.CurrentPage = "Perfil";
 
@@ -244,7 +251,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditAsync(int id, UsuarioVM user)
         {
-            
+
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
@@ -266,14 +273,14 @@ namespace NemesisNevulaWeb.Controllers
                 Console.WriteLine("Foto: " + user.Foto_perfil2);
 
                 // Manejamos la subida de foto de perfil
-                string fileName = "", path = "", miDirectorio="/FotosPerfil/";
+                string fileName = "", path = "", miDirectorio = "/FotosPerfil/";
                 if (user.Foto_perfil2 != null && user.Foto_perfil2.Length > 0)
                 {
                     Console.WriteLine("Foto definida");
 
                     fileName = Path.GetFileName(user.Foto_perfil2.FileName).Trim();
 
-                    Console.WriteLine("Nombre foto: "+fileName);
+                    Console.WriteLine("Nombre foto: " + fileName);
 
                     string directory = _webHost.WebRootPath + "/FotosPerfil";
                     path = Path.Combine(directory, fileName);
@@ -311,9 +318,9 @@ namespace NemesisNevulaWeb.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Console.WriteLine("ERROR FATAL: "+e.Message);
+                Console.WriteLine("ERROR FATAL: " + e.Message);
                 return View();
             }
         }
@@ -322,7 +329,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            
+
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
@@ -343,7 +350,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
-            
+
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
@@ -364,7 +371,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult ArtsAdquiridos(int id, string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
         {
-            
+
             // Validamos que solo el usuario propio o el administrador pueda ver los articulos adquiridos
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
@@ -452,7 +459,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult ArtsFavoritos(int id, string filtroBusqueda, string ordenarPor, string filtroRareza, string filtroTipo, string filtroFechaIni, string filtroFechaFin)
         {
-            
+
             string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string rolUser = User.FindFirstValue(ClaimTypes.Role);
 
@@ -554,7 +561,7 @@ namespace NemesisNevulaWeb.Controllers
 
             foreach (var pp in listaAux)
             {
-                ppList.Add((PaypalEN) pp);
+                ppList.Add((PaypalEN)pp);
             }
 
             IEnumerable<PaypalVM> listPP = new PaypalAssembler().ConvertirListENToViewModel(ppList).ToList();
@@ -570,7 +577,7 @@ namespace NemesisNevulaWeb.Controllers
 
             foreach (var pp in listaAux)
             {
-                tcList.Add((TarjetaCreditoEN) pp);
+                tcList.Add((TarjetaCreditoEN)pp);
             }
 
             IEnumerable<TarjetaCreditoVM> listTC = new TarjetaCreditoAssembler().ConvertirListENToViewModel(tcList).ToList();
@@ -581,103 +588,37 @@ namespace NemesisNevulaWeb.Controllers
             return View(viewModel);
         }
 
-        // GET: UsuarioController/DevolverArticulo/5
+        /*
+        //GET: UsuarioController/MetodosPago/5
         [Authorize]
-        public ActionResult DevolverArticulo(int id)
+        public ActionResult MetodosPago(int id) 
         {
-            SessionInitialize();
 
-            UsuarioRepository userRepo = new(session);
-            UsuarioCEN userCEN = new(userRepo);
-            UsuarioCP userCP = new(new SessionCPNHibernate());
-
-            // Recogemos el usuario
-            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            UsuarioEN userLogued = userCEN.DamePorOID(idUserLogued);
-
-            // Buscamos si el usuario tiene una compra relacionada con ese articulo
-            IList<CompraEN> comprasUser = userLogued.CompraUsuario;
-
-            CompraEN compraUserArt = comprasUser.FirstOrDefault(compra => compra.Articulo.Id == id);
-            Console.WriteLine("\n\nFecha de compra: " + compraUserArt.Fecha + "\n\n");
-
-            if(compraUserArt == null)
-                RedirectToAction("ArtsAdquiridos", new { id = idUserLogued });
-
-            int idCompra = compraUserArt.Id;
-
-            // Si tiene el articulo comprado, procedemos a la devolución del importe
-            userCP.DevolverArticulo(idUserLogued, idCompra);
-
-            SessionClose();
-
-            return RedirectToAction("ArtsAdquiridos", new { id = idUserLogued });
-        }
-
-        // GET: UsuarioController/AnyadirFondos
-        [Authorize]
-        public ActionResult AnyadirFondos()
-        {
-            if (User.Identity.IsAuthenticated) actualizarEstado();
-
-            UsuarioRepository userRepo = new();
-            UsuarioCEN userCEN = new(userRepo);
-
-            // Recogemos la lista de métodos de pago del usuario
-            int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            IList<MetodoPagoEN> mpsUserLogued = userCEN.DameMetodosDePago(idUserLogued);
-
-            // Creamos una lista de items seleccionables con los datos
-            IList<SelectListItem> mpsSeleccionables = new List<SelectListItem>();
-            string texto="", valor="";
-            PaypalEN paypal;
-            TarjetaCreditoEN tarjeta;
-            foreach (var mp in mpsUserLogued)
-            {
-                if (mp is PaypalEN)
-                {
-                    paypal = (PaypalEN)mp;
-
-                    texto = "Paypal: " + paypal.Email;
-                    valor = paypal.Id.ToString();
-                }
-                else if (mp is TarjetaCreditoEN)
-                {
-                    tarjeta = (TarjetaCreditoEN)mp;
-
-                    texto = tarjeta.TipoTarjeta + ": " + tarjeta.NombreEnTarjeta + " - " + tarjeta.Numero;
-                    valor = tarjeta.Id.ToString();
-                }
-
-                mpsSeleccionables.Add(new SelectListItem
-                {
-                    Text = texto,
-                    Value = valor
-                });
-            }
-
-            ViewData["mpsSeleccionables"] = mpsSeleccionables;
-
-            return View();
-        }
-
-        // POST: UsuarioController/AnyadirFondos
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AnyadirFondos(AnyadirFondosVM afVM)
-        {
+            // Validamos que el usuario introducido sea el que está registrado
             int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            UsuarioRepository userRepo = new();
-            UsuarioCEN userCEN = new(userRepo);
-            UsuarioCP userCP = new(new SessionCPNHibernate());
+            if (idUserLogued != id)
+                return RedirectToAction("Index", "Home");
 
-            UsuarioEN userLogued = userCEN.DamePorOID(idUserLogued);
+            UsuarioRepository userRepository = new();
+            UsuarioCEN userCEN = new(userRepository);
 
-            userCP.AgregarFondos(idUserLogued, afVM.MetodoPago, afVM.Cantidad);
+            // Recogemos los métodos de pago del usuario y los convertiimos a VM
+            IList<MetodoPagoEN> mpsUserListEN = userCEN.DameMetodosDePago(id);
 
-            return RedirectToAction("Details", "Usuario", new {id = idUserLogued});
+            IEnumerable<MetodoPagoVM> mpsUserListVM = new MetodoPagoAssembler().ConvertirListENToViewModel(mpsUserListEN).ToList();
+
+            return View(mpsUserListVM);
         }
+        */
     }
+
+
+    //[Authorize]
+    //[HttpPost]
+    //[ValidateAntiForgeryToken]
+    //public ActionResult ActualizarPremiumResult(int id, UsuarioVM user)
+    //{
+    //string idUserString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    //}
 }

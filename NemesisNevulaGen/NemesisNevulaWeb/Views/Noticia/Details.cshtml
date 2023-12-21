@@ -1,5 +1,6 @@
 ﻿@model Tuple<NemesisNevulaWeb.Models.NoticiaVM, IEnumerable<NemesisNevulaWeb.Models.NoticiaVM>>
-
+@using Microsoft.AspNetCore.Identity;
+@using System.Security.Claims;
 @{
     ViewData["Title"] = Html.DisplayFor(model => model.Item1.Titulo);
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -58,15 +59,17 @@
     }
 
 </style>
-
-<div class="d-flex justify-content-start m-1 p-1">
-    <div class="m-1">
-        @Html.ActionLink("Editar", "Edit", "Noticia", new { id = Model.Item1.Id }, new { @class = "btn btn-aceptar" })
+@if (User.FindFirstValue(ClaimTypes.Role) == "Administrador")
+{
+    <div class="d-flex justify-content-start m-1 p-1">
+        <div class="m-1">
+            @Html.ActionLink("Editar", "Edit", "Noticia", new { id = Model.Item1.Id }, new { @class = "btn btn-aceptar" })
+        </div>
+        <div class="m-1">
+            @Html.ActionLink("Borrar", "Delete", "Noticia", new { id = Model.Item1.Id }, new { @class = "btn btn-cancelar" })
+        </div>
     </div>
-    <div class="m-1">
-        @Html.ActionLink("Borrar", "Delete", "Noticia", new { id = Model.Item1.Id }, new { @class = "btn btn-cancelar" })
-    </div>
-</div>
+}
 <div class="container-fluid d-flex flex-row clase">
     <div class="d-flex flex-column w-100 m-3 align-items-center">
         <h1 style="text-align:center; text-transform: uppercase;" class="text-warning">@Html.DisplayFor(model => model.Item1.Titulo)</h1>

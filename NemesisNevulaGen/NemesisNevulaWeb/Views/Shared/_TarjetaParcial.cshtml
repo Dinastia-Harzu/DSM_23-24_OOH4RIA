@@ -1,53 +1,37 @@
 ﻿@model IEnumerable<NemesisNevulaWeb.Models.TarjetaCreditoVM>
 
-<p>
-    @Html.ActionLink("Crear Tarjeta Crédito", "Create", "TarjetaCredito")
-</p>
-<table class="table text-white">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreEnTarjeta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Numero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CodigoSeguridad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaExpedicion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoTarjeta)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreEnTarjeta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CodigoSeguridad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaExpedicion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoTarjeta)
-            </td>
-            <td>
-                    @Html.ActionLink("Edit", "Edit", "TarjetaCredito", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", "TarjetaCredito", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", "TarjetaCredito", new { id = item.Id })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container mt-5">
+    <div class="card-body">
+        <div class="mb-2">
+            @Html.ActionLink("Crear Tarjeta de crédito", "Create", "TarjetaCredito", new { @class = "btn btn-aceptar" })
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-dark text-white">
+                        <div class="card-header">
+                            <h5>Nombre:</h5> @Html.DisplayFor(modelItem => item.NombreEnTarjeta) <br />
+                        </div>
+                        <div class="card-body">
+
+                            <strong>Número:</strong> @Html.DisplayFor(modelItem => item.Numero) <br />
+                            <strong>Código de Seguridad:</strong> @Html.DisplayFor(modelItem => item.CodigoSeguridad) <br />
+                            <strong>Fecha de Expedición:</strong> @Html.DisplayFor(modelItem => item.FechaExpedicion) <br />
+                            <strong>Tipo de Tarjeta:</strong> @Html.DisplayFor(modelItem => item.TipoTarjeta) <br />
+                        </div>
+                        <div class="card-footer d-flex ">
+                            <div class="p-1">
+                                @Html.ActionLink("Editar", "Edit", "TarjetaCredito", new { id = item.Id }, new { @class = "btn btn-aceptar " })
+                            </div>
+                            <div class="p-1">
+                                @Html.ActionLink("Eliminar", "Delete", "TarjetaCredito", new { id = item.Id }, new { @class = "btn btn-cancelar " })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

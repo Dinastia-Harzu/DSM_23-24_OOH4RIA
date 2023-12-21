@@ -1,35 +1,30 @@
 ﻿@model IEnumerable<NemesisNevulaWeb.Models.PaypalVM>
 
-<p>
-    @Html.ActionLink("Crear Paypal", "Create", "Paypal")
-</p>
-<table class="table text-white mt-1">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pass)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pass)
-            </td>
-            <td>
-                    @Html.ActionLink("Editar", "Edit", "Paypal", new { id = item.Id }) |
-                    @Html.ActionLink("Detalles", "Details", "Paypal", new { id = item.Id }) |
-                    @Html.ActionLink("Eliminar", "Delete", "Paypal", new { id = item.Id })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container mt-5">
+    <div class="card-body">
+        <div class="mb-2">
+            @Html.ActionLink("Crear Paypal", "Create", "Paypal", new { @class = "btn btn-aceptar" })
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-dark text-white">
+                        <div class="card-header">
+                            <h5>Email:</h5> @Html.DisplayFor(modelItem => item.Email) <br />
+                        </div>
+                        <div class="card-footer d-flex ">
+                            <div class="p-1">
+                                @Html.ActionLink("Editar", "Edit", "Paypal", new { id = item.Id }, new { @class = "btn btn-aceptar " })
+                            </div>
+                            <div class="p-1">
+                                @Html.ActionLink("Eliminar", "Delete", "Paypal", new { id = item.Id }, new { @class = "btn btn-cancelar " })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

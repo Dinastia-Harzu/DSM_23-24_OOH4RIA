@@ -74,6 +74,7 @@ namespace NemesisNevulaWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TarjetaCreditoVM tc)
         {
+
             try
             {
                 if (User.Identity.IsAuthenticated) actualizarEstado();
@@ -82,7 +83,7 @@ namespace NemesisNevulaWeb.Controllers
 
                 int idUserLogued = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                tcCEN.CrearTarjetaCredito(idUserLogued, tc.TipoTarjeta,tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
+                tcCEN.CrearTarjetaCredito(idUserLogued, tc.TipoTarjeta, tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
                 return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
             }
             catch
@@ -152,13 +153,13 @@ namespace NemesisNevulaWeb.Controllers
 
                 Console.WriteLine("Nombre actualizado? " + tc.NombreEnTarjeta);
 
-                tcCEN.ModificarTarjetaCredito(id,tc.TipoTarjeta,tc.NombreEnTarjeta,tc.Numero, tc.FechaExpedicion,tc.CodigoSeguridad);
+                tcCEN.ModificarTarjetaCredito(id, tc.TipoTarjeta, tc.NombreEnTarjeta, tc.Numero, tc.FechaExpedicion, tc.CodigoSeguridad);
 
-                return RedirectToAction("MetodPago", "Usuario", new {id = idUserLogued});
+                return RedirectToAction("MetodPago", "Usuario", new { id = idUserLogued });
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Console.WriteLine("TarjetaCredito/Edit -> ERROR FATAL: "+e.Message);
+                Console.WriteLine("TarjetaCredito/Edit -> ERROR FATAL: " + e.Message);
                 return View();
             }
         }
@@ -167,7 +168,7 @@ namespace NemesisNevulaWeb.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            
+            if (User.Identity.IsAuthenticated) actualizarEstado();
             SessionInitialize();
 
             TarjetaCreditoRepository tcRepo = new TarjetaCreditoRepository(session);
