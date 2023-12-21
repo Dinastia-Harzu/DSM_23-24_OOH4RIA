@@ -96,15 +96,7 @@ namespace NemesisNevulaWeb.Controllers
 
             if (p_usuario.Cartera > precio)
             {
-<<<<<<< HEAD
                 if (User.Identity.IsAuthenticated) actualizarEstado();
-=======
-                if (User.Identity.IsAuthenticated)
-                {
-                    actualizarEstado();
-                }
->>>>>>> f8d8cee0d760226d2fa50f72dc0836ac389e98af
-
             }
                 // Ver el nombre del articulo
                 ViewData["nom_art"] = p_articulo.Nombre;
